@@ -14,7 +14,12 @@ export class ContactService {
       ...payload,
       type: payload.type ?? 'CONTACT'
     };
+    
+    const request = {
+      body: JSON.stringify(body),
+      isBase64Encoded: false
+    };
 
-    return this.http.post<ApiResponse>(`${environment.apiUrl}/contacts`, body);
+    return this.http.post<ApiResponse>(`${environment.apiUrl}/contacts`, request);
   }
 }

@@ -164,6 +164,7 @@ public class LambdaHandler implements RequestHandler<APIGatewayProxyRequestEvent
      * @throws CustomException if the body is missing or cannot be parsed
      */
     private ContactRequest parseRequest(APIGatewayProxyRequestEvent request) {
+        log.info("The request is: {}", request);
         String body = request.getBody();
         log.info("The message body is: {}", body);
         if (body == null || body.isBlank()) {

@@ -15,7 +15,12 @@ export class ApplicationService {
       type: payload.type ?? 'JOB_APPLICATION'
     };
 
-    return this.http.post<ApiResponse>(`${environment.apiUrl}/contacts`, body);
+    const request = {
+      body: JSON.stringify(body),
+      isBase64Encoded: false
+    };
+
+    return this.http.post<ApiResponse>(`${environment.apiUrl}/contacts`, request);
   }
 }
 

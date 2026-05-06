@@ -1,6 +1,198 @@
-# Elite CSP Project
+# api-app — AWS Lambda Backend
 
-Serverless backend for the Elite CSP website, built with Java 17 and AWS Lambda.
+> Java 17 serverless backend for the Elite CSP website.  
+> Handles contact form and job application submissions via Amazon SES.
+
+---
+
+## Overview
+
+`api-app` is a single-module Java Maven project that exposes one unified AWS Lambda function behind Amazon API Gateway. The Lambda handles two distinct submission types via a single `POST /contacts` endpoint, routing logic based on the `type` field in the request payload.
+
+| Contact Type | Processing Path |
+|---|---|
+| `CONTACT` | Validates fields → sends notification email via Amazon SES (optional attachment) |
+| `JOB_APPLICATION` | Validates fields → sends notification email via Amazon SES with CV attached |
+
+---
+
+## Architecture
+
+```
+Angular (Frontend)
+       │
+       ▼
+Amazon API Gateway  (REST, x-api-key auth)
+   └── POST /contacts  ──► LambdaHandler
+                               ├── type=CONTACT        ──► EmailService → Amazon SES
+                               └── type=JOB_APPLICATION ──► EmailService → Amazon SES (+ CV attachment)
+```
+
+---
+
+## Package Structure
+
+```
+api-app/
+├── pom.xml
+└── src/main/
+    ├── java/ca/elitecsp/
+    │   ├── common/
+    │   │   ├── exception/
+    │   │   │   ├── ErrorCode.java          # Enum of machine-readable error codes
+    │   │   │   └── CustomException.java    # Structured exception (ErrorCode + HTTP status)
+    │   │   ├── model/
+    │   │   │   └── BaseResponse.java       # Generic {success, message, error} envelope
+    │   │   ├── response/
+    │   │   │   └── ApiResponseBuilder.java # APIGatewayProxyResponseEvent factory
+    │   │   └── util/
+    │   │       ├── Constants.java          # Application-wide constants
+    │   │       ├── EmailTemplateLoader.java # Classpath template loader ({{PLACEHOLDER}})
+    │   │       ├── JsonUtils.java          # Singleton ObjectMapper wrapper
+    │   │       └── ValidationUtils.java    # Generic field / email / file validation
+    │   └── contact/
+    │       ├── handler/
+    │       │   └── LambdaHandler.java      # Lambda entry point; routes by ContactType
+    │       ├── model/
+    │       │   ├── ContactRequest.java     # Unified request payload (@Data, @JsonAlias)
+    │       │   └── ContactType.java        # Enum: CONTACT | JOB_APPLICATION
+    │       ├── service/
+    │       │   └── EmailService.java       # Sends notification emails via Amazon SES
+    │       └── util/
+    │           └── ValidationUtil.java     # Type-aware request validation
+    └── resources/
+        └── templates/
+            ├── contact-email.html          # HTML template for CONTACT emails
+            ├── contact-email.txt           # Plain-text template for CONTACT emails
+            ├── job-application-email.html  # HTML template for JOB_APPLICATION emails
+            └── job-application-email.txt   # Plain-text template for JOB_APPLICATION emails
+```
+
+---
+
+## Contact Types
+
+### `CONTACT`
+
+A standard website enquiry. Sends a notification email to the configured recipient. An optional file attachment (PDF or DOCX, max 5 MB) may be included inline in the email.
+
+**Required fields:** `fullName`, `email`, `message`  
+**Optional fields:** `city`, `subject`, `attachment`, `attachmentFileName`
+
+### `JOB_APPLICATION`
+
+A job application submission. The CV is attached directly to the SES notification email.
+
+**Required fields:** `fullName`, `email`, `message`, `attachment`, `attachmentFileName`  
+**Optional fields:** `city`, `subject`  
+**Allowed file types:** PDF, DOCX (max 5 MB)
+
+---
+
+## Request & Response Format
+
+### Request (JSON body)
+
+```json
+{
+  "type":               "CONTACT",
+  "fullName":           "Jane Smith",
+  "email":              "jane@example.com",
+  "city":               "Montréal",
+  "subject":            "Inquiry about services",
+  "message":            "Hello, I would like to learn more about your services.",
+  "attachment":         "<base64-encoded file, optional>",
+  "attachmentFileName": "document.pdf"
+}
+```
+
+> **Backward compatibility:** `"name"` is accepted as an alias for `"fullName"` and `"attachmentFile"` as an alias for `"attachment"`.
+
+### Success response (HTTP 200)
+
+```json
+{ "success": true, "message": "Your message has been sent successfully.", "error": null }
+```
+
+### Error response (HTTP 400 / 500)
+
+```json
+{ "success": false, "message": "Email address is invalid: bad@", "error": "INVALID_EMAIL" }
+```
+
+---
+
+## Email Templates
+
+Email bodies are loaded from classpath resources at runtime. Templates use `{{PLACEHOLDER}}` token substitution. All user-supplied values are HTML-escaped before injection.
+
+| Template | Used for | Placeholders |
+|---|---|---|
+| `contact-email.html` / `.txt` | `CONTACT` | `{{NAME}}`, `{{EMAIL}}`, `{{CITY}}`, `{{COMPANY}}`, `{{SUBJECT}}`, `{{MESSAGE}}` |
+| `job-application-email.html` / `.txt` | `JOB_APPLICATION` | `{{NAME}}`, `{{EMAIL}}`, `{{CITY}}`, `{{SUBJECT}}`, `{{MESSAGE}}`, `{{ATTACHMENT_NAME}}` |
+
+---
+
+## Environment Variables
+
+| Variable | Required | Description |
+|---|---|---|
+| `FROM_EMAIL` | ✅ | Verified SES sender email address |
+| `DESTINATION_EMAIL` | ✅ | Recipient email address for all notifications |
+| `AWS_REGION` | ✅ | AWS region (e.g. `ca-central-1`) |
+
+> AWS credentials are **not** configured via environment variables. The Lambda execution role provides them automatically via the AWS default credential chain.
+
+---
+
+## Build & Packaging
+
+**Prerequisites:** Java 17+, Apache Maven 3.8+
+
+```bash
+# Build the fat JAR (uber-jar with all dependencies)
+mvn clean package
+
+# Output
+target/elite-csp-contact.jar
+```
+
+---
+
+## Lambda Handler Reference
+
+```
+ca.elitecsp.contact.handler.LambdaHandler::handleRequest
+```
+
+---
+
+## Deployment
+
+See the [Deployment Guide](../docs/deployment-guide.md) for full instructions.
+
+**Quick deploy (update existing function):**
+```bash
+mvn clean package
+aws lambda update-function-code \
+  --function-name elite-csp-contact \
+  --zip-file fileb://target/elite-csp-contact.jar
+```
+
+---
+
+## Error Codes
+
+| Code | HTTP Status | Meaning |
+|---|---|---|
+| `MISSING_REQUIRED_FIELD` | 400 | Required field is null or blank |
+| `VALIDATION_ERROR` | 400 | Field value fails format/business rule validation |
+| `INVALID_EMAIL` | 400 | Email address format is invalid |
+| `INVALID_FILE_TYPE` | 400 | File is not PDF or DOCX, or magic bytes don't match |
+| `FILE_TOO_LARGE` | 400 | File exceeds 5 MB limit |
+| `JSON_PARSE_ERROR` | 400 | Request body is not valid JSON |
+| `EMAIL_SEND_FAILURE` | 500 | Amazon SES rejected the send request |
+| `INTERNAL_ERROR` | 500 | Unexpected server-side error |
 
 ---
 

@@ -8,25 +8,30 @@ on:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v6
+        uses: actions/checkout@v4
 
       - name: Set up Node.js
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@v4
         with:
           node-version: 22
           cache: 'npm'
+          cache-dependency-path: ui-app/package-lock.json
 
       - name: Install dependencies
+        working-directory: ui-app
         run: npm ci
 
       - name: Build Angular app
+        working-directory: ui-app
         run: npm run build -- --configuration=production
 
       - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v6
+        uses: aws-actions/configure-aws-credentials@v4
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
@@ -46,11 +51,20 @@ jobs:
           DEST="s3://${S3_BUCKET}"
 
           # Hashed static assets — safe to cache for 1 year
-          aws s3 sync "dist/elitecsp/browser" "${DEST}/" \
+          aws s3 sync "ui-app/dist/ui-app/browser" "${DEST}/" \
             --delete \
             --cache-control "public, max-age=31536000, immutable" \
             --exclude "index.html"
 
           # index.html must never be cached
-          aws s3 cp "dist/elitecsp/browser/index.html" "${DEST}/index.html" \
+          aws s3 cp "ui-app/dist/ui-app/browser/index.html" "${DEST}/index.html" \
             --cache-control "no-cache, no-store, must-revalidate"
+
+      - name: Invalidate CloudFront cache
+        if: ${{ vars.CLOUDFRONT_DISTRIBUTION_ID != '' }}
+        env:
+          CLOUDFRONT_DISTRIBUTION_ID: ${{ vars.CLOUDFRONT_DISTRIBUTION_ID }}
+        run: |
+          aws cloudfront create-invalidation \
+            --distribution-id "${CLOUDFRONT_DISTRIBUTION_ID}" \
+            --paths "/*"

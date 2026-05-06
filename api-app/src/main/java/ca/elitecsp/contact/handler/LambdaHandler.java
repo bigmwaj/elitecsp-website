@@ -143,6 +143,7 @@ public class LambdaHandler implements RequestHandler<APIGatewayProxyRequestEvent
                 req.getFullName(),
                 req.getEmail(),
                 req.getCity(),
+                req.getSubject(),
                 req.getMessage(),
                 fileBytes,
                 req.getAttachmentFileName()

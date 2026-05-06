@@ -159,19 +159,21 @@ public class EmailService {
      * @param fullName        the full name of the applicant
      * @param senderEmail     the applicant's email address (used as Reply-To)
      * @param city            the applicant's city (optional; may be {@code null} or blank)
+     * @param jobPosition     the job position / ID the applicant is applying for
+     *                        (optional; may be {@code null} or blank)
      * @param messageBody     the cover letter / message body
      * @param attachmentBytes the decoded CV file bytes to attach; must not be {@code null}
      * @param attachmentName  the original filename for the CV attachment (e.g. {@code "resume.pdf"})
      * @throws CustomException with {@link ErrorCode#EMAIL_SEND_FAILURE} (HTTP 500) if sending fails
      */
     public void sendJobApplicationEmail(String fullName, String senderEmail, String city,
-                                         String messageBody,
+                                         String jobPosition, String messageBody,
                                          byte[] attachmentBytes, String attachmentName) {
         log.info("Sending job-application email via SES on behalf of: {}", senderEmail);
         try {
             String emailSubject = Constants.JOB_APPLICATION_EMAIL_SUBJECT_PREFIX + fullName;
             Map<String, String> placeholders = buildJobApplicationPlaceholders(
-                    fullName, senderEmail, city, messageBody, attachmentName);
+                    fullName, senderEmail, city, jobPosition, messageBody, attachmentName);
 
             byte[] rawMime = buildRawMimeMessage(emailSubject, senderEmail,
                     EmailTemplateLoader.load("job-application-email.txt", placeholders),
@@ -302,12 +304,14 @@ public class EmailService {
      * All user-supplied values are HTML-escaped before use.
      */
     private Map<String, String> buildJobApplicationPlaceholders(String fullName, String senderEmail,
-                                                                  String city, String messageBody,
+                                                                  String city, String jobPosition,
+                                                                  String messageBody,
                                                                   String attachmentName) {
         Map<String, String> map = new HashMap<>();
         map.put("{{NAME}}", htmlEscape(fullName));
         map.put("{{EMAIL}}", htmlEscape(senderEmail));
         map.put("{{CITY}}", htmlEscape(city != null ? city : ""));
+        map.put("{{SUBJECT}}", htmlEscape(jobPosition != null ? jobPosition : ""));
         map.put("{{MESSAGE}}", htmlEscape(messageBody).replace("\n", "<br/>"));
         map.put("{{ATTACHMENT_NAME}}", htmlEscape(attachmentName != null ? attachmentName : ""));
         return map;

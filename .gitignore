@@ -33,7 +33,7 @@ build/
 .vscode/
 
 # Angular
-em-app-ui/node_modules/
-em-app-ui/dist/
-em-app-ui/.angular/
-/em-app-as/.env
+ui-app/node_modules/
+ui-app/dist/
+ui-app/.angular/
+/api-app/.env

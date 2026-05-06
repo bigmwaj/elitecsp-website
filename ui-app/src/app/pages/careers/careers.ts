@@ -7,6 +7,8 @@ import { JobCardComponent } from '../../components/job-card/job-card';
 import { JobService } from '../../services/job.service';
 import { ApplicationService } from '../../services/application.service';
 
+const ALLOWED_EXTENSIONS = ['.pdf', '.docx'];
+
 @Component({
   selector: 'app-careers',
   standalone: true,
@@ -60,11 +62,8 @@ export class CareersComponent implements OnInit {
     const file = input.files?.[0] ?? null;
     this.selectedFile.set(file);
     if (file) {
-      if (!file.name.toLowerCase().endsWith('.pdf')) {
-        this.fileError.set('CV_TYPE_ERROR');
-      } else {
-        this.fileError.set(null);
-      }
+      const isAllowed = ALLOWED_EXTENSIONS.some(ext => file.name.toLowerCase().endsWith(ext));
+      this.fileError.set(isAllowed ? null : 'CV_TYPE_ERROR');
     } else {
       this.fileError.set(null);
     }
@@ -73,10 +72,14 @@ export class CareersComponent implements OnInit {
   onSubmit(): void {
     this.form.markAllAsTouched();
 
-    if (!this.selectedFile()) {
+    const file = this.selectedFile();
+    if (!file) {
       this.fileError.set('CV_ERROR');
-    } else if (!this.selectedFile()!.name.toLowerCase().endsWith('.pdf')) {
-      this.fileError.set('CV_TYPE_ERROR');
+    } else {
+      const isAllowed = ALLOWED_EXTENSIONS.some(ext => file.name.toLowerCase().endsWith(ext));
+      if (!isAllowed) {
+        this.fileError.set('CV_TYPE_ERROR');
+      }
     }
 
     if (this.form.invalid || this.fileError()) {
@@ -85,29 +88,49 @@ export class CareersComponent implements OnInit {
 
     this.submitting.set(true);
     const v = this.form.value;
-    this.applicationService.submit({
-      name: v.fullName!,
-      email: v.email!,
-      city: v.city!,
-      subject: String(v.jobId),
-      message: v.coverLetter!,
-      cvFileName: this.selectedFile()?.name,
-      type: "JOB_APPLICATION"
-    }).subscribe({
-      next: () => {
-        this.submitting.set(false);
-        this.submitted.set(true);
-        this.form.reset();
-        this.selectedFile.set(null);
-        this.fileError.set(null);
-      },
-      error: () => {
-        this.submitting.set(false);
-      }
+
+    this.readFileAsBase64(file!).then(base64Content => {
+      this.applicationService.submit({
+        name: v.fullName!,
+        email: v.email!,
+        city: v.city!,
+        subject: String(v.jobId),
+        message: v.coverLetter!,
+        attachment: base64Content,
+        attachmentFileName: file!.name,
+        type: 'JOB_APPLICATION'
+      }).subscribe({
+        next: () => {
+          this.submitting.set(false);
+          this.submitted.set(true);
+          this.form.reset();
+          this.selectedFile.set(null);
+          this.fileError.set(null);
+        },
+        error: () => {
+          this.submitting.set(false);
+        }
+      });
+    }).catch(() => {
+      this.submitting.set(false);
     });
   }
 
   resetForm(): void {
     this.submitted.set(false);
+  }
+
+  private readFileAsBase64(file: File): Promise<string> {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => {
+        const result = reader.result as string;
+        // Strip the data URI prefix (e.g. "data:application/pdf;base64,") if present
+        const base64 = result.includes(',') ? result.split(',')[1] : result;
+        resolve(base64);
+      };
+      reader.onerror = () => reject(new Error('Failed to read file: ' + reader.error?.message));
+      reader.readAsDataURL(file);
+    });
   }
 }

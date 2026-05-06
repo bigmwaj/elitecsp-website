@@ -1,0 +1,63 @@
+<footer>
+  <div class="footer-container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo">
+          <img src="assets/images/logo.svg" alt="Elite CSP" class="logo-img" width="36" height="36" loading="lazy">
+          <span>Elite <strong>CSP</strong></span>
+        </div>
+        <p>{{ 'FOOTER.BRAND_DESC' | translate }}</p>
+        <div class="social-links">
+          <a href="https://www.linkedin.com/company/elite-csp" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">in</a>
+          <a href="https://twitter.com/ui-app" target="_blank" rel="noopener noreferrer" aria-label="Twitter">𝕏</a>
+        </div>
+      </div>
+
+      <div class="footer-links">
+        <h4>{{ 'FOOTER.SERVICES' | translate }}</h4>
+        <ul>
+          <li><a routerLink="/services">{{ 'FOOTER.LINKS.IMPLEMENTATION' | translate }}</a></li>
+          <li><a routerLink="/services">{{ 'FOOTER.LINKS.INTEGRATION' | translate }}</a></li>
+          <li><a routerLink="/services">{{ 'FOOTER.LINKS.DEVELOPMENT' | translate }}</a></li>
+          <li><a routerLink="/services">{{ 'FOOTER.LINKS.SUPPORT' | translate }}</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-links">
+        <h4>{{ 'FOOTER.COMPANY' | translate }}</h4>
+        <ul>
+          <li><a routerLink="/about">{{ 'FOOTER.LINKS.ABOUT' | translate }}</a></li>
+          <li><a routerLink="/services">{{ 'FOOTER.LINKS.SERVICES' | translate }}</a></li>
+          <li><a routerLink="/partners">{{ 'FOOTER.LINKS.PARTNERS' | translate }}</a></li>
+          <li><a routerLink="/contact">{{ 'FOOTER.LINKS.CONTACT' | translate }}</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-contact">
+        <h4>{{ 'FOOTER.CONTACT' | translate }}</h4>
+        <p>📧 contact&#64;ui-app.com</p>
+        <p>📞 +1 (418) 255-2407</p>
+        <p>📍 Québec, QC, Canada</p>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>{{ 'FOOTER.COPYRIGHT' | translate : { year: year } }}</p>
+      <div class="lang-switcher">
+        <button
+          (click)="switchLang('fr')"
+          [class.active]="currentLang === 'fr'"
+          [attr.aria-label]="'FOOTER.LANG.FR' | translate">
+          FR
+        </button>
+        <span class="lang-divider">|</span>
+        <button
+          (click)="switchLang('en')"
+          [class.active]="currentLang === 'en'"
+          [attr.aria-label]="'FOOTER.LANG.EN' | translate">
+          EN
+        </button>
+      </div>
+    </div>
+  </div>
+</footer>

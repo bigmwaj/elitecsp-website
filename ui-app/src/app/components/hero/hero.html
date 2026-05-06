@@ -1,0 +1,13 @@
+<section class="hero" [class.compact]="compact()">
+  <div class="hero-content">
+    <h1 [innerHTML]="title() | translate"></h1>
+    <p class="subtitle" [innerHTML]="subtitle() | translate"></p>
+    <div class="cta-buttons">
+      <a [routerLink]="ctaLink()" [fragment]="ctaFragment()" class="btn btn-primary">{{ ctaText() | translate }}</a>
+      @if (secondaryCtaText()) {
+        <a [routerLink]="secondaryCtaLink()" [fragment]="secondaryCtaFragment()" class="btn btn-outline">{{ secondaryCtaText() | translate }}</a>
+      }
+    </div>
+  </div>
+  <div class="hero-overlay"></div>
+</section>

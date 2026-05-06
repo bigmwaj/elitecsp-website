@@ -1,0 +1,22 @@
+<app-hero
+  [title]="'HERO.PARTNERS.TITLE'"
+  [subtitle]="'HERO.PARTNERS.SUBTITLE'"
+  [ctaText]="'HERO.PARTNERS.CTA'"
+  ctaLink="/contact">
+</app-hero>
+
+<section class="section partners-section">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">{{ 'PARTNERS.PAGE.TAG' | translate }}</span>
+      <h2>{{ 'PARTNERS.PAGE.TITLE' | translate }}</h2>
+      <p>{{ 'PARTNERS.PAGE.SUBTITLE' | translate }}</p>
+    </div>
+
+    <div class="partners-grid">
+      @for (partner of partners(); track partner.id) {
+        <app-partner-card [partner]="partner" />
+      }
+    </div>
+  </div>
+</section>

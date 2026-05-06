@@ -1,0 +1,56 @@
+name: Build and Deploy to AWS S3
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: 22
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build Angular app
+        run: npm run build -- --configuration=production
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v6
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ vars.AWS_REGION }}
+
+      - name: Deploy to S3
+        env:
+          S3_BUCKET: ${{ vars.S3_BUCKET_NAME }}
+        run: |
+          set -euo pipefail
+
+          if [ -z "${S3_BUCKET:-}" ]; then
+            echo "S3_BUCKET is empty. Set repo variable S3_BUCKET_NAME to your bucket name (no s3:// prefix)."
+            exit 1
+          fi
+
+          DEST="s3://${S3_BUCKET}"
+
+          # Hashed static assets — safe to cache for 1 year
+          aws s3 sync "dist/elitecsp/browser" "${DEST}/" \
+            --delete \
+            --cache-control "public, max-age=31536000, immutable" \
+            --exclude "index.html"
+
+          # index.html must never be cached
+          aws s3 cp "dist/elitecsp/browser/index.html" "${DEST}/index.html" \
+            --cache-control "no-cache, no-store, must-revalidate"

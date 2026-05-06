@@ -1,0 +1,461 @@
+{
+  "NAV": {
+    "HOME": "Home",
+    "SERVICES": "Services",
+    "ABOUT": "About",
+    "PARTNERS": "Partners",
+    "CONTACT": "Contact Us",
+    "TOGGLE_MENU": "Toggle navigation menu",
+    "CAREERS": "Careers"
+  },
+  "HERO": {
+    "HOME": {
+      "TITLE": "Transforming Enterprise Operations<br>with IBM Maximo",
+      "SUBTITLE": "<strong>Elite CSP</strong> delivers expert Enterprise Asset Management consulting and  <strong>IBM Maximo/MAS</strong> implementation services, helping organizations maximize asset performance, reduce costs, and achieve operational excellence.",
+      "CTA": "Get a Free Consultation",
+      "SECONDARY_CTA": "Explore Our Services"
+    },
+    "SERVICES": {
+      "TITLE": "Our Services",
+      "SUBTITLE": "Benefit from 360° support for your CMMS project"
+    },
+    "ABOUT": {
+      "TITLE": "About Elite CSP",
+      "SUBTITLE": "Canadian leaders in IBM Maximo consulting and Enterprise Asset Management solutions.",
+      "CTA": "Work With Us"
+    },
+    "CONTACT": {
+      "TITLE": "Contact Us",
+      "SUBTITLE": "Ready to start your EAM transformation? Our team is here to help.",
+      "CTA": "View Our Services"
+    },
+    "PARTNERS": {
+      "TITLE": "Our Partners",
+      "SUBTITLE": "Discover our strategic partners who strengthen our expertise and service offering.",
+      "CTA": "Contact Us"
+    },
+    "CAREERS": {
+      "TITLE": "Join Our Team",
+      "SUBTITLE": "Build your career with Elite CSP, Canada's leading IBM Maximo consulting firm.",
+      "CTA": "View Open Positions"
+    }
+  },
+  "HOME": {
+    "SERVICES_SECTION": {
+      "MAINTENANCE": {
+        "TAG": "What We Do",
+        "TITLE": "Maintenance Consulting Services",
+        "SUBTITLE": "From maintenance audits to reliability strategies, we help organizations optimize their maintenance operations for maximum asset performance."
+      },
+      "MAXIMO": {
+        "TAG": "What We Also Do",
+        "TITLE": "IBM Maximo Services",
+        "SUBTITLE": "From initial implementation to ongoing support, we cover every aspect of your EAM journey."
+      }
+    },
+    "VALUE_SECTION": {
+      "TAG": "Why Elite CSP",
+      "TITLE": "Your Trusted EAM Partner in Canada",
+      "DESC": "With deep expertise in IBM Maximo and enterprise systems, Elite CSP brings a proven methodology and hands-on experience across industries including utilities, manufacturing, transportation, and government.",
+      "POINT_1": "15+ years of IBM Maximo expertise",
+      "POINT_2": "50+ successful implementations",
+      "POINT_3": "Rapid deployment methodology",
+      "POINT_4": "SOC 2 compliant practices",
+      "POINT_5": "Canadian-owned and operated 🇨🇦",
+      "LEARN_MORE": "Learn more about us →"
+    },
+    "STATS": {
+      "PROJECTS": "Projects Delivered",
+      "YEARS": "Years Experience",
+      "SATISFACTION": "Client Satisfaction",
+      "SUPPORT": "Support Available"
+    },
+    "PROCESS_SECTION": {
+      "TAG": "Our Approach",
+      "TITLE": "A Proven 4-Step Methodology",
+      "SUBTITLE": "Our structured approach ensures successful delivery at every project phase."
+    },
+    "TESTIMONIALS_SECTION": {
+      "TAG": "Client Stories",
+      "TITLE": "Trusted by Industry Leaders",
+      "SUBTITLE": "See what our clients say about working with Elite CSP."
+    },
+    "PARTNERS_SECTION": {
+      "TAG": "Our Partners",
+      "TITLE": "Our Strategic Partners",
+      "SUBTITLE": "Elite CSP collaborates with world-class leaders to deliver the best enterprise asset management solutions.",
+      "CTA": "View All Partners"
+    }
+  },
+  "SERVICES_PAGE": {
+    "MAINTENANCE": {
+      "TAG": "Maintenance Consulting Services",
+      "TITLE": "Maintenance Planning & Reliability Consulting",
+      "SUBTITLE": "From maintenance audits to reliability strategies, we help organizations optimize their maintenance operations for maximum asset performance."
+    },
+    "MAXIMO": {
+      "TAG": "IBM Maximo Professional Services",
+      "TITLE": "IBM Maximo Services",
+      "SUBTITLE": "From strategy to execution, Elite CSP provides end-to-end EAM expertise."
+    },
+    "INDUSTRIES": {
+      "TAG": "Industries",
+      "TITLE": "Industries We Serve",
+      "SUBTITLE": "Our expertise spans multiple sectors requiring robust asset management.",
+      "UTILITIES": {
+        "TITLE": "Utilities & Energy",
+        "DESC": "Managing complex grid infrastructure and generation assets with precision."
+      },
+      "MANUFACTURING": {
+        "TITLE": "Manufacturing",
+        "DESC": "Reducing downtime and optimizing production asset lifecycle."
+      },
+      "TRANSPORTATION": {
+        "TITLE": "Transportation",
+        "DESC": "Fleet and infrastructure management for rail, transit, and logistics."
+      },
+      "GOVERNMENT": {
+        "TITLE": "Government",
+        "DESC": "Public sector asset management with compliance and accountability."
+      },
+      "HEALTHCARE": {
+        "TITLE": "Healthcare",
+        "DESC": "Medical equipment and facility maintenance with regulatory compliance."
+      },
+      "MINING": {
+        "TITLE": "Mining & Resources",
+        "DESC": "Heavy equipment maintenance and safety compliance management."
+      }
+    },
+    "CTA": {
+      "TITLE": "Need a Custom Solution?",
+      "SUBTITLE": "Every organization is unique. Let's design the right EAM strategy for you.",
+      "CTA_TEXT": "Book a Consultation"
+    }
+  },
+  "ABOUT_PAGE": {
+    "STORY": {
+      "TAG": "Our Story",
+      "TITLE": "Built on Expertise, Driven by Results",
+      "P1": "Elite Conseils & Services Professionnels TI inc (Elite CSP) was founded with a singular mission: to help organizations unlock the full potential of their enterprise assets through world-class IBM Maximo implementations and EAM consulting.",
+      "P2": "Headquartered in Québec, QC, our bilingual team of certified IBM Maximo consultants brings deep technical expertise and a client-first approach to every engagement. We have supported organizations across Canada and internationally in transforming their asset management operations.",
+      "IMPLEMENTATIONS": "Implementations",
+      "YEARS_EXP": "Years Experience",
+      "INDUSTRIES_SERVED": "Industries Served",
+      "CANADIAN": "Canadian Owned"
+    },
+    "MVV": {
+      "TAG": "Who We Are",
+      "TITLE": "Mission, Vision & Values",
+      "MISSION": {
+        "TITLE": "Mission",
+        "DESC": "To empower organizations through expert IBM Maximo consulting, delivering solutions that maximize asset performance, minimize operational risk, and drive sustainable value."
+      },
+      "VISION": {
+        "TITLE": "Vision",
+        "DESC": "To be the most trusted EAM consulting partner in Canada, recognized for technical excellence, integrity, and the measurable impact we create for our clients."
+      },
+      "VALUES": {
+        "TITLE": "Values",
+        "V1": "Excellence in every deliverable",
+        "V2": "Integrity and transparency",
+        "V3": "Client success as our measure",
+        "V4": "Continuous learning & innovation",
+        "V5": "Collaboration and respect"
+      }
+    },
+    "EXPERTISE": {
+      "TAG": "Expertise",
+      "TITLE": "Deep IBM Maximo Knowledge",
+      "SUBTITLE": "Our certified consultants cover the full Maximo ecosystem.",
+      "MAS": {
+        "TITLE": "Maximo Application Suite (MAS)",
+        "DESC": "Deployment, configuration, and cloud migration for the latest MAS platform."
+      },
+      "ASSET": {
+        "TITLE": "Asset & Work Management",
+        "DESC": "PM, CM, and condition-based maintenance strategies optimized for your assets."
+      },
+      "INTEGRATION": {
+        "TITLE": "Enterprise Integrations",
+        "DESC": "SAP, Oracle, GIS, IoT, and custom API integrations using Maximo Integration Framework."
+      },
+      "MOBILE": {
+        "TITLE": "Maximo Mobile & Anywhere",
+        "DESC": "Field worker enablement with Maximo Mobile and Anywhere solutions."
+      },
+      "CLOUD": {
+        "TITLE": "Cloud & SaaS Migration",
+        "DESC": "Migrating on-premise Maximo to IBM Cloud and MAS SaaS environments."
+      },
+      "UPGRADES": {
+        "TITLE": "Upgrades & Administration",
+        "DESC": "Version upgrades, system tuning, and proactive administration services."
+      }
+    },
+    "CTA": {
+      "TITLE": "Let's Build Something Great Together",
+      "SUBTITLE": "Our team is ready to help you achieve your asset management goals."
+    }
+  },
+  "CONTACT_PAGE": {
+    "INFO": {
+      "TAG": "Get In Touch",
+      "TITLE": "Let's Start a Conversation",
+      "DESC": "Whether you're planning a new Maximo implementation, need integration support, or want to optimize your existing system — our experts are ready to help.",
+      "EMAIL": "Email",
+      "PHONE": "Phone",
+      "OFFICE": "Office",
+      "HOURS_LABEL": "Hours",
+      "HOURS": "Mon – Fri, 9:00 AM – 5:30 PM ET"
+    },
+    "FORM": {
+      "NAME": "Full Name *",
+      "NAME_PLACEHOLDER": "Your full name",
+      "NAME_ERROR": "Please enter your full name (min. 2 characters)",
+      "EMAIL": "Email Address *",
+      "EMAIL_PLACEHOLDER": "you@company.com",
+      "EMAIL_ERROR": "Please enter a valid email address",
+      "COMPANY": "Company",
+      "COMPANY_PLACEHOLDER": "Your company name",
+      "SUBJECT": "Subject *",
+      "SUBJECT_PLACEHOLDER": "Select a subject...",
+      "SUBJECT_IMPL": "IBM Maximo Implementation",
+      "SUBJECT_INTEG": "System Integration",
+      "SUBJECT_DEV": "Custom Development",
+      "SUBJECT_SUPPORT": "Support & Maintenance",
+      "SUBJECT_OTHER": "Other",
+      "SUBJECT_ERROR": "Please select a subject",
+      "MESSAGE": "Message *",
+      "MESSAGE_PLACEHOLDER": "Tell us about your project...",
+      "MESSAGE_ERROR": "Please enter a message (min. 20 characters)",
+      "SUBMIT": "Send Message →",
+      "SENDING": "Sending..."
+    },
+    "SUCCESS": {
+      "TITLE": "Message Sent Successfully!",
+      "DESC": "Thank you for reaching out. A member of our team will contact you within 1 business day.",
+      "RESET": "Send Another Message"
+    }
+  },
+  "FOOTER": {
+    "BRAND_DESC": "Elite Conseils & Services Professionnels TI inc — Your trusted IBM Maximo and Enterprise Asset Management partner.",
+    "SERVICES": "Services",
+    "COMPANY": "Company",
+    "CONTACT": "Contact",
+    "LINKS": {
+      "IMPLEMENTATION": "IBM Maximo Implementation",
+      "INTEGRATION": "System Integration",
+      "DEVELOPMENT": "Custom Development",
+      "SUPPORT": "Support & Maintenance",
+      "ABOUT": "About Us",
+      "PARTNERS": "Partners",
+      "SERVICES": "Our Services",
+      "CONTACT": "Contact"
+    },
+    "COPYRIGHT": "© {{year}} Elite Conseils & Services Professionnels TI inc. All rights reserved.",
+    "LANG": {
+      "FR": "Switch to French",
+      "EN": "Switch to English"
+    }
+  },
+  "CTA": {
+    "DEFAULT_TITLE": "Ready to Transform Your Operations?",
+    "DEFAULT_SUBTITLE": "Let's discuss how Elite CSP can help you unlock the full potential of IBM Maximo.",
+    "DEFAULT_CTA": "Start Your Project"
+  },
+  "DATA": {
+    "SERVICES": {
+      "1": {
+        "TITLE": "IBM Maximo Implementation",
+        "DESCRIPTION": "End-to-end IBM Maximo EAM deployment tailored to your operational needs.",
+        "F1": "Requirements analysis",
+        "F2": "System configuration",
+        "F3": "Data migration",
+        "F4": "User training",
+        "F5": "Go-live support"
+      },
+      "2": {
+        "TITLE": "System Integration",
+        "DESCRIPTION": "Seamlessly connect Maximo with your existing enterprise systems.",
+        "F1": "ERP integration (SAP, Oracle)",
+        "F2": "IoT & sensor data",
+        "F3": "GIS integration",
+        "F4": "REST/SOAP APIs",
+        "F5": "Real-time data sync"
+      },
+      "3": {
+        "TITLE": "Custom Development",
+        "DESCRIPTION": "Bespoke extensions and customizations to meet unique business requirements.",
+        "F1": "Custom workflows",
+        "F2": "Report development",
+        "F3": "Mobile extensions",
+        "F4": "Business rules",
+        "F5": "UI customization"
+      },
+      "4": {
+        "TITLE": "Support & Maintenance",
+        "DESCRIPTION": "Ongoing expert support to keep your Maximo environment performing optimally.",
+        "F1": "24/7 monitoring",
+        "F2": "Performance tuning",
+        "F3": "Patch management",
+        "F4": "Incident response",
+        "F5": "Health checks"
+      }
+    },
+    "PROCESS": {
+      "1": {
+        "TITLE": "Discovery",
+        "DESCRIPTION": "We analyze your current systems, business processes, and goals to define the optimal roadmap."
+      },
+      "2": {
+        "TITLE": "Planning",
+        "DESCRIPTION": "Detailed project plan, architecture design, and resource allocation tailored to your environment."
+      },
+      "3": {
+        "TITLE": "Implementation",
+        "DESCRIPTION": "Agile delivery with continuous testing, integration, and stakeholder validation at every milestone."
+      },
+      "4": {
+        "TITLE": "Support",
+        "DESCRIPTION": "Hypercare post go-live, knowledge transfer, and ongoing maintenance to ensure long-term success."
+      }
+    },
+    "TESTIMONIALS": {
+      "1": {
+        "ROLE": "Director of Operations",
+        "CONTENT": "Elite CSP transformed our asset management processes. Their Maximo expertise is unmatched. We saw a 40% reduction in unplanned downtime within 6 months."
+      },
+      "2": {
+        "ROLE": "IT Infrastructure Manager",
+        "CONTENT": "The integration work done by Elite CSP connected our legacy ERP with Maximo flawlessly. Professional team, on-time delivery, and outstanding support."
+      },
+      "3": {
+        "ROLE": "VP Technology",
+        "CONTENT": "We relied on Elite CSP for our full Maximo rollout across 12 facilities. Their structured approach and deep knowledge ensured a smooth implementation."
+      }
+    },
+    "MAINTENANCE": {
+      "1": {
+        "TITLE": "Maintenance Audit & Diagnostics",
+        "DESCRIPTION": "Understand your current state and identify inefficiencies",
+        "F1": "Audit of maintenance processes (corrective, preventive, predictive)",
+        "F2": "Maintenance cost analysis (OPEX vs CAPEX)",
+        "F3": "Maintenance maturity assessment (ISO 55000 framework, best practices)",
+        "F4": "Asset performance analysis (MTBF, MTTR, availability)",
+        "F5": "Diagnostics of existing tools (CMMS / EAM such as IBM Maximo)"
+      },
+      "2": {
+        "TITLE": "Process Mapping & Optimization",
+        "DESCRIPTION": "Identify inefficiencies and improve workflows",
+        "F1": "Business process mapping (BPMN, workflows)",
+        "F2": "Identification of bottlenecks",
+        "F3": "Redefinition of maintenance processes",
+        "F4": "Implementation of standardized procedures (SOPs)",
+        "F5": "Alignment: maintenance ↔ production ↔ finance"
+      },
+      "3": {
+        "TITLE": "Maintenance Strategy & Reliability",
+        "DESCRIPTION": "Develop effective maintenance strategies to maximize asset reliability",
+        "F1": "Definition of maintenance strategy (preventive, condition-based, predictive)",
+        "F2": "Implementation of Reliability-Centered Maintenance (RCM) methodologies",
+        "F3": "Equipment criticality analysis",
+        "F4": "Optimized maintenance plans",
+        "F5": "Asset-related risk management"
+      },
+      "4": {
+        "TITLE": "Performance Management & KPIs",
+        "DESCRIPTION": "Monitor and continuously improve asset performance",
+        "F1": "Definition of maintenance KPIs: MTBF, MTTR, availability rate",
+        "F2": "Maintenance cost per asset",
+        "F3": "Dashboard implementation",
+        "F4": "Decision-making reporting",
+        "F5": "Continuous improvement cycles"
+      }
+    },
+    "JOBS": {
+      "1": {
+        "TITLE": "IBM Maximo Consultant",
+        "DESCRIPTION": "Deploy and configure IBM Maximo / MAS solutions for clients across a range of industries.",
+        "LOCATION": "Québec, QC (Hybrid)",
+        "TYPE": "Full-time"
+      },
+      "2": {
+        "TITLE": "Java Developer",
+        "DESCRIPTION": "Build custom extensions and integrations for IBM Maximo and MAS platforms.",
+        "LOCATION": "Remote, Canada",
+        "TYPE": "Full-time"
+      },
+      "3": {
+        "TITLE": "Functional Analyst",
+        "DESCRIPTION": "Analyze business requirements and translate them into tailored EAM solutions aligned with client processes.",
+        "LOCATION": "Québec, QC (Hybrid)",
+        "TYPE": "Full-time"
+      },
+      "4": {
+        "TITLE": "DevOps Engineer",
+        "DESCRIPTION": "Automate and manage CI/CD pipelines for IBM Maximo deployments and MAS cloud environments.",
+        "LOCATION": "Remote, Canada",
+        "TYPE": "Full-time"
+      }
+    }
+  },
+  "CAREERS_PAGE": {
+    "LISTINGS": {
+      "TAG": "Open Positions",
+      "TITLE": "Career Opportunities",
+      "SUBTITLE": "Join a team of experts passionate about enterprise asset management."
+    },
+    "APPLY_SECTION": {
+      "TAG": "Apply Now",
+      "TITLE": "Submit Your Application",
+      "SUBTITLE": "Fill out the form below to apply for one of our open positions."
+    },
+    "APPLY_BTN": "Apply",
+    "FORM": {
+      "FULL_NAME": "Full Name *",
+      "FULL_NAME_PLACEHOLDER": "Your full name",
+      "FULL_NAME_ERROR": "Please enter your full name (min. 2 characters)",
+      "EMAIL": "Email Address *",
+      "EMAIL_PLACEHOLDER": "you@example.com",
+      "EMAIL_ERROR": "Please enter a valid email address",
+      "CITY": "City *",
+      "CITY_PLACEHOLDER": "Your city",
+      "CITY_ERROR": "Please enter your city",
+      "JOB": "Desired Position *",
+      "JOB_PLACEHOLDER": "Select a position...",
+      "JOB_ERROR": "Please select a position",
+      "CV": "Curriculum Vitae (PDF) *",
+      "CV_ERROR": "Please upload your CV (PDF file required)",
+      "CV_TYPE_ERROR": "Only PDF files are accepted",
+      "COVER_LETTER": "Cover Letter *",
+      "COVER_LETTER_PLACEHOLDER": "Tell us about yourself and your interest in this position...",
+      "COVER_LETTER_ERROR": "Please enter a cover letter (min. 50 characters)",
+      "SUBMIT": "Submit Application →",
+      "SUBMITTING": "Submitting..."
+    },
+    "SUCCESS": {
+      "TITLE": "Application Submitted!",
+      "DESC": "Thank you for your application. Our HR team will be in touch within the next few days.",
+      "RESET": "Submit Another Application"
+    }
+  },
+  "PARTNERS": {
+    "PAGE": {
+      "TAG": "Partners",
+      "TITLE": "Our Strategic Partners",
+      "SUBTITLE": "Elite CSP collaborates with industry leaders to offer the best enterprise asset management solutions."
+    },
+    "VISIT_WEBSITE": "Visit website",
+    "IBM": {
+      "NAME": "IBM",
+      "TIER": "Silver Partner",
+      "DESCRIPTION": "IBM is a global leader in information technology. As an IBM Silver Partner, Elite CSP holds recognized expertise in deploying and managing IBM Maximo / MAS solutions."
+    },
+    "PEMAC": {
+      "NAME": "PEMAC",
+      "TIER": "Association Partner",
+      "DESCRIPTION": "PEMAC (Plant Engineering and Maintenance Association of Canada) is Canada's national association dedicated to excellence in industrial maintenance and physical asset management."
+    }
+  }
+}

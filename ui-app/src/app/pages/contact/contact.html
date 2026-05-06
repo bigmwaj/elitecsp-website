@@ -1,0 +1,119 @@
+<app-hero
+  [title]="'HERO.CONTACT.TITLE'"
+  [subtitle]="'HERO.CONTACT.SUBTITLE'"
+  [ctaText]="'HERO.CONTACT.CTA'"
+  ctaLink="/services"
+  [compact]="true">
+</app-hero>
+
+<section class="section">
+  <div class="container">
+    <div class="contact-grid">
+      <div class="contact-info">
+        <span class="section-tag">{{ 'CONTACT_PAGE.INFO.TAG' | translate }}</span>
+        <h2>{{ 'CONTACT_PAGE.INFO.TITLE' | translate }}</h2>
+        <p>{{ 'CONTACT_PAGE.INFO.DESC' | translate }}</p>
+
+        <div class="info-items">
+          <div class="info-item">
+            <span class="info-icon">📧</span>
+            <div>
+              <strong>{{ 'CONTACT_PAGE.INFO.EMAIL' | translate }}</strong>
+              <span>contact&#64;ui-app.com</span>
+            </div>
+          </div>
+          <div class="info-item">
+            <span class="info-icon">📞</span>
+            <div>
+              <strong>{{ 'CONTACT_PAGE.INFO.PHONE' | translate }}</strong>
+              <span>+1 (418) 255-2407</span>
+            </div>
+          </div>
+          <div class="info-item">
+            <span class="info-icon">📍</span>
+            <div>
+              <strong>{{ 'CONTACT_PAGE.INFO.OFFICE' | translate }}</strong>
+              <span>Québec, QC, Canada</span>
+            </div>
+          </div>
+          <div class="info-item">
+            <span class="info-icon">🕒</span>
+            <div>
+              <strong>{{ 'CONTACT_PAGE.INFO.HOURS_LABEL' | translate }}</strong>
+              <span>{{ 'CONTACT_PAGE.INFO.HOURS' | translate }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-form-wrapper">
+        @if (submitted()) {
+          <div class="success-message">
+            <div class="success-icon">✅</div>
+            <h3>{{ 'CONTACT_PAGE.SUCCESS.TITLE' | translate }}</h3>
+            <p>{{ 'CONTACT_PAGE.SUCCESS.DESC' | translate }}</p>
+            <button (click)="resetForm()" class="btn-reset">{{ 'CONTACT_PAGE.SUCCESS.RESET' | translate }}</button>
+          </div>
+        } @else {
+          <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="name">{{ 'CONTACT_PAGE.FORM.NAME' | translate }}</label>
+                <input id="name" type="text" formControlName="name" [placeholder]="'CONTACT_PAGE.FORM.NAME_PLACEHOLDER' | translate"
+                  [class.error]="f['name'].invalid && f['name'].touched">
+                @if (f['name'].invalid && f['name'].touched) {
+                  <span class="error-msg">{{ 'CONTACT_PAGE.FORM.NAME_ERROR' | translate }}</span>
+                }
+              </div>
+              <div class="form-group">
+                <label for="email">{{ 'CONTACT_PAGE.FORM.EMAIL' | translate }}</label>
+                <input id="email" type="email" formControlName="email" [placeholder]="'CONTACT_PAGE.FORM.EMAIL_PLACEHOLDER' | translate"
+                  [class.error]="f['email'].invalid && f['email'].touched">
+                @if (f['email'].invalid && f['email'].touched) {
+                  <span class="error-msg">{{ 'CONTACT_PAGE.FORM.EMAIL_ERROR' | translate }}</span>
+                }
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="company">{{ 'CONTACT_PAGE.FORM.COMPANY' | translate }}</label>
+              <input id="company" type="text" formControlName="company" [placeholder]="'CONTACT_PAGE.FORM.COMPANY_PLACEHOLDER' | translate">
+            </div>
+
+            <div class="form-group">
+              <label for="subject">{{ 'CONTACT_PAGE.FORM.SUBJECT' | translate }}</label>
+              <select id="subject" formControlName="subject" [class.error]="f['subject'].invalid && f['subject'].touched">
+                <option value="">{{ 'CONTACT_PAGE.FORM.SUBJECT_PLACEHOLDER' | translate }}</option>
+                <option value="implementation">{{ 'CONTACT_PAGE.FORM.SUBJECT_IMPL' | translate }}</option>
+                <option value="integration">{{ 'CONTACT_PAGE.FORM.SUBJECT_INTEG' | translate }}</option>
+                <option value="development">{{ 'CONTACT_PAGE.FORM.SUBJECT_DEV' | translate }}</option>
+                <option value="support">{{ 'CONTACT_PAGE.FORM.SUBJECT_SUPPORT' | translate }}</option>
+                <option value="other">{{ 'CONTACT_PAGE.FORM.SUBJECT_OTHER' | translate }}</option>
+              </select>
+              @if (f['subject'].invalid && f['subject'].touched) {
+                <span class="error-msg">{{ 'CONTACT_PAGE.FORM.SUBJECT_ERROR' | translate }}</span>
+              }
+            </div>
+
+            <div class="form-group">
+              <label for="message">{{ 'CONTACT_PAGE.FORM.MESSAGE' | translate }}</label>
+              <textarea id="message" formControlName="message" rows="5" [placeholder]="'CONTACT_PAGE.FORM.MESSAGE_PLACEHOLDER' | translate"
+                [class.error]="f['message'].invalid && f['message'].touched"></textarea>
+              @if (f['message'].invalid && f['message'].touched) {
+                <span class="error-msg">{{ 'CONTACT_PAGE.FORM.MESSAGE_ERROR' | translate }}</span>
+              }
+            </div>
+
+            <button type="submit" class="submit-btn" [disabled]="submitting()">
+              @if (submitting()) {
+                <span>{{ 'CONTACT_PAGE.FORM.SENDING' | translate }}</span>
+              } @else {
+                <span>{{ 'CONTACT_PAGE.FORM.SUBMIT' | translate }}</span>
+              }
+            </button>
+          </form>
+        }
+      </div>
+    </div>
+  </div>
+</section>

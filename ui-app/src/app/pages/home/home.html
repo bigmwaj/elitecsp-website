@@ -1,0 +1,151 @@
+<app-hero
+  [title]="'HERO.HOME.TITLE'"
+  [subtitle]="'HERO.HOME.SUBTITLE'"
+  [ctaText]="'HERO.HOME.CTA'"
+  ctaLink="/contact"
+  [secondaryCtaText]="'HERO.HOME.SECONDARY_CTA'"
+  secondaryCtaLink="/services">
+</app-hero>
+
+<!-- Maintenance Services Overview -->
+<section class="section maintenance-services services-section">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">{{ 'HOME.SERVICES_SECTION.MAINTENANCE.TAG' | translate }}</span>
+      <h2>{{ 'HOME.SERVICES_SECTION.MAINTENANCE.TITLE' | translate }}</h2>
+      <p>{{ 'HOME.SERVICES_SECTION.MAINTENANCE.SUBTITLE' | translate }}</p>
+    </div>
+    <div class="services-grid">
+      @for (service of maintenanceServices(); track service.id) {
+        <app-service-card [service]="service" />
+      }
+    </div>
+  </div>
+</section>
+
+<!-- Maximo Services Overview -->
+<section class="section maximo-services services-section">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">{{ 'HOME.SERVICES_SECTION.MAXIMO.TAG' | translate }}</span>
+      <h2>{{ 'HOME.SERVICES_SECTION.MAXIMO.TITLE' | translate }}</h2>
+      <p>{{ 'HOME.SERVICES_SECTION.MAXIMO.SUBTITLE' | translate }}</p>
+    </div>
+    <div class="services-grid">
+      @for (service of maximoServices(); track service.id) {
+        <app-service-card [service]="service" />
+      }
+    </div>
+  </div>
+</section>
+
+<!-- Value Proposition -->
+<section class="section value-section">
+  <div class="container">
+    <div class="value-grid">
+      <div class="value-content">
+        <span class="section-tag">{{ 'HOME.VALUE_SECTION.TAG' | translate }}</span>
+        <h2>{{ 'HOME.VALUE_SECTION.TITLE' | translate }}</h2>
+        <p>{{ 'HOME.VALUE_SECTION.DESC' | translate }}</p>
+        <ul class="value-list">
+          <li><span class="icon">🏆</span> {{ 'HOME.VALUE_SECTION.POINT_1' | translate }}</li>
+          <li><span class="icon">🌍</span> {{ 'HOME.VALUE_SECTION.POINT_2' | translate }}</li>
+          <li><span class="icon">⚡</span> {{ 'HOME.VALUE_SECTION.POINT_3' | translate }}</li>
+          <li><span class="icon">🔒</span> {{ 'HOME.VALUE_SECTION.POINT_4' | translate }}</li>
+          <li><span class="icon">🇨🇦</span> {{ 'HOME.VALUE_SECTION.POINT_5' | translate }}</li>
+        </ul>
+        <a routerLink="/about" class="btn-link">{{ 'HOME.VALUE_SECTION.LEARN_MORE' | translate }}</a>
+      </div>
+      <div class="value-stats">
+        <div class="stat">
+          <span class="stat-number">50+</span>
+          <span class="stat-label">{{ 'HOME.STATS.PROJECTS' | translate }}</span>
+        </div>
+        <div class="stat">
+          <span class="stat-number">15+</span>
+          <span class="stat-label">{{ 'HOME.STATS.YEARS' | translate }}</span>
+        </div>
+        <div class="stat">
+          <span class="stat-number">98%</span>
+          <span class="stat-label">{{ 'HOME.STATS.SATISFACTION' | translate }}</span>
+        </div>
+        <div class="stat">
+          <span class="stat-number">24/7</span>
+          <span class="stat-label">{{ 'HOME.STATS.SUPPORT' | translate }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Process Section -->
+<section class="section process-section">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">{{ 'HOME.PROCESS_SECTION.TAG' | translate }}</span>
+      <h2>{{ 'HOME.PROCESS_SECTION.TITLE' | translate }}</h2>
+      <p>{{ 'HOME.PROCESS_SECTION.SUBTITLE' | translate }}</p>
+    </div>
+    <div class="process-grid">
+      @for (step of processSteps(); track step.step) {
+        <div class="process-step">
+          <div class="step-number">{{ step.step }}</div>
+          <div class="step-icon">{{ step.icon }}</div>
+          <h3>{{ step.title | translate }}</h3>
+          <p>{{ step.description | translate }}</p>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- Testimonials -->
+<section class="section testimonials-section">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">{{ 'HOME.TESTIMONIALS_SECTION.TAG' | translate }}</span>
+      <h2>{{ 'HOME.TESTIMONIALS_SECTION.TITLE' | translate }}</h2>
+      <p>{{ 'HOME.TESTIMONIALS_SECTION.SUBTITLE' | translate }}</p>
+    </div>
+    <div class="testimonials-grid">
+      @for (t of testimonials(); track t.id) {
+        <div class="testimonial-card">
+          <div class="stars">
+            @for (s of [1,2,3,4,5]; track s) {
+              <span class="star">★</span>
+            }
+          </div>
+          <p class="testimonial-text">"{{ t.content | translate }}"</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">{{ t.name[0] }}</div>
+            <div class="author-info">
+              <strong>{{ t.name }}</strong>
+              <span>{{ t.role | translate }}, {{ t.company }}</span>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<app-cta-section />
+
+<!-- Partners Section -->
+<section class="section partners-home-section">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">{{ 'HOME.PARTNERS_SECTION.TAG' | translate }}</span>
+      <h2>{{ 'HOME.PARTNERS_SECTION.TITLE' | translate }}</h2>
+      <p>{{ 'HOME.PARTNERS_SECTION.SUBTITLE' | translate }}</p>
+    </div>
+    <div class="partners-grid">
+      @for (partner of partners(); track partner.id) {
+        <app-partner-card [partner]="partner" />
+      }
+    </div>
+    <div class="partners-cta">
+      <a routerLink="/partners" class="btn-primary">{{ 'HOME.PARTNERS_SECTION.CTA' | translate }}</a>
+    </div>
+  </div>
+</section>

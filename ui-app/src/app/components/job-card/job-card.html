@@ -1,0 +1,20 @@
+<div class="job-card">
+  <div class="job-card__header">
+    <span class="job-card__icon" aria-hidden="true">{{ job().icon }}</span>
+    <div class="job-card__meta">
+      <span class="job-card__type">{{ job().typeKey | translate }}</span>
+    </div>
+  </div>
+
+  <h3 class="job-card__title">{{ job().titleKey | translate }}</h3>
+  <p class="job-card__description">{{ job().descriptionKey | translate }}</p>
+
+  <div class="job-card__footer">
+    <span class="job-card__location">
+      <span aria-hidden="true">📍</span> {{ job().locationKey | translate }}
+    </span>
+    <button class="job-card__apply-btn" (click)="onApply()">
+      {{ 'CAREERS_PAGE.APPLY_BTN' | translate }}
+    </button>
+  </div>
+</div>

@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-label="Elite CSP Logo">
+  <!-- Point-top hexagon background -->
+  <polygon points="100,12 176,56 176,144 100,188 24,144 24,56" fill="#AC5055"/>
+  <!-- White building / arch cutout symbol (evenodd: outer arch minus two inner arch openings) -->
+  <path fill-rule="evenodd" fill="white" d="
+    M 42,168 L 42,92 A 58,57 0 0 1 158,92 L 158,168 Z
+    M 54,168 L 54,92 A 21,42 0 0 1 96,92  L 96,168 Z
+    M 104,168 L 104,92 A 21,42 0 0 1 146,92 L 146,168 Z
+  "/>
+</svg>

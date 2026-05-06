@@ -1,0 +1,7 @@
+<section class="cta">
+  <div class="cta-container">
+    <h2>{{ title() | translate }}</h2>
+    <p>{{ subtitle() | translate }}</p>
+    <a [routerLink]="ctaLink()" class="cta-btn">{{ ctaText() | translate }}</a>
+  </div>
+</section>

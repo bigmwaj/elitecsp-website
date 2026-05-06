@@ -1,0 +1,13 @@
+<div class="card">
+  <div class="card-icon">{{ service().icon }}</div>
+  <h3>{{ service().title | translate }}</h3>
+  <p>{{ service().description | translate }}</p>
+  <ul class="features">
+    @for (feature of service().features; track feature) {
+      <li>
+        <span class="check">✓</span>
+        {{ feature | translate }}
+      </li>
+    }
+  </ul>
+</div>

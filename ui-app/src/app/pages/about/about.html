@@ -1,0 +1,130 @@
+<app-hero
+  [title]="'HERO.ABOUT.TITLE'"
+  [subtitle]="'HERO.ABOUT.SUBTITLE'"
+  [ctaText]="'HERO.ABOUT.CTA'"
+  ctaLink="/contact"
+  [compact]="true">
+</app-hero>
+
+<section class="section">
+  <div class="container">
+    <div class="about-intro">
+      <div class="intro-text">
+        <span class="section-tag">{{ 'ABOUT_PAGE.STORY.TAG' | translate }}</span>
+        <h2>{{ 'ABOUT_PAGE.STORY.TITLE' | translate }}</h2>
+        <p>{{ 'ABOUT_PAGE.STORY.P1' | translate }}</p>
+        <p>{{ 'ABOUT_PAGE.STORY.P2' | translate }}</p>
+      </div>
+      <div class="intro-visual">
+        <div class="visual-card">
+          <div class="vc-item">
+            <span class="vc-number">5+</span>
+            <span class="vc-label">{{ 'ABOUT_PAGE.STORY.IMPLEMENTATIONS' | translate }}</span>
+          </div>
+          <div class="vc-item">
+            <span class="vc-number">3+</span>
+            <span class="vc-label">{{ 'ABOUT_PAGE.STORY.YEARS_EXP' | translate }}</span>
+          </div>
+          <div class="vc-item">
+            <span class="vc-number">3+</span>
+            <span class="vc-label">{{ 'ABOUT_PAGE.STORY.INDUSTRIES_SERVED' | translate }}</span>
+          </div>
+          <div class="vc-item">
+            <span class="vc-number">🇨🇦</span>
+            <span class="vc-label">{{ 'ABOUT_PAGE.STORY.CANADIAN' | translate }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section mvv-section">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">{{ 'ABOUT_PAGE.MVV.TAG' | translate }}</span>
+      <h2>{{ 'ABOUT_PAGE.MVV.TITLE' | translate }}</h2>
+    </div>
+    <div class="mvv-grid">
+      <div class="mvv-card">
+        <div class="mvv-icon">🎯</div>
+        <h3>{{ 'ABOUT_PAGE.MVV.MISSION.TITLE' | translate }}</h3>
+        <p>{{ 'ABOUT_PAGE.MVV.MISSION.DESC' | translate }}</p>
+      </div>
+      <div class="mvv-card">
+        <div class="mvv-icon">🔭</div>
+        <h3>{{ 'ABOUT_PAGE.MVV.VISION.TITLE' | translate }}</h3>
+        <p>{{ 'ABOUT_PAGE.MVV.VISION.DESC' | translate }}</p>
+      </div>
+      <div class="mvv-card">
+        <div class="mvv-icon">💎</div>
+        <h3>{{ 'ABOUT_PAGE.MVV.VALUES.TITLE' | translate }}</h3>
+        <ul>
+          <li>{{ 'ABOUT_PAGE.MVV.VALUES.V1' | translate }}</li>
+          <li>{{ 'ABOUT_PAGE.MVV.VALUES.V2' | translate }}</li>
+          <li>{{ 'ABOUT_PAGE.MVV.VALUES.V3' | translate }}</li>
+          <li>{{ 'ABOUT_PAGE.MVV.VALUES.V4' | translate }}</li>
+          <li>{{ 'ABOUT_PAGE.MVV.VALUES.V5' | translate }}</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section expertise-section">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">{{ 'ABOUT_PAGE.EXPERTISE.TAG' | translate }}</span>
+      <h2>{{ 'ABOUT_PAGE.EXPERTISE.TITLE' | translate }}</h2>
+      <p>{{ 'ABOUT_PAGE.EXPERTISE.SUBTITLE' | translate }}</p>
+    </div>
+    <div class="expertise-grid">
+      <div class="expertise-item">
+        <span>⚙️</span>
+        <div>
+          <strong>{{ 'ABOUT_PAGE.EXPERTISE.MAS.TITLE' | translate }}</strong>
+          <p>{{ 'ABOUT_PAGE.EXPERTISE.MAS.DESC' | translate }}</p>
+        </div>
+      </div>
+      <div class="expertise-item">
+        <span>📊</span>
+        <div>
+          <strong>{{ 'ABOUT_PAGE.EXPERTISE.ASSET.TITLE' | translate }}</strong>
+          <p>{{ 'ABOUT_PAGE.EXPERTISE.ASSET.DESC' | translate }}</p>
+        </div>
+      </div>
+      <div class="expertise-item">
+        <span>🔗</span>
+        <div>
+          <strong>{{ 'ABOUT_PAGE.EXPERTISE.INTEGRATION.TITLE' | translate }}</strong>
+          <p>{{ 'ABOUT_PAGE.EXPERTISE.INTEGRATION.DESC' | translate }}</p>
+        </div>
+      </div>
+      <div class="expertise-item">
+        <span>📱</span>
+        <div>
+          <strong>{{ 'ABOUT_PAGE.EXPERTISE.MOBILE.TITLE' | translate }}</strong>
+          <p>{{ 'ABOUT_PAGE.EXPERTISE.MOBILE.DESC' | translate }}</p>
+        </div>
+      </div>
+      <div class="expertise-item">
+        <span>☁️</span>
+        <div>
+          <strong>{{ 'ABOUT_PAGE.EXPERTISE.CLOUD.TITLE' | translate }}</strong>
+          <p>{{ 'ABOUT_PAGE.EXPERTISE.CLOUD.DESC' | translate }}</p>
+        </div>
+      </div>
+      <div class="expertise-item">
+        <span>🛡️</span>
+        <div>
+          <strong>{{ 'ABOUT_PAGE.EXPERTISE.UPGRADES.TITLE' | translate }}</strong>
+          <p>{{ 'ABOUT_PAGE.EXPERTISE.UPGRADES.DESC' | translate }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<app-cta-section
+  [title]="'ABOUT_PAGE.CTA.TITLE'"
+  [subtitle]="'ABOUT_PAGE.CTA.SUBTITLE'" />

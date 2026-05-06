@@ -1,6 +1,7 @@
 You have received a new message from the Elite CSP contact form.
 
 Name:    {{NAME}}
+Phone:   {{PHONE}}
 Email:   {{EMAIL}}
 City:    {{CITY}}
 Company: {{COMPANY}}

@@ -2,6 +2,7 @@ A new job application has been submitted through the Elite CSP website.
 
 Name:         {{NAME}}
 Email:        {{EMAIL}}
+Phone:        {{PHONE}}
 City:         {{CITY}}
 Position:     {{SUBJECT}}
 Resume / CV:  {{ATTACHMENT_NAME}} (attached)

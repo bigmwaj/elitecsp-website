@@ -51,6 +51,28 @@ export class CareersComponent implements OnInit {
 
   get f() { return this.form.controls; }
 
+  get formErrors(): string[] {
+    const fieldErrorKeys: Record<string, string> = {
+      fullName: 'CAREERS_PAGE.FORM.FULL_NAME_ERROR',
+      email: 'CAREERS_PAGE.FORM.EMAIL_ERROR',
+      phone: 'CAREERS_PAGE.FORM.PHONE_ERROR',
+      city: 'CAREERS_PAGE.FORM.CITY_ERROR',
+      jobId: 'CAREERS_PAGE.FORM.JOB_ERROR',
+      coverLetter: 'CAREERS_PAGE.FORM.COVER_LETTER_ERROR'
+    };
+    const errors: string[] = [];
+    for (const key of Object.keys(fieldErrorKeys)) {
+      if (this.form.get(key)?.invalid) {
+        errors.push(fieldErrorKeys[key]);
+      }
+    }
+    const fe = this.fileError();
+    if (fe) {
+      errors.push(`CAREERS_PAGE.FORM.${fe}`);
+    }
+    return errors;
+  }
+
   onApply(jobId: number): void {
     this.form.patchValue({ jobId: String(jobId) });
     setTimeout(() => {
@@ -71,6 +93,7 @@ export class CareersComponent implements OnInit {
   }
 
   onSubmit(): void {
+    console.log('Form submission initiated');
     this.form.markAllAsTouched();
 
     const file = this.selectedFile();

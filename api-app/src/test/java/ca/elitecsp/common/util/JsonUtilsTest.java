@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.*;
 /**
  * Unit tests for {@link JsonUtils}.
  *
- * <p>Covers JSON deserialisation success/failure and serialisation success/failure paths.
+ * <p>Covers JSON deserialization success/failure and serialization success/failure paths.
  */
 @DisplayName("JsonUtils")
 class JsonUtilsTest {
@@ -129,7 +129,7 @@ class JsonUtilsTest {
         String json = JsonUtils.toJson(req);
 
         assertNotNull(json);
-        // Jackson serialises null fields by default
+        // Jackson serializes null fields by default
         assertTrue(json.startsWith("{") && json.endsWith("}"));
     }
 }

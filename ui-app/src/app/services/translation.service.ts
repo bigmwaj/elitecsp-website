@@ -10,9 +10,9 @@ export class TranslationService {
   init(): void {
     const supported = ['fr', 'en'];
     this.translate.addLangs(supported);
-    this.translate.setDefaultLang('fr');
-    const saved = localStorage.getItem(LANG_KEY) ?? 'fr';
-    const lang = supported.includes(saved) ? saved : 'fr';
+    this.translate.setDefaultLang('en');
+    const saved = localStorage.getItem(LANG_KEY) ?? 'en';
+    const lang = supported.includes(saved) ? saved : 'en';
     this.translate.use(lang);
   }
 

@@ -4,6 +4,7 @@ import ca.elitecsp.common.exception.CustomException;
 import ca.elitecsp.common.exception.ErrorCode;
 import ca.elitecsp.common.util.Constants;
 import ca.elitecsp.common.util.EmailTemplateLoader;
+import ca.elitecsp.contact.model.ContactRequest;
 import jakarta.activation.DataHandler;
 import jakarta.mail.Message;
 import jakarta.mail.MessagingException;
@@ -109,45 +110,34 @@ public class EmailService {
      * multipart email so the attachment can be included. Otherwise a simple
      * {@code sendEmail} call (text + HTML) is used.
      *
-     * @param fullName        the full name of the person who submitted the form
-     * @param senderEmail     the email address of the sender (used as Reply-To)
-     * @param company         the sender's company (optional; may be {@code null} or blank)
-     * @param city            the sender's city (optional; may be {@code null} or blank)
-     * @param subject         the message subject (optional; auto-generated when blank)
-     * @param messageBody     the message content from the contact form
-     * @param attachmentBytes optional decoded file bytes; {@code null} means no attachment
-     * @param attachmentName  the filename for the attachment; ignored when {@code attachmentBytes} is {@code null}
      * @throws CustomException with {@link ErrorCode#EMAIL_SEND_FAILURE} (HTTP 500) if sending fails
      */
-    public void sendContactEmail(String fullName, String senderEmail, String company, String city,
-                                  String subject, String messageBody,
-                                  byte[] attachmentBytes, String attachmentName) {
-        log.info("Sending contact email via SES on behalf of: {}", senderEmail);
+    public void sendContactEmail(ContactRequest req) {
+        log.info("Sending contact email via SES on behalf of: {}", req.getEmail());
         try {
-            String emailSubject = resolveContactSubject(subject, fullName);
-            Map<String, String> placeholders = buildContactPlaceholders(
-                    fullName, senderEmail, company, city, messageBody, subject);
+            String emailSubject = resolveContactSubject(req.getSubject(), req.getFullName());
+            Map<String, String> placeholders = buildContactPlaceholders(req);
 
-            if (attachmentBytes != null) {
-                byte[] rawMime = buildRawMimeMessage(emailSubject, senderEmail,
+            if (req.getFileBytes() != null) {
+                byte[] rawMime = buildRawMimeMessage(emailSubject, req.getEmail(),
                         EmailTemplateLoader.load("contact-email.txt", placeholders),
                         EmailTemplateLoader.load("contact-email.html", placeholders),
-                        attachmentBytes, attachmentName);
+                        req.getFileBytes(), req.getAttachmentFileName());
                 sesClient.sendRawEmail(SendRawEmailRequest.builder()
                         .rawMessage(RawMessage.builder()
                                 .data(SdkBytes.fromByteArray(rawMime))
                                 .build())
                         .build());
             } else {
-                sendSimpleEmail(emailSubject, senderEmail,
+                sendSimpleEmail(emailSubject, req.getEmail(),
                         EmailTemplateLoader.load("contact-email.txt", placeholders),
                         EmailTemplateLoader.load("contact-email.html", placeholders));
             }
-            log.info("Contact email sent successfully to {} on behalf of {}", destinationEmail, senderEmail);
+            log.info("Contact email sent successfully to {} on behalf of {}", destinationEmail, req.getEmail());
         } catch (CustomException e) {
             throw e;
         } catch (Exception e) {
-            log.error("Failed to send contact email for sender: {}", senderEmail, e);
+            log.error("Failed to send contact email for sender: {}", req.getEmail(), e);
             throw new CustomException(ErrorCode.EMAIL_SEND_FAILURE, 500,
                     "Failed to send email via SES: " + e.getMessage(), e);
         }
@@ -156,29 +146,18 @@ public class EmailService {
     /**
      * Sends a job-application notification email via Amazon SES with the CV attached directly.
      *
-     * @param fullName        the full name of the applicant
-     * @param senderEmail     the applicant's email address (used as Reply-To)
-     * @param city            the applicant's city (optional; may be {@code null} or blank)
-     * @param jobPosition     the job position / ID the applicant is applying for
-     *                        (optional; may be {@code null} or blank)
-     * @param messageBody     the cover letter / message body
-     * @param attachmentBytes the decoded CV file bytes to attach; must not be {@code null}
-     * @param attachmentName  the original filename for the CV attachment (e.g. {@code "resume.pdf"})
      * @throws CustomException with {@link ErrorCode#EMAIL_SEND_FAILURE} (HTTP 500) if sending fails
      */
-    public void sendJobApplicationEmail(String fullName, String senderEmail, String city,
-                                         String jobPosition, String messageBody,
-                                         byte[] attachmentBytes, String attachmentName) {
-        log.info("Sending job-application email via SES on behalf of: {}", senderEmail);
+    public void sendJobApplicationEmail(ContactRequest req) {
+        log.info("Sending job-application email via SES on behalf of: {}", req.getEmail());
         try {
-            String emailSubject = Constants.JOB_APPLICATION_EMAIL_SUBJECT_PREFIX + fullName;
-            Map<String, String> placeholders = buildJobApplicationPlaceholders(
-                    fullName, senderEmail, city, jobPosition, messageBody, attachmentName);
+            String emailSubject = Constants.JOB_APPLICATION_EMAIL_SUBJECT_PREFIX + req.getFullName();
+            Map<String, String> placeholders = buildJobApplicationPlaceholders(req);
 
-            byte[] rawMime = buildRawMimeMessage(emailSubject, senderEmail,
+            byte[] rawMime = buildRawMimeMessage(emailSubject, req.getEmail(),
                     EmailTemplateLoader.load("job-application-email.txt", placeholders),
                     EmailTemplateLoader.load("job-application-email.html", placeholders),
-                    attachmentBytes, attachmentName);
+                    req.getFileBytes(), req.getAttachmentFileName());
 
             sesClient.sendRawEmail(SendRawEmailRequest.builder()
                     .rawMessage(RawMessage.builder()
@@ -187,11 +166,11 @@ public class EmailService {
                     .build());
 
             log.info("Job-application email sent successfully to {} on behalf of {}",
-                    destinationEmail, senderEmail);
+                    destinationEmail, req.getEmail());
         } catch (CustomException e) {
             throw e;
         } catch (Exception e) {
-            log.error("Failed to send job-application email for sender: {}", senderEmail, e);
+            log.error("Failed to send job-application email for sender: {}", req.getEmail(), e);
             throw new CustomException(ErrorCode.EMAIL_SEND_FAILURE, 500,
                     "Failed to send email via SES: " + e.getMessage(), e);
         }
@@ -278,6 +257,17 @@ public class EmailService {
         return out.toByteArray();
     }
 
+    private Map<String, String> buildCommonPlaceholders(ContactRequest req) {
+        Map<String, String> map = new HashMap<>();
+        map.put("{{NAME}}", htmlEscape(req.getFullName()));
+        map.put("{{PHONE}}", htmlEscape(req.getPhone()));
+        map.put("{{EMAIL}}", htmlEscape(req.getEmail()));
+        map.put("{{CITY}}", htmlEscape(req.getCity() != null ? req.getCity() : ""));
+        map.put("{{SUBJECT}}", htmlEscape(req.getSubject() != null ? req.getSubject() : ""));
+        map.put("{{MESSAGE}}", htmlEscape(req.getMessage()).replace("\n", "<br/>"));
+        return map;
+    }
+
     // -------------------------------------------------------------------------
     // Private helpers – placeholder builders
     // -------------------------------------------------------------------------
@@ -286,16 +276,9 @@ public class EmailService {
      * Builds the template placeholder map for contact-form emails.
      * All user-supplied values are HTML-escaped before use.
      */
-    private Map<String, String> buildContactPlaceholders(String fullName, String senderEmail, String company,
-                                                          String city, String messageBody,
-                                                          String subject) {
-        Map<String, String> map = new HashMap<>();
-        map.put("{{NAME}}", htmlEscape(fullName));
-        map.put("{{EMAIL}}", htmlEscape(senderEmail));
-        map.put("{{CITY}}", htmlEscape(city != null ? city : ""));
-        map.put("{{COMPANY}}", htmlEscape(company != null ? company : ""));
-        map.put("{{SUBJECT}}", htmlEscape(subject != null ? subject : ""));
-        map.put("{{MESSAGE}}", htmlEscape(messageBody).replace("\n", "<br/>"));
+    private Map<String, String> buildContactPlaceholders(ContactRequest req) {
+        Map<String, String> map = buildCommonPlaceholders(req);
+        map.put("{{COMPANY}}", htmlEscape(req.getCompany() != null ? req.getCompany() : ""));
         return map;
     }
 
@@ -303,17 +286,10 @@ public class EmailService {
      * Builds the template placeholder map for job-application emails.
      * All user-supplied values are HTML-escaped before use.
      */
-    private Map<String, String> buildJobApplicationPlaceholders(String fullName, String senderEmail,
-                                                                  String city, String jobPosition,
-                                                                  String messageBody,
-                                                                  String attachmentName) {
-        Map<String, String> map = new HashMap<>();
-        map.put("{{NAME}}", htmlEscape(fullName));
-        map.put("{{EMAIL}}", htmlEscape(senderEmail));
-        map.put("{{CITY}}", htmlEscape(city != null ? city : ""));
-        map.put("{{SUBJECT}}", htmlEscape(jobPosition != null ? jobPosition : ""));
-        map.put("{{MESSAGE}}", htmlEscape(messageBody).replace("\n", "<br/>"));
-        map.put("{{ATTACHMENT_NAME}}", htmlEscape(attachmentName != null ? attachmentName : ""));
+    private Map<String, String> buildJobApplicationPlaceholders(ContactRequest req) {
+        Map<String, String> map = buildCommonPlaceholders(req);
+        map.put("{{CITY}}", htmlEscape(req.getCity() != null ? req.getCity() : ""));
+        map.put("{{ATTACHMENT_NAME}}", htmlEscape(req.getAttachmentFileName() != null ? req.getAttachmentFileName() : ""));
         return map;
     }
 

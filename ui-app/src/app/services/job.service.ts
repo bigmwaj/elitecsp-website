@@ -1,8 +1,12 @@
-import { Injectable, signal } from '@angular/core';
+import { inject, Injectable, signal } from '@angular/core';
 import { Job } from '../models/job.model';
+import { TranslateService } from '@ngx-translate/core';
 
 @Injectable({ providedIn: 'root' })
 export class JobService {
+
+  private translationService = inject(TranslateService);
+
   readonly jobs = signal<Job[]>([
     {
       id: 1,
@@ -37,4 +41,13 @@ export class JobService {
       icon: '🔧'
     }
   ]);
+
+  getJobById(id: number): Job | undefined {
+    return this.jobs().find(job => job.id === id);
+  }
+
+  getJobTranslatedTitle(id: number): string {
+    const job = this.getJobById(id);
+    return job ? this.translationService.instant(job.titleKey) : '';
+  }
 }

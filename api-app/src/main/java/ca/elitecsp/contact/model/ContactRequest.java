@@ -1,30 +1,12 @@
 package ca.elitecsp.contact.model;
 
 import com.fasterxml.jackson.annotation.JsonAlias;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-/**
- * Represents the incoming contact / job-application request payload.
- * This model maps to the JSON body sent from API Gateway.
- *
- * <p>The {@link #type} field selects the processing path:
- * <ul>
- *   <li>{@link ContactType#CONTACT} (default) – sends a notification email via SES
- *       (attachment is optional).</li>
- *   <li>{@link ContactType#JOB_APPLICATION} – sends a notification email via SES with the
- *       CV attached directly; {@link #attachment} and {@link #attachmentFileName} are
- *       required for this type.</li>
- * </ul>
- *
- * <p>JSON backward-compatibility notes:
- * <ul>
- *   <li>{@code "name"} is accepted as an alias for {@code "fullName"}.</li>
- *   <li>{@code "attachmentFile"} is accepted as an alias for {@code "attachment"}.</li>
- * </ul>
- */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -37,35 +19,19 @@ public class ContactRequest {
      */
     private ContactType type;
 
-    /**
-     * Full name of the person submitting the form.
-     * Accepts {@code "name"} as an alias for backward compatibility.
-     */
     @JsonAlias("name")
     private String fullName;
 
-    /** Email address of the sender. */
+    private String phone;
+
     private String email;
 
-    /**
-     * Company of the sender (optional).
-     * Displayed in the notification email when provided.
-     */
     private String company;
 
-    /**
-     * City of the sender (optional).
-     * Displayed in the notification email when provided.
-     */
     private String city;
 
-    /**
-     * Subject of the message (optional, for {@link ContactType#CONTACT} only).
-     * When omitted, the email subject is auto-generated from the sender name.
-     */
     private String subject;
 
-    /** Message body / cover letter of the submission. */
     private String message;
 
     /**
@@ -77,6 +43,9 @@ public class ContactRequest {
      */
     @JsonAlias("attachmentFile")
     private String attachment;
+
+    @JsonIgnore
+    private byte[] fileBytes;
 
     /**
      * Original filename for the attachment (e.g. {@code "resume.pdf"} or

@@ -119,7 +119,7 @@ export class CareersComponent implements OnInit {
         email: v.email!,
         city: v.city!,
         phone: v.phone!,
-        subject: String(v.jobId),
+        subject: this.jobService.getJobTranslatedTitle(Number(v.jobId)),
         message: v.coverLetter!,
         attachment: base64Content,
         attachmentFileName: file!.name,

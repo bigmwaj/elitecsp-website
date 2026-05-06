@@ -34,6 +34,7 @@ export class CareersComponent implements OnInit {
   form = this.fb.group({
     fullName: ['', [Validators.required, Validators.minLength(2)]],
     email: ['', [Validators.required, Validators.email]],
+    phone: ['', [Validators.required, Validators.pattern(/^\+?[0-9\s\-()]{7,}$/), Validators.maxLength(20)]],
     city: ['', Validators.required],
     jobId: ['', Validators.required],
     coverLetter: ['', [Validators.required, Validators.minLength(50)]]
@@ -94,6 +95,7 @@ export class CareersComponent implements OnInit {
         name: v.fullName!,
         email: v.email!,
         city: v.city!,
+        phone: v.phone!,
         subject: String(v.jobId),
         message: v.coverLetter!,
         attachment: base64Content,

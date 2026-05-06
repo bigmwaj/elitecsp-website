@@ -25,6 +25,7 @@ export class ContactComponent implements OnInit {
     name: ['', [Validators.required, Validators.minLength(2)]],
     email: ['', [Validators.required, Validators.email]],
     company: [''],
+    phone: ['', [Validators.required, Validators.pattern(/^\+?[0-9\s\-()]{7,}$/), Validators.maxLength(20)]],
     subject: ['', Validators.required],
     message: ['', [Validators.required, Validators.minLength(20)]]
   });
@@ -47,6 +48,7 @@ export class ContactComponent implements OnInit {
       name: v.name!,
       email: v.email!,
       company: v.company ?? '',
+      phone: v.phone ?? '',
       subject: v.subject!,
       message: v.message!,
       type: "CONTACT"

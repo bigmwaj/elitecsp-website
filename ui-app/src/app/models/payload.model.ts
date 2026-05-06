@@ -6,6 +6,7 @@ export interface BaseContactPayload {
   subject?: string;
   message: string;
   type: ContactType;
+  phone?: string;
 }
 
 export interface ContactPayload extends BaseContactPayload {

@@ -27,7 +27,7 @@ public class ExcelParserService {
     static final String JOBS_SHEET = "jobs";
     static final String JOB_DETAILS_SHEET = "job-details";
 
-    private final DataFormatter dataFormatter = new DataFormatter(Locale.CANADA);
+    private static final DataFormatter DATA_FORMATTER = new DataFormatter(Locale.CANADA);
 
     public List<JobSummaryDto> parseJobs(byte[] fileBytes) {
         if (fileBytes == null || fileBytes.length == 0) {
@@ -137,7 +137,7 @@ public class ExcelParserService {
 
         Map<String, Integer> headers = new HashMap<>();
         for (Cell cell : headerRow) {
-            String header = dataFormatter.formatCellValue(cell);
+            String header = DATA_FORMATTER.formatCellValue(cell);
             if (header != null && !header.isBlank()) {
                 headers.put(normalize(header), cell.getColumnIndex());
             }
@@ -161,7 +161,7 @@ public class ExcelParserService {
         if (cell == null) {
             return null;
         }
-        String value = dataFormatter.formatCellValue(cell);
+        String value = DATA_FORMATTER.formatCellValue(cell);
         return value == null || value.isBlank() ? null : value.trim();
     }
 
@@ -185,7 +185,7 @@ public class ExcelParserService {
             return true;
         }
         for (Cell cell : row) {
-            if (cell != null && !dataFormatter.formatCellValue(cell).isBlank()) {
+            if (cell != null && !DATA_FORMATTER.formatCellValue(cell).isBlank()) {
                 return false;
             }
         }

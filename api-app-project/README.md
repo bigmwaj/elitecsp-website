@@ -12,7 +12,7 @@ This directory contains the Maven multi-module parent project for the Elite CSP 
 | Module | Description |
 |---|---|
 | `api-app-contact` | Lambda handler for contact-form and job-application submissions (SES email) |
-| `api-app-cms` | Lambda handler for reading XML job data from S3 and returning structured JSON |
+| `api-app-job` | Lambda handler for reading Excel job data from S3 and exposing job listing/details APIs |
 
 ## Build
 
@@ -24,7 +24,7 @@ mvn clean package
 
 Generated artifacts:
 - `api-app-contact/target/elite-csp-contact.jar`
-- `api-app-cms/target/elite-csp-cms.jar`
+- `api-app-job/target/elite-csp-job.jar`
 
 ## Dependency Versions
 
@@ -46,7 +46,7 @@ Generated artifacts:
 See each module's `README.md` for environment variables, Lambda handler class, and deployment instructions.
 
 - [`api-app-contact/README.md`](api-app-contact/README.md)
-- [`api-app-cms/README.md`](api-app-cms/README.md)
+- [`api-app-job/README.md`](api-app-job/README.md)
 
 ## Architecture
 

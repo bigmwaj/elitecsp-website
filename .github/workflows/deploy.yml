@@ -40,11 +40,11 @@ jobs:
           name: elite-csp-contact
           path: api-app-project/api-app-contact/target/elite-csp-contact.jar
 
-      - name: Upload api-app-cms Lambda artifact
+      - name: Upload api-app-job Lambda artifact
         uses: actions/upload-artifact@v4
         with:
-          name: elite-csp-cms
-          path: api-app-project/api-app-cms/target/elite-csp-cms.jar
+          name: elite-csp-job
+          path: api-app-project/api-app-job/target/elite-csp-job.jar
 
       - name: Upload JaCoCo coverage reports
         if: always()
@@ -53,7 +53,7 @@ jobs:
           name: jacoco-reports
           path: |
             api-app-project/api-app-contact/target/site/jacoco/
-            api-app-project/api-app-cms/target/site/jacoco/
+            api-app-project/api-app-job/target/site/jacoco/
 
   build-and-deploy:
     name: Build and Deploy UI

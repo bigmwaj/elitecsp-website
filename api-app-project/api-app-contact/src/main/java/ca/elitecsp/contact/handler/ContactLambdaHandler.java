@@ -16,15 +16,16 @@ import com.amazonaws.services.lambda.runtime.events.APIGatewayProxyResponseEvent
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class LambdaHandler implements RequestHandler<APIGatewayProxyRequestEvent, APIGatewayProxyResponseEvent> {
+public class ContactLambdaHandler implements RequestHandler<APIGatewayProxyRequestEvent, APIGatewayProxyResponseEvent> {
 
     private final EmailService emailService;
 
-    public LambdaHandler() {
+    public ContactLambdaHandler() {
         this.emailService = new EmailService();
     }
 
-    public LambdaHandler(EmailService emailService) {
+    /** Package-private constructor for dependency injection in tests. */
+    ContactLambdaHandler(EmailService emailService) {
         this.emailService = emailService;
     }
 
@@ -34,6 +35,7 @@ public class LambdaHandler implements RequestHandler<APIGatewayProxyRequestEvent
         try {
             ContactRequest contactRequest = parseRequest(request);
             ContactType type = contactRequest.getEffectiveType();
+
             log.info("Contact request received: type={}, email={}", type, contactRequest.getEmail());
 
             ValidationUtil.validateContactRequest(contactRequest);

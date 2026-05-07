@@ -16,27 +16,6 @@ import lombok.extern.slf4j.Slf4j;
 import java.util.List;
 import java.util.Map;
 
-/**
- * AWS Lambda handler for the CMS module.
- *
- * <p>Reads an XML job listing from S3, parses it, and returns the data as a
- * JSON array suitable for rendering a table in the front-end.
- *
- * <p>Expected request body:
- * <pre>{@code
- * {
- *   "bucketName": "my-bucket",
- *   "fileKey":    "jobs/jobs.xml"
- * }
- * }</pre>
- *
- * <p>Successful response body (HTTP 200):
- * <pre>{@code
- * [
- *   { "jobId": "001", "title": "Java Developer", "department": "IT", "location": "Montreal" }
- * ]
- * }</pre>
- */
 @Slf4j
 public class CmsLambdaHandler implements RequestHandler<APIGatewayProxyRequestEvent, APIGatewayProxyResponseEvent> {
 
@@ -49,14 +28,18 @@ public class CmsLambdaHandler implements RequestHandler<APIGatewayProxyRequestEv
     private final XmlParserService xmlParserService;
     private final ObjectMapper objectMapper;
 
-    /** Default constructor used by the Lambda runtime. */
+    /**
+     * Default constructor used by the Lambda runtime.
+     */
     public CmsLambdaHandler() {
         this.s3Service = new S3Service();
         this.xmlParserService = new XmlParserService();
         this.objectMapper = new ObjectMapper();
     }
 
-    /** Package-private constructor for dependency injection in tests. */
+    /**
+     * Package-private constructor for dependency injection in tests.
+     */
     CmsLambdaHandler(S3Service s3Service, XmlParserService xmlParserService, ObjectMapper objectMapper) {
         this.s3Service = s3Service;
         this.xmlParserService = xmlParserService;
@@ -68,9 +51,8 @@ public class CmsLambdaHandler implements RequestHandler<APIGatewayProxyRequestEv
         log.info("CmsLambdaHandler invoked");
         try {
             CmsRequest cmsRequest = parseRequest(request);
-            validateRequest(cmsRequest);
 
-            String xmlContent = s3Service.downloadAsString(cmsRequest.getBucketName(), cmsRequest.getFileKey());
+            String xmlContent = s3Service.downloadJobFileAsString();
             List<JobDto> jobs = xmlParserService.parse(xmlContent);
 
             String responseBody = objectMapper.writeValueAsString(jobs);
@@ -93,20 +75,12 @@ public class CmsLambdaHandler implements RequestHandler<APIGatewayProxyRequestEv
     }
 
     private CmsRequest parseRequest(APIGatewayProxyRequestEvent request) throws Exception {
-        String body = request.getBody();
-        if (body == null || body.isBlank()) {
-            throw new IllegalArgumentException("Request body must not be empty");
+        Map<String, String> queryParam = request.getQueryStringParameters();
+        CmsRequest cmsRequest = new CmsRequest();
+        if (queryParam.containsKey("jobId")) {
+            cmsRequest.setJobId(queryParam.get("jobId"));
         }
-        return objectMapper.readValue(body, CmsRequest.class);
-    }
-
-    private static void validateRequest(CmsRequest req) {
-        if (req.getBucketName() == null || req.getBucketName().isBlank()) {
-            throw new IllegalArgumentException("bucketName must not be blank");
-        }
-        if (req.getFileKey() == null || req.getFileKey().isBlank()) {
-            throw new IllegalArgumentException("fileKey must not be blank");
-        }
+        return cmsRequest;
     }
 
     private static APIGatewayProxyResponseEvent buildResponse(int statusCode, String body) {

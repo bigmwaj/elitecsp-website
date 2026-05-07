@@ -10,50 +10,39 @@ import software.amazon.awssdk.services.s3.model.NoSuchKeyException;
 
 import java.nio.charset.StandardCharsets;
 
-/**
- * Service for downloading objects from Amazon S3.
- *
- * <p>Required environment variable:
- * <ul>
- *   <li>{@code AWS_REGION} – the AWS region where the bucket resides (e.g. {@code ca-central-1}).</li>
- * </ul>
- *
- * <p>AWS credentials are resolved automatically by the SDK's default credential chain
- * (Lambda execution role → environment variables → instance profile). No secrets are
- * hardcoded.
- */
 @Slf4j
 public class S3Service {
 
     private static final String ENV_AWS_REGION = "AWS_REGION";
 
+    private static final String ENV_BUCKET_NAME = "AWS_BUCKET_NAME";
+
+    private static final String ENV_FILE_KEY = "AWS_FILE_KEY";
+
     private final S3Client s3Client;
 
-    /**
-     * Default constructor used by the Lambda runtime.
-     * Reads {@code AWS_REGION} from the environment.
-     */
+    private final String bucketName;
+
+    private final String fileKey;
+
     public S3Service() {
         String region = requireEnv(ENV_AWS_REGION);
         this.s3Client = S3Client.builder()
                 .region(Region.of(region))
                 .build();
+
+        this.bucketName = requireEnv(ENV_BUCKET_NAME);
+        this.fileKey = requireEnv(ENV_FILE_KEY);
     }
 
     /** Package-private constructor for dependency injection in tests. */
-    S3Service(S3Client s3Client) {
+    S3Service(S3Client s3Client,  String bucketName, String fileKey) {
         this.s3Client = s3Client;
+        this.bucketName = bucketName;
+        this.fileKey = fileKey;
     }
 
-    /**
-     * Downloads the content of an S3 object as a UTF-8 string.
-     *
-     * @param bucketName the S3 bucket name
-     * @param fileKey    the S3 object key (path)
-     * @return the object content as a string
-     * @throws S3DownloadException if the object does not exist or the download fails
-     */
-    public String downloadAsString(String bucketName, String fileKey) {
+    public String downloadJobFileAsString() {
         log.info("Downloading s3://{}/{}", bucketName, fileKey);
         try {
             GetObjectRequest request = GetObjectRequest.builder()

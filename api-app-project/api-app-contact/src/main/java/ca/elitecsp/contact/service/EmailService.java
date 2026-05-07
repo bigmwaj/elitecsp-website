@@ -31,34 +31,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 
-/**
- * Service responsible for sending transactional emails via Amazon Simple Email Service (SES).
- *
- * <p>Two email types are supported:
- * <ul>
- *   <li><b>Contact</b> – sent via {@link #sendContactEmail}; supports an optional inline
- *       attachment (PDF or DOCX). When an attachment is present the email is built as a
- *       raw MIME multipart message; otherwise a simple {@code sendEmail} call is used.</li>
- *   <li><b>Job Application</b> – sent via {@link #sendJobApplicationEmail}; the CV is
- *       attached directly to the email as a MIME multipart message.</li>
- * </ul>
- *
- * <p>Email bodies (plain-text and HTML) are loaded from classpath templates:
- * <ul>
- *   <li>{@code templates/contact-email.txt} / {@code .html}</li>
- *   <li>{@code templates/job-application-email.txt} / {@code .html}</li>
- * </ul>
- *
- * <p>Required environment variables:
- * <ul>
- *   <li>{@code FROM_EMAIL}        – Verified SES sender address</li>
- *   <li>{@code DESTINATION_EMAIL} – Recipient email address for all messages</li>
- *   <li>{@code AWS_REGION}        – AWS region where SES is configured (e.g. {@code us-east-1})</li>
- * </ul>
- *
- * <p>AWS credentials are resolved automatically by the SDK's default credential chain
- * (Lambda execution role, environment variables, or instance profile) — no hardcoded secrets.
- */
 @Slf4j
 public class EmailService {
 
@@ -72,15 +44,9 @@ public class EmailService {
     /** Recipient address for all notification emails. */
     private final String destinationEmail;
 
-    /** SES client initialised with the configured AWS region. */
+    /** SES client initialized with the configured AWS region. */
     private final SesClient sesClient;
 
-    /**
-     * Default no-arg constructor used by the Lambda runtime.
-     * Reads configuration from environment variables and initialises the SES client.
-     *
-     * @throws CustomException if any required environment variable is missing
-     */
     public EmailService() {
         this.fromEmail = requireEnv(ENV_FROM_EMAIL);
         this.destinationEmail = requireEnv(ENV_DESTINATION_EMAIL);
@@ -103,15 +69,6 @@ public class EmailService {
         this.sesClient = sesClient;
     }
 
-    /**
-     * Sends a contact-form notification email via Amazon SES, optionally with a file attachment.
-     *
-     * <p>When {@code attachmentBytes} is non-null the message is assembled as a raw MIME
-     * multipart email so the attachment can be included. Otherwise a simple
-     * {@code sendEmail} call (text + HTML) is used.
-     *
-     * @throws CustomException with {@link ErrorCode#EMAIL_SEND_FAILURE} (HTTP 500) if sending fails
-     */
     public void sendContactEmail(ContactRequest req) {
         log.info("Sending contact email via SES on behalf of: {}", req.getEmail());
         try {
@@ -235,6 +192,17 @@ public class EmailService {
         mixed.addBodyPart(bodyPart);
 
         // Attachment part
+        MimeBodyPart attachmentPart = getMimeBodyPart(attachmentBytes, attachmentName);
+        mixed.addBodyPart(attachmentPart);
+
+        mimeMessage.setContent(mixed);
+
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        mimeMessage.writeTo(out);
+        return out.toByteArray();
+    }
+
+    private static MimeBodyPart getMimeBodyPart(byte[] attachmentBytes, String attachmentName) throws MessagingException {
         String lowerName = attachmentName != null ? attachmentName.toLowerCase() : "";
         String attachmentMime;
         if (lowerName.endsWith(".pdf")) {
@@ -248,13 +216,7 @@ public class EmailService {
         attachmentPart.setDataHandler(
                 new DataHandler(new ByteArrayDataSource(attachmentBytes, attachmentMime)));
         attachmentPart.setFileName(attachmentName);
-        mixed.addBodyPart(attachmentPart);
-
-        mimeMessage.setContent(mixed);
-
-        ByteArrayOutputStream out = new ByteArrayOutputStream();
-        mimeMessage.writeTo(out);
-        return out.toByteArray();
+        return attachmentPart;
     }
 
     private Map<String, String> buildCommonPlaceholders(ContactRequest req) {

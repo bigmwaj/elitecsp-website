@@ -21,7 +21,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
 /**
- * Integration tests for {@link LambdaHandler}.
+ * Integration tests for {@link ContactLambdaHandler}.
  *
  * <p>Covers the full request → response flow for Contact and JobApplication
  * scenarios, including success paths, validation errors, and unexpected exceptions.
@@ -39,11 +39,11 @@ class LambdaHandlerTest {
     @Mock
     private Context context;
 
-    private LambdaHandler handler;
+    private ContactLambdaHandler handler;
 
     @BeforeEach
     void setUp() {
-        handler = new LambdaHandler(emailService);
+        handler = new ContactLambdaHandler(emailService);
     }
 
     // -------------------------------------------------------------------------

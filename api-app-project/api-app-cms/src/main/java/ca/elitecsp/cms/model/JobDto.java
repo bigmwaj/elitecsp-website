@@ -7,35 +7,38 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-/**
- * DTO representing a single job entry parsed from an XML document.
- *
- * <p>Expected XML format:
- * <pre>{@code
- * <job>
- *   <jobId>001</jobId>
- *   <title>Java Developer</title>
- *   <department>IT</department>
- *   <location>Montreal</location>
- * </job>
- * }</pre>
- */
+import java.time.LocalDate;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-@JacksonXmlRootElement(localName = "job")
+@JacksonXmlRootElement(localName = "jobs")
 public class JobDto {
 
     @JacksonXmlProperty(localName = "jobId")
-    private String jobId;
+    private String id;
 
-    @JacksonXmlProperty(localName = "title")
-    private String title;
+    private JobCategory category;
 
-    @JacksonXmlProperty(localName = "department")
-    private String department;
+    private JobType type;
+
+    private String icon;
+
+    private LocalDate expirationDate;
 
     @JacksonXmlProperty(localName = "location")
     private String location;
+
+    @JacksonXmlProperty(localName = "title_fr")
+    private String title_fr;
+
+    @JacksonXmlProperty(localName = "title_en")
+    private String title_en;
+
+    @JacksonXmlProperty(localName = "description_fr")
+    private String description_fr;
+
+    @JacksonXmlProperty(localName = "description_en")
+    private String description_en;
 }

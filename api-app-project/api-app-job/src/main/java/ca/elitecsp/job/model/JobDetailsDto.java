@@ -1,26 +1,20 @@
 package ca.elitecsp.job.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+@EqualsAndHashCode(callSuper = true)
 @Data
-@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class JobDetailsDto {
-    private String jobId;
-    private String title;
-    private String location;
-    private String department;
-    private String summary;
-    private String postedDate;
+@SuperBuilder
+public class JobDetailsDto extends JobSummaryDto {
+
     private String description;
 
     @Builder.Default

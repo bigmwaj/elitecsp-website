@@ -1,6 +1,6 @@
 package ca.elitecsp.contact.service;
 
-import ca.elitecsp.common.exception.CustomException;
+import ca.elitecsp.common.exception.ApiException;
 import ca.elitecsp.common.exception.ErrorCode;
 import ca.elitecsp.common.util.Constants;
 import ca.elitecsp.common.util.EmailTemplateLoader;
@@ -91,11 +91,11 @@ public class EmailService {
                         EmailTemplateLoader.load("contact-email.html", placeholders));
             }
             log.info("Contact email sent successfully to {} on behalf of {}", destinationEmail, req.getEmail());
-        } catch (CustomException e) {
+        } catch (ApiException e) {
             throw e;
         } catch (Exception e) {
             log.error("Failed to send contact email for sender: {}", req.getEmail(), e);
-            throw new CustomException(ErrorCode.EMAIL_SEND_FAILURE, 500,
+            throw new ApiException(ErrorCode.EMAIL_SEND_FAILURE, 500,
                     "Failed to send email via SES: " + e.getMessage(), e);
         }
     }
@@ -103,7 +103,7 @@ public class EmailService {
     /**
      * Sends a job-application notification email via Amazon SES with the CV attached directly.
      *
-     * @throws CustomException with {@link ErrorCode#EMAIL_SEND_FAILURE} (HTTP 500) if sending fails
+     * @throws ApiException with {@link ErrorCode#EMAIL_SEND_FAILURE} (HTTP 500) if sending fails
      */
     public void sendJobApplicationEmail(ContactRequest req) {
         log.info("Sending job-application email via SES on behalf of: {}", req.getEmail());
@@ -124,11 +124,11 @@ public class EmailService {
 
             log.info("Job-application email sent successfully to {} on behalf of {}",
                     destinationEmail, req.getEmail());
-        } catch (CustomException e) {
+        } catch (ApiException e) {
             throw e;
         } catch (Exception e) {
             log.error("Failed to send job-application email for sender: {}", req.getEmail(), e);
-            throw new CustomException(ErrorCode.EMAIL_SEND_FAILURE, 500,
+            throw new ApiException(ErrorCode.EMAIL_SEND_FAILURE, 500,
                     "Failed to send email via SES: " + e.getMessage(), e);
         }
     }
@@ -292,16 +292,16 @@ public class EmailService {
     }
 
     /**
-     * Reads a required environment variable or throws {@link CustomException}.
+     * Reads a required environment variable or throws {@link ApiException}.
      *
      * @param name the environment variable name
      * @return the value of the environment variable
-     * @throws CustomException if the variable is not set or blank
+     * @throws ApiException if the variable is not set or blank
      */
     private static String requireEnv(String name) {
         String value = System.getenv(name);
         if (value == null || value.isBlank()) {
-            throw new CustomException(ErrorCode.INTERNAL_ERROR, 500,
+            throw new ApiException(ErrorCode.INTERNAL_ERROR, 500,
                     "Missing required environment variable: " + name);
         }
         return value;

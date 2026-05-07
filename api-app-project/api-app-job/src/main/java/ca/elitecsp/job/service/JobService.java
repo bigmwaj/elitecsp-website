@@ -5,9 +5,7 @@ import ca.elitecsp.job.model.JobSummaryDto;
 import ca.elitecsp.job.model.ParsedJobWorkbook;
 import ca.elitecsp.job.parser.ExcelJobParserService;
 
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
 public class JobService {
@@ -24,14 +22,14 @@ public class JobService {
         this.excelJobParserService = excelJobParserService;
     }
 
-    public List<JobSummaryDto> getJobs() {
-        ParsedJobWorkbook workbook = loadWorkbook();
+    public List<JobSummaryDto> getJobs(String lang) {
+        ParsedJobWorkbook workbook = loadWorkbook(lang);
         return workbook.getJobs();
     }
 
-    public Optional<JobDetailsDto> getJobDetails(String jobId) {
+    public Optional<JobDetailsDto> getJobDetails(String lang, String jobId) {
         String normalizedId = normalizeJobId(jobId);
-        ParsedJobWorkbook workbook = loadWorkbook();
+        ParsedJobWorkbook workbook = loadWorkbook(lang);
 
         JobSummaryDto summary = workbook.getJobsById().get(normalizedId);
         JobDetailsDto details = workbook.getDetailsById().get(normalizedId);
@@ -43,9 +41,9 @@ public class JobService {
         return Optional.of(merge(summary, details, normalizedId));
     }
 
-    private ParsedJobWorkbook loadWorkbook() {
+    private ParsedJobWorkbook loadWorkbook(String lang) {
         byte[] fileBytes = s3FileLoaderService.loadExcelFile();
-        return excelJobParserService.parseWorkbook(fileBytes);
+        return excelJobParserService.parseWorkbook(lang, fileBytes);
     }
 
     private JobDetailsDto merge(JobSummaryDto summary, JobDetailsDto details, String jobId) {
@@ -55,15 +53,8 @@ public class JobService {
         if (summary != null) {
             response.setTitle(summary.getTitle());
             response.setLocation(summary.getLocation());
-            response.setDepartment(summary.getDepartment());
             response.setSummary(summary.getSummary());
             response.setPostedDate(summary.getPostedDate());
-
-            Map<String, String> attributes = new LinkedHashMap<>(summary.getAttributes());
-            if (response.getAttributes() != null) {
-                attributes.putAll(response.getAttributes());
-            }
-            response.setAttributes(attributes);
         }
 
         return response;

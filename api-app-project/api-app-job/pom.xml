@@ -18,6 +18,12 @@
     <description>AWS Lambda handler for reading and parsing Excel-based job data stored in S3</description>
 
     <dependencies>
+
+        <dependency>
+            <groupId>ca.elitecsp</groupId>
+            <artifactId>api-app-common</artifactId>
+            <version>1.0.0</version>
+        </dependency>
         <dependency>
             <groupId>com.amazonaws</groupId>
             <artifactId>aws-lambda-java-core</artifactId>

@@ -4,44 +4,53 @@ import ca.elitecsp.job.model.JobDetailsDto;
 import ca.elitecsp.job.model.JobSummaryDto;
 import ca.elitecsp.job.model.ParsedJobWorkbook;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.CellType;
-import org.apache.poi.ss.usermodel.DataFormatter;
-import org.apache.poi.ss.usermodel.DateUtil;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.Workbook;
-import org.apache.poi.ss.usermodel.WorkbookFactory;
+import org.apache.poi.ss.usermodel.*;
 
 import java.io.ByteArrayInputStream;
 import java.time.ZoneId;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
+import java.util.*;
+import java.util.function.UnaryOperator;
 
 @Slf4j
 public class ExcelJobParserService {
 
-    private static final String JOBS_SHEET = "jobs";
+    private static final String JOBS_SHEET = "job-summaries";
     private static final String JOB_DETAILS_SHEET = "job-details";
 
-    private static final String COL_JOB_ID = "jobid";
-    private static final String COL_TITLE = "title";
+    private static final String COL_JOB_ID = "id";
+    private static final String COL_CATEGORY = "category";
+    private static final String COL_TYPE = "type";
+    private static final String COL_ICON = "category";
+    private static final String COL_POSTED_DATE = "posted_date";
+    private static final String COL_EXPIRATION_DATE = "expiration_date";
     private static final String COL_LOCATION = "location";
-    private static final String COL_DEPARTMENT = "department";
+    private static final String COL_TITLE = "title";
     private static final String COL_SUMMARY = "summary";
-    private static final String COL_POSTED_DATE = "posteddate";
     private static final String COL_DESCRIPTION = "description";
     private static final String COL_RESPONSIBILITIES = "responsibilities";
     private static final String COL_REQUIREMENTS = "requirements";
     private static final String COL_BENEFITS = "benefits";
 
+    private static final String[] JOB_SUMMARY_COLS = {
+            COL_JOB_ID,
+            COL_CATEGORY,
+            COL_TYPE,
+            COL_ICON,
+            COL_POSTED_DATE,
+            COL_EXPIRATION_DATE,
+            COL_LOCATION,
+            COL_TITLE,
+            COL_SUMMARY,
+    };
+
+    private static final String[] JOB_TRANSLATED_COLS = {
+            COL_TITLE,
+            COL_SUMMARY,
+    };
+
     private final DataFormatter formatter = new DataFormatter(Locale.ENGLISH);
 
-    public ParsedJobWorkbook parseWorkbook(byte[] fileBytes) {
+    public ParsedJobWorkbook parseWorkbook(String lang, byte[] fileBytes) {
         if (fileBytes == null || fileBytes.length == 0) {
             throw new ExcelParsingException("Excel file content is empty");
         }
@@ -57,8 +66,8 @@ public class ExcelJobParserService {
                 throw new ExcelParsingException("Missing required sheet: job-details");
             }
 
-            List<JobSummaryDto> summaries = parseJobSummaries(jobsSheet);
-            Map<String, JobDetailsDto> detailsById = parseJobDetails(detailsSheet);
+            List<JobSummaryDto> summaries = parseJobSummaries(lang, jobsSheet);
+            Map<String, JobDetailsDto> detailsById = parseJobDetails(lang, detailsSheet);
 
             Map<String, JobSummaryDto> jobsById = new LinkedHashMap<>();
             for (JobSummaryDto summary : summaries) {
@@ -78,7 +87,24 @@ public class ExcelJobParserService {
         }
     }
 
-    private List<JobSummaryDto> parseJobSummaries(Sheet sheet) {
+    private boolean isTranslatedColumn(String columnName) {
+        return Arrays.asList(JOB_TRANSLATED_COLS).contains(columnName);
+    }
+
+    private int getColumnIndex(String lang, Map<String, Integer> headerIndex, String columnName) {
+        Integer index;
+        if (isTranslatedColumn(columnName)) {
+            index = headerIndex.get(columnName + "_" + lang);
+        } else {
+            index = headerIndex.get(columnName);
+        }
+        if (index == null) {
+            throw new ExcelParsingException("Missing required column '" + columnName + "' in sheet for lang: " + lang);
+        }
+        return index;
+    }
+
+    private List<JobSummaryDto> parseJobSummaries(String lang, Sheet sheet) {
         Map<String, Integer> headerIndex = readHeader(sheet);
         List<JobSummaryDto> jobs = new ArrayList<>();
 
@@ -94,23 +120,23 @@ public class ExcelJobParserService {
                 continue;
             }
 
-            Map<String, String> attributes = parseAttributes(row, headerIndex, Arrays.asList(
-                    COL_JOB_ID, COL_TITLE, COL_LOCATION, COL_DEPARTMENT, COL_SUMMARY, COL_POSTED_DATE));
 
             jobs.add(JobSummaryDto.builder()
                     .jobId(jobId)
-                    .title(readCell(row, headerIndex.get(COL_TITLE)))
+                    .category(readCell(row, headerIndex.get(COL_CATEGORY)))
+                    .type(readCell(row, headerIndex.get(COL_TYPE)))
+                    .icon(readCell(row, headerIndex.get(COL_ICON)))
+                    .title(readCell(row, getColumnIndex(lang, headerIndex, COL_TITLE)))
                     .location(readCell(row, headerIndex.get(COL_LOCATION)))
-                    .department(readCell(row, headerIndex.get(COL_DEPARTMENT)))
-                    .summary(readCell(row, headerIndex.get(COL_SUMMARY)))
+                    .summary(readCell(row, getColumnIndex(lang, headerIndex, COL_SUMMARY)))
                     .postedDate(readCell(row, headerIndex.get(COL_POSTED_DATE)))
-                    .attributes(attributes)
+                    .expirationDate(readCell(row, headerIndex.get(COL_EXPIRATION_DATE)))
                     .build());
         }
         return jobs;
     }
 
-    private Map<String, JobDetailsDto> parseJobDetails(Sheet sheet) {
+    private Map<String, JobDetailsDto> parseJobDetails(String lang, Sheet sheet) {
         Map<String, Integer> headerIndex = readHeader(sheet);
         Map<String, JobDetailsDto> result = new LinkedHashMap<>();
 
@@ -126,16 +152,12 @@ public class ExcelJobParserService {
                 continue;
             }
 
-            Map<String, String> attributes = parseAttributes(row, headerIndex, Arrays.asList(
-                    COL_JOB_ID, COL_DESCRIPTION, COL_RESPONSIBILITIES, COL_REQUIREMENTS, COL_BENEFITS));
-
             result.put(jobId, JobDetailsDto.builder()
                     .jobId(jobId)
-                    .description(readCell(row, headerIndex.get(COL_DESCRIPTION)))
-                    .responsibilities(splitList(readCell(row, headerIndex.get(COL_RESPONSIBILITIES))))
-                    .requirements(splitList(readCell(row, headerIndex.get(COL_REQUIREMENTS))))
-                    .benefits(splitList(readCell(row, headerIndex.get(COL_BENEFITS))))
-                    .attributes(attributes)
+                    .description(readCell(row, getColumnIndex(lang, headerIndex, COL_DESCRIPTION)))
+                    .responsibilities(splitList(readCell(row, getColumnIndex(lang, headerIndex, COL_RESPONSIBILITIES))))
+                    .requirements(splitList(readCell(row, getColumnIndex(lang, headerIndex, COL_REQUIREMENTS))))
+                    .benefits(splitList(readCell(row, getColumnIndex(lang, headerIndex, COL_BENEFITS))))
                     .build());
         }
 
@@ -161,22 +183,6 @@ public class ExcelJobParserService {
         }
 
         return index;
-    }
-
-    private Map<String, String> parseAttributes(Row row,
-                                                Map<String, Integer> headerIndex,
-                                                List<String> excludedColumns) {
-        Map<String, String> attributes = new LinkedHashMap<>();
-        for (Map.Entry<String, Integer> entry : headerIndex.entrySet()) {
-            if (excludedColumns.contains(entry.getKey())) {
-                continue;
-            }
-            String value = readCell(row, entry.getValue());
-            if (!value.isBlank()) {
-                attributes.put(entry.getKey(), value);
-            }
-        }
-        return attributes;
     }
 
     private String readCell(Row row, Integer index) {
@@ -225,6 +231,6 @@ public class ExcelJobParserService {
     }
 
     private String normalizeColumn(String input) {
-        return input.trim().toLowerCase(Locale.ROOT).replaceAll("[^a-z0-9]", "");
+        return input.trim().toLowerCase(Locale.ROOT).replaceAll("[^a-z0-9_]", "");
     }
 }

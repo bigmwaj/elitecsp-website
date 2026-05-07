@@ -14,6 +14,7 @@
     <description>Parent Maven multi-module project for Elite CSP serverless backends</description>
 
     <modules>
+        <module>api-app-common</module>
         <module>api-app-contact</module>
         <module>api-app-job</module>
     </modules>

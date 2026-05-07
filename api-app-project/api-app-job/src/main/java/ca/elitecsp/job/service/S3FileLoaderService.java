@@ -1,5 +1,7 @@
 package ca.elitecsp.job.service;
 
+import ca.elitecsp.common.exception.ApiException;
+import ca.elitecsp.common.exception.ErrorCode;
 import lombok.extern.slf4j.Slf4j;
 import software.amazon.awssdk.core.ResponseBytes;
 import software.amazon.awssdk.services.s3.S3Client;
@@ -36,9 +38,9 @@ public class S3FileLoaderService {
                     .build());
             return response.asByteArray();
         } catch (NoSuchKeyException e) {
-            throw new S3FileLoadException("Configured Excel file not found in S3: " + bucket + "/" + key, e);
+            throw new ApiException(ErrorCode.INTERNAL_ERROR, 500, "Configured Excel file not found in S3: " + bucket + "/" + key, e);
         } catch (Exception e) {
-            throw new S3FileLoadException("Failed to load Excel file from S3: " + e.getMessage(), e);
+            throw new ApiException(ErrorCode.INTERNAL_ERROR, 500, "Failed to load Excel file from S3: " + e.getMessage(), e);
         }
     }
 

@@ -1,7 +1,8 @@
 package ca.elitecsp.contact.handler;
 
-import ca.elitecsp.common.exception.CustomException;
+import ca.elitecsp.common.exception.ApiException;
 import ca.elitecsp.common.exception.ErrorCode;
+import ca.elitecsp.common.handler.CommonLambdaHandler;
 import ca.elitecsp.common.response.ApiResponseBuilder;
 import ca.elitecsp.common.util.JsonUtils;
 import ca.elitecsp.common.util.ValidationUtils;
@@ -10,18 +11,17 @@ import ca.elitecsp.contact.model.ContactType;
 import ca.elitecsp.contact.service.EmailService;
 import ca.elitecsp.contact.util.ValidationUtil;
 import com.amazonaws.services.lambda.runtime.Context;
-import com.amazonaws.services.lambda.runtime.RequestHandler;
 import com.amazonaws.services.lambda.runtime.events.APIGatewayProxyRequestEvent;
 import com.amazonaws.services.lambda.runtime.events.APIGatewayProxyResponseEvent;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class ContactLambdaHandler implements RequestHandler<APIGatewayProxyRequestEvent, APIGatewayProxyResponseEvent> {
+public class ContactLambdaHandler extends CommonLambdaHandler {
 
     private final EmailService emailService;
 
     public ContactLambdaHandler() {
-        this.emailService = new EmailService();
+        this(new EmailService());
     }
 
     /** Package-private constructor for dependency injection in tests. */
@@ -45,15 +45,12 @@ public class ContactLambdaHandler implements RequestHandler<APIGatewayProxyReque
                 case CONTACT        -> handleContact(contactRequest);
             };
 
-        } catch (CustomException e) {
-            log.warn("Request error [{}]: {}", e.getErrorCode(), e.getMessage());
-            return ApiResponseBuilder.fromException(e);
-
+        } catch (ApiException e) {
+            log.error(e.getMessage(), e);
+            return ApiResponseBuilder.fromApiException(e);
         } catch (Exception e) {
             log.error("Unexpected error processing contact request", e);
-            return ApiResponseBuilder.internalError(
-                    "An unexpected error occurred. Please try again later.",
-                    ErrorCode.INTERNAL_ERROR.name());
+            return ApiResponseBuilder.fromException(e);
         }
     }
 
@@ -75,8 +72,7 @@ public class ContactLambdaHandler implements RequestHandler<APIGatewayProxyReque
     private ContactRequest parseRequest(APIGatewayProxyRequestEvent request) {
         String body = request.getBody();
         if (body == null || body.isBlank()) {
-            throw new CustomException(ErrorCode.MISSING_REQUIRED_FIELD, 400,
-                    "Request body must not be empty");
+            throw new ApiException(ErrorCode.MISSING_REQUIRED_FIELD, 400, "Request body must not be empty");
         }
 
         // Log the raw body for debugging purposes (first 200 chars)
@@ -85,8 +81,7 @@ public class ContactLambdaHandler implements RequestHandler<APIGatewayProxyReque
 
         // Check if body appears to be URL-encoded (common mistake in API Gateway configuration)
         if (body.startsWith("form-data") || body.contains("=") && !body.startsWith("{") && !body.startsWith("[")) {
-            log.warn("Request body appears to be URL-encoded instead of JSON");
-            throw new CustomException(ErrorCode.JSON_PARSE_ERROR, 400,
+            throw new ApiException(ErrorCode.JSON_PARSE_ERROR, 400,
                     "Request body must be valid JSON. Ensure API Gateway is NOT converting the body. " +
                     "Content-Type should be 'application/json' and body should be raw JSON, not URL-encoded.");
         }

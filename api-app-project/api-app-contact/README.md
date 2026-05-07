@@ -5,7 +5,7 @@ AWS Lambda module that processes contact-form and job-application submissions an
 ## Lambda Handler
 
 ```
-ca.elitecsp.contact.handler.LambdaHandler
+ca.elitecsp.contact.handler.ContactLambdaHandler
 ```
 
 ## Environment Variables
@@ -44,4 +44,4 @@ mvn clean package -pl api-app-contact -am
 
 Upload `api-app-contact/target/elite-csp-contact.jar` to AWS Lambda.
 
-Set the handler to `ca.elitecsp.contact.handler.LambdaHandler` and configure the environment variables above.
+Set the handler to `ca.elitecsp.contact.handler.ContactLambdaHandler` and configure the environment variables above.

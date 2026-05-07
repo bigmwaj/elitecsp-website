@@ -14,7 +14,6 @@ import com.amazonaws.services.lambda.runtime.events.APIGatewayProxyResponseEvent
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -23,8 +22,7 @@ import java.util.Optional;
 public class JobLambdaHandler extends CommonLambdaHandler {
 
     private static final String DEFAULT_LANG = "en";
-
-    private static final String[] ACCEPTED_LANGS = {"fr", "en"};
+    private static final List<String> ACCEPTED_LANGS = List.of("fr", "en");
 
     private final JobService jobService;
 
@@ -43,7 +41,7 @@ public class JobLambdaHandler extends CommonLambdaHandler {
     public APIGatewayProxyResponseEvent handleRequest(APIGatewayProxyRequestEvent request, Context context) {
         try {
             JobParams params = parseRequest(request);
-            ValidationUtil.validateContactRequest(params);
+            ValidationUtil.validateJobParams(params);
             String jobId = params.getJobId();
             String lang = params.getLang();
 
@@ -90,7 +88,8 @@ public class JobLambdaHandler extends CommonLambdaHandler {
         JobParams jobParams = new JobParams();
         jobParams.setJobId(extractParamFromRequest(request, "jobId"));
         jobParams.setLang(extractParamFromRequest(request, "lang"));
-        if (!Arrays.asList(ACCEPTED_LANGS).contains(jobParams.getLang())) {
+        String lang = jobParams.getLang();
+        if (lang == null || !ACCEPTED_LANGS.contains(lang)) {
             jobParams.setLang(DEFAULT_LANG);
         }
 

@@ -250,7 +250,6 @@ public class EmailService {
      */
     private Map<String, String> buildJobApplicationPlaceholders(ContactRequest req) {
         Map<String, String> map = buildCommonPlaceholders(req);
-        map.put("{{CITY}}", htmlEscape(req.getCity() != null ? req.getCity() : ""));
         map.put("{{ATTACHMENT_NAME}}", htmlEscape(req.getAttachmentFileName() != null ? req.getAttachmentFileName() : ""));
         return map;
     }

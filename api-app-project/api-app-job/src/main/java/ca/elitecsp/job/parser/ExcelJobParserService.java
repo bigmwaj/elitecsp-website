@@ -9,7 +9,6 @@ import org.apache.poi.ss.usermodel.*;
 import java.io.ByteArrayInputStream;
 import java.time.ZoneId;
 import java.util.*;
-import java.util.function.UnaryOperator;
 
 @Slf4j
 public class ExcelJobParserService {
@@ -30,18 +29,6 @@ public class ExcelJobParserService {
     private static final String COL_RESPONSIBILITIES = "responsibilities";
     private static final String COL_REQUIREMENTS = "requirements";
     private static final String COL_BENEFITS = "benefits";
-
-    private static final String[] JOB_SUMMARY_COLS = {
-            COL_JOB_ID,
-            COL_CATEGORY,
-            COL_TYPE,
-            COL_ICON,
-            COL_POSTED_DATE,
-            COL_EXPIRATION_DATE,
-            COL_LOCATION,
-            COL_TITLE,
-            COL_SUMMARY,
-    };
 
     private static final String[] JOB_TRANSLATED_COLS = {
             COL_TITLE,

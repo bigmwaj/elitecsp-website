@@ -23,16 +23,30 @@ jobs:
           distribution: 'temurin'
           cache: 'maven'
 
-      - name: Run tests
-        working-directory: api-app
-        run: mvn test
+      - name: Build and test all modules
+        working-directory: api-app-project
+        run: mvn clean package
 
-      - name: Upload JaCoCo coverage report
+      - name: Upload api-app-contact Lambda artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: elite-csp-contact
+          path: api-app-project/api-app-contact/target/elite-csp-contact.jar
+
+      - name: Upload api-app-cms Lambda artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: elite-csp-cms
+          path: api-app-project/api-app-cms/target/elite-csp-cms.jar
+
+      - name: Upload JaCoCo coverage reports
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: jacoco-report
-          path: api-app/target/site/jacoco/
+          name: jacoco-reports
+          path: |
+            api-app-project/api-app-contact/target/site/jacoco/
+            api-app-project/api-app-cms/target/site/jacoco/
 
   build-and-deploy:
     name: Build and Deploy UI

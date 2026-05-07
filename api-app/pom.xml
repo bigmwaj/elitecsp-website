@@ -17,18 +17,29 @@
         <java.version>21</java.version>
         <maven.compiler.source>21</maven.compiler.source>
         <maven.compiler.target>21</maven.compiler.target>
+        <maven.compiler.release>21</maven.compiler.release>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
         <!-- Dependency versions -->
-        <aws-lambda-java-core.version>1.2.3</aws-lambda-java-core.version>
-        <aws-lambda-java-events.version>3.11.4</aws-lambda-java-events.version>
-        <jackson-databind.version>2.16.1</jackson-databind.version>
-        <aws-sdk-v2.version>2.25.6</aws-sdk-v2.version>
-        <maven-shade-plugin.version>3.5.1</maven-shade-plugin.version>
-        <sonar-maven-plugin.version>3.11.0.3922</sonar-maven-plugin.version>
-        <lombok.version>1.18.30</lombok.version>
-        <slf4j.version>2.0.12</slf4j.version>
-        <jakarta-mail.version>2.0.1</jakarta-mail.version>
+        <aws-lambda-java-core.version>1.4.0</aws-lambda-java-core.version>
+        <aws-lambda-java-events.version>3.16.1</aws-lambda-java-events.version>
+        <jackson-databind.version>2.18.3</jackson-databind.version>
+        <aws-sdk-v2.version>2.31.50</aws-sdk-v2.version>
+        <lombok.version>1.18.46</lombok.version>
+        <slf4j.version>2.0.17</slf4j.version>
+        <angus-mail.version>2.0.5</angus-mail.version>
+        <junit-jupiter.version>5.12.2</junit-jupiter.version>
+        <mockito.version>5.17.0</mockito.version>
+
+        <!-- Plugin versions -->
+        <maven-compiler-plugin.version>3.14.0</maven-compiler-plugin.version>
+        <maven-surefire-plugin.version>3.5.3</maven-surefire-plugin.version>
+        <maven-shade-plugin.version>3.6.0</maven-shade-plugin.version>
+        <maven-enforcer-plugin.version>3.5.0</maven-enforcer-plugin.version>
+        <jacoco-maven-plugin.version>0.8.13</jacoco-maven-plugin.version>
+        <sonar-maven-plugin.version>5.6.0.6792</sonar-maven-plugin.version>
+        <versions-maven-plugin.version>2.18.0</versions-maven-plugin.version>
     </properties>
 
     <dependencies>
@@ -60,11 +71,11 @@
             <version>${aws-sdk-v2.version}</version>
         </dependency>
 
-        <!-- Jakarta Mail for MIME multipart construction (attachment support) -->
+        <!-- Jakarta Mail – Eclipse Angus (successor to com.sun.mail:jakarta.mail) -->
         <dependency>
-            <groupId>com.sun.mail</groupId>
+            <groupId>org.eclipse.angus</groupId>
             <artifactId>jakarta.mail</artifactId>
-            <version>${jakarta-mail.version}</version>
+            <version>${angus-mail.version}</version>
         </dependency>
 
         <!-- Lombok for annotation-based boilerplate reduction -->
@@ -93,7 +104,7 @@
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
-            <version>5.10.1</version>
+            <version>${junit-jupiter.version}</version>
             <scope>test</scope>
         </dependency>
 
@@ -101,7 +112,7 @@
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-core</artifactId>
-            <version>5.8.0</version>
+            <version>${mockito.version}</version>
             <scope>test</scope>
         </dependency>
 
@@ -109,7 +120,7 @@
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-junit-jupiter</artifactId>
-            <version>5.8.0</version>
+            <version>${mockito.version}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
@@ -120,10 +131,9 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.11.0</version>
+                <version>${maven-compiler-plugin.version}</version>
                 <configuration>
-                    <source>${java.version}</source>
-                    <target>${java.version}</target>
+                    <release>${java.version}</release>
                     <encoding>UTF-8</encoding>
                     <annotationProcessorPaths>
                         <path>
@@ -153,11 +163,9 @@
                                 <filter>
                                     <artifact>*:*</artifact>
                                     <excludes>
-                                        <!-- Signatures – empêchent le chargement du JAR signé -->
                                         <exclude>META-INF/*.SF</exclude>
                                         <exclude>META-INF/*.DSA</exclude>
                                         <exclude>META-INF/*.RSA</exclude>
-                                        <!-- Fichiers de licence/notice dupliqués entre plusieurs JARs -->
                                         <exclude>META-INF/LICENSE</exclude>
                                         <exclude>META-INF/LICENSE.txt</exclude>
                                         <exclude>META-INF/LICENSE.md</exclude>
@@ -167,14 +175,13 @@
                                         <exclude>META-INF/DEPENDENCIES</exclude>
                                         <exclude>META-INF/FastDoubleParser-LICENSE</exclude>
                                         <exclude>META-INF/FastDoubleParser-NOTICE</exclude>
-                                        <!-- module-info dupliqué dans META-INF/versions/9 (Jackson + SLF4J) -->
                                         <exclude>META-INF/versions/9/module-info.class</exclude>
                                     </excludes>
                                 </filter>
                             </filters>
                             <transformers>
-                                <!-- Fusionne tous les MANIFEST.MF en un seul fichier cohérent -->
                                 <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer"/>
+                                <transformer implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer"/>
                             </transformers>
                         </configuration>
                     </execution>
@@ -192,14 +199,18 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>3.2.3</version>
+                <version>${maven-surefire-plugin.version}</version>
+                <configuration>
+                    <!-- Forwards JaCoCo agent args; enables ByteBuddy dynamic agent loading for Mockito 5.x on Java 21+ -->
+                    <argLine>@{argLine} -XX:+EnableDynamicAgentLoading</argLine>
+                </configuration>
             </plugin>
 
             <!-- JaCoCo – code-coverage instrumentation and reporting -->
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
-                <version>0.8.11</version>
+                <version>${jacoco-maven-plugin.version}</version>
                 <executions>
                     <execution>
                         <id>prepare-agent</id>

@@ -7,7 +7,7 @@ This repository contains the full-stack source code for the Elite CSP corporate 
 | Module | Technology | Purpose |
 |---|---|---|
 | [`ui-app`](./ui-app/) | Angular 21 (TypeScript) | Frontend SPA deployed to AWS S3 + CloudFront |
-| [`api-app`](./api-app/) | Java 17 · AWS Lambda | Serverless backend handling contact and job-application form submissions via Amazon SES |
+| [`api-app`](./api-app/) | **Java 21** · AWS Lambda | Serverless backend handling contact and job-application form submissions via Amazon SES |
 
 ---
 
@@ -24,7 +24,7 @@ CloudFront (CDN) ──► S3 Bucket (Angular SPA)
 API Gateway (REST)
   │
   ▼
-AWS Lambda (Java 17)
+AWS Lambda (Java 21)
   │
   ▼
 Amazon SES (Transactional Email)
@@ -122,11 +122,11 @@ The Lambda JAR must be deployed manually (see [Deployment Guide](./docs/deployme
 - Angular build (`@angular/build:application` / esbuild)
 
 **Backend**
-- Java 17, Maven
+- **Java 21**, Maven
 - AWS Lambda (RequestHandler pattern)
 - AWS SDK v2 for SES
 - Jackson for JSON, Lombok for boilerplate reduction, SLF4J for logging
-- Jakarta Mail for MIME multipart email construction
+- Eclipse Angus Jakarta Mail for MIME multipart email construction
 
 **Infrastructure**
 - AWS S3 (static hosting)

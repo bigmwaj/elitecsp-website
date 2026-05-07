@@ -38,11 +38,10 @@ public class LambdaHandler implements RequestHandler<APIGatewayProxyRequestEvent
 
             ValidationUtil.validateContactRequest(contactRequest);
 
-            if (type == ContactType.JOB_APPLICATION) {
-                return handleJobApplication(contactRequest);
-            } else {
-                return handleContact(contactRequest);
-            }
+            return switch (type) {
+                case JOB_APPLICATION -> handleJobApplication(contactRequest);
+                case CONTACT        -> handleContact(contactRequest);
+            };
 
         } catch (CustomException e) {
             log.warn("Request error [{}]: {}", e.getErrorCode(), e.getMessage());

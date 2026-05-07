@@ -65,7 +65,9 @@ class ContactLambdaHandlerTest {
 
         assertEquals(200, resp.getStatusCode());
         verify(emailService, times(1)).sendContactEmail(any(ContactRequest.class));
+        verify(emailService, times(1)).sendContactConfirmationEmail(any(ContactRequest.class));
         verify(emailService, never()).sendJobApplicationEmail(any());
+        verify(emailService, never()).sendJobApplicationConfirmationEmail(any());
     }
 
     @Test
@@ -123,7 +125,9 @@ class ContactLambdaHandlerTest {
 
         assertEquals(200, resp.getStatusCode());
         verify(emailService, times(1)).sendJobApplicationEmail(any(ContactRequest.class));
+        verify(emailService, times(1)).sendJobApplicationConfirmationEmail(any(ContactRequest.class));
         verify(emailService, never()).sendContactEmail(any());
+        verify(emailService, never()).sendContactConfirmationEmail(any());
     }
 
     @Test
@@ -163,5 +167,40 @@ class ContactLambdaHandlerTest {
                       "\"email\":\"carol@example.com\",\"message\":\"Hi\"}";
         APIGatewayProxyResponseEvent resp = handler.handleRequest(requestWithBody(body), context);
         assertEquals(200, resp.getStatusCode());
+    }
+
+    // -------------------------------------------------------------------------
+    // Confirmation email – fire-and-forget behaviour
+    // -------------------------------------------------------------------------
+
+    @Test
+    void handleRequest_returns200_whenContactConfirmationEmailThrows() {
+        doNothing().when(emailService).sendContactEmail(any());
+        doThrow(new RuntimeException("SES down"))
+                .when(emailService).sendContactConfirmationEmail(any());
+
+        APIGatewayProxyResponseEvent resp = handler.handleRequest(
+                requestWithBody(contactJson("Alice", "alice@example.com", "Hi")), context);
+
+        assertEquals(200, resp.getStatusCode(),
+                "A confirmation-email failure must not affect the API response");
+    }
+
+    @Test
+    void handleRequest_returns200_whenJobApplicationConfirmationEmailThrows() {
+        String attachment = Base64.getEncoder().encodeToString(VALID_PDF_BYTES);
+        String body = String.format(
+                "{\"type\":\"JOB_APPLICATION\",\"fullName\":\"Bob\",\"email\":\"bob@example.com\"," +
+                "\"message\":\"Apply\",\"attachment\":\"%s\",\"attachmentFileName\":\"cv.pdf\"}",
+                attachment);
+
+        doNothing().when(emailService).sendJobApplicationEmail(any());
+        doThrow(new RuntimeException("SES down"))
+                .when(emailService).sendJobApplicationConfirmationEmail(any());
+
+        APIGatewayProxyResponseEvent resp = handler.handleRequest(requestWithBody(body), context);
+
+        assertEquals(200, resp.getStatusCode(),
+                "A confirmation-email failure must not affect the API response");
     }
 }

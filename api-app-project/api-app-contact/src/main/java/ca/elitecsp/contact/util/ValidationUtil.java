@@ -58,10 +58,10 @@ public final class ValidationUtil {
         } else {
             // CONTACT: attachment is optional; validate if present
             if (!ValidationUtils.isBlank(request.getAttachment())) {
+                ValidationUtils.requireNonBlank(request.getAttachmentFileName(), "Attachment file name");
                 byte[] fileBytes = ValidationUtils.decodeBase64File(request.getAttachment());
                 ValidationUtils.requireCvSizeWithinLimit(fileBytes);
                 ValidationUtils.requireAllowedFileType(fileBytes, request.getAttachmentFileName());
-                ValidationUtils.requireNonBlank(request.getAttachmentFileName(), "Attachment file name");
             }
         }
     }

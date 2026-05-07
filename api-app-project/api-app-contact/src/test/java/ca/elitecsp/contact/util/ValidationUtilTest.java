@@ -134,17 +134,17 @@ class ValidationUtilTest {
     }
 
     @Test
-    @DisplayName("contact request with attachment but null file name → throws INVALID_FILE_TYPE")
+    @DisplayName("contact request with attachment but null file name → throws MISSING_REQUIRED_FIELD")
     void validateContactRequest_contactAttachmentNullFileName_throwsInvalidFileType() {
-        // requireAllowedFileType is called before requireNonBlank; a null filename
-        // maps to an empty extension, which is unsupported → INVALID_FILE_TYPE
+        // requireNonBlank on filename is now called before requireAllowedFileType;
+        // a null filename → MISSING_REQUIRED_FIELD
         ContactRequest req = TestFixtures.validContactRequest();
         req.setAttachment(TestFixtures.base64Pdf());
         req.setAttachmentFileName(null);
 
         CustomException ex = assertThrows(CustomException.class,
                 () -> ValidationUtil.validateContactRequest(req));
-        assertEquals(ErrorCode.INVALID_FILE_TYPE, ex.getErrorCode());
+        assertEquals(ErrorCode.MISSING_REQUIRED_FIELD, ex.getErrorCode());
     }
 
     @Test

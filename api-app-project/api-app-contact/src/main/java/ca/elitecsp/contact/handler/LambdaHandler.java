@@ -91,7 +91,7 @@ public class LambdaHandler implements RequestHandler<APIGatewayProxyRequestEvent
         }
 
         ContactRequest cr = JsonUtils.fromJson(body, ContactRequest.class);
-        if( cr.getAttachment() != null ) {
+        if (cr.getAttachment() != null) {
             byte[] fileBytes = ValidationUtils.decodeBase64File(cr.getAttachment());
             cr.setFileBytes(fileBytes);
         }

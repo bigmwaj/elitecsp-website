@@ -116,6 +116,7 @@ jobs:
         env:
           CLOUDFRONT_DISTRIBUTION_ID: ${{ vars.CLOUDFRONT_DISTRIBUTION_ID }}
         run: |
+          echo "CloudFront invalidation condition met. Running invalidation for distribution ${CLOUDFRONT_DISTRIBUTION_ID} on paths /*"
           aws cloudfront create-invalidation \
             --distribution-id "${CLOUDFRONT_DISTRIBUTION_ID}" \
             --paths "/*"

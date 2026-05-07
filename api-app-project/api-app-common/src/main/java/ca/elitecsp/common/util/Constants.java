@@ -73,6 +73,12 @@ public final class Constants {
     /** Subject prefix for job-application emails sent via Amazon SES. */
     public static final String JOB_APPLICATION_EMAIL_SUBJECT_PREFIX = "Elite CSP – Job Application: ";
 
+    /** Subject for contact-form confirmation emails sent to the user. */
+    public static final String CONTACT_CONFIRMATION_EMAIL_SUBJECT = "Confirmation of your contact request – Elite CSP";
+
+    /** Subject prefix for job-application confirmation emails sent to the applicant. */
+    public static final String JOB_APPLICATION_CONFIRMATION_EMAIL_SUBJECT_PREFIX = "Application received – ";
+
     // -------------------------------------------------------------------------
     // Email format pattern
     // -------------------------------------------------------------------------

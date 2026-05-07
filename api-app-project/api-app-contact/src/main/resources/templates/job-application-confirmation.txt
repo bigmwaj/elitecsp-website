@@ -1,0 +1,22 @@
+Hello {{NAME}},
+
+Thank you for applying to Elite CSP! We have successfully received your application
+and all supporting documents.
+
+Application details:
+  Applicant:        {{NAME}}
+  Position Applied: {{SUBJECT}}
+
+What happens next?
+
+  1. Our HR team will review your application and CV.
+  2. If your profile matches our needs, we will reach out to schedule an interview.
+  3. You can expect to hear from us within 5–10 business days.
+
+We appreciate your interest in joining the Elite CSP team and wish you the best of luck!
+
+Best regards,
+The Elite CSP Recruitment Team
+
+---
+This is an automated confirmation from the Elite CSP website. Please do not reply to this email.

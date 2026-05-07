@@ -9,6 +9,7 @@ import ca.elitecsp.common.util.ValidationUtils;
 import ca.elitecsp.contact.model.ContactRequest;
 import ca.elitecsp.contact.model.ContactType;
 import ca.elitecsp.contact.service.EmailService;
+import ca.elitecsp.contact.service.SesEmailService;
 import ca.elitecsp.contact.util.ValidationUtil;
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.events.APIGatewayProxyRequestEvent;
@@ -21,7 +22,7 @@ public class ContactLambdaHandler extends CommonLambdaHandler {
     private final EmailService emailService;
 
     public ContactLambdaHandler() {
-        this(new EmailService());
+        this(new SesEmailService());
     }
 
     /** Package-private constructor for dependency injection in tests. */
@@ -56,7 +57,12 @@ public class ContactLambdaHandler extends CommonLambdaHandler {
 
     private APIGatewayProxyResponseEvent handleContact(ContactRequest req) {
         emailService.sendContactEmail(req);
-        log.info("Contact email sent successfully for: {}", req.getEmail());
+        log.info("Contact notification email sent successfully for: {}", req.getEmail());
+        try {
+            emailService.sendContactConfirmationEmail(req);
+        } catch (Exception e) {
+            log.warn("Contact confirmation email failed for {} – response unaffected", req.getEmail(), e);
+        }
         return ApiResponseBuilder.success("Your message has been sent successfully.");
     }
 
@@ -65,7 +71,13 @@ public class ContactLambdaHandler extends CommonLambdaHandler {
                 req.getAttachmentFileName(), req.getEmail());
 
         emailService.sendJobApplicationEmail(req);
-        log.info("Job-application email sent successfully for: {}", req.getEmail());
+        log.info("Job-application notification email sent successfully for: {}", req.getEmail());
+        try {
+            emailService.sendJobApplicationConfirmationEmail(req);
+        } catch (Exception e) {
+            log.warn("Job-application confirmation email failed for {} – response unaffected",
+                    req.getEmail(), e);
+        }
         return ApiResponseBuilder.success("Your application has been submitted successfully.");
     }
 

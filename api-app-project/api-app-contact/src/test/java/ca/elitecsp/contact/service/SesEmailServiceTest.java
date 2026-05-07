@@ -28,7 +28,7 @@ class SesEmailServiceTest {
 
     private static final String FROM = "noreply@example.com";
     private static final String DEST  = "team@example.com";
-    private static final byte[] VALID_PDF = {0x25, 0x50, 0x44, 0x46, 0x01};
+    private static final byte[] PDF_HEADER_BYTES = {0x25, 0x50, 0x44, 0x46, 0x01};
 
     @BeforeEach
     void setUp() {
@@ -97,7 +97,7 @@ class SesEmailServiceTest {
     @Test
     void sendContactEmail_callsSendRawEmail_whenAttachmentPresent() {
         ContactRequest req = buildContactRequest();
-        req.setFileBytes(VALID_PDF);
+        req.setFileBytes(PDF_HEADER_BYTES);
         req.setAttachmentFileName("resume.pdf");
 
         emailService.sendContactEmail(req);
@@ -268,7 +268,7 @@ class SesEmailServiceTest {
         req.setCity("Toronto");
         req.setSubject("Senior Developer");
         req.setMessage("Please find my CV attached.");
-        req.setFileBytes(new byte[]{0x25, 0x50, 0x44, 0x46, 0x01});
+        req.setFileBytes(PDF_HEADER_BYTES);
         req.setAttachmentFileName("bob-cv.pdf");
         return req;
     }

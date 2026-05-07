@@ -272,7 +272,7 @@ public class SesEmailService implements EmailService {
         mixed.addBodyPart(bodyPart);
 
         // Attachment part
-        MimeBodyPart attachmentPart = buildAttachmentPart(attachmentBytes, attachmentName);
+        MimeBodyPart attachmentPart = buildMimeAttachmentPart(attachmentBytes, attachmentName);
         mixed.addBodyPart(attachmentPart);
 
         mimeMessage.setContent(mixed);
@@ -282,7 +282,7 @@ public class SesEmailService implements EmailService {
         return out.toByteArray();
     }
 
-    private static MimeBodyPart buildAttachmentPart(byte[] attachmentBytes, String attachmentName)
+    private static MimeBodyPart buildMimeAttachmentPart(byte[] attachmentBytes, String attachmentName)
             throws MessagingException {
         String lowerName = attachmentName != null ? attachmentName.toLowerCase() : "";
         String attachmentMime;

@@ -14,7 +14,7 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 
 import java.io.ByteArrayInputStream;
-import java.io.IOException;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedHashMap;
@@ -188,7 +188,16 @@ public class ExcelJobParserService {
             return "";
         }
         if (cell.getCellType() == CellType.NUMERIC && DateUtil.isCellDateFormatted(cell)) {
-            return cell.getLocalDateTimeCellValue().toLocalDate().toString();
+            try {
+                return cell.getDateCellValue()
+                        .toInstant()
+                        .atZone(ZoneId.systemDefault())
+                        .toLocalDate()
+                        .toString();
+            } catch (Exception e) {
+                log.warn("Failed to parse date cell at row={}, col={}; falling back to formatter",
+                        row.getRowNum() + 1, index + 1, e);
+            }
         }
         return formatter.formatCellValue(cell).trim();
     }

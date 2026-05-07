@@ -1,74 +1,111 @@
-# api-app-cms – CMS (S3 XML Job Listings) Lambda
+# api-app-job – Job API (S3 Excel) Lambda
 
-AWS Lambda module that reads XML job data stored in S3, parses it, and returns a structured JSON array for front-end table rendering.
+AWS Lambda module that reads a configured Excel workbook from S3 and exposes job listing and job details APIs.
 
 ## Lambda Handler
 
 ```
-ca.elitecsp.cms.handler.CmsLambdaHandler
+ca.elitecsp.job.handler.JobLambdaHandler
 ```
 
-## Environment Variables
+## Endpoints
+
+| Method | Path | Behavior |
+|---|---|---|
+| `GET` | `/jobs` | Reads sheet `jobs` and returns job summaries |
+| `GET` | `/jobs/{jobId}` | Reads sheet `job-details` and returns detailed job information |
+
+## Configuration
+
+Set environment variables on Lambda:
 
 | Variable | Description |
 |---|---|
-| `AWS_REGION` | AWS region where the S3 bucket resides (e.g. `ca-central-1`) |
+| `JOB_EXCEL_BUCKET` | S3 bucket containing the Excel file |
+| `JOB_EXCEL_KEY` | S3 object key of the Excel file (for example `jobs/jobs.xlsx`) |
 
-AWS credentials are resolved automatically via the Lambda execution role (IAM). No secrets are hardcoded.
+AWS credentials and region are resolved through the Lambda execution role and default AWS SDK provider chain.
 
-## Request Format
+## Excel file format guide
 
-```json
-{
-  "bucketName": "my-bucket",
-  "fileKey": "jobs/jobs.xml"
-}
-```
+The workbook must contain **both** sheets below:
 
-## Expected XML Format
+### Sheet: `jobs`
+Required column:
+- `jobId`
 
-```xml
-<jobs>
-  <job>
-    <jobId>001</jobId>
-    <title>Java Developer</title>
-    <department>IT</department>
-    <location>Montreal</location>
-  </job>
-  <job>
-    <jobId>002</jobId>
-    <title>Cloud Architect</title>
-    <department>Engineering</department>
-    <location>Toronto</location>
-  </job>
-</jobs>
-```
+Recommended columns:
+- `title`
+- `location`
+- `department`
+- `summary`
+- `postedDate`
 
-## Response Format (HTTP 200)
+Any additional columns are returned under `attributes`.
+
+### Sheet: `job-details`
+Required column:
+- `jobId`
+
+Recommended columns:
+- `description`
+- `responsibilities`
+- `requirements`
+- `benefits`
+
+List-like fields can be separated by newline, `|`, `;`, or `,`.
+
+## API response examples
+
+### GET /jobs
 
 ```json
 [
-  { "jobId": "001", "title": "Java Developer", "department": "IT", "location": "Montreal" },
-  { "jobId": "002", "title": "Cloud Architect", "department": "Engineering", "location": "Toronto" }
+  {
+    "jobId": "001",
+    "title": "Java Developer",
+    "location": "Montreal",
+    "department": "Engineering",
+    "summary": "Build backend services",
+    "postedDate": "2026-05-01",
+    "attributes": {}
+  }
 ]
 ```
 
-## Error Responses
+### GET /jobs/001
 
-| HTTP Status | Cause |
-|---|---|
-| 400 | Missing or invalid `bucketName` / `fileKey` |
-| 500 | S3 download failure or XML parsing error |
+```json
+{
+  "jobId": "001",
+  "title": "Java Developer",
+  "description": "Build and evolve services",
+  "responsibilities": ["Design APIs", "Write tests"],
+  "requirements": ["Java", "AWS"],
+  "benefits": ["Health", "Dental"],
+  "attributes": {}
+}
+```
 
-## Deployment
+## Deployment guide
 
 Package:
 ```bash
-mvn clean package -pl api-app-cms -am
+mvn clean package -pl api-app-job -am
 ```
 
-Upload `api-app-cms/target/elite-csp-cms.jar` to AWS Lambda.
+Upload `api-app-job/target/elite-csp-job.jar` to AWS Lambda and set handler:
 
-Set the handler to `ca.elitecsp.cms.handler.CmsLambdaHandler` and configure the environment variables above.
+```
+ca.elitecsp.job.handler.JobLambdaHandler
+```
 
-Grant the Lambda execution role `s3:GetObject` on the target bucket/prefix.
+Grant Lambda execution role permission `s3:GetObject` for the configured bucket/key.
+
+## Migration notes
+
+1. Legacy module renamed to `api-app-job`
+2. Legacy parser/service replaced by Apache POI workbook parser
+3. S3 config switched to `JOB_EXCEL_BUCKET` + `JOB_EXCEL_KEY`
+4. Handler updated to `JobLambdaHandler`
+5. API now supports listing and detail retrieval by `jobId`

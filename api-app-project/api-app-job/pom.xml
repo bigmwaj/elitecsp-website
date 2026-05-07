@@ -11,11 +11,11 @@
         <version>1.0.0</version>
     </parent>
 
-    <artifactId>api-app-cms</artifactId>
+    <artifactId>api-app-job</artifactId>
     <packaging>jar</packaging>
 
-    <name>Elite CSP API – CMS Module</name>
-    <description>AWS Lambda handler for reading and parsing XML job data stored in S3</description>
+    <name>Elite CSP API – Job Module</name>
+    <description>AWS Lambda handler for reading and parsing Excel-based job data stored in S3</description>
 
     <dependencies>
         <dependency>
@@ -31,12 +31,12 @@
             <artifactId>jackson-databind</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.fasterxml.jackson.dataformat</groupId>
-            <artifactId>jackson-dataformat-xml</artifactId>
-        </dependency>
-        <dependency>
             <groupId>software.amazon.awssdk</groupId>
             <artifactId>s3</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml</artifactId>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
@@ -51,7 +51,6 @@
             <artifactId>slf4j-simple</artifactId>
         </dependency>
 
-        <!-- Test dependencies -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
@@ -86,7 +85,7 @@
                             <goal>shade</goal>
                         </goals>
                         <configuration>
-                            <outputFile>${project.build.directory}/elite-csp-cms.jar</outputFile>
+                            <outputFile>${project.build.directory}/elite-csp-job.jar</outputFile>
                         </configuration>
                     </execution>
                 </executions>

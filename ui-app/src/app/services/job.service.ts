@@ -14,7 +14,8 @@ export class JobService {
       descriptionKey: 'DATA.JOBS.1.DESCRIPTION',
       locationKey: 'DATA.JOBS.1.LOCATION',
       typeKey: 'DATA.JOBS.1.TYPE',
-      icon: '⚙️'
+      icon: '⚙️',
+      displayUntil: new Date('2024-12-31')
     },
     {
       id: 2,
@@ -22,7 +23,8 @@ export class JobService {
       descriptionKey: 'DATA.JOBS.2.DESCRIPTION',
       locationKey: 'DATA.JOBS.2.LOCATION',
       typeKey: 'DATA.JOBS.2.TYPE',
-      icon: '☕'
+      icon: '☕',
+      displayUntil: new Date('2024-12-31')
     },
     {
       id: 3,
@@ -30,7 +32,8 @@ export class JobService {
       descriptionKey: 'DATA.JOBS.3.DESCRIPTION',
       locationKey: 'DATA.JOBS.3.LOCATION',
       typeKey: 'DATA.JOBS.3.TYPE',
-      icon: '📊'
+      icon: '📊',
+      displayUntil: new Date('2026-12-31')
     },
     {
       id: 4,
@@ -41,6 +44,11 @@ export class JobService {
       icon: '🔧'
     }
   ]);
+
+  get availableJobs(): Job[] {
+    const now = new Date();
+    return this.jobs().filter(job => !job.displayUntil || job.displayUntil > now);
+  }
 
   getJobById(id: number): Job | undefined {
     return this.jobs().find(job => job.id === id);

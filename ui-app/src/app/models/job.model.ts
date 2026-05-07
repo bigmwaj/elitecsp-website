@@ -5,4 +5,5 @@ export interface Job {
   locationKey: string;
   typeKey: string;
   icon: string;
+  displayUntil?: Date;
 }

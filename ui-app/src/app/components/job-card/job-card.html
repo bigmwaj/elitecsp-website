@@ -8,7 +8,13 @@
 
   <h3 class="job-card__title">{{ job().titleKey | translate }}</h3>
   <p class="job-card__description">{{ job().descriptionKey | translate }}</p>
-
+  @if (job().displayUntil && available(job().displayUntil!)) {
+    <div class="job-card__expired">
+      {{ 'CAREERS_PAGE.EXPIREDATE' | translate : { date: job().displayUntil?.getFullYear() }  }}
+    </div>
+  }@else {
+    <div class="job-card__expired"><br/></div>
+  }
   <div class="job-card__footer">
     <span class="job-card__location">
       <span aria-hidden="true">📍</span> {{ job().locationKey | translate }}

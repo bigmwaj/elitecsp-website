@@ -414,7 +414,8 @@
       "TITLE": "Submit Your Application",
       "SUBTITLE": "Fill out the form below to apply for one of our open positions."
     },
-    "APPLY_BTN": "Apply",
+    "APPLY_BTN": "Apply",    
+    "EXPIREDATE": "(Expires on {{date}})",
     "FORM": {
       "FULL_NAME": "Full Name *",
       "FULL_NAME_PLACEHOLDER": "Your full name",

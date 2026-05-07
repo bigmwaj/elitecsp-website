@@ -13,6 +13,11 @@ export class JobCardComponent {
   job = input.required<Job>();
   apply = output<number>();
 
+  available(displayUntil: Date): boolean {
+    const now = new Date();
+    return displayUntil > now;
+  }
+
   onApply(): void {
     this.apply.emit(this.job().id);
   }

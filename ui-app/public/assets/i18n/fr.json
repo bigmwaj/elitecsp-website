@@ -416,6 +416,7 @@
       "SUBTITLE": "Remplissez le formulaire ci-dessous pour postuler à l'un de nos postes."
     },
     "APPLY_BTN": "Postuler",
+    "EXPIREDATE": "(Expirera le {{date}})",
     "FORM": {
       "FULL_NAME": "Nom complet *",
       "FULL_NAME_PLACEHOLDER": "Votre nom complet",

@@ -17,7 +17,7 @@
     </div>
 
     <div class="jobs-grid">
-      @for (job of jobService.jobs(); track job.id) {
+      @for (job of jobService.availableJobs; track job.id) {
         <app-job-card [job]="job" (apply)="onApply($event)" />
       }
     </div>
@@ -90,7 +90,7 @@
               <select id="jobId" formControlName="jobId"
                 [class.error]="f['jobId'].invalid && f['jobId'].touched">
                 <option value="">{{ 'CAREERS_PAGE.FORM.JOB_PLACEHOLDER' | translate }}</option>
-                @for (job of jobService.jobs(); track job.id) {
+                @for (job of jobService.availableJobs; track job.id) {
                   <option [value]="job.id">{{ job.titleKey | translate }}</option>
                 }
               </select>

@@ -19,42 +19,55 @@
     </modules>
 
     <properties>
-        <java.version>17</java.version>
-        <maven.compiler.source>17</maven.compiler.source>
-        <maven.compiler.target>17</maven.compiler.target>
+        <java.version>21</java.version>
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
+        <maven.compiler.release>21</maven.compiler.release>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
         <!-- AWS Lambda -->
-        <aws-lambda-java-core.version>1.2.3</aws-lambda-java-core.version>
-        <aws-lambda-java-events.version>3.11.4</aws-lambda-java-events.version>
+        <aws-lambda-java-core.version>1.4.0</aws-lambda-java-core.version>
+        <aws-lambda-java-events.version>3.16.1</aws-lambda-java-events.version>
 
         <!-- Jackson -->
-        <jackson.version>2.16.1</jackson.version>
+        <jackson.version>2.18.3</jackson.version>
 
         <!-- AWS SDK v2 -->
-        <aws-sdk-v2.version>2.25.6</aws-sdk-v2.version>
+        <aws-sdk-v2.version>2.31.50</aws-sdk-v2.version>
 
         <!-- Lombok / Logging -->
-        <lombok.version>1.18.30</lombok.version>
-        <slf4j.version>2.0.12</slf4j.version>
+        <lombok.version>1.18.46</lombok.version>
+        <slf4j.version>2.0.17</slf4j.version>
 
-        <!-- Jakarta Mail -->
-        <jakarta-mail.version>2.0.1</jakarta-mail.version>
+        <!-- Jakarta Mail (Eclipse Angus – successor to com.sun.mail) -->
+        <angus-mail.version>2.0.5</angus-mail.version>
 
         <!-- Testing -->
-        <junit-jupiter.version>5.10.1</junit-jupiter.version>
-        <mockito.version>5.8.0</mockito.version>
+        <junit-jupiter.version>5.12.2</junit-jupiter.version>
+        <mockito.version>5.17.0</mockito.version>
 
         <!-- Plugin versions -->
-        <maven-compiler-plugin.version>3.11.0</maven-compiler-plugin.version>
-        <maven-surefire-plugin.version>3.2.3</maven-surefire-plugin.version>
-        <maven-shade-plugin.version>3.5.1</maven-shade-plugin.version>
-        <jacoco-maven-plugin.version>0.8.11</jacoco-maven-plugin.version>
-        <sonar-maven-plugin.version>3.11.0.3922</sonar-maven-plugin.version>
+        <maven-compiler-plugin.version>3.14.0</maven-compiler-plugin.version>
+        <maven-surefire-plugin.version>3.5.3</maven-surefire-plugin.version>
+        <maven-shade-plugin.version>3.6.0</maven-shade-plugin.version>
+        <maven-enforcer-plugin.version>3.5.0</maven-enforcer-plugin.version>
+        <jacoco-maven-plugin.version>0.8.13</jacoco-maven-plugin.version>
+        <sonar-maven-plugin.version>5.6.0.6792</sonar-maven-plugin.version>
+        <versions-maven-plugin.version>2.18.0</versions-maven-plugin.version>
     </properties>
 
     <dependencyManagement>
         <dependencies>
+            <!-- AWS SDK v2 BOM – manages all SDK module versions consistently -->
+            <dependency>
+                <groupId>software.amazon.awssdk</groupId>
+                <artifactId>bom</artifactId>
+                <version>${aws-sdk-v2.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
             <!-- AWS Lambda Core -->
             <dependency>
                 <groupId>com.amazonaws</groupId>
@@ -83,25 +96,25 @@
                 <version>${jackson.version}</version>
             </dependency>
 
-            <!-- AWS SDK v2 SES -->
+            <!-- AWS SDK v2 SES (version managed by BOM) -->
             <dependency>
                 <groupId>software.amazon.awssdk</groupId>
                 <artifactId>ses</artifactId>
                 <version>${aws-sdk-v2.version}</version>
             </dependency>
 
-            <!-- AWS SDK v2 S3 -->
+            <!-- AWS SDK v2 S3 (version managed by BOM) -->
             <dependency>
                 <groupId>software.amazon.awssdk</groupId>
                 <artifactId>s3</artifactId>
                 <version>${aws-sdk-v2.version}</version>
             </dependency>
 
-            <!-- Jakarta Mail -->
+            <!-- Jakarta Mail – Eclipse Angus (successor to com.sun.mail:jakarta.mail) -->
             <dependency>
-                <groupId>com.sun.mail</groupId>
+                <groupId>org.eclipse.angus</groupId>
                 <artifactId>jakarta.mail</artifactId>
-                <version>${jakarta-mail.version}</version>
+                <version>${angus-mail.version}</version>
             </dependency>
 
             <!-- Lombok -->
@@ -161,8 +174,7 @@
                     <artifactId>maven-compiler-plugin</artifactId>
                     <version>${maven-compiler-plugin.version}</version>
                     <configuration>
-                        <source>${java.version}</source>
-                        <target>${java.version}</target>
+                        <release>${java.version}</release>
                         <encoding>UTF-8</encoding>
                         <annotationProcessorPaths>
                             <path>
@@ -179,6 +191,11 @@
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-surefire-plugin</artifactId>
                     <version>${maven-surefire-plugin.version}</version>
+                    <configuration>
+                        <!-- Forwards JaCoCo agent args injected by prepare-agent.
+                             Also enables ByteBuddy dynamic agent loading required by Mockito 5.x on Java 21+. -->
+                        <argLine>@{argLine} -XX:+EnableDynamicAgentLoading</argLine>
+                    </configuration>
                 </plugin>
 
                 <!-- Shade (fat JAR for Lambda) -->
@@ -210,6 +227,7 @@
                         </filters>
                         <transformers>
                             <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer"/>
+                            <transformer implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer"/>
                         </transformers>
                     </configuration>
                 </plugin>
@@ -232,6 +250,41 @@
                     </executions>
                 </plugin>
 
+                <!-- Enforcer – validates Java 21+ and Maven 3.8+ -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-enforcer-plugin</artifactId>
+                    <version>${maven-enforcer-plugin.version}</version>
+                    <executions>
+                        <execution>
+                            <id>enforce-environment</id>
+                            <goals><goal>enforce</goal></goals>
+                            <configuration>
+                                <rules>
+                                    <requireJavaVersion>
+                                        <version>[21,)</version>
+                                        <message>Java 21 or higher is required to build this project.</message>
+                                    </requireJavaVersion>
+                                    <requireMavenVersion>
+                                        <version>[3.8,)</version>
+                                        <message>Maven 3.8 or higher is required.</message>
+                                    </requireMavenVersion>
+                                </rules>
+                            </configuration>
+                        </execution>
+                    </executions>
+                </plugin>
+
+                <!-- Versions – reports available dependency/plugin upgrades -->
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>versions-maven-plugin</artifactId>
+                    <version>${versions-maven-plugin.version}</version>
+                    <configuration>
+                        <generateBackupPoms>false</generateBackupPoms>
+                    </configuration>
+                </plugin>
+
                 <!-- SonarQube -->
                 <plugin>
                     <groupId>org.sonarsource.scanner.maven</groupId>
@@ -240,5 +293,13 @@
                 </plugin>
             </plugins>
         </pluginManagement>
+
+        <plugins>
+            <!-- Enforcer runs on every build -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-enforcer-plugin</artifactId>
+            </plugin>
+        </plugins>
     </build>
 </project>

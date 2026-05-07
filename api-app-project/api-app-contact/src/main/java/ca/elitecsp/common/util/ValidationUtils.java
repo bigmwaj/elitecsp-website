@@ -3,6 +3,7 @@ package ca.elitecsp.common.util;
 import ca.elitecsp.common.exception.CustomException;
 import ca.elitecsp.common.exception.ErrorCode;
 
+import java.util.Arrays;
 import java.util.Base64;
 
 /**
@@ -28,7 +29,7 @@ public final class ValidationUtils {
      * @return {@code true} if blank
      */
     public static boolean isBlank(String value) {
-        return value == null || value.trim().isEmpty();
+        return value == null || value.isBlank();
     }
 
     /**
@@ -126,15 +127,12 @@ public final class ValidationUtils {
      */
     public static void requirePdfMagicBytes(byte[] fileBytes) {
         byte[] magic = Constants.PDF_MAGIC_BYTES;
-        if (fileBytes.length < magic.length) {
+        if (fileBytes.length < magic.length
+                || !Arrays.equals(fileBytes, 0, magic.length, magic, 0, magic.length)) {
             throw new CustomException(ErrorCode.INVALID_FILE_TYPE, 400,
-                    "CV file is too small to be a valid PDF");
-        }
-        for (int i = 0; i < magic.length; i++) {
-            if (fileBytes[i] != magic[i]) {
-                throw new CustomException(ErrorCode.INVALID_FILE_TYPE, 400,
-                        "CV file must be a valid PDF document");
-            }
+                    fileBytes.length < magic.length
+                            ? "CV file is too small to be a valid PDF"
+                            : "CV file must be a valid PDF document");
         }
     }
 
@@ -175,15 +173,12 @@ public final class ValidationUtils {
      */
     private static void requireDocxMagicBytes(byte[] fileBytes) {
         byte[] magic = Constants.DOCX_MAGIC_BYTES;
-        if (fileBytes.length < magic.length) {
+        if (fileBytes.length < magic.length
+                || !Arrays.equals(fileBytes, 0, magic.length, magic, 0, magic.length)) {
             throw new CustomException(ErrorCode.INVALID_FILE_TYPE, 400,
-                    "File is too small to be a valid DOCX document");
-        }
-        for (int i = 0; i < magic.length; i++) {
-            if (fileBytes[i] != magic[i]) {
-                throw new CustomException(ErrorCode.INVALID_FILE_TYPE, 400,
-                        "DOCX file must be a valid Office Open XML document");
-            }
+                    fileBytes.length < magic.length
+                            ? "File is too small to be a valid DOCX document"
+                            : "DOCX file must be a valid Office Open XML document");
         }
     }
 }

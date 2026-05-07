@@ -96,14 +96,15 @@
                 <version>${jackson.version}</version>
             </dependency>
 
-            <!-- AWS SDK v2 SES (version managed by BOM) -->
+            <!-- AWS SDK v2 SES – version pinned here so child modules can omit it;
+                 kept explicit because BOM import alone does not propagate to child <dependencies> -->
             <dependency>
                 <groupId>software.amazon.awssdk</groupId>
                 <artifactId>ses</artifactId>
                 <version>${aws-sdk-v2.version}</version>
             </dependency>
 
-            <!-- AWS SDK v2 S3 (version managed by BOM) -->
+            <!-- AWS SDK v2 S3 – same rationale as SES above -->
             <dependency>
                 <groupId>software.amazon.awssdk</groupId>
                 <artifactId>s3</artifactId>

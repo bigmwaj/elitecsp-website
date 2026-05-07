@@ -127,12 +127,13 @@ public final class ValidationUtils {
      */
     public static void requirePdfMagicBytes(byte[] fileBytes) {
         byte[] magic = Constants.PDF_MAGIC_BYTES;
-        if (fileBytes.length < magic.length
-                || !Arrays.equals(fileBytes, 0, magic.length, magic, 0, magic.length)) {
+        if (fileBytes.length < magic.length) {
             throw new CustomException(ErrorCode.INVALID_FILE_TYPE, 400,
-                    fileBytes.length < magic.length
-                            ? "CV file is too small to be a valid PDF"
-                            : "CV file must be a valid PDF document");
+                    "CV file is too small to be a valid PDF");
+        }
+        if (!Arrays.equals(fileBytes, 0, magic.length, magic, 0, magic.length)) {
+            throw new CustomException(ErrorCode.INVALID_FILE_TYPE, 400,
+                    "CV file must be a valid PDF document");
         }
     }
 
@@ -173,12 +174,13 @@ public final class ValidationUtils {
      */
     private static void requireDocxMagicBytes(byte[] fileBytes) {
         byte[] magic = Constants.DOCX_MAGIC_BYTES;
-        if (fileBytes.length < magic.length
-                || !Arrays.equals(fileBytes, 0, magic.length, magic, 0, magic.length)) {
+        if (fileBytes.length < magic.length) {
             throw new CustomException(ErrorCode.INVALID_FILE_TYPE, 400,
-                    fileBytes.length < magic.length
-                            ? "File is too small to be a valid DOCX document"
-                            : "DOCX file must be a valid Office Open XML document");
+                    "File is too small to be a valid DOCX document");
+        }
+        if (!Arrays.equals(fileBytes, 0, magic.length, magic, 0, magic.length)) {
+            throw new CustomException(ErrorCode.INVALID_FILE_TYPE, 400,
+                    "DOCX file must be a valid Office Open XML document");
         }
     }
 }

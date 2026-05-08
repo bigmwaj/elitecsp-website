@@ -42,16 +42,18 @@ Both frontend and backend deployments are automated in staged GitHub Actions job
 **Steps executed automatically:**
 
 1. **Checkout** — clone the repository
-2. **Set up Node.js 22** — with npm cache
-3. **Install dependencies** — `npm ci` (clean install from lockfile)
-4. **Build Angular app** — `npm run build -- --configuration=production`
-5. **Build backend modules (Java 21)** — `mvn clean test` and `mvn clean package`
-6. **Deploy backend Lambdas** — update function code for `elite-csp-contact` and `elite-csp-jobs`
-7. **Configure AWS credentials** — using `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` secrets
-8. **Deploy to S3** — `aws s3 sync` with cache-control headers:
-   - Hashed static assets (`.js`, `.css`, images): `Cache-Control: public, max-age=31536000, immutable`
-   - `index.html`: `Cache-Control: no-cache, no-store, must-revalidate`
-9. **Invalidate CloudFront cache** — `aws cloudfront create-invalidation --paths "/index.html"` (only when `CLOUDFRONT_DISTRIBUTION_ID` exists and invalidation is enabled)
+2. **Set up Java 21** — with Maven cache
+3. **Build backend modules (Java 21)** — `mvn clean test` and `mvn clean package`
+4. **Upload backend artifacts** — module-specific Lambda JAR artifacts
+5. **Deploy backend Lambdas** — update function code for `elite-csp-contact` and `elite-csp-jobs`
+6. **Set up Node.js 22** — with npm cache
+7. **Install dependencies** — `npm ci` (clean install from lockfile)
+8. **Build Angular app** — `npm run build -- --configuration=production`
+9. **Configure AWS credentials** — using `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` secrets
+10. **Deploy to S3** — `aws s3 sync` with cache-control headers:
+   - Hashed static assets (`.js`, `.css`, images): `Cache-Control: public,max-age=31536000,immutable`
+   - `index.html`: `Cache-Control: no-cache,no-store,must-revalidate`
+11. **Invalidate CloudFront cache** — `aws cloudfront create-invalidation --paths "/index.html"` (only when `CLOUDFRONT_DISTRIBUTION_ID` exists and invalidation is enabled)
 
 **Required repository configuration:**
 
@@ -216,9 +218,11 @@ Push to main / workflow_dispatch
 | Artifact | Location | Cache policy |
 |---|---|---|
 | Hashed JS/CSS/images | `dist/ui-app/browser/` (all except `index.html`) | `max-age=31536000, immutable` |
-| `index.html` | `dist/ui-app/browser/index.html` | `no-cache, no-store, must-revalidate` |
+| `index.html` | `dist/ui-app/browser/index.html` | `no-cache,no-store,must-revalidate` |
 | `api-app-contact` Lambda JAR | `api-app-project/api-app-contact/target/elite-csp-contact.jar` | N/A |
 | `api-app-job` Lambda JAR | `api-app-project/api-app-job/target/elite-csp-job.jar` | N/A |
+
+> `api-app-job` module output (`elite-csp-job.jar`) is deployed to Lambda function `elite-csp-jobs`.
 
 ### Migration notes from previous workflow
 

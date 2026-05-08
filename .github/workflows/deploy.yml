@@ -23,6 +23,7 @@ env:
   CONTACT_ARTIFACT_NAME: lambda-api-app-contact
   JOB_ARTIFACT_NAME: lambda-api-app-job
   CONTACT_FUNCTION_NAME: elite-csp-contact
+  # Module JAR is named elite-csp-job.jar but deploy target function is elite-csp-jobs.
   JOB_FUNCTION_NAME: elite-csp-jobs
 
 jobs:
@@ -90,7 +91,6 @@ jobs:
 
   frontend-build:
     name: Frontend Build (Node.js 22)
-    needs: backend-build
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -282,7 +282,7 @@ jobs:
           set -euo pipefail
           DEST="s3://${S3_BUCKET}"
 
-          # Hashed/static assets
+          # Hashed/static assets (index.html excluded; content-type explicitly set only on index upload below)
           aws s3 sync "/tmp/ui-app-dist" "${DEST}/" \
             --delete \
             --cache-control "public,max-age=31536000,immutable" \

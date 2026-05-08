@@ -4,9 +4,8 @@ import { TranslateService } from '@ngx-translate/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { JobSummary } from '../models/job-summary.model';
 import { environment } from '../../environments/environment';
-import { ApiResponse } from '../models/api-response.model';
-import { Observable } from 'rxjs/internal/Observable';
-import { map, catchError, throwError } from 'rxjs';
+import { LambdaBodyResponse } from '../models/api-response.model';
+import { Observable, catchError, map, throwError } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class JobService {
@@ -68,34 +67,126 @@ export class JobService {
   }
 
   loadJobs(): Observable<JobSummary[]> {
-    console.log('Loading jobs from API...');
-    return this.http.get<any>(`${environment.apiUrl}/jobs`)
+    return this.http.get<unknown>(`${environment.apiUrl}/jobs`)
       .pipe(
-        map((response: any) => {
-          console.log('API Response:', response);
-          const resp = response.body ? JSON.parse(response.body) : {} as ApiResponse;
-          if (!resp.success) {
-            const errMsg = resp.message || 'Unknown API error';
-            throw new Error(`API Error: ${errMsg}`);
-          }
-          try {
-            console.log('Parsed API Response Body:', resp.message);
-            return resp.message as JobSummary[];
-          } catch (e) {
-            throw new Error(`Failed to parse job data: ${e instanceof Error ? e.message : 'Invalid JSON'}`);
-          }
-        }),
-        catchError((err: any) => {
+        map((response) => this.deserializeJobSummaries(response)),
+        catchError((err: unknown) => {
           let errorMsg = 'Failed to load jobs';
+
           if (err instanceof HttpErrorResponse) {
             errorMsg = `HTTP ${err.status}: ${err.statusText || 'Unknown error'}`;
-            if (err.error?.message) {
-              errorMsg += ` - ${err.error.message}`;
+            const apiError = this.extractApiErrorMessage(err.error);
+            if (apiError) {
+              errorMsg += ` - ${apiError}`;
             }
           } else if (err instanceof Error) {
             errorMsg = err.message;
           }
+
           return throwError(() => new Error(errorMsg));
         }));
+  }
+
+  private deserializeJobSummaries(response: unknown): JobSummary[] {
+    const bodyResponse = this.extractLambdaBodyResponse(response);
+    if (!bodyResponse.success) {
+      throw new Error(bodyResponse.error || bodyResponse.message || 'Unknown API error');
+    }
+
+    const parsedMessage = this.parseJson<unknown>(bodyResponse.message, 'response message');
+    if (!Array.isArray(parsedMessage)) {
+      throw new Error('Invalid job payload: expected an array');
+    }
+
+    return parsedMessage.map((job, index) => this.toJobSummary(job, index));
+  }
+
+  private extractLambdaBodyResponse(response: unknown): LambdaBodyResponse<string> {
+    if (
+      this.isObject(response)
+      && 'success' in response
+      && 'message' in response
+      && typeof response['success'] === 'boolean'
+      && typeof response['message'] === 'string'
+    ) {
+      const error = response['error'];
+      return {
+        success: response['success'],
+        message: response['message'],
+        error: typeof error === 'string' || error === null ? error : null
+      };
+    }
+
+    if (this.isObject(response) && 'body' in response && typeof response['body'] === 'string') {
+      return this.parseJson<LambdaBodyResponse<string>>(response['body'], 'response body');
+    }
+
+    throw new Error('Invalid API response format');
+  }
+
+  private toJobSummary(value: unknown, index: number): JobSummary {
+    if (!this.isObject(value)) {
+      throw new Error(`Invalid job item at index ${index}`);
+    }
+
+    const postedDate = this.parseDate(value['postedDate'], `postedDate at index ${index}`);
+    if (!postedDate) {
+      throw new Error(`Missing postedDate at index ${index}`);
+    }
+
+    return {
+      jobId: String(value['jobId'] ?? ''),
+      icon: String(value['icon'] ?? ''),
+      type: String(value['type'] ?? ''),
+      category: String(value['category'] ?? ''),
+      title: String(value['title'] ?? ''),
+      location: String(value['location'] ?? ''),
+      summary: String(value['summary'] ?? ''),
+      postedDate,
+      expirationDate: this.parseDate(value['expirationDate'], `expirationDate at index ${index}`)
+    };
+  }
+
+  private parseDate(value: unknown, label: string): Date | null {
+    if (value === null || value === undefined || value === '') {
+      return null;
+    }
+
+    if (value instanceof Date && !Number.isNaN(value.getTime())) {
+      return value;
+    }
+
+    if (typeof value === 'string') {
+      const parsedDate = new Date(value);
+      if (!Number.isNaN(parsedDate.getTime())) {
+        return parsedDate;
+      }
+    }
+
+    throw new Error(`Invalid ${label}`);
+  }
+
+  private parseJson<T>(value: string, label: string): T {
+    try {
+      return JSON.parse(value) as T;
+    } catch {
+      throw new Error(`Failed to parse ${label}`);
+    }
+  }
+
+  private extractApiErrorMessage(errorPayload: unknown): string | null {
+    try {
+      const bodyResponse = this.extractLambdaBodyResponse(errorPayload);
+      return bodyResponse.error || bodyResponse.message || null;
+    } catch {
+      if (this.isObject(errorPayload) && typeof errorPayload['message'] === 'string') {
+        return errorPayload['message'];
+      }
+      return null;
+    }
+  }
+
+  private isObject(value: unknown): value is Record<string, unknown> {
+    return typeof value === 'object' && value !== null;
   }
 }

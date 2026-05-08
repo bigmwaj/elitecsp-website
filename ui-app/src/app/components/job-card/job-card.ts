@@ -1,5 +1,4 @@
 import { Component, input, output } from '@angular/core';
-import { Job } from '../../models/job.model';
 import { TranslatePipe } from '@ngx-translate/core';
 import { JobSummary } from '../../models/job-summary.model';
 

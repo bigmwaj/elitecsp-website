@@ -7,6 +7,7 @@ import { JobCardComponent } from '../../components/job-card/job-card';
 import { JobService } from '../../services/job.service';
 import { ApplicationService } from '../../services/application.service';
 import { JobSummary } from '../../models/job-summary.model';
+import { Subscription } from 'rxjs';
 
 const ALLOWED_EXTENSIONS = ['.pdf', '.docx'];
 
@@ -32,6 +33,7 @@ export class CareersComponent implements OnInit {
   selectedFile = signal<File | null>(null);
   fileError = signal<string | null>(null);
   jobSummaries = signal<JobSummary[]>([]);
+  protected subscriptions$: Subscription[] = [];
 
   form = this.fb.group({
     fullName: ['', [Validators.required, Validators.minLength(2)]],
@@ -49,10 +51,13 @@ export class CareersComponent implements OnInit {
     this.translate.get('HERO.CAREERS.SUBTITLE').subscribe(desc => {
       this.meta.updateTag({ name: 'description', content: desc });
     });
-    this.jobService.loadJobs().subscribe({
+    const jobSub = this.jobService.loadJobs().subscribe({
       next: summaries => this.jobSummaries.set(summaries),
-      error: err => console.error('Failed to load job summaries:', err)
+      error: err => console.error('Failed to load job summaries:', err),
+      complete: () => console.log('Job summaries loaded successfully')
     });
+
+    this.subscriptions$.push(jobSub);
   }
 
   get f() { return this.form.controls; }

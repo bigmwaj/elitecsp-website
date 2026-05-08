@@ -68,15 +68,19 @@ export class JobService {
   }
 
   loadJobs(): Observable<JobSummary[]> {
-    return this.http.get<ApiResponse>(`${environment.apiUrl}/jobs`)
+    console.log('Loading jobs from API...');
+    return this.http.get<any>(`${environment.apiUrl}/jobs`)
       .pipe(
-        map((response: ApiResponse) => {
-          if (!response.success) {
-            const errMsg = response.message || response.error || 'Unknown API error';
+        map((response: any) => {
+          console.log('API Response:', response);
+          const resp = response.body ? JSON.parse(response.body) : {} as ApiResponse;
+          if (!resp.success) {
+            const errMsg = resp.message || 'Unknown API error';
             throw new Error(`API Error: ${errMsg}`);
           }
           try {
-            return response.body ? JSON.parse(response.body) as JobSummary[] : [];
+            console.log('Parsed API Response Body:', resp.message);
+            return resp.message as JobSummary[];
           } catch (e) {
             throw new Error(`Failed to parse job data: ${e instanceof Error ? e.message : 'Invalid JSON'}`);
           }

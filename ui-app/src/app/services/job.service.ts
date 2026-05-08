@@ -102,7 +102,13 @@ export class JobService {
   }
 
   private extractLambdaBodyResponse(response: unknown): LambdaBodyResponse<string> {
-    if (this.isObject(response) && typeof response['success'] === 'boolean' && typeof response['message'] === 'string') {
+    if (
+      this.isObject(response)
+      && 'success' in response
+      && 'message' in response
+      && typeof response['success'] === 'boolean'
+      && typeof response['message'] === 'string'
+    ) {
       const error = response['error'];
       return {
         success: response['success'],
@@ -111,7 +117,7 @@ export class JobService {
       };
     }
 
-    if (this.isObject(response) && typeof response['body'] === 'string') {
+    if (this.isObject(response) && 'body' in response && typeof response['body'] === 'string') {
       return this.parseJson<LambdaBodyResponse<string>>(response['body'], 'response body');
     }
 
@@ -151,9 +157,9 @@ export class JobService {
     }
 
     if (typeof value === 'string') {
-      const parsed = new Date(value);
-      if (!Number.isNaN(parsed.getTime())) {
-        return parsed;
+      const parsedDate = new Date(value);
+      if (!Number.isNaN(parsedDate.getTime())) {
+        return parsedDate;
       }
     }
 

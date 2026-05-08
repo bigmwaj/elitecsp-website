@@ -76,10 +76,10 @@ class ExcelJobParserServiceTest {
         Sheet sheet = wb.createSheet("job-details");
         Row header = sheet.createRow(0);
         header.createCell(0).setCellValue("id");
-        header.createCell(1).setCellValue("description");
-        header.createCell(2).setCellValue("responsibilities");
-        header.createCell(3).setCellValue("requirements");
-        header.createCell(4).setCellValue("benefits");
+        header.createCell(1).setCellValue("description_" + lang);
+        header.createCell(2).setCellValue("responsibilities_" + lang);
+        header.createCell(3).setCellValue("requirements_" + lang);
+        header.createCell(4).setCellValue("benefits_" + lang);
 
         Row row = sheet.createRow(1);
         row.createCell(0).setCellValue("001");
@@ -103,7 +103,7 @@ class ExcelJobParserServiceTest {
         ParsedJobWorkbook result = parser.parseWorkbook("en", bytes);
 
         assertEquals(1, result.getJobs().size());
-        JobSummaryDto job = result.getJobs().get(0);
+        JobSummaryDto job = result.getJobs().getFirst();
         assertEquals("001", job.getJobId());
         assertEquals("Java Developer", job.getTitle());
         assertEquals("Montreal", job.getLocation());

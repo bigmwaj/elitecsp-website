@@ -38,6 +38,7 @@ Two categories of emails are sent per submission:
 | `FROM_EMAIL` | ✅ | SES-verified sender address (e.g. `noreply@elitecsp.ca`) |
 | `DESTINATION_EMAIL` | ✅ | Company inbox that receives notification emails |
 | `AWS_REGION` | ✅ | AWS region where SES is configured (e.g. `ca-central-1`) |
+| `CORS_ALLOW` | Optional | Overrides the `Access-Control-Allow-Origin` response header (default: `https://www.eliteproservice-consulting.ca`) |
 
 All values are read at Lambda cold-start. Missing variables cause an immediate HTTP 500 with a
 descriptive error message.

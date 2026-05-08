@@ -47,7 +47,7 @@ public class ContactLambdaHandler extends CommonLambdaHandler {
             };
 
         } catch (ApiException e) {
-            log.error(e.getMessage(), e);
+            //log.error(e.getMessage(), e);
             return ApiResponseBuilder.fromApiException(e);
         } catch (Exception e) {
             log.error("Unexpected error processing contact request", e);

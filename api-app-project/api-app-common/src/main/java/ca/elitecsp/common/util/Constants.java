@@ -1,11 +1,5 @@
 package ca.elitecsp.common.util;
 
-/**
- * Central repository of application-wide constants shared across Elite CSP modules.
- *
- * <p>Using named constants instead of magic values improves readability, reduces
- * duplication, and makes it easier to adjust limits in a single place.
- */
 public final class Constants {
 
     // -------------------------------------------------------------------------
@@ -54,8 +48,14 @@ public final class Constants {
     /** HTTP {@code Access-Control-Allow-Origin} header name. */
     public static final String HEADER_CORS_ORIGIN = "Access-Control-Allow-Origin";
 
-    /** Wildcard CORS origin value – allows requests from any origin. */
-    public static final String CORS_ALLOW_ALL = "https://www.eliteproservice-consulting.ca";
+    /** JVM system property used to override the allowed CORS origin. */
+    public static final String PROP_CORS_ALLOW = "cors.allow";
+
+    /** Environment variable used to override the allowed CORS origin. */
+    public static final String ENV_CORS_ALLOW = "CORS_ALLOW";
+
+    /** Default CORS origin used when no external configuration is provided. */
+    public static final String DEFAULT_CORS_ALLOW = "http://localhost:4200";
 
     // -------------------------------------------------------------------------
     // Email / SES constants
@@ -89,6 +89,32 @@ public final class Constants {
      * and a dot in the domain part.
      */
     public static final String EMAIL_REGEX = "^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$";
+
+    /**
+     * Resolves the allowed CORS origin from external configuration.
+     *
+     * <p>Resolution order:
+     * <ol>
+     *   <li>JVM system property {@value #PROP_CORS_ALLOW}</li>
+     *   <li>Environment variable {@value #ENV_CORS_ALLOW}</li>
+     *   <li>{@link #DEFAULT_CORS_ALLOW}</li>
+     * </ol>
+     *
+     * @return the configured CORS origin value
+     */
+    public static String getCorsAllow() {
+        String propertyValue = System.getProperty(PROP_CORS_ALLOW);
+        if (propertyValue != null && !propertyValue.isBlank()) {
+            return propertyValue;
+        }
+
+        String envValue = System.getenv(ENV_CORS_ALLOW);
+        if (envValue != null && !envValue.isBlank()) {
+            return envValue;
+        }
+
+        return DEFAULT_CORS_ALLOW;
+    }
 
     private Constants() {
         // Utility class – do not instantiate

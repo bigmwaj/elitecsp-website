@@ -1,12 +1,12 @@
 import { inject, Injectable, signal } from '@angular/core';
 import { Job } from '../models/job.model';
 import { TranslateService } from '@ngx-translate/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { JobSummary } from '../models/job-summary.model';
-import { environment } from '../../environments/environment.prod';
+import { environment } from '../../environments/environment';
 import { ApiResponse } from '../models/api-response.model';
 import { Observable } from 'rxjs/internal/Observable';
-import { map } from 'rxjs/internal/operators/map';
+import { map, catchError, throwError } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class JobService {
@@ -70,12 +70,28 @@ export class JobService {
   loadJobs(): Observable<JobSummary[]> {
     return this.http.get<ApiResponse>(`${environment.apiUrl}/jobs`)
       .pipe(
-        
-        map(response => {
+        map((response: ApiResponse) => {
           if (!response.success) {
-            throw new Error(response.message);
+            const errMsg = response.message || response.error || 'Unknown API error';
+            throw new Error(`API Error: ${errMsg}`);
           }
-          return response.body ? JSON.parse(response.body) as JobSummary[] : [];
+          try {
+            return response.body ? JSON.parse(response.body) as JobSummary[] : [];
+          } catch (e) {
+            throw new Error(`Failed to parse job data: ${e instanceof Error ? e.message : 'Invalid JSON'}`);
+          }
+        }),
+        catchError((err: any) => {
+          let errorMsg = 'Failed to load jobs';
+          if (err instanceof HttpErrorResponse) {
+            errorMsg = `HTTP ${err.status}: ${err.statusText || 'Unknown error'}`;
+            if (err.error?.message) {
+              errorMsg += ` - ${err.error.message}`;
+            }
+          } else if (err instanceof Error) {
+            errorMsg = err.message;
+          }
+          return throwError(() => new Error(errorMsg));
         }));
   }
 }

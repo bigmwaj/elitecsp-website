@@ -48,6 +48,17 @@ See each module's `README.md` for environment variables, Lambda handler class, a
 - [`api-app-contact/README.md`](api-app-contact/README.md)
 - [`api-app-job/README.md`](api-app-job/README.md)
 
+## Shared runtime configuration
+
+The API response layer supports a configurable CORS origin.
+
+| Setting | Type | Purpose | Fallback |
+|---|---|---|---|
+| `CORS_ALLOW` | Environment variable | Sets `Access-Control-Allow-Origin` for API responses | `https://www.eliteproservice-consulting.ca` |
+| `cors.allow` | JVM system property | Overrides `CORS_ALLOW` when the JVM is started with `-Dcors.allow=...` | `CORS_ALLOW` |
+
+Resolution order: JVM system property `cors.allow` → environment variable `CORS_ALLOW` → built-in default.
+
 ## Architecture
 
 See [`docs/architecture.md`](docs/architecture.md) for the full architecture overview.

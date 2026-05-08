@@ -11,11 +11,6 @@ import java.util.Map;
 
 public final class ApiResponseBuilder {
 
-    private static final Map<String, String> DEFAULT_HEADERS = Map.of(
-            Constants.HEADER_CONTENT_TYPE, Constants.CONTENT_TYPE_JSON,
-            Constants.HEADER_CORS_ORIGIN, Constants.CORS_ALLOW_ALL
-    );
-
     private ApiResponseBuilder() {
         // Utility class – do not instantiate
     }
@@ -76,7 +71,14 @@ public final class ApiResponseBuilder {
     private static APIGatewayProxyResponseEvent build(int statusCode, BaseResponse body) {
         return new APIGatewayProxyResponseEvent()
                 .withStatusCode(statusCode)
-                .withHeaders(DEFAULT_HEADERS)
+                .withHeaders(defaultHeaders())
                 .withBody(JsonUtils.toJson(body));
+    }
+
+    private static Map<String, String> defaultHeaders() {
+        return Map.of(
+                Constants.HEADER_CONTENT_TYPE, Constants.CONTENT_TYPE_JSON,
+                Constants.HEADER_CORS_ORIGIN, Constants.getCorsAllow()
+        );
     }
 }

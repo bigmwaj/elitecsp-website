@@ -23,6 +23,7 @@ Set environment variables on Lambda:
 |---|---|
 | `JOB_EXCEL_BUCKET` | S3 bucket containing the Excel file |
 | `JOB_EXCEL_KEY` | S3 object key of the Excel file (for example `jobs/jobs.xlsx`) |
+| `CORS_ALLOW` | Optional override for the `Access-Control-Allow-Origin` response header (default: `https://www.eliteproservice-consulting.ca`) |
 
 AWS credentials and region are resolved through the Lambda execution role and default AWS SDK provider chain.
 

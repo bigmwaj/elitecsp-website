@@ -33,6 +33,10 @@ public class ExcelJobParserService {
     private static final String[] JOB_TRANSLATED_COLS = {
             COL_TITLE,
             COL_SUMMARY,
+            COL_DESCRIPTION,
+            COL_RESPONSIBILITIES,
+            COL_REQUIREMENTS,
+            COL_BENEFITS
     };
 
     private final DataFormatter formatter = new DataFormatter(Locale.ENGLISH);

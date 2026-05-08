@@ -1,5 +1,6 @@
 package ca.elitecsp.job.handler;
 
+import ca.elitecsp.common.util.Constants;
 import ca.elitecsp.job.model.JobDetailsDto;
 import ca.elitecsp.job.model.JobSummaryDto;
 import ca.elitecsp.job.service.JobService;
@@ -140,6 +141,6 @@ class JobLambdaHandlerTest {
     void handleRequest_responseHasCorsHeader() {
         when(jobService.getJobs("en")).thenReturn(List.of());
         APIGatewayProxyResponseEvent resp = handler.handleRequest(requestWithQuery("en"), context);
-        assertEquals("https://www.eliteproservice-consulting.ca", resp.getHeaders().get("Access-Control-Allow-Origin"));
+        assertEquals(Constants.getCorsAllow(), resp.getHeaders().get("Access-Control-Allow-Origin"));
     }
 }

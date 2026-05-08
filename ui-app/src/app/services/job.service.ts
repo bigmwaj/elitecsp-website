@@ -113,7 +113,7 @@ export class JobService {
       return {
         success: response['success'],
         message: response['message'],
-        error: typeof error === 'string' || error === null ? error : undefined
+        error: typeof error === 'string' || error === null ? error : null
       };
     }
 
@@ -177,7 +177,7 @@ export class JobService {
   private extractApiErrorMessage(errorPayload: unknown): string | null {
     try {
       const bodyResponse = this.extractLambdaBodyResponse(errorPayload);
-      return bodyResponse.error || bodyResponse.message || '';
+      return bodyResponse.error || bodyResponse.message || null;
     } catch {
       if (this.isObject(errorPayload) && typeof errorPayload['message'] === 'string') {
         return errorPayload['message'];

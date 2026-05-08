@@ -90,7 +90,7 @@ export class JobService {
   private deserializeJobSummaries(response: unknown): JobSummary[] {
     const bodyResponse = this.extractLambdaBodyResponse(response);
     if (!bodyResponse.success) {
-      throw new Error(bodyResponse.error || String(bodyResponse.message || 'Unknown API error'));
+      throw new Error(bodyResponse.error || bodyResponse.message || 'Unknown API error');
     }
 
     const parsedMessage = this.parseJson<unknown>(bodyResponse.message, 'response message');
@@ -177,7 +177,7 @@ export class JobService {
   private extractApiErrorMessage(errorPayload: unknown): string | null {
     try {
       const bodyResponse = this.extractLambdaBodyResponse(errorPayload);
-      return bodyResponse.error || String(bodyResponse.message || '');
+      return bodyResponse.error || bodyResponse.message || '';
     } catch {
       if (this.isObject(errorPayload) && typeof errorPayload['message'] === 'string') {
         return errorPayload['message'];

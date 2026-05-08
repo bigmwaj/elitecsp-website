@@ -1,6 +1,7 @@
 import { Component, input, output } from '@angular/core';
 import { Job } from '../../models/job.model';
 import { TranslatePipe } from '@ngx-translate/core';
+import { JobSummary } from '../../models/job-summary.model';
 
 @Component({
   selector: 'app-job-card',
@@ -10,8 +11,8 @@ import { TranslatePipe } from '@ngx-translate/core';
   styleUrl: './job-card.scss'
 })
 export class JobCardComponent {
-  job = input.required<Job>();
-  apply = output<number>();
+  jobSummary = input.required<JobSummary>();
+  apply = output<string>();
 
   available(displayUntil: Date): boolean {
     const now = new Date();
@@ -19,6 +20,6 @@ export class JobCardComponent {
   }
 
   onApply(): void {
-    this.apply.emit(this.job().id);
+    this.apply.emit(this.jobSummary().jobId);
   }
 }

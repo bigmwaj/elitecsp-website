@@ -55,7 +55,7 @@ public final class Constants {
     public static final String HEADER_CORS_ORIGIN = "Access-Control-Allow-Origin";
 
     /** Wildcard CORS origin value – allows requests from any origin. */
-    public static final String CORS_ALLOW_ALL = "*";
+    public static final String CORS_ALLOW_ALL = "https://www.eliteproservice-consulting.ca";
 
     // -------------------------------------------------------------------------
     // Email / SES constants

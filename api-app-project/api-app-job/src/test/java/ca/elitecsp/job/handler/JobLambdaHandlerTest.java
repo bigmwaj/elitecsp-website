@@ -140,6 +140,6 @@ class JobLambdaHandlerTest {
     void handleRequest_responseHasCorsHeader() {
         when(jobService.getJobs("en")).thenReturn(List.of());
         APIGatewayProxyResponseEvent resp = handler.handleRequest(requestWithQuery("en"), context);
-        assertEquals("*", resp.getHeaders().get("Access-Control-Allow-Origin"));
+        assertEquals("https://www.eliteproservice-consulting.ca", resp.getHeaders().get("Access-Control-Allow-Origin"));
     }
 }

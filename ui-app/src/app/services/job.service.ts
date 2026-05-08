@@ -1,11 +1,19 @@
 import { inject, Injectable, signal } from '@angular/core';
 import { Job } from '../models/job.model';
 import { TranslateService } from '@ngx-translate/core';
+import { HttpClient } from '@angular/common/http';
+import { JobSummary } from '../models/job-summary.model';
+import { environment } from '../../environments/environment.prod';
+import { ApiResponse } from '../models/api-response.model';
+import { Observable } from 'rxjs/internal/Observable';
+import { map } from 'rxjs/internal/operators/map';
 
 @Injectable({ providedIn: 'root' })
 export class JobService {
 
   private translationService = inject(TranslateService);
+
+  private http = inject(HttpClient);
 
   readonly jobs = signal<Job[]>([
     {
@@ -57,5 +65,17 @@ export class JobService {
   getJobTranslatedTitle(id: number): string {
     const job = this.getJobById(id);
     return job ? this.translationService.instant(job.titleKey) : '';
+  }
+
+  loadJobs(): Observable<JobSummary[]> {
+    return this.http.get<ApiResponse>(`${environment.apiUrl}/jobs`)
+      .pipe(
+        
+        map(response => {
+          if (!response.success) {
+            throw new Error(response.message);
+          }
+          return response.body ? JSON.parse(response.body) as JobSummary[] : [];
+        }));
   }
 }

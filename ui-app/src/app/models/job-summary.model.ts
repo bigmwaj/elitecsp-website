@@ -6,6 +6,6 @@ export interface JobSummary {
   title: string;
   location: string;
   summary: string;
-  postedDate: Date;
-  expirationDate: Date | null;
+  postedDate: Date | null;
+  expirationDate?: Date | null;
 }

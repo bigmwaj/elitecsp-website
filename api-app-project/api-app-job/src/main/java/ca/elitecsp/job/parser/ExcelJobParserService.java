@@ -19,7 +19,7 @@ public class ExcelJobParserService {
     private static final String COL_JOB_ID = "id";
     private static final String COL_CATEGORY = "category";
     private static final String COL_TYPE = "type";
-    private static final String COL_ICON = "category";
+    private static final String COL_ICON = "icon";
     private static final String COL_POSTED_DATE = "posted_date";
     private static final String COL_EXPIRATION_DATE = "expiration_date";
     private static final String COL_LOCATION = "location";

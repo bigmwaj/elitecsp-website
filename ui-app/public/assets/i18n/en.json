@@ -377,30 +377,10 @@
       }
     },
     "JOBS": {
-      "1": {
-        "TITLE": "IBM Maximo Consultant",
-        "DESCRIPTION": "Deploy and configure IBM Maximo / MAS solutions for clients across a range of industries.",
-        "LOCATION": "Québec, QC (Hybrid)",
-        "TYPE": "Full-time"
-      },
-      "2": {
-        "TITLE": "Java Developer",
-        "DESCRIPTION": "Build custom extensions and integrations for IBM Maximo and MAS platforms.",
-        "LOCATION": "Remote, Canada",
-        "TYPE": "Full-time"
-      },
-      "3": {
-        "TITLE": "Functional Analyst",
-        "DESCRIPTION": "Analyze business requirements and translate them into tailored EAM solutions aligned with client processes.",
-        "LOCATION": "Québec, QC (Hybrid)",
-        "TYPE": "Full-time"
-      },
-      "4": {
-        "TITLE": "DevOps Engineer",
-        "DESCRIPTION": "Automate and manage CI/CD pipelines for IBM Maximo deployments and MAS cloud environments.",
-        "LOCATION": "Remote, Canada",
-        "TYPE": "Full-time"
-      }
+      "FULL_TIME": "Full-Time",
+      "PART_TIME": "Part-Time", 
+      "CONTRACT": "Contract",
+      "INTERNSHIP": "Internship"
     }
   },
   "CAREERS_PAGE": {

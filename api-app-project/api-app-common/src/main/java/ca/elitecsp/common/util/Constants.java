@@ -55,7 +55,7 @@ public final class Constants {
     public static final String ENV_CORS_ALLOW = "CORS_ALLOW";
 
     /** Default CORS origin used when no external configuration is provided. */
-    public static final String DEFAULT_CORS_ALLOW = "http://localhost:4200";
+    public static final String DEFAULT_CORS_ALLOW = "https://www.eliteproservice-consulting.ca";
 
     // -------------------------------------------------------------------------
     // Email / SES constants

@@ -270,30 +270,10 @@
   },
   "DATA": {
     "JOBS": {
-      "1": {
-        "TITLE": "Consultant IBM Maximo",
-        "DESCRIPTION": "Déployez et configurez les solutions IBM Maximo / MAS pour nos clients dans des secteurs variés.",
-        "LOCATION": "Québec, QC (Hybride)",
-        "TYPE": "Temps plein"
-      },
-      "2": {
-        "TITLE": "Développeur Java",
-        "DESCRIPTION": "Développez des extensions et intégrations personnalisées pour les plateformes IBM Maximo et MAS.",
-        "LOCATION": "Télétravail, Canada",
-        "TYPE": "Temps plein"
-      },
-      "3": {
-        "TITLE": "Analyste fonctionnel",
-        "DESCRIPTION": "Analysez les besoins métier et traduisez-les en solutions EAM adaptées aux processus clients.",
-        "LOCATION": "Québec, QC (Hybride)",
-        "TYPE": "Temps plein"
-      },
-      "4": {
-        "TITLE": "Ingénieur DevOps",
-        "DESCRIPTION": "Automatisez et gérez les pipelines CI/CD pour les déploiements IBM Maximo et les environnements MAS.",
-        "LOCATION": "Télétravail, Canada",
-        "TYPE": "Temps plein"
-      }
+      "FULL_TIME": "Temps plein",
+      "PART_TIME": "Temps partiel",
+      "CONTRACT": "Contrat",
+      "INTERNSHIP": "Stage"
     },
     "SERVICES": {
       "1": {

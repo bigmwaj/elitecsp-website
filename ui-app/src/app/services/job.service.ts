@@ -1,70 +1,17 @@
-import { inject, Injectable, signal } from '@angular/core';
-import { Job } from '../models/job.model';
-import { TranslateService } from '@ngx-translate/core';
+import { inject, Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { JobSummary } from '../models/job-summary.model';
 import { environment } from '../../environments/environment';
 import { LambdaBodyResponse } from '../models/api-response.model';
 import { Observable, catchError, map, throwError } from 'rxjs';
+import { Utils } from '../utils';
+import { TranslateService } from '@ngx-translate/core';
 
 @Injectable({ providedIn: 'root' })
 export class JobService {
 
-  private translationService = inject(TranslateService);
-
   private http = inject(HttpClient);
-
-  readonly jobs = signal<Job[]>([
-    {
-      id: 1,
-      titleKey: 'DATA.JOBS.1.TITLE',
-      descriptionKey: 'DATA.JOBS.1.DESCRIPTION',
-      locationKey: 'DATA.JOBS.1.LOCATION',
-      typeKey: 'DATA.JOBS.1.TYPE',
-      icon: '⚙️',
-      displayUntil: new Date('2024-12-31')
-    },
-    {
-      id: 2,
-      titleKey: 'DATA.JOBS.2.TITLE',
-      descriptionKey: 'DATA.JOBS.2.DESCRIPTION',
-      locationKey: 'DATA.JOBS.2.LOCATION',
-      typeKey: 'DATA.JOBS.2.TYPE',
-      icon: '☕',
-      displayUntil: new Date('2024-12-31')
-    },
-    {
-      id: 3,
-      titleKey: 'DATA.JOBS.3.TITLE',
-      descriptionKey: 'DATA.JOBS.3.DESCRIPTION',
-      locationKey: 'DATA.JOBS.3.LOCATION',
-      typeKey: 'DATA.JOBS.3.TYPE',
-      icon: '📊',
-      displayUntil: new Date('2026-12-31')
-    },
-    {
-      id: 4,
-      titleKey: 'DATA.JOBS.4.TITLE',
-      descriptionKey: 'DATA.JOBS.4.DESCRIPTION',
-      locationKey: 'DATA.JOBS.4.LOCATION',
-      typeKey: 'DATA.JOBS.4.TYPE',
-      icon: '🔧'
-    }
-  ]);
-
-  get availableJobs(): Job[] {
-    const now = new Date();
-    return this.jobs().filter(job => !job.displayUntil || job.displayUntil > now);
-  }
-
-  getJobById(id: number): Job | undefined {
-    return this.jobs().find(job => job.id === id);
-  }
-
-  getJobTranslatedTitle(id: number): string {
-    const job = this.getJobById(id);
-    return job ? this.translationService.instant(job.titleKey) : '';
-  }
+  private translationService = inject(TranslateService);
 
   loadJobs(): Observable<JobSummary[]> {
     return this.http.get<unknown>(`${environment.apiUrl}/jobs`)
@@ -93,7 +40,7 @@ export class JobService {
       throw new Error(bodyResponse.error || bodyResponse.message || 'Unknown API error');
     }
 
-    const parsedMessage = this.parseJson<unknown>(bodyResponse.message, 'response message');
+    const parsedMessage = Utils.parseJson<unknown>(bodyResponse.message, 'response message');
     if (!Array.isArray(parsedMessage)) {
       throw new Error('Invalid job payload: expected an array');
     }
@@ -118,7 +65,7 @@ export class JobService {
     }
 
     if (this.isObject(response) && 'body' in response && typeof response['body'] === 'string') {
-      return this.parseJson<LambdaBodyResponse<string>>(response['body'], 'response body');
+      return Utils.parseJson<LambdaBodyResponse<string>>(response['body'], 'response body');
     }
 
     throw new Error('Invalid API response format');
@@ -129,49 +76,19 @@ export class JobService {
       throw new Error(`Invalid job item at index ${index}`);
     }
 
-    const postedDate = this.parseDate(value['postedDate'], `postedDate at index ${index}`);
-    if (!postedDate) {
-      throw new Error(`Missing postedDate at index ${index}`);
-    }
+    let type = String(value['type'] ?? '').toUpperCase();
 
     return {
       jobId: String(value['jobId'] ?? ''),
       icon: String(value['icon'] ?? ''),
-      type: String(value['type'] ?? ''),
+      type: this.translationService.instant(`DATA.JOBS.${type}`),
       category: String(value['category'] ?? ''),
       title: String(value['title'] ?? ''),
       location: String(value['location'] ?? ''),
       summary: String(value['summary'] ?? ''),
-      postedDate,
-      expirationDate: this.parseDate(value['expirationDate'], `expirationDate at index ${index}`)
+      postedDate: Utils.parseDate(value['postedDate'], `postedDate at index ${index}`),
+      expirationDate: Utils.parseDate(value['expirationDate'], `expirationDate at index ${index}`)
     };
-  }
-
-  private parseDate(value: unknown, label: string): Date | null {
-    if (value === null || value === undefined || value === '') {
-      return null;
-    }
-
-    if (value instanceof Date && !Number.isNaN(value.getTime())) {
-      return value;
-    }
-
-    if (typeof value === 'string') {
-      const parsedDate = new Date(value);
-      if (!Number.isNaN(parsedDate.getTime())) {
-        return parsedDate;
-      }
-    }
-
-    throw new Error(`Invalid ${label}`);
-  }
-
-  private parseJson<T>(value: string, label: string): T {
-    try {
-      return JSON.parse(value) as T;
-    } catch {
-      throw new Error(`Failed to parse ${label}`);
-    }
   }
 
   private extractApiErrorMessage(errorPayload: unknown): string | null {

@@ -91,7 +91,7 @@
                 [class.error]="f['jobId'].invalid && f['jobId'].touched">
                 <option value="">{{ 'CAREERS_PAGE.FORM.JOB_PLACEHOLDER' | translate }}</option>
                 @for (job of jobSummaries(); track job.jobId) {
-                  <option [value]="job.jobId">{{ job.title }}</option>
+                  <option [value]="job.title">{{ job.title }}</option>
                 }
               </select>
               @if (f['jobId'].invalid && f['jobId'].touched) {

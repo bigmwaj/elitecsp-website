@@ -1,10 +1,23 @@
 /**
- * Typed response envelope returned by all Elite CSP Lambda endpoints.
- * Mirrors the backend BaseResponse DTO.
+ * Lambda body payload serialized in API Gateway proxy responses.
+ * Mirrors backend BaseResponse DTO.
  */
-export interface ApiResponse {
+export interface LambdaBodyResponse<TMessage = string> {
   success: boolean;
-  message: string;
-  body?: string;
+  message: TMessage;
   error?: string | null;
 }
+
+/**
+ * API Gateway proxy response wrapper returned by Lambda integrations.
+ */
+export interface ApiGatewayResponse<TBody = string> {
+  statusCode: number;
+  headers?: Record<string, string>;
+  body: TBody;
+}
+
+/**
+ * Backward-compatible alias for endpoints consuming BaseResponse directly.
+ */
+export type ApiResponse = LambdaBodyResponse<string>;

@@ -25,9 +25,9 @@ The project uses a split deployment strategy:
 | Module | Deployment Trigger | Target |
 |---|---|---|
 | `ui-app` (Angular) | Push to `main` branch (GitHub Actions) | AWS S3 + CloudFront invalidation |
-| `api-app` (Lambda) | Manual CLI / AWS Console | AWS Lambda |
+| `api-app-project` (Lambda modules) | Push to `main` branch (GitHub Actions) | AWS Lambda (`elite-csp-contact`, `elite-csp-jobs`) |
 
-The frontend is fully automated via CI/CD. The backend requires a manual deploy step because Lambda deployments may affect live traffic and benefit from deliberate review.
+Both frontend and backend deployments are automated in staged GitHub Actions jobs with explicit validation.
 
 ---
 
@@ -45,11 +45,13 @@ The frontend is fully automated via CI/CD. The backend requires a manual deploy 
 2. **Set up Node.js 22** — with npm cache
 3. **Install dependencies** — `npm ci` (clean install from lockfile)
 4. **Build Angular app** — `npm run build -- --configuration=production`
-5. **Configure AWS credentials** — using `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` secrets
-6. **Deploy to S3** — `aws s3 sync` with cache-control headers:
+5. **Build backend modules (Java 21)** — `mvn clean test` and `mvn clean package`
+6. **Deploy backend Lambdas** — update function code for `elite-csp-contact` and `elite-csp-jobs`
+7. **Configure AWS credentials** — using `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` secrets
+8. **Deploy to S3** — `aws s3 sync` with cache-control headers:
    - Hashed static assets (`.js`, `.css`, images): `Cache-Control: public, max-age=31536000, immutable`
    - `index.html`: `Cache-Control: no-cache, no-store, must-revalidate`
-7. **Invalidate CloudFront cache** — `aws cloudfront create-invalidation --paths "/*"` (only if `CLOUDFRONT_DISTRIBUTION_ID` is set)
+9. **Invalidate CloudFront cache** — `aws cloudfront create-invalidation --paths "/index.html"` (only when `CLOUDFRONT_DISTRIBUTION_ID` exists and invalidation is enabled)
 
 **Required repository configuration:**
 
@@ -93,7 +95,7 @@ aws s3 cp dist/ui-app/browser/index.html s3://YOUR_BUCKET_NAME/index.html \
 # 5. Invalidate CloudFront (if applicable)
 aws cloudfront create-invalidation \
   --distribution-id YOUR_DISTRIBUTION_ID \
-  --paths "/*"
+  --paths "/index.html"
 ```
 
 ---
@@ -103,23 +105,25 @@ aws cloudfront create-invalidation \
 ### 3.1 First-Time Setup
 
 **Prerequisites:**
-- Java 17+, Maven 3.8+
+- Java 21+, Maven 3.8+
 - AWS CLI configured with appropriate IAM permissions
 - Lambda execution role with `AWSLambdaBasicExecutionRole` + SES permissions
 
 ```bash
 # 1. Build the fat JAR
-cd api-app
+cd api-app-project
 mvn clean package
-# Output: target/elite-csp-contact.jar
+# Outputs:
+#  api-app-contact/target/elite-csp-contact.jar
+#  api-app-job/target/elite-csp-job.jar
 
 # 2. Create the Lambda function
 aws lambda create-function \
   --function-name elite-csp-contact \
-  --runtime java17 \
+  --runtime java21 \
   --role arn:aws:iam::ACCOUNT_ID:role/elite-csp-lambda-role \
   --handler ca.elitecsp.contact.handler.LambdaHandler::handleRequest \
-  --zip-file fileb://target/elite-csp-contact.jar \
+  --zip-file fileb://api-app-contact/target/elite-csp-contact.jar \
   --timeout 30 \
   --memory-size 512
 
@@ -139,13 +143,13 @@ aws lambda update-function-configuration \
 
 ```bash
 # 1. Build
-cd api-app
+cd api-app-project
 mvn clean package
 
 # 2. Upload new JAR
 aws lambda update-function-code \
   --function-name elite-csp-contact \
-  --zip-file fileb://target/elite-csp-contact.jar
+  --zip-file fileb://api-app-contact/target/elite-csp-contact.jar
 
 # 3. Wait for the update to complete
 aws lambda wait function-updated \
@@ -172,45 +176,39 @@ aws lambda update-alias \
 ### Workflow: `.github/workflows/deploy.yml`
 
 ```yaml
-name: Build and Deploy to AWS S3
+name: Elite CSP CI/CD Pipeline
 on:
   push:
     branches: [ main ]
+  workflow_dispatch:
+    inputs:
+      invalidate_cloudfront:
+        type: boolean
+        default: true
 
 jobs:
-  build-and-deploy:
-    runs-on: ubuntu-latest
-    permissions:
-      contents: read
-    steps:
-      - Checkout repository
-      - Set up Node.js 22 (with npm cache)
-      - npm ci (install from lockfile)
-      - npm run build (production)
-      - Configure AWS credentials
-      - aws s3 sync (with cache headers)
-      - aws cloudfront create-invalidation (if configured)
+  backend-build:
+  frontend-build:
+  deploy-backend-lambdas:
+  deploy-frontend:
 ```
 
 **Workflow diagram:**
 
 ```
-Push to main
+Push to main / workflow_dispatch
      │
-     ▼
-GitHub Actions runner (ubuntu-latest)
+     ├─ backend-build (Java 21, mvn clean test + package)
+     ├─ frontend-build (Node.js 22, npm ci + production build)
      │
-     ├─ Checkout code
-     ├─ node setup (v22) + npm ci
-     ├─ ng build --configuration=production
-     │     → dist/ui-app/browser/
+     ├─ deploy-backend-lambdas
+     │    ├─ elite-csp-contact
+     │    └─ elite-csp-jobs
      │
-     ├─ Configure AWS credentials
-     │
-     ├─ aws s3 sync (hashed assets, 1yr cache)
-     ├─ aws s3 cp index.html (no-cache)
-     │
-     └─ aws cloudfront create-invalidation (optional)
+     └─ deploy-frontend
+          ├─ aws s3 sync assets (long cache)
+          ├─ aws s3 cp index.html (no-cache)
+          └─ optional cloudfront invalidation (/index.html)
 ```
 
 **Build artifacts:**
@@ -219,6 +217,15 @@ GitHub Actions runner (ubuntu-latest)
 |---|---|---|
 | Hashed JS/CSS/images | `dist/ui-app/browser/` (all except `index.html`) | `max-age=31536000, immutable` |
 | `index.html` | `dist/ui-app/browser/index.html` | `no-cache, no-store, must-revalidate` |
+| `api-app-contact` Lambda JAR | `api-app-project/api-app-contact/target/elite-csp-contact.jar` | N/A |
+| `api-app-job` Lambda JAR | `api-app-project/api-app-job/target/elite-csp-job.jar` | N/A |
+
+### Migration notes from previous workflow
+
+- Backend Lambda deployment is now automated in CI/CD.
+- CloudFront invalidation now targets only `/index.html` (not `/*`).
+- Workflow is split into explicit staged jobs with `needs` dependencies.
+- Artifact upload/download uses explicit Lambda module artifact names and file checks.
 
 ---
 
@@ -228,7 +235,7 @@ GitHub Actions runner (ubuntu-latest)
 
 **Option A: Re-trigger a previous workflow run**
 
-1. Go to GitHub → **Actions** → **Build and Deploy to AWS S3**
+1. Go to GitHub → **Actions** → **Elite CSP CI/CD Pipeline**
 2. Find the last known-good workflow run
 3. Click **Re-run all jobs**
 
@@ -258,7 +265,7 @@ aws s3 cp /path/to/previous-dist/index.html s3://YOUR_BUCKET_NAME/index.html \
 
 aws cloudfront create-invalidation \
   --distribution-id YOUR_DISTRIBUTION_ID \
-  --paths "/*"
+  --paths "/index.html"
 ```
 
 ---
@@ -286,13 +293,13 @@ This takes effect immediately with **zero downtime** — no code re-upload requi
 
 ```bash
 # Re-upload the previous JAR from source control
-git checkout PREVIOUS_GOOD_COMMIT -- api-app/
-cd api-app
+git checkout PREVIOUS_GOOD_COMMIT -- api-app-project/
+cd api-app-project
 mvn clean package
 
 aws lambda update-function-code \
   --function-name elite-csp-contact \
-  --zip-file fileb://target/elite-csp-contact.jar
+  --zip-file fileb://api-app-contact/target/elite-csp-contact.jar
 ```
 
 ---
@@ -344,11 +351,7 @@ feature branch
 main branch
      │ (auto-deploy via GitHub Actions)
      ▼
-S3 + CloudFront (frontend)
-
-     │ (manual, after verification)
-     ▼
-Lambda update (backend)
+Backend Lambda + Frontend S3/CloudFront
 ```
 
 **Checklist before promoting to production:**

@@ -125,7 +125,7 @@ aws lambda update-function-configuration \
 
 ### 3.2 Lambda
 
-**Runtime:** Java 17  
+**Runtime:** Java 21  
 **Handler:** `ca.elitecsp.contact.handler.LambdaHandler::handleRequest`  
 **Memory:** 512 MB (recommended; reduce to 256 MB after testing cold start times)  
 **Timeout:** 30 seconds  
@@ -135,10 +135,10 @@ aws lambda update-function-configuration \
 ```bash
 aws lambda create-function \
   --function-name elite-csp-contact \
-  --runtime java17 \
+  --runtime java21 \
   --role arn:aws:iam::<ACCOUNT_ID>:role/elite-csp-lambda-role \
   --handler ca.elitecsp.contact.handler.LambdaHandler::handleRequest \
-  --zip-file fileb://api-app/target/elite-csp-contact.jar \
+  --zip-file fileb://api-app-project/api-app-contact/target/elite-csp-contact.jar \
   --timeout 30 \
   --memory-size 512
 ```
@@ -254,7 +254,6 @@ Configure the following in the GitHub repository settings under **Settings → S
 |---|---|
 | `AWS_ACCESS_KEY_ID` | IAM user access key for GitHub Actions deployments |
 | `AWS_SECRET_ACCESS_KEY` | IAM user secret key |
-| `API_GATEWAY_KEY` | API Gateway `x-api-key` value (injected into Angular build) |
 
 ### Variables (plain text)
 
@@ -263,6 +262,8 @@ Configure the following in the GitHub repository settings under **Settings → S
 | `AWS_REGION` | AWS region for deployment | `ca-central-1` |
 | `S3_BUCKET_NAME` | S3 bucket name (no `s3://` prefix) | `elitecsp-website-prod` |
 | `CLOUDFRONT_DISTRIBUTION_ID` | CloudFront distribution ID (optional, enables cache invalidation) | `E1ABCDEFGHIJKL` |
+
+> Workflow note: backend Lambda function names are currently managed in workflow environment constants (`elite-csp-contact`, `elite-csp-jobs`).
 
 ### IAM Permissions for the CI/CD User
 
@@ -284,6 +285,17 @@ The GitHub Actions IAM user needs the following permissions (principle of least 
       "Effect": "Allow",
       "Action": "cloudfront:CreateInvalidation",
       "Resource": "arn:aws:cloudfront::<ACCOUNT_ID>:distribution/<DISTRIBUTION_ID>"
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "lambda:GetFunction",
+        "lambda:UpdateFunctionCode"
+      ],
+      "Resource": [
+        "arn:aws:lambda:<REGION>:<ACCOUNT_ID>:function:elite-csp-contact",
+        "arn:aws:lambda:<REGION>:<ACCOUNT_ID>:function:elite-csp-jobs"
+      ]
     }
   ]
 }
@@ -299,7 +311,7 @@ The GitHub Actions IAM user needs the following permissions (principle of least 
 |---|---|---|
 | Node.js | 22 | [nodejs.org](https://nodejs.org/) |
 | npm | 10 | Bundled with Node.js |
-| Java JDK | 17 | [adoptium.net](https://adoptium.net/) |
+| Java JDK | 21 | [adoptium.net](https://adoptium.net/) |
 | Apache Maven | 3.8 | [maven.apache.org](https://maven.apache.org/) |
 | AWS CLI | 2.x (optional) | [aws.amazon.com/cli](https://aws.amazon.com/cli/) |
 
@@ -329,9 +341,11 @@ export const environment = {
 ### Backend Setup
 
 ```bash
-cd api-app
+cd api-app-project
 mvn clean package
-# → Produces target/elite-csp-contact.jar
+# → Produces:
+#    api-app-contact/target/elite-csp-contact.jar
+#    api-app-job/target/elite-csp-job.jar
 ```
 
 **Run Lambda locally with AWS SAM (optional):**
@@ -345,7 +359,7 @@ Resources:
     Type: AWS::Serverless::Function
     Properties:
       Handler: ca.elitecsp.contact.handler.LambdaHandler::handleRequest
-      Runtime: java17
+      Runtime: java21
       CodeUri: target/elite-csp-contact.jar
       MemorySize: 512
       Timeout: 30

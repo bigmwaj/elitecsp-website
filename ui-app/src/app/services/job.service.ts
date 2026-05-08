@@ -102,11 +102,11 @@ export class JobService {
   }
 
   private extractLambdaBodyResponse(response: unknown): LambdaBodyResponse<string> {
-    if (this.isObject(response) && typeof response.success === 'boolean' && typeof response.message === 'string') {
+    if (this.isObject(response) && typeof response['success'] === 'boolean' && typeof response['message'] === 'string') {
       return response as LambdaBodyResponse<string>;
     }
 
-    if (this.isObject(response) && typeof response.body === 'string') {
+    if (this.isObject(response) && typeof response['body'] === 'string') {
       const gatewayResponse = response as ApiGatewayResponse<string>;
       return this.parseJson<LambdaBodyResponse<string>>(gatewayResponse.body, 'response body');
     }
@@ -120,15 +120,15 @@ export class JobService {
     }
 
     return {
-      jobId: String(value.jobId ?? ''),
-      icon: String(value.icon ?? ''),
-      type: String(value.type ?? ''),
-      category: String(value.category ?? ''),
-      title: String(value.title ?? ''),
-      location: String(value.location ?? ''),
-      summary: String(value.summary ?? ''),
-      postedDate: this.parseDate(value.postedDate, `postedDate at index ${index}`) ?? new Date(0),
-      expirationDate: this.parseDate(value.expirationDate, `expirationDate at index ${index}`)
+      jobId: String(value['jobId'] ?? ''),
+      icon: String(value['icon'] ?? ''),
+      type: String(value['type'] ?? ''),
+      category: String(value['category'] ?? ''),
+      title: String(value['title'] ?? ''),
+      location: String(value['location'] ?? ''),
+      summary: String(value['summary'] ?? ''),
+      postedDate: this.parseDate(value['postedDate'], `postedDate at index ${index}`) ?? new Date(0),
+      expirationDate: this.parseDate(value['expirationDate'], `expirationDate at index ${index}`)
     };
   }
 
@@ -164,8 +164,8 @@ export class JobService {
       const bodyResponse = this.extractLambdaBodyResponse(errorPayload);
       return bodyResponse.error || String(bodyResponse.message || '');
     } catch {
-      if (this.isObject(errorPayload) && typeof errorPayload.message === 'string') {
-        return errorPayload.message;
+      if (this.isObject(errorPayload) && typeof errorPayload['message'] === 'string') {
+        return errorPayload['message'];
       }
       return null;
     }

@@ -4,7 +4,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { JobSummary } from '../models/job-summary.model';
 import { environment } from '../../environments/environment';
-import { ApiGatewayResponse, LambdaBodyResponse } from '../models/api-response.model';
+import { LambdaBodyResponse } from '../models/api-response.model';
 import { Observable, catchError, map, throwError } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
@@ -103,12 +103,16 @@ export class JobService {
 
   private extractLambdaBodyResponse(response: unknown): LambdaBodyResponse<string> {
     if (this.isObject(response) && typeof response['success'] === 'boolean' && typeof response['message'] === 'string') {
-      return response as LambdaBodyResponse<string>;
+      const error = response['error'];
+      return {
+        success: response['success'],
+        message: response['message'],
+        error: typeof error === 'string' || error === null ? error : undefined
+      };
     }
 
     if (this.isObject(response) && typeof response['body'] === 'string') {
-      const gatewayResponse = response as ApiGatewayResponse<string>;
-      return this.parseJson<LambdaBodyResponse<string>>(gatewayResponse.body, 'response body');
+      return this.parseJson<LambdaBodyResponse<string>>(response['body'], 'response body');
     }
 
     throw new Error('Invalid API response format');
@@ -119,6 +123,11 @@ export class JobService {
       throw new Error(`Invalid job item at index ${index}`);
     }
 
+    const postedDate = this.parseDate(value['postedDate'], `postedDate at index ${index}`);
+    if (!postedDate) {
+      throw new Error(`Missing postedDate at index ${index}`);
+    }
+
     return {
       jobId: String(value['jobId'] ?? ''),
       icon: String(value['icon'] ?? ''),
@@ -127,7 +136,7 @@ export class JobService {
       title: String(value['title'] ?? ''),
       location: String(value['location'] ?? ''),
       summary: String(value['summary'] ?? ''),
-      postedDate: this.parseDate(value['postedDate'], `postedDate at index ${index}`) ?? new Date(0),
+      postedDate,
       expirationDate: this.parseDate(value['expirationDate'], `expirationDate at index ${index}`)
     };
   }
@@ -171,7 +180,7 @@ export class JobService {
     }
   }
 
-  private isObject(value: unknown): value is Record<string, any> {
+  private isObject(value: unknown): value is Record<string, unknown> {
     return typeof value === 'object' && value !== null;
   }
 }

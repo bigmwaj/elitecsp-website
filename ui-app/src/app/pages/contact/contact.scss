@@ -1,25 +1,6 @@
+// contact page has a single full-width section with gray background
 .section {
-  padding: 5rem 0;
   background: var(--light-gray);
-}
-
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 1.5rem;
-}
-
-.section-tag {
-  display: inline-block;
-  background: rgba(172, 80, 85, 0.1);
-  color: var(--primary);
-  font-size: 0.85rem;
-  font-weight: 600;
-  padding: 0.3rem 1rem;
-  border-radius: 20px;
-  margin-bottom: 1rem;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
 }
 
 .contact-grid {
@@ -60,7 +41,7 @@
     font-size: 1.5rem;
     width: 48px;
     height: 48px;
-    background: rgba(172, 80, 85, 0.1);
+    background: var(--primary-tint);
     border-radius: 12px;
     display: flex;
     align-items: center;
@@ -120,7 +101,7 @@ form {
     &:focus {
       outline: none;
       border-color: var(--primary);
-      box-shadow: 0 0 0 3px rgba(172, 80, 85, 0.1);
+      box-shadow: 0 0 0 3px var(--primary-tint);
     }
 
     &.error {

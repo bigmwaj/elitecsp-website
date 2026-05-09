@@ -16,7 +16,6 @@
     <modules>
         <module>api-app-common</module>
         <module>api-app-contact</module>
-        <module>api-app-job</module>
     </modules>
 
     <properties>
@@ -33,7 +32,6 @@
 
         <!-- Jackson -->
         <jackson.version>2.18.3</jackson.version>
-        <poi.version>5.4.1</poi.version>
 
         <!-- AWS SDK v2 -->
         <aws-sdk-v2.version>2.31.50</aws-sdk-v2.version>
@@ -91,25 +89,11 @@
                 <version>${jackson.version}</version>
             </dependency>
 
-            <!-- Apache POI for Excel parsing -->
-            <dependency>
-                <groupId>org.apache.poi</groupId>
-                <artifactId>poi-ooxml</artifactId>
-                <version>${poi.version}</version>
-            </dependency>
-
             <!-- AWS SDK v2 SES – version pinned here so child modules can omit it;
                  kept explicit because BOM import alone does not propagate to child <dependencies> -->
             <dependency>
                 <groupId>software.amazon.awssdk</groupId>
                 <artifactId>ses</artifactId>
-                <version>${aws-sdk-v2.version}</version>
-            </dependency>
-
-            <!-- AWS SDK v2 S3 – same rationale as SES above -->
-            <dependency>
-                <groupId>software.amazon.awssdk</groupId>
-                <artifactId>s3</artifactId>
                 <version>${aws-sdk-v2.version}</version>
             </dependency>
 

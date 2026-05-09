@@ -12,7 +12,7 @@
   &:hover {
     transform: translateY(-4px);
     box-shadow: 0 12px 35px rgba(0, 0, 0, 0.12);
-    border-color: rgba(172, 80, 85, 0.2);
+    border-color: var(--primary-tint-lg);
   }
 
   &__header {
@@ -26,7 +26,7 @@
     font-size: 2rem;
     width: 56px;
     height: 56px;
-    background: rgba(172, 80, 85, 0.08);
+    background: var(--primary-tint);
     border-radius: 14px;
     display: flex;
     align-items: center;
@@ -36,7 +36,7 @@
 
   &__type {
     display: inline-block;
-    background: rgba(172, 80, 85, 0.1);
+    background: var(--primary-tint);
     color: var(--primary);
     font-size: 0.78rem;
     font-weight: 600;
@@ -110,12 +110,12 @@
   }
 
   &__details-btn {
-    border: 1px solid rgba(172, 80, 85, 0.25);
-    background: rgba(172, 80, 85, 0.06);
+    border: 1px solid var(--primary-tint-lg);
+    background: var(--primary-tint);
     color: var(--primary);
 
     &:hover {
-      background: rgba(172, 80, 85, 0.12);
+      background: var(--primary-tint-md);
       transform: translateY(-2px);
     }
   }

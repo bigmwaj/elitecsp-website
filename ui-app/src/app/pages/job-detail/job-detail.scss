@@ -1,26 +1,3 @@
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 1.5rem;
-}
-
-.section {
-  padding: 5rem 0;
-}
-
-.section-tag {
-  display: inline-block;
-  background: rgba(172, 80, 85, 0.1);
-  color: var(--primary);
-  font-size: 0.85rem;
-  font-weight: 600;
-  padding: 0.3rem 1rem;
-  border-radius: 20px;
-  margin-bottom: 1rem;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
 .job-hero,
 .job-not-found {
   min-height: 50vh;
@@ -144,8 +121,7 @@
 }
 
 .summary-card,
-.details-card,
-.section-header {
+.details-card {
   h2 {
     font-size: clamp(1.8rem, 3vw, 2.4rem);
     font-weight: 800;
@@ -155,8 +131,7 @@
 }
 
 .summary-card > p,
-.details-intro,
-.section-header p {
+.details-intro {
   color: #666;
   line-height: 1.7;
 }
@@ -169,7 +144,7 @@
 
 .summary-item {
   padding: 1rem 1.1rem;
-  background: rgba(172, 80, 85, 0.04);
+  background: var(--primary-tint);
   border: 1px solid rgba(172, 80, 85, 0.08);
   border-radius: 14px;
 
@@ -212,12 +187,8 @@
 }
 
 .section-header {
-  text-align: center;
-  margin-bottom: 3rem;
-
   p {
     max-width: 640px;
-    margin: 0 auto;
   }
 }
 

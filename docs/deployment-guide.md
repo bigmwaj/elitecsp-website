@@ -25,7 +25,7 @@ The project uses a split deployment strategy:
 | Module | Deployment Trigger | Target |
 |---|---|---|
 | `ui-app` (Angular) | Push to `main` branch (GitHub Actions) | AWS S3 + CloudFront invalidation |
-| `api-app-project` (Lambda modules) | Push to `main` branch (GitHub Actions) | AWS Lambda (`elite-csp-contact`, `elite-csp-jobs`) |
+| `api-app-project` (Lambda modules) | Push to `main` branch (GitHub Actions) | AWS Lambda (`elite-csp-contact`) |
 
 Both frontend and backend deployments are automated in staged GitHub Actions jobs with explicit validation.
 
@@ -45,7 +45,7 @@ Both frontend and backend deployments are automated in staged GitHub Actions job
 2. **Set up Java 21** — with Maven cache
 3. **Build backend modules (Java 21)** — `mvn clean test` and `mvn clean package`
 4. **Upload backend artifacts** — module-specific Lambda JAR artifacts
-5. **Deploy backend Lambdas** — update function code for `elite-csp-contact` and `elite-csp-jobs`
+5. **Deploy backend Lambda** — update function code for `elite-csp-contact`
 6. **Set up Node.js 22** — with npm cache
 7. **Install dependencies** — `npm ci` (clean install from lockfile)
 8. **Build Angular app** — `npm run build -- --configuration=production`
@@ -117,7 +117,6 @@ cd api-app-project
 mvn clean package
 # Outputs:
 #  api-app-contact/target/elite-csp-contact.jar
-#  api-app-job/target/elite-csp-job.jar
 
 # 2. Create the Lambda function
 aws lambda create-function \
@@ -204,8 +203,7 @@ Push to main / workflow_dispatch
      ├─ frontend-build (Node.js 22, npm ci + production build)
      │
      ├─ deploy-backend-lambdas
-     │    ├─ elite-csp-contact
-     │    └─ elite-csp-jobs
+     │    └─ elite-csp-contact
      │
      └─ deploy-frontend
           ├─ aws s3 sync assets (long cache)
@@ -220,9 +218,6 @@ Push to main / workflow_dispatch
 | Hashed JS/CSS/images | `dist/ui-app/browser/` (all except `index.html`) | `max-age=31536000, immutable` |
 | `index.html` | `dist/ui-app/browser/index.html` | `no-cache,no-store,must-revalidate` |
 | `api-app-contact` Lambda JAR | `api-app-project/api-app-contact/target/elite-csp-contact.jar` | N/A |
-| `api-app-job` Lambda JAR | `api-app-project/api-app-job/target/elite-csp-job.jar` | N/A |
-
-> `api-app-job` module output (`elite-csp-job.jar`) is deployed to Lambda function `elite-csp-jobs`.
 
 ### Migration notes from previous workflow
 

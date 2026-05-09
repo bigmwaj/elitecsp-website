@@ -15,8 +15,6 @@
     <div class="job-card__expired">
       {{ 'CAREERS_PAGE.EXPIREDATE' | translate : { date: jobSummary().expirationDate?.getFullYear() } }}
     </div>
-  } @else {
-    <div class="job-card__expired"><br /></div>
   }
 
   <div class="job-card__footer">

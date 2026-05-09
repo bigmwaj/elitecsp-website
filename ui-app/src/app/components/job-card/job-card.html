@@ -2,12 +2,12 @@
   <div class="job-card__header">
     <span class="job-card__icon" aria-hidden="true">{{ jobSummary().icon }}</span>
     <div class="job-card__meta">
-      <span class="job-card__type">{{ jobSummary().type }}</span>
+      <span class="job-card__type">{{ jobSummary().type | translate}}</span>
     </div>
   </div>
 
-  <h3 class="job-card__title">{{ jobSummary().title }}</h3>
-  <p class="job-card__description">{{ jobSummary().summary }}</p>
+  <h3 class="job-card__title">{{ jobSummary().title | currentLangEntry }}</h3>
+  <p class="job-card__description">{{ jobSummary().summary | currentLangEntry }}</p>
   @if (jobSummary().expirationDate && available(jobSummary().expirationDate!)) {
     <div class="job-card__expired">
       {{ 'CAREERS_PAGE.EXPIREDATE' | translate : { date: jobSummary().expirationDate?.getFullYear() }  }}

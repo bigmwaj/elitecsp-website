@@ -6,15 +6,16 @@ import { HeroComponent } from '../../components/hero/hero';
 import { JobCardComponent } from '../../components/job-card/job-card';
 import { JobService } from '../../services/job.service';
 import { ApplicationService } from '../../services/application.service';
-import { JobSummary } from '../../models/job-summary.model';
 import { Subscription } from 'rxjs';
+import { CurrentLangEntryPipe } from '../../pipes/current-lang-entry.pipe';
+import { JobSummary } from '../../models/job-summary.model';
 
 const ALLOWED_EXTENSIONS = ['.pdf', '.docx'];
 
 @Component({
   selector: 'app-careers',
   standalone: true,
-  imports: [HeroComponent, JobCardComponent, ReactiveFormsModule, TranslatePipe],
+  imports: [HeroComponent, JobCardComponent, ReactiveFormsModule, TranslatePipe, CurrentLangEntryPipe],
   templateUrl: './careers.html',
   styleUrl: './careers.scss'
 })
@@ -84,7 +85,7 @@ export class CareersComponent implements OnInit {
     return errors;
   }
 
-  onApply(jobId: string): void {
+  onApply(jobId: number): void {
     this.form.patchValue({ jobId: String(jobId) });
     setTimeout(() => {
       this.applySection?.nativeElement.scrollIntoView({ behavior: 'smooth', block: 'start' });

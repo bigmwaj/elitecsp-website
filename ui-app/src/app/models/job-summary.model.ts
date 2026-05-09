@@ -1,11 +1,19 @@
 export interface JobSummary {
-  jobId: string;
+  businessName: string;
+  jobId: number;
   icon: string;
   type: string;
   category: string;
-  title: string;
+  title: {
+    fr: string;
+    en: string;
+  };
   location: string;
-  summary: string;
+  summary: {
+    fr: string;
+    en: string;
+  };
   postedDate: Date | null;
   expirationDate?: Date | null;
+  
 }

@@ -4,10 +4,10 @@
   [ctaText]="'HERO.CAREERS.CTA'"
   ctaLink="/careers"
   ctaFragment="listings"
-  [compact]="true">
+  [compact]="true"
+>
 </app-hero>
 
-<!-- Job Listings -->
 <section class="section listings-section" id="listings">
   <div class="container">
     <div class="section-header">
@@ -24,8 +24,7 @@
   </div>
 </section>
 
-<!-- Application Form -->
-<section class="section form-section" #applySection>
+<section class="section form-section" id="apply" #applySection>
   <div class="container">
     <div class="section-header">
       <span class="section-tag">{{ 'CAREERS_PAGE.APPLY_SECTION.TAG' | translate }}</span>
@@ -33,101 +32,6 @@
       <p>{{ 'CAREERS_PAGE.APPLY_SECTION.SUBTITLE' | translate }}</p>
     </div>
 
-    <div class="form-wrapper">
-      @if (submitted()) {
-        <div class="success-message">
-          <div class="success-icon">🎉</div>
-          <h3>{{ 'CAREERS_PAGE.SUCCESS.TITLE' | translate }}</h3>
-          <p>{{ 'CAREERS_PAGE.SUCCESS.DESC' | translate }}</p>
-          <button (click)="resetForm()" class="btn-reset">{{ 'CAREERS_PAGE.SUCCESS.RESET' | translate }}</button>
-        </div>
-      } @else {
-        <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
-          Voici les erreurs: {{form.errors}}
-          <div class="form-row">
-            <div class="form-group">
-              <label for="fullName">{{ 'CAREERS_PAGE.FORM.FULL_NAME' | translate }}</label>
-              <input id="fullName" type="text" formControlName="fullName"
-                [placeholder]="'CAREERS_PAGE.FORM.FULL_NAME_PLACEHOLDER' | translate"
-                [class.error]="f['fullName'].invalid && f['fullName'].touched">
-              @if (f['fullName'].invalid && f['fullName'].touched) {
-                <span class="error-msg">{{ 'CAREERS_PAGE.FORM.FULL_NAME_ERROR' | translate }}</span>
-              }
-            </div>
-            <div class="form-group">
-              <label for="email">{{ 'CAREERS_PAGE.FORM.EMAIL' | translate }}</label>
-              <input id="email" type="email" formControlName="email"
-                [placeholder]="'CAREERS_PAGE.FORM.EMAIL_PLACEHOLDER' | translate"
-                [class.error]="f['email'].invalid && f['email'].touched">
-              @if (f['email'].invalid && f['email'].touched) {
-                <span class="error-msg">{{ 'CAREERS_PAGE.FORM.EMAIL_ERROR' | translate }}</span>
-              }
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label for="phone">{{ 'CAREERS_PAGE.FORM.PHONE' | translate }}</label>
-            <input id="phone" type="text" formControlName="phone"
-              [placeholder]="'CAREERS_PAGE.FORM.PHONE_PLACEHOLDER' | translate"
-              [class.error]="f['phone'].invalid && f['phone'].touched">
-            @if (f['phone'].invalid && f['phone'].touched) {
-              <span class="error-msg">{{ 'CAREERS_PAGE.FORM.PHONE_ERROR' | translate }}</span>
-            }
-          </div>
-
-          <div class="form-row">
-            <div class="form-group">
-              <label for="city">{{ 'CAREERS_PAGE.FORM.CITY' | translate }}</label>
-              <input id="city" type="text" formControlName="city"
-                [placeholder]="'CAREERS_PAGE.FORM.CITY_PLACEHOLDER' | translate"
-                [class.error]="f['city'].invalid && f['city'].touched">
-              @if (f['city'].invalid && f['city'].touched) {
-                <span class="error-msg">{{ 'CAREERS_PAGE.FORM.CITY_ERROR' | translate }}</span>
-              }
-            </div>
-            <div class="form-group">
-              <label for="jobId">{{ 'CAREERS_PAGE.FORM.JOB' | translate }}</label>
-              <select id="jobId" formControlName="jobId"
-                [class.error]="f['jobId'].invalid && f['jobId'].touched">
-                <option value="">{{ 'CAREERS_PAGE.FORM.JOB_PLACEHOLDER' | translate }}</option>
-                @for (job of jobSummaries(); track job.jobId) {
-                  <option [value]="job.title">{{ job.title | currentLangEntry}}</option>
-                }
-              </select>
-              @if (f['jobId'].invalid && f['jobId'].touched) {
-                <span class="error-msg">{{ 'CAREERS_PAGE.FORM.JOB_ERROR' | translate }}</span>
-              }
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label for="cv">{{ 'CAREERS_PAGE.FORM.CV' | translate }}</label>
-            <input id="cv" type="file" accept=".pdf" (change)="onFileChange($event)"
-              [class.error]="!!fileError()">
-            @if (fileError()) {
-              <span class="error-msg">{{ 'CAREERS_PAGE.FORM.' + fileError() | translate }}</span>
-            }
-          </div>
-
-          <div class="form-group">
-            <label for="coverLetter">{{ 'CAREERS_PAGE.FORM.COVER_LETTER' | translate }}</label>
-            <textarea id="coverLetter" formControlName="coverLetter" rows="6"
-              [placeholder]="'CAREERS_PAGE.FORM.COVER_LETTER_PLACEHOLDER' | translate"
-              [class.error]="f['coverLetter'].invalid && f['coverLetter'].touched"></textarea>
-            @if (f['coverLetter'].invalid && f['coverLetter'].touched) {
-              <span class="error-msg">{{ 'CAREERS_PAGE.FORM.COVER_LETTER_ERROR' | translate }}</span>
-            }
-          </div>
-
-          <button type="submit" class="submit-btn" [disabled]="submitting()">
-            @if (submitting()) {
-              <span>{{ 'CAREERS_PAGE.FORM.SUBMITTING' | translate }}</span>
-            } @else {
-              <span>{{ 'CAREERS_PAGE.FORM.SUBMIT' | translate }}</span>
-            }
-          </button>
-        </form>
-      }
-    </div>
+    <app-application-form [jobs]="jobSummaries()" [selectedJobSlug]="selectedJobSlug()"></app-application-form>
   </div>
 </section>

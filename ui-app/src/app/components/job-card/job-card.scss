@@ -52,6 +52,15 @@
     color: var(--dark-gray);
     margin: 0;
     line-height: 1.3;
+
+    a {
+      color: inherit;
+      text-decoration: none;
+
+      &:hover {
+        color: var(--primary);
+      }
+    }
   }
 
   &__description {
@@ -79,18 +88,42 @@
     gap: 0.3rem;
   }
 
+  &__actions {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+
+  &__details-btn,
   &__apply-btn {
-    background: var(--primary);
-    color: var(--white);
-    border: none;
     padding: 0.55rem 1.4rem;
     border-radius: 25px;
     font-size: 0.9rem;
     font-weight: 600;
-    cursor: pointer;
     transition: var(--transition);
     font-family: inherit;
     white-space: nowrap;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  &__details-btn {
+    border: 1px solid rgba(172, 80, 85, 0.25);
+    background: rgba(172, 80, 85, 0.06);
+    color: var(--primary);
+
+    &:hover {
+      background: rgba(172, 80, 85, 0.12);
+      transform: translateY(-2px);
+    }
+  }
+
+  &__apply-btn {
+    background: var(--primary);
+    color: var(--white);
+    border: none;
 
     &:hover {
       background: var(--primary-dark);

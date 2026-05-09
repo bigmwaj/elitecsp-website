@@ -1,0 +1,113 @@
+@if (job(); as currentJob) {
+  <section class="job-hero">
+    <div class="container job-hero__content">
+      <a routerLink="/careers" class="job-hero__back-link">← {{ 'CAREERS_PAGE.JOB_DETAIL.BACK' | translate }}</a>
+      <div class="job-hero__eyebrow">
+        <span>{{ jobTypeKey(currentJob.type) | translate }}</span>
+        <span>{{ currentJob.location }}</span>
+      </div>
+      <h1>{{ getLocalizedText(currentJob.title) }}</h1>
+      <p>{{ getLocalizedText(currentJob.summary) }}</p>
+      <div class="job-hero__actions">
+        <a href="#apply" class="btn btn-primary">{{ 'CAREERS_PAGE.JOB_DETAIL.APPLY_CTA' | translate }}</a>
+        <a routerLink="/careers" class="btn btn-outline">{{ 'CAREERS_PAGE.JOB_DETAIL.BROWSE_CTA' | translate }}</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section overview-section">
+    <div class="container content-grid">
+      <article class="summary-card">
+        <span class="section-tag">{{ 'CAREERS_PAGE.JOB_DETAIL.SUMMARY_TAG' | translate }}</span>
+        <h2>{{ 'CAREERS_PAGE.JOB_DETAIL.SUMMARY_TITLE' | translate }}</h2>
+        <p>{{ getLocalizedText(currentJob.summary) }}</p>
+
+        <div class="summary-list">
+          <div class="summary-item">
+            <span>{{ 'CAREERS_PAGE.JOB_DETAIL.LOCATION' | translate }}</span>
+            <strong>{{ currentJob.location }}</strong>
+          </div>
+          <div class="summary-item">
+            <span>{{ 'CAREERS_PAGE.JOB_DETAIL.TYPE' | translate }}</span>
+            <strong>{{ jobTypeKey(currentJob.type) | translate }}</strong>
+          </div>
+          <div class="summary-item">
+            <span>{{ 'CAREERS_PAGE.JOB_DETAIL.COMPANY' | translate }}</span>
+            <strong>{{ currentJob.businessName }}</strong>
+          </div>
+        </div>
+      </article>
+
+      <article class="details-card">
+        <span class="section-tag">{{ 'CAREERS_PAGE.JOB_DETAIL.DETAILS_TAG' | translate }}</span>
+        <h2>{{ 'CAREERS_PAGE.JOB_DETAIL.DETAILS_TITLE' | translate }}</h2>
+
+        @if (hasDetailContent(currentJob.details)) {
+          @if (currentJob.details?.description) {
+            <p class="details-intro">{{ getLocalizedText(currentJob.details?.description) }}</p>
+          }
+
+          @if (getLocalizedList(currentJob.details?.responsibilities).length) {
+            <div class="detail-group">
+              <h3>{{ 'CAREERS_PAGE.JOB_DETAIL.RESPONSIBILITIES' | translate }}</h3>
+              <ul>
+                @for (item of getLocalizedList(currentJob.details?.responsibilities); track item) {
+                  <li>{{ item }}</li>
+                }
+              </ul>
+            </div>
+          }
+
+          @if (getLocalizedList(currentJob.details?.requirements).length) {
+            <div class="detail-group">
+              <h3>{{ 'CAREERS_PAGE.JOB_DETAIL.REQUIREMENTS' | translate }}</h3>
+              <ul>
+                @for (item of getLocalizedList(currentJob.details?.requirements); track item) {
+                  <li>{{ item }}</li>
+                }
+              </ul>
+            </div>
+          }
+
+          @if (getLocalizedList(currentJob.details?.benefits).length) {
+            <div class="detail-group">
+              <h3>{{ 'CAREERS_PAGE.JOB_DETAIL.BENEFITS' | translate }}</h3>
+              <ul>
+                @for (item of getLocalizedList(currentJob.details?.benefits); track item) {
+                  <li>{{ item }}</li>
+                }
+              </ul>
+            </div>
+          }
+        } @else {
+          <p class="details-intro">{{ 'CAREERS_PAGE.JOB_DETAIL.NO_DETAILS' | translate }}</p>
+        }
+      </article>
+    </div>
+  </section>
+
+  <section class="section apply-section" id="apply">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">{{ 'CAREERS_PAGE.JOB_DETAIL.APPLY_TAG' | translate }}</span>
+        <h2>{{ 'CAREERS_PAGE.JOB_DETAIL.APPLY_TITLE' | translate }}</h2>
+        <p>{{ 'CAREERS_PAGE.JOB_DETAIL.APPLY_SUBTITLE' | translate }}</p>
+      </div>
+
+      <app-application-form
+        [jobs]="[currentJob]"
+        [selectedJobSlug]="currentJob.slug"
+        [lockSelectedJob]="true"
+      ></app-application-form>
+    </div>
+  </section>
+} @else {
+  <section class="job-not-found">
+    <div class="container job-not-found__content">
+      <span class="section-tag">{{ 'CAREERS_PAGE.JOB_DETAIL.NOT_FOUND_TAG' | translate }}</span>
+      <h1>{{ 'CAREERS_PAGE.JOB_DETAIL.NOT_FOUND_TITLE' | translate }}</h1>
+      <p>{{ 'CAREERS_PAGE.JOB_DETAIL.NOT_FOUND_DESC' | translate }}</p>
+      <a routerLink="/careers" class="btn btn-primary">{{ 'CAREERS_PAGE.JOB_DETAIL.RETURN' | translate }}</a>
+    </div>
+  </section>
+}

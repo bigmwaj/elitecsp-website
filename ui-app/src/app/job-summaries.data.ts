@@ -1,9 +1,10 @@
-import { JobSummary } from "./models/job-summary.model";
+import { JobSummary } from './models/job-summary.model';
 
 export class JobData {
   static JOB_SUMMARIES: JobSummary[] = [
     {
       jobId: 1,
+      slug: 'consultant-ibm-maximo',
       businessName: 'Elite CSP',
       icon: '⚙️',
       type: 'full_time',
@@ -14,13 +15,14 @@ export class JobData {
       },
       location: 'Québec, QC (Hybrid)',
       summary: {
-        fr: 'Déployez et configurez les solutions IBM Maximo / MAS pour nos clients dans des secteurs variés.',
-        en: 'Deploy and configure IBM Maximo / MAS solutions for clients across a range of industries.'
+        fr: 'Déployez et configurez les solutions IBM Maximo / MAS pour accompagner les clients dans leurs projets de transformation des actifs.',
+        en: 'Deploy and configure IBM Maximo / MAS solutions to support clients through enterprise asset transformation projects.'
       },
       postedDate: new Date('2026-03-01')
     },
     {
       jobId: 2,
+      slug: 'developpeur-java',
       businessName: 'Elite CSP',
       icon: '☕',
       type: 'full_time',
@@ -31,13 +33,14 @@ export class JobData {
       },
       location: 'Remote, Canada',
       summary: {
-        fr: 'Développez des extensions et intégrations personnalisées pour les plateformes IBM Maximo et MAS.',
-        en: 'Build custom extensions and integrations for IBM Maximo and MAS platforms.'
+        fr: 'Concevez des intégrations et composants sur mesure qui enrichissent les environnements IBM Maximo et MAS de nos clients.',
+        en: 'Design integrations and custom components that extend our clients’ IBM Maximo and MAS environments.'
       },
       postedDate: new Date('2026-03-01')
     },
     {
       jobId: 3,
+      slug: 'analyste-fonctionnel',
       businessName: 'Elite CSP',
       icon: '📊',
       type: 'full_time',
@@ -48,13 +51,14 @@ export class JobData {
       },
       location: 'Québec, QC (Hybrid)',
       summary: {
-        fr: 'Analysez les besoins métier et traduisez-les en solutions EAM adaptées aux processus clients.',
-        en: 'Analyze business requirements and translate them into tailored EAM solutions aligned with client processes.'
+        fr: 'Analysez les besoins métier et transformez-les en solutions EAM concrètes, claires et alignées sur les opérations clients.',
+        en: 'Analyze business needs and translate them into clear, practical EAM solutions aligned with client operations.'
       },
       postedDate: new Date('2026-03-01')
     },
     {
       jobId: 4,
+      slug: 'ingenieur-devops',
       businessName: 'Elite CSP',
       icon: '🔧',
       type: 'full_time',
@@ -65,13 +69,14 @@ export class JobData {
       },
       location: 'Remote, Canada',
       summary: {
-        fr: 'Automatisez et gérez les pipelines CI/CD pour les déploiements IBM Maximo et les environnements MAS.',
-        en: 'Automate and manage CI/CD pipelines for IBM Maximo deployments and MAS cloud environments.'
+        fr: 'Automatisez les déploiements, sécurisez les environnements et améliorez la fiabilité des plateformes Maximo et MAS.',
+        en: 'Automate deployments, secure environments, and improve the reliability of Maximo and MAS platforms.'
       },
       postedDate: new Date('2026-03-01')
     },
     {
       jobId: 5,
+      slug: 'expert-telecom',
       businessName: 'Elite CSP',
       icon: '🛜',
       type: 'contract',
@@ -82,8 +87,8 @@ export class JobData {
       },
       location: 'Québec, QC (Hybrid)',
       summary: {
-        fr: 'Un expert en télécommunication conçoit et optimise les réseaux pour assurer des communications rapides, sécurisées et fiables.',
-        en: 'A telecommunications expert designs and optimizes networks to ensure fast, secure, and reliable communications.'
+        fr: 'Contribuez à la conception et à l’optimisation de réseaux critiques dans le cadre d’un mandat stratégique de longue durée.',
+        en: 'Contribute to the design and optimization of critical networks as part of a long-term strategic mandate.'
       },
       postedDate: new Date('2026-03-01'),
       expirationDate: new Date('2026-05-30')

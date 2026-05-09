@@ -1,0 +1,236 @@
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.section {
+  padding: 5rem 0;
+}
+
+.section-tag {
+  display: inline-block;
+  background: rgba(172, 80, 85, 0.1);
+  color: var(--primary);
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 0.3rem 1rem;
+  border-radius: 20px;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.job-hero,
+.job-not-found {
+  min-height: 50vh;
+  display: flex;
+  align-items: center;
+  background: linear-gradient(135deg, #1a0a0b 0%, #ac5055 50%, #c96b70 100%);
+  color: var(--white);
+}
+
+.job-hero__content,
+.job-not-found__content {
+  max-width: 860px;
+  padding-top: 6rem;
+  padding-bottom: 6rem;
+}
+
+.job-hero__back-link {
+  display: inline-block;
+  margin-bottom: 1.5rem;
+  color: rgba(255, 255, 255, 0.92);
+  text-decoration: none;
+  font-weight: 600;
+
+  &:hover {
+    color: var(--white);
+  }
+}
+
+.job-hero__eyebrow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+
+  span {
+    padding: 0.35rem 0.85rem;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.14);
+    font-size: 0.85rem;
+    font-weight: 600;
+  }
+}
+
+.job-hero,
+.job-not-found {
+  h1 {
+    font-size: clamp(2.2rem, 5vw, 3.6rem);
+    font-weight: 800;
+    line-height: 1.15;
+    margin: 0 0 1rem;
+  }
+
+  p {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.92);
+    margin: 0;
+  }
+}
+
+.job-hero__actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+}
+
+.btn {
+  padding: 0.85rem 2rem;
+  border-radius: 30px;
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: var(--transition);
+  display: inline-block;
+
+  &-primary {
+    background: var(--white);
+    color: var(--primary);
+
+    &:hover {
+      background: var(--light-gray);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    }
+  }
+
+  &-outline {
+    border: 2px solid var(--white);
+    color: var(--white);
+
+    &:hover {
+      background: var(--white);
+      color: var(--primary);
+      transform: translateY(-3px);
+    }
+  }
+}
+
+.overview-section {
+  background: var(--light-gray);
+}
+
+.content-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: 2rem;
+  align-items: start;
+
+  @media (max-width: 960px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.summary-card,
+.details-card {
+  background: var(--white);
+  border-radius: var(--border-radius);
+  padding: 2.25rem;
+  box-shadow: var(--shadow);
+}
+
+.summary-card,
+.details-card,
+.section-header {
+  h2 {
+    font-size: clamp(1.8rem, 3vw, 2.4rem);
+    font-weight: 800;
+    color: var(--dark-gray);
+    margin: 0.3rem 0 1rem;
+  }
+}
+
+.summary-card > p,
+.details-intro,
+.section-header p {
+  color: #666;
+  line-height: 1.7;
+}
+
+.summary-list {
+  display: grid;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.summary-item {
+  padding: 1rem 1.1rem;
+  background: rgba(172, 80, 85, 0.04);
+  border: 1px solid rgba(172, 80, 85, 0.08);
+  border-radius: 14px;
+
+  span {
+    display: block;
+    font-size: 0.8rem;
+    color: #777;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 0.35rem;
+  }
+
+  strong {
+    color: var(--dark-gray);
+    font-size: 1rem;
+  }
+}
+
+.detail-group + .detail-group {
+  margin-top: 2rem;
+}
+
+.detail-group h3 {
+  font-size: 1.1rem;
+  color: var(--dark-gray);
+  margin-bottom: 0.85rem;
+}
+
+.detail-group ul {
+  margin: 0;
+  padding-left: 1.2rem;
+  display: grid;
+  gap: 0.75rem;
+  color: #555;
+  line-height: 1.6;
+}
+
+.apply-section {
+  background: var(--white);
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 3rem;
+
+  p {
+    max-width: 640px;
+    margin: 0 auto;
+  }
+}
+
+.job-not-found__content {
+  text-align: center;
+
+  .section-tag {
+    background: rgba(255, 255, 255, 0.12);
+    color: var(--white);
+  }
+
+  p {
+    max-width: 620px;
+    margin: 0 auto 2rem;
+  }
+}

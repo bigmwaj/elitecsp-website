@@ -378,7 +378,7 @@
     },
     "JOBS": {
       "FULL_TIME": "Full-Time",
-      "PART_TIME": "Part-Time", 
+      "PART_TIME": "Part-Time",
       "CONTRACT": "Contract",
       "INTERNSHIP": "Internship"
     }
@@ -394,7 +394,7 @@
       "TITLE": "Submit Your Application",
       "SUBTITLE": "Fill out the form below to apply for one of our open positions."
     },
-    "APPLY_BTN": "Apply",    
+    "APPLY_BTN": "Apply",
     "EXPIREDATE": "(Expires on {{date}})",
     "FORM": {
       "FULL_NAME": "Full Name *",
@@ -412,9 +412,9 @@
       "JOB": "Desired Position *",
       "JOB_PLACEHOLDER": "Select a position...",
       "JOB_ERROR": "Please select a position",
-      "CV": "Curriculum Vitae (PDF) *",
-      "CV_ERROR": "Please upload your CV (PDF file required)",
-      "CV_TYPE_ERROR": "Only PDF files are accepted",
+      "CV": "Curriculum Vitae (PDF or DOC/DOCX) *",
+      "CV_ERROR": "Please upload your CV (PDF or DOC/DOCX file required)",
+      "CV_TYPE_ERROR": "Only PDF or DOC/DOCX files are accepted",
       "COVER_LETTER": "Cover Letter *",
       "COVER_LETTER_PLACEHOLDER": "Tell us about yourself and your interest in this position...",
       "COVER_LETTER_ERROR": "Please enter a cover letter (min. 50 characters)",
@@ -425,6 +425,30 @@
       "TITLE": "Application Submitted!",
       "DESC": "Thank you for your application. Our HR team will be in touch within the next few days.",
       "RESET": "Submit Another Application"
+    },
+    "DETAILS_BTN": "View details",
+    "JOB_DETAIL": {
+      "BACK": "Back to careers",
+      "APPLY_CTA": "Apply for this role",
+      "BROWSE_CTA": "Browse all jobs",
+      "SUMMARY_TAG": "Role overview",
+      "SUMMARY_TITLE": "Job summary",
+      "DETAILS_TAG": "What to expect",
+      "DETAILS_TITLE": "Job details",
+      "RESPONSIBILITIES": "Key responsibilities",
+      "REQUIREMENTS": "What we are looking for",
+      "BENEFITS": "Why join Elite CSP",
+      "LOCATION": "Location",
+      "TYPE": "Engagement type",
+      "COMPANY": "Company",
+      "NO_DETAILS": "Additional job details will be shared during the interview process.",
+      "APPLY_TAG": "Apply now",
+      "APPLY_TITLE": "Interested in this opportunity?",
+      "APPLY_SUBTITLE": "Submit your application below and our team will get back to you shortly.",
+      "NOT_FOUND_TAG": "Careers",
+      "NOT_FOUND_TITLE": "Job not found",
+      "NOT_FOUND_DESC": "The job posting you are looking for is unavailable or may have been removed.",
+      "RETURN": "View current openings"
     }
   },
   "PARTNERS": {

@@ -1,6 +1,3 @@
-import { JobSummary } from "./job-summary.model";
-
-
 export interface JobDetails {
   jobId: number;
   description?: {

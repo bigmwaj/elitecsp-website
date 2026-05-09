@@ -7,5 +7,6 @@ export const routes: Routes = [
   { path: 'contact', loadComponent: () => import('./pages/contact/contact').then(m => m.ContactComponent) },
   { path: 'partners', loadComponent: () => import('./pages/partners/partners').then(m => m.PartnersComponent) },
   { path: 'careers', loadComponent: () => import('./pages/careers/careers').then(m => m.CareersComponent) },
+  { path: 'careers/:slug', loadComponent: () => import('./pages/job-detail/job-detail').then(m => m.JobDetailComponent) },
   { path: '**', redirectTo: '' }
 ];

@@ -1,0 +1,175 @@
+.form-wrapper {
+  max-width: 780px;
+  margin: 0 auto;
+  background: var(--white);
+  border-radius: var(--border-radius);
+  padding: 2.5rem;
+  box-shadow: var(--shadow);
+
+  @media (max-width: 600px) {
+    padding: 1.5rem;
+  }
+}
+
+form {
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+
+    @media (max-width: 600px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.25rem;
+  }
+
+  label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--dark-gray);
+    margin-bottom: 0.5rem;
+  }
+
+  input[type='text'],
+  input[type='email'],
+  select,
+  textarea,
+  .selected-job {
+    padding: 0.75rem 1rem;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: inherit;
+    transition: var(--transition);
+    background: var(--white);
+    color: var(--text-color);
+  }
+
+  input[type='text'],
+  input[type='email'],
+  select,
+  textarea {
+    &:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(172, 80, 85, 0.1);
+    }
+
+    &.error {
+      border-color: #e53e3e;
+    }
+  }
+
+  input[type='file'] {
+    padding: 0.6rem 1rem;
+    border: 2px dashed #e2e8f0;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-family: inherit;
+    cursor: pointer;
+    transition: var(--transition);
+    background: #fafafa;
+    color: var(--text-color);
+
+    &:hover {
+      border-color: var(--primary);
+      background: rgba(172, 80, 85, 0.03);
+    }
+
+    &.error {
+      border-color: #e53e3e;
+    }
+  }
+
+  textarea {
+    resize: vertical;
+    min-height: 140px;
+  }
+}
+
+.selected-job {
+  display: flex;
+  align-items: center;
+  min-height: 54px;
+  background: rgba(172, 80, 85, 0.05);
+  border-color: rgba(172, 80, 85, 0.16);
+  font-weight: 600;
+}
+
+.error-msg {
+  color: #e53e3e;
+  font-size: 0.8rem;
+  margin-top: 0.35rem;
+}
+
+.submit-btn {
+  width: 100%;
+  padding: 1rem;
+  background: var(--primary);
+  color: var(--white);
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: var(--transition);
+  font-family: inherit;
+  margin-top: 0.5rem;
+
+  &:hover:not(:disabled) {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(172, 80, 85, 0.3);
+  }
+
+  &:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
+}
+
+.success-message {
+  text-align: center;
+  padding: 3rem 2rem;
+
+  .success-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+  }
+
+  h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--dark-gray);
+    margin-bottom: 0.75rem;
+  }
+
+  p {
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+  }
+}
+
+.btn-reset {
+  background: none;
+  border: 2px solid var(--primary);
+  color: var(--primary);
+  padding: 0.75rem 2rem;
+  border-radius: 25px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  font-family: inherit;
+
+  &:hover {
+    background: var(--primary);
+    color: var(--white);
+  }
+}

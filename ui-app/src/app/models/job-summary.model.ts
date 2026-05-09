@@ -1,6 +1,7 @@
 export interface JobSummary {
   businessName: string;
   jobId: number;
+  slug: string;
   icon: string;
   type: string;
   category: string;
@@ -15,5 +16,4 @@ export interface JobSummary {
   };
   postedDate: Date | null;
   expirationDate?: Date | null;
-  
 }

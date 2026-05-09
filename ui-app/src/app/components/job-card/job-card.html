@@ -2,25 +2,34 @@
   <div class="job-card__header">
     <span class="job-card__icon" aria-hidden="true">{{ jobSummary().icon }}</span>
     <div class="job-card__meta">
-      <span class="job-card__type">{{ jobSummary().type | translate}}</span>
+      <span class="job-card__type">{{ jobTypeKey() | translate }}</span>
     </div>
   </div>
 
-  <h3 class="job-card__title">{{ jobSummary().title | currentLangEntry }}</h3>
+  <h3 class="job-card__title">
+    <a [routerLink]="['/careers', jobSummary().slug]">{{ jobSummary().title | currentLangEntry }}</a>
+  </h3>
   <p class="job-card__description">{{ jobSummary().summary | currentLangEntry }}</p>
+
   @if (jobSummary().expirationDate && available(jobSummary().expirationDate!)) {
     <div class="job-card__expired">
-      {{ 'CAREERS_PAGE.EXPIREDATE' | translate : { date: jobSummary().expirationDate?.getFullYear() }  }}
+      {{ 'CAREERS_PAGE.EXPIREDATE' | translate : { date: jobSummary().expirationDate?.getFullYear() } }}
     </div>
-  }@else {
-    <div class="job-card__expired"><br/></div>
+  } @else {
+    <div class="job-card__expired"><br /></div>
   }
+
   <div class="job-card__footer">
     <span class="job-card__location">
       <span aria-hidden="true">📍</span> {{ jobSummary().location }}
     </span>
-    <button class="job-card__apply-btn" (click)="onApply()">
-      {{ 'CAREERS_PAGE.APPLY_BTN' | translate }}
-    </button>
+    <div class="job-card__actions">
+      <a class="job-card__details-btn" [routerLink]="['/careers', jobSummary().slug]">
+        {{ 'CAREERS_PAGE.DETAILS_BTN' | translate }}
+      </a>
+      <button type="button" class="job-card__apply-btn" (click)="onApply()">
+        {{ 'CAREERS_PAGE.APPLY_BTN' | translate }}
+      </button>
+    </div>
   </div>
 </div>

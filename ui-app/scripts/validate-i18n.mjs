@@ -3,6 +3,7 @@ import path from 'node:path';
 
 const projectRoot = path.resolve(process.cwd());
 const srcRoot = path.join(projectRoot, 'src');
+// i18n files now live in the canonical non-versioned static folder.
 const localesRoot = path.join(projectRoot, 'public/static/i18n');
 const locales = ['en', 'fr'];
 // Key extraction is intentionally aligned with current governance (uppercase dotted namespaces).

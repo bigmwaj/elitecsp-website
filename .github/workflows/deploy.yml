@@ -106,6 +106,7 @@ jobs:
           LEGACY_DIR="${{ env.LEGACY_FRONTEND_STATIC_DIR }}"
           SEARCH_ROOT="${{ env.FRONTEND_WORKDIR }}"
           MATCH_FILE="$(mktemp)"
+          # Match legacy path-like usage only: src/assets, public/assets, or string/file references to /assets/.
           LEGACY_PATH_PATTERN="((src|public)/${LEGACY_DIR}(/|$)|[\"'(/]${LEGACY_DIR}/)"
 
           grep -RInE --include='*.ts' --include='*.html' --include='*.scss' --include='*.css' --include='*.json' --include='*.mjs' \

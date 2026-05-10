@@ -3,7 +3,7 @@
 ## How to use
 
 1. Open the Contact page.
-2. Fill required UI fields: name, email, phone, subject, message (the backend currently enforces all except `phone`).
+2. Fill the prompted UI fields: name, email, phone, subject, message.
 3. Optionally add company details.
 4. Submit the form.
 

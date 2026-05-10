@@ -82,6 +82,15 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Initialize ASSET_DIR
+        id: init
+        run: |
+          set -euo pipefail
+          DATE_PREFIX="$(date -u +%Y-%m-%d-%H-%M)"
+          ASSET_DIR="assets-${DATE_PREFIX}"
+          echo "asset_dir=${ASSET_DIR}" >> $GITHUB_OUTPUT
+          echo "Generated ASSET_DIR: ${ASSET_DIR}"
+
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
@@ -92,6 +101,25 @@ jobs:
       - name: Install dependencies
         working-directory: ${{ env.FRONTEND_WORKDIR }}
         run: npm ci
+
+      - name: Generate and inject ASSET_DIR
+        working-directory: ${{ env.FRONTEND_WORKDIR }}
+        run: |
+          set -euo pipefail
+          ASSET_DIR="${{ steps.init.outputs.asset_dir }}"
+          echo "Using ASSET_DIR: ${ASSET_DIR}"
+          
+          # Update asset-path.util.ts with the ASSET_DIR value
+          cat > src/app/utils/asset-path.util.ts <<EOF
+          export const ASSETS_FOLDER = '${ASSET_DIR}';
+          
+          export function assetPath(relativePath: string): string {
+            const normalizedPath = relativePath.replace(/^\/+/, '');
+            return \`\${ASSETS_FOLDER}/\${normalizedPath}\`;
+          }
+          EOF
+          
+          echo "Updated asset-path.util.ts with ASSETS_FOLDER='${ASSET_DIR}'"
 
       - name: Build Angular app (production)
         working-directory: ${{ env.FRONTEND_WORKDIR }}
@@ -116,6 +144,24 @@ jobs:
 
           echo "Validated Angular build output:"
           ls -lah "${DIST_DIR}" | head -n 40
+
+      - name: Rename assets folder with date prefix
+        run: |
+          set -euo pipefail
+          
+          ASSET_DIR="${{ steps.init.outputs.asset_dir }}"
+          DIST_DIR="${{ env.FRONTEND_DIST_DIR }}"
+          ASSETS_DIR="${DIST_DIR}/assets"
+          NEW_ASSETS_DIR="${DIST_DIR}/${ASSET_DIR}"
+          
+          if [ ! -d "${ASSETS_DIR}" ]; then
+            echo "Assets directory not found: ${ASSETS_DIR}"
+            exit 1
+          fi
+          
+          mv "${ASSETS_DIR}" "${NEW_ASSETS_DIR}"
+          echo "Renamed assets folder to: $(basename ${NEW_ASSETS_DIR})"
+          ls -lah "${DIST_DIR}"
 
       - name: Upload Angular build artifact
         uses: actions/upload-artifact@v4

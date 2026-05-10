@@ -32,8 +32,8 @@ export class ContactComponent implements OnInit {
   });
 
   ngOnInit() {
-    this.title.setTitle(this.translate.instant('CONTACT.META.TITLE'));
-    this.meta.updateTag({ name: 'description', content: this.translate.instant('CONTACT.META.DESCRIPTION') });
+    this.title.setTitle(this.translate.instant('PAGE.CONTACT.META.TITLE'));
+    this.meta.updateTag({ name: 'description', content: this.translate.instant('PAGE.CONTACT.META.DESCRIPTION') });
   }
 
   get f() { return this.form.controls; }

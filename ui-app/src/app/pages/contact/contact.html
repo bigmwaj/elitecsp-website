@@ -1,4 +1,4 @@
-<app-hero [title]="'HERO.CONTACT.TITLE'" [subtitle]="'HERO.CONTACT.SUBTITLE'" [ctaText]="'HERO.CONTACT.CTA'"
+<app-hero [title]="'PAGE.CONTACT.HERO.TITLE'" [subtitle]="'PAGE.CONTACT.HERO.SUBTITLE'" [ctaText]="'PAGE.CONTACT.HERO.CTA'"
   ctaLink="/services" [compact]="true">
 </app-hero>
 
@@ -6,37 +6,37 @@
   <div class="container">
     <div class="contact-grid">
       <div class="contact-info">
-        <span class="section-tag">{{ 'CONTACT_PAGE.INFO.TAG' | translate }}</span>
-        <h2>{{ 'CONTACT_PAGE.INFO.TITLE' | translate }}</h2>
-        <p>{{ 'CONTACT_PAGE.INFO.DESC' | translate }}</p>
+        <span class="section-tag">{{ 'PAGE.CONTACT.INFO.TAG' | translate }}</span>
+        <h2>{{ 'PAGE.CONTACT.INFO.TITLE' | translate }}</h2>
+        <p>{{ 'PAGE.CONTACT.INFO.DESC' | translate }}</p>
 
         <div class="info-items">
           <div class="info-item">
             <span class="info-icon">📧</span>
             <div>
-              <strong>{{ 'CONTACT_PAGE.INFO.EMAIL' | translate }}</strong>
-              <span>contact&#64;eliteproservice-consulting.ca</span>
+              <strong>{{ 'PAGE.CONTACT.INFO.EMAIL' | translate }}</strong>
+              <span>{{ 'SHARED.CONTACT.EMAIL_VALUE' | translate }}</span>
             </div>
           </div>
           <div class="info-item">
             <span class="info-icon">📞</span>
             <div>
-              <strong>{{ 'CONTACT_PAGE.INFO.PHONE' | translate }}</strong>
-              <span>+1 (418) 255-2407</span>
+              <strong>{{ 'PAGE.CONTACT.INFO.PHONE' | translate }}</strong>
+              <span>{{ 'SHARED.CONTACT.PHONE_VALUE' | translate }}</span>
             </div>
           </div>
           <div class="info-item">
             <span class="info-icon">📍</span>
             <div>
-              <strong>{{ 'CONTACT_PAGE.INFO.OFFICE' | translate }}</strong>
-              <span>Québec, QC, Canada</span>
+              <strong>{{ 'PAGE.CONTACT.INFO.OFFICE' | translate }}</strong>
+              <span>{{ 'SHARED.CONTACT.OFFICE_VALUE' | translate }}</span>
             </div>
           </div>
           <div class="info-item">
             <span class="info-icon">🕒</span>
             <div>
-              <strong>{{ 'CONTACT_PAGE.INFO.HOURS_LABEL' | translate }}</strong>
-              <span>{{ 'CONTACT_PAGE.INFO.HOURS' | translate }}</span>
+              <strong>{{ 'PAGE.CONTACT.INFO.HOURS_LABEL' | translate }}</strong>
+              <span>{{ 'PAGE.CONTACT.INFO.HOURS' | translate }}</span>
             </div>
           </div>
         </div>
@@ -46,79 +46,79 @@
         @if (submitted()) {
         <div class="success-message">
           <div class="success-icon">✅</div>
-          <h3>{{ 'CONTACT_PAGE.SUCCESS.TITLE' | translate }}</h3>
-          <p>{{ 'CONTACT_PAGE.SUCCESS.DESC' | translate }}</p>
-          <button (click)="resetForm()" class="btn-reset">{{ 'CONTACT_PAGE.SUCCESS.RESET' | translate }}</button>
+          <h3>{{ 'PAGE.CONTACT.SUCCESS.TITLE' | translate }}</h3>
+          <p>{{ 'PAGE.CONTACT.SUCCESS.DESC' | translate }}</p>
+          <button (click)="resetForm()" class="btn-reset">{{ 'PAGE.CONTACT.SUCCESS.RESET' | translate }}</button>
         </div>
         } @else {
         <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
           <div class="form-row">
             <div class="form-group">
-              <label for="name">{{ 'CONTACT_PAGE.FORM.NAME' | translate }}</label>
+              <label for="name">{{ 'PAGE.CONTACT.FORM.NAME' | translate }}</label>
               <input id="name" type="text" formControlName="name"
-                [placeholder]="'CONTACT_PAGE.FORM.NAME_PLACEHOLDER' | translate"
+                [placeholder]="'PAGE.CONTACT.FORM.NAME_PLACEHOLDER' | translate"
                 [class.error]="f['name'].invalid && f['name'].touched">
               @if (f['name'].invalid && f['name'].touched) {
-              <span class="error-msg">{{ 'CONTACT_PAGE.FORM.NAME_ERROR' | translate }}</span>
+              <span class="error-msg">{{ 'PAGE.CONTACT.FORM.NAME_ERROR' | translate }}</span>
               }
             </div>
             <div class="form-group">
-              <label for="email">{{ 'CONTACT_PAGE.FORM.EMAIL' | translate }}</label>
+              <label for="email">{{ 'PAGE.CONTACT.FORM.EMAIL' | translate }}</label>
               <input id="email" type="email" formControlName="email"
-                [placeholder]="'CONTACT_PAGE.FORM.EMAIL_PLACEHOLDER' | translate"
+                [placeholder]="'PAGE.CONTACT.FORM.EMAIL_PLACEHOLDER' | translate"
                 [class.error]="f['email'].invalid && f['email'].touched">
               @if (f['email'].invalid && f['email'].touched) {
-              <span class="error-msg">{{ 'CONTACT_PAGE.FORM.EMAIL_ERROR' | translate }}</span>
+              <span class="error-msg">{{ 'PAGE.CONTACT.FORM.EMAIL_ERROR' | translate }}</span>
               }
             </div>
           </div>
 
           <div class="form-group">
-            <label for="phone">{{ 'CONTACT_PAGE.FORM.PHONE' | translate }}</label>
+            <label for="phone">{{ 'PAGE.CONTACT.FORM.PHONE' | translate }}</label>
             <input id="phone" type="text" formControlName="phone"
-              [placeholder]="'CONTACT_PAGE.FORM.PHONE_PLACEHOLDER' | translate"
+              [placeholder]="'PAGE.CONTACT.FORM.PHONE_PLACEHOLDER' | translate"
               [class.error]="f['phone'].invalid && f['phone'].touched">
             @if (f['phone'].invalid && f['phone'].touched) {
-            <span class="error-msg">{{ 'CONTACT_PAGE.FORM.PHONE_ERROR' | translate }}</span>
+            <span class="error-msg">{{ 'PAGE.CONTACT.FORM.PHONE_ERROR' | translate }}</span>
             }
           </div>
 
           <div class="form-group">
-            <label for="company">{{ 'CONTACT_PAGE.FORM.COMPANY' | translate }}</label>
+            <label for="company">{{ 'PAGE.CONTACT.FORM.COMPANY' | translate }}</label>
             <input id="company" type="text" formControlName="company"
-              [placeholder]="'CONTACT_PAGE.FORM.COMPANY_PLACEHOLDER' | translate">
+              [placeholder]="'PAGE.CONTACT.FORM.COMPANY_PLACEHOLDER' | translate">
           </div>
 
           <div class="form-group">
-            <label for="subject">{{ 'CONTACT_PAGE.FORM.SUBJECT' | translate }}</label>
+            <label for="subject">{{ 'PAGE.CONTACT.FORM.SUBJECT' | translate }}</label>
             <select id="subject" formControlName="subject" [class.error]="f['subject'].invalid && f['subject'].touched">
-              <option value="">{{ 'CONTACT_PAGE.FORM.SUBJECT_PLACEHOLDER' | translate }}</option>
-              <option value="implementation">{{ 'CONTACT_PAGE.FORM.SUBJECT_IMPL' | translate }}</option>
-              <option value="integration">{{ 'CONTACT_PAGE.FORM.SUBJECT_INTEG' | translate }}</option>
-              <option value="development">{{ 'CONTACT_PAGE.FORM.SUBJECT_DEV' | translate }}</option>
-              <option value="support">{{ 'CONTACT_PAGE.FORM.SUBJECT_SUPPORT' | translate }}</option>
-              <option value="other">{{ 'CONTACT_PAGE.FORM.SUBJECT_OTHER' | translate }}</option>
+              <option value="">{{ 'PAGE.CONTACT.FORM.SUBJECT_PLACEHOLDER' | translate }}</option>
+              <option value="implementation">{{ 'PAGE.CONTACT.FORM.SUBJECT_IMPL' | translate }}</option>
+              <option value="integration">{{ 'PAGE.CONTACT.FORM.SUBJECT_INTEG' | translate }}</option>
+              <option value="development">{{ 'PAGE.CONTACT.FORM.SUBJECT_DEV' | translate }}</option>
+              <option value="support">{{ 'PAGE.CONTACT.FORM.SUBJECT_SUPPORT' | translate }}</option>
+              <option value="other">{{ 'PAGE.CONTACT.FORM.SUBJECT_OTHER' | translate }}</option>
             </select>
             @if (f['subject'].invalid && f['subject'].touched) {
-            <span class="error-msg">{{ 'CONTACT_PAGE.FORM.SUBJECT_ERROR' | translate }}</span>
+            <span class="error-msg">{{ 'PAGE.CONTACT.FORM.SUBJECT_ERROR' | translate }}</span>
             }
           </div>
 
           <div class="form-group">
-            <label for="message">{{ 'CONTACT_PAGE.FORM.MESSAGE' | translate }}</label>
+            <label for="message">{{ 'PAGE.CONTACT.FORM.MESSAGE' | translate }}</label>
             <textarea id="message" formControlName="message" rows="5"
-              [placeholder]="'CONTACT_PAGE.FORM.MESSAGE_PLACEHOLDER' | translate"
+              [placeholder]="'PAGE.CONTACT.FORM.MESSAGE_PLACEHOLDER' | translate"
               [class.error]="f['message'].invalid && f['message'].touched"></textarea>
             @if (f['message'].invalid && f['message'].touched) {
-            <span class="error-msg">{{ 'CONTACT_PAGE.FORM.MESSAGE_ERROR' | translate }}</span>
+            <span class="error-msg">{{ 'PAGE.CONTACT.FORM.MESSAGE_ERROR' | translate }}</span>
             }
           </div>
 
           <button type="submit" class="submit-btn" [disabled]="submitting()">
             @if (submitting()) {
-            <span>{{ 'CONTACT_PAGE.FORM.SENDING' | translate }}</span>
+            <span>{{ 'PAGE.CONTACT.FORM.SENDING' | translate }}</span>
             } @else {
-            <span>{{ 'CONTACT_PAGE.FORM.SUBMIT' | translate }}</span>
+            <span>{{ 'PAGE.CONTACT.FORM.SUBMIT' | translate }}</span>
             }
           </button>
         </form>

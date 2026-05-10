@@ -17,7 +17,7 @@ export class AboutComponent implements OnInit {
   private translate = inject(TranslateService);
 
   ngOnInit() {
-    this.title.setTitle(this.translate.instant('ABOUT.META.TITLE'));
-    this.meta.updateTag({ name: 'description', content: this.translate.instant('ABOUT.META.DESCRIPTION') });
+    this.title.setTitle(this.translate.instant('PAGE.ABOUT.META.TITLE'));
+    this.meta.updateTag({ name: 'description', content: this.translate.instant('PAGE.ABOUT.META.DESCRIPTION') });
   }
 }

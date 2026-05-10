@@ -13,7 +13,7 @@
 
   @if (jobSummary().expirationDate && available(jobSummary().expirationDate!)) {
     <div class="job-card__expired">
-      {{ 'CAREERS_PAGE.EXPIREDATE' | translate : { date: jobSummary().expirationDate?.getFullYear() } }}
+      {{ 'PAGE.CAREERS.EXPIREDATE' | translate : { date: jobSummary().expirationDate?.getFullYear() } }}
     </div>
   }
 
@@ -23,10 +23,10 @@
     </span>
     <div class="job-card__actions">
       <a class="job-card__details-btn" [routerLink]="['/careers', jobSummary().slug]">
-        {{ 'CAREERS_PAGE.DETAILS_BTN' | translate }}
+        {{ 'PAGE.CAREERS.DETAILS_BTN' | translate }}
       </a>
       <button type="button" class="job-card__apply-btn" (click)="onApply()">
-        {{ 'CAREERS_PAGE.APPLY_BTN' | translate }}
+        {{ 'PAGE.CAREERS.APPLY_BTN' | translate }}
       </button>
     </div>
   </div>

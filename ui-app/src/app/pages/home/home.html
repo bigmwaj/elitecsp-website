@@ -1,9 +1,9 @@
 <app-hero
-  [title]="'HERO.HOME.TITLE'"
-  [subtitle]="'HERO.HOME.SUBTITLE'"
-  [ctaText]="'HERO.HOME.CTA'"
+  [title]="'PAGE.HOME.HERO.TITLE'"
+  [subtitle]="'PAGE.HOME.HERO.SUBTITLE'"
+  [ctaText]="'PAGE.HOME.HERO.CTA'"
   ctaLink="/contact"
-  [secondaryCtaText]="'HERO.HOME.SECONDARY_CTA'"
+  [secondaryCtaText]="'PAGE.HOME.HERO.SECONDARY_CTA'"
   secondaryCtaLink="/services">
 </app-hero>
 
@@ -11,9 +11,9 @@
 <section class="section maintenance-services services-section">
   <div class="container">
     <div class="section-header">
-      <span class="section-tag">{{ 'HOME.SERVICES_SECTION.MAINTENANCE.TAG' | translate }}</span>
-      <h2>{{ 'HOME.SERVICES_SECTION.MAINTENANCE.TITLE' | translate }}</h2>
-      <p>{{ 'HOME.SERVICES_SECTION.MAINTENANCE.SUBTITLE' | translate }}</p>
+      <span class="section-tag">{{ 'PAGE.HOME.SERVICES_SECTION.MAINTENANCE.TAG' | translate }}</span>
+      <h2>{{ 'PAGE.HOME.SERVICES_SECTION.MAINTENANCE.TITLE' | translate }}</h2>
+      <p>{{ 'PAGE.HOME.SERVICES_SECTION.MAINTENANCE.SUBTITLE' | translate }}</p>
     </div>
     <div class="services-grid">
       @for (service of maintenanceServices(); track service.id) {
@@ -27,9 +27,9 @@
 <section class="section maximo-services services-section">
   <div class="container">
     <div class="section-header">
-      <span class="section-tag">{{ 'HOME.SERVICES_SECTION.MAXIMO.TAG' | translate }}</span>
-      <h2>{{ 'HOME.SERVICES_SECTION.MAXIMO.TITLE' | translate }}</h2>
-      <p>{{ 'HOME.SERVICES_SECTION.MAXIMO.SUBTITLE' | translate }}</p>
+      <span class="section-tag">{{ 'PAGE.HOME.SERVICES_SECTION.MAXIMO.TAG' | translate }}</span>
+      <h2>{{ 'PAGE.HOME.SERVICES_SECTION.MAXIMO.TITLE' | translate }}</h2>
+      <p>{{ 'PAGE.HOME.SERVICES_SECTION.MAXIMO.SUBTITLE' | translate }}</p>
     </div>
     <div class="services-grid">
       @for (service of maximoServices(); track service.id) {
@@ -44,34 +44,34 @@
   <div class="container">
     <div class="value-grid">
       <div class="value-content">
-        <span class="section-tag">{{ 'HOME.VALUE_SECTION.TAG' | translate }}</span>
-        <h2>{{ 'HOME.VALUE_SECTION.TITLE' | translate }}</h2>
-        <p>{{ 'HOME.VALUE_SECTION.DESC' | translate }}</p>
+        <span class="section-tag">{{ 'PAGE.HOME.VALUE_SECTION.TAG' | translate }}</span>
+        <h2>{{ 'PAGE.HOME.VALUE_SECTION.TITLE' | translate }}</h2>
+        <p>{{ 'PAGE.HOME.VALUE_SECTION.DESC' | translate }}</p>
         <ul class="value-list">
-          <li><span class="icon">🏆</span> {{ 'HOME.VALUE_SECTION.POINT_1' | translate }}</li>
-          <li><span class="icon">🌍</span> {{ 'HOME.VALUE_SECTION.POINT_2' | translate }}</li>
-          <li><span class="icon">⚡</span> {{ 'HOME.VALUE_SECTION.POINT_3' | translate }}</li>
-          <li><span class="icon">🔒</span> {{ 'HOME.VALUE_SECTION.POINT_4' | translate }}</li>
-          <li><span class="icon">🇨🇦</span> {{ 'HOME.VALUE_SECTION.POINT_5' | translate }}</li>
+          <li><span class="icon">🏆</span> {{ 'PAGE.HOME.VALUE_SECTION.POINT_1' | translate }}</li>
+          <li><span class="icon">🌍</span> {{ 'PAGE.HOME.VALUE_SECTION.POINT_2' | translate }}</li>
+          <li><span class="icon">⚡</span> {{ 'PAGE.HOME.VALUE_SECTION.POINT_3' | translate }}</li>
+          <li><span class="icon">🔒</span> {{ 'PAGE.HOME.VALUE_SECTION.POINT_4' | translate }}</li>
+          <li><span class="icon">🇨🇦</span> {{ 'PAGE.HOME.VALUE_SECTION.POINT_5' | translate }}</li>
         </ul>
-        <a routerLink="/about" class="btn-link">{{ 'HOME.VALUE_SECTION.LEARN_MORE' | translate }}</a>
+        <a routerLink="/about" class="btn-link">{{ 'PAGE.HOME.VALUE_SECTION.LEARN_MORE' | translate }}</a>
       </div>
       <div class="value-stats">
         <div class="stat">
           <span class="stat-number">50+</span>
-          <span class="stat-label">{{ 'HOME.STATS.PROJECTS' | translate }}</span>
+          <span class="stat-label">{{ 'PAGE.HOME.STATS.PROJECTS' | translate }}</span>
         </div>
         <div class="stat">
           <span class="stat-number">15+</span>
-          <span class="stat-label">{{ 'HOME.STATS.YEARS' | translate }}</span>
+          <span class="stat-label">{{ 'PAGE.HOME.STATS.YEARS' | translate }}</span>
         </div>
         <div class="stat">
           <span class="stat-number">98%</span>
-          <span class="stat-label">{{ 'HOME.STATS.SATISFACTION' | translate }}</span>
+          <span class="stat-label">{{ 'PAGE.HOME.STATS.SATISFACTION' | translate }}</span>
         </div>
         <div class="stat">
           <span class="stat-number">24/7</span>
-          <span class="stat-label">{{ 'HOME.STATS.SUPPORT' | translate }}</span>
+          <span class="stat-label">{{ 'PAGE.HOME.STATS.SUPPORT' | translate }}</span>
         </div>
       </div>
     </div>
@@ -82,9 +82,9 @@
 <section class="section process-section">
   <div class="container">
     <div class="section-header">
-      <span class="section-tag">{{ 'HOME.PROCESS_SECTION.TAG' | translate }}</span>
-      <h2>{{ 'HOME.PROCESS_SECTION.TITLE' | translate }}</h2>
-      <p>{{ 'HOME.PROCESS_SECTION.SUBTITLE' | translate }}</p>
+      <span class="section-tag">{{ 'PAGE.HOME.PROCESS_SECTION.TAG' | translate }}</span>
+      <h2>{{ 'PAGE.HOME.PROCESS_SECTION.TITLE' | translate }}</h2>
+      <p>{{ 'PAGE.HOME.PROCESS_SECTION.SUBTITLE' | translate }}</p>
     </div>
     <div class="process-grid">
       @for (step of processSteps(); track step.step) {
@@ -103,9 +103,9 @@
 <section class="section testimonials-section">
   <div class="container">
     <div class="section-header">
-      <span class="section-tag">{{ 'HOME.TESTIMONIALS_SECTION.TAG' | translate }}</span>
-      <h2>{{ 'HOME.TESTIMONIALS_SECTION.TITLE' | translate }}</h2>
-      <p>{{ 'HOME.TESTIMONIALS_SECTION.SUBTITLE' | translate }}</p>
+      <span class="section-tag">{{ 'PAGE.HOME.TESTIMONIALS_SECTION.TAG' | translate }}</span>
+      <h2>{{ 'PAGE.HOME.TESTIMONIALS_SECTION.TITLE' | translate }}</h2>
+      <p>{{ 'PAGE.HOME.TESTIMONIALS_SECTION.SUBTITLE' | translate }}</p>
     </div>
     <div class="testimonials-grid">
       @for (t of testimonials(); track t.id) {
@@ -135,9 +135,9 @@
 <section class="section partners-home-section">
   <div class="container">
     <div class="section-header">
-      <span class="section-tag">{{ 'HOME.PARTNERS_SECTION.TAG' | translate }}</span>
-      <h2>{{ 'HOME.PARTNERS_SECTION.TITLE' | translate }}</h2>
-      <p>{{ 'HOME.PARTNERS_SECTION.SUBTITLE' | translate }}</p>
+      <span class="section-tag">{{ 'PAGE.HOME.PARTNERS_SECTION.TAG' | translate }}</span>
+      <h2>{{ 'PAGE.HOME.PARTNERS_SECTION.TITLE' | translate }}</h2>
+      <p>{{ 'PAGE.HOME.PARTNERS_SECTION.SUBTITLE' | translate }}</p>
     </div>
     <div class="partners-grid">
       @for (partner of partners(); track partner.id) {
@@ -145,7 +145,7 @@
       }
     </div>
     <div class="partners-cta">
-      <a routerLink="/partners" class="btn-primary">{{ 'HOME.PARTNERS_SECTION.CTA' | translate }}</a>
+      <a routerLink="/partners" class="btn-primary">{{ 'PAGE.HOME.PARTNERS_SECTION.CTA' | translate }}</a>
     </div>
   </div>
 </section>

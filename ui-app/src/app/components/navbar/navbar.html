@@ -1,21 +1,21 @@
 <nav [class.scrolled]="scrolled()">
   <div class="nav-container">
     <a class="logo" routerLink="/" (click)="closeMenu()">
-      <img src="assets/images/logo.svg" alt="Elite CSP" class="logo-img" width="40" height="40" loading="lazy">
-      <span class="logo-text">Elite <strong>CSP</strong></span>
+      <img src="assets/images/logo.svg" [attr.alt]="'COMMON.COMPANY_NAME' | translate" class="logo-img" width="40" height="40" loading="lazy">
+      <span class="logo-text">{{ 'COMMON.COMPANY_NAME' | translate }}</span>
     </a>
 
-    <button class="hamburger" (click)="toggleMenu()" [class.open]="menuOpen()" [attr.aria-label]="'NAV.TOGGLE_MENU' | translate">
+    <button class="hamburger" (click)="toggleMenu()" [class.open]="menuOpen()" [attr.aria-label]="'MENU.TOGGLE_MENU' | translate">
       <span></span><span></span><span></span>
     </button>
 
     <div class="nav-links" [class.open]="menuOpen()">
-      <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" (click)="closeMenu()">{{ 'NAV.LABEL.HOME' | translate }}</a>
-      <a routerLink="/{{'NAV.LINK.SERVICES' | translate}}" routerLinkActive="active" (click)="closeMenu()">{{ 'NAV.LABEL.SERVICES' | translate }}</a>
-      <a routerLink="/{{'NAV.LINK.ABOUT' | translate}}" routerLinkActive="active" (click)="closeMenu()">{{ 'NAV.LABEL.ABOUT' | translate }}</a>
-      <a routerLink="/{{'NAV.LINK.PARTNERS' | translate}}" routerLinkActive="active" (click)="closeMenu()">{{ 'NAV.LABEL.PARTNERS' | translate }}</a>
-      <a routerLink="/{{'NAV.LINK.CAREERS' | translate}}" routerLinkActive="active" (click)="closeMenu()">{{ 'NAV.LABEL.CAREERS' | translate }}</a>
-      <a routerLink="/{{'NAV.LINK.CONTACT' | translate}}" routerLinkActive="active" (click)="closeMenu()" class="nav-cta">{{ 'NAV.LABEL.CONTACT' | translate }}</a>
+      <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" (click)="closeMenu()">{{ 'MENU.LABEL.HOME' | translate }}</a>
+      <a routerLink="/{{'MENU.LINK.SERVICES' | translate}}" routerLinkActive="active" (click)="closeMenu()">{{ 'MENU.LABEL.SERVICES' | translate }}</a>
+      <a routerLink="/{{'MENU.LINK.ABOUT' | translate}}" routerLinkActive="active" (click)="closeMenu()">{{ 'MENU.LABEL.ABOUT' | translate }}</a>
+      <a routerLink="/{{'MENU.LINK.PARTNERS' | translate}}" routerLinkActive="active" (click)="closeMenu()">{{ 'MENU.LABEL.PARTNERS' | translate }}</a>
+      <a routerLink="/{{'MENU.LINK.CAREERS' | translate}}" routerLinkActive="active" (click)="closeMenu()">{{ 'MENU.LABEL.CAREERS' | translate }}</a>
+      <a routerLink="/{{'MENU.LINK.CONTACT' | translate}}" routerLinkActive="active" (click)="closeMenu()" class="nav-cta">{{ 'MENU.LABEL.CONTACT' | translate }}</a>
     </div>
   </div>
 </nav>

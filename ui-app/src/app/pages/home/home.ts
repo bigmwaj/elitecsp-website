@@ -30,7 +30,7 @@ export class HomeComponent implements OnInit {
   partners = this.partnersService.partners;
 
   ngOnInit() {
-    this.title.setTitle(this.translateService.instant('HOME.META.TITLE'));
-    this.meta.updateTag({ name: 'description', content: this.translateService.instant('HOME.META.DESCRIPTION') });
+    this.title.setTitle(this.translateService.instant('PAGE.HOME.META.TITLE'));
+    this.meta.updateTag({ name: 'description', content: this.translateService.instant('PAGE.HOME.META.DESCRIPTION') });
   }
 }

@@ -19,7 +19,7 @@ export class JobCardComponent {
   }
 
   jobTypeKey(): string {
-    return `DATA.JOBS.${this.jobSummary().type.toUpperCase()}`;
+    return `SHARED.DATA.JOBS.${this.jobSummary().type.toUpperCase()}`;
   }
 
   onApply(): void {

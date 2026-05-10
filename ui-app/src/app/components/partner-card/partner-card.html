@@ -2,17 +2,17 @@
   <div class="partner-logo">
     <img
       [src]="partner().logoUrl"
-      [alt]="'PARTNERS.' + partner().key.toUpperCase() + '.NAME' | translate"
+      [alt]="'SHARED.PARTNERS.' + partner().key.toUpperCase() + '.NAME' | translate"
       loading="lazy"
     />
   </div>
   <div class="partner-body">
-    <h3 class="partner-name">{{ 'PARTNERS.' + partner().key.toUpperCase() + '.NAME' | translate }}</h3>
-    <p class="partner-tier">{{ 'PARTNERS.' + partner().key.toUpperCase() + '.TIER' | translate }}</p>
-    <p class="partner-desc">{{ 'PARTNERS.' + partner().key.toUpperCase() + '.DESCRIPTION' | translate }}</p>
+    <h3 class="partner-name">{{ 'SHARED.PARTNERS.' + partner().key.toUpperCase() + '.NAME' | translate }}</h3>
+    <p class="partner-tier">{{ 'SHARED.PARTNERS.' + partner().key.toUpperCase() + '.TIER' | translate }}</p>
+    <p class="partner-desc">{{ 'SHARED.PARTNERS.' + partner().key.toUpperCase() + '.DESCRIPTION' | translate }}</p>
     @if (partner().websiteUrl) {
       <a [href]="partner().websiteUrl" target="_blank" rel="noopener noreferrer" class="partner-link">
-        {{ 'PARTNERS.VISIT_WEBSITE' | translate }} →
+        {{ 'SHARED.PARTNERS.VISIT_WEBSITE' | translate }} →
       </a>
     }
   </div>

@@ -21,7 +21,7 @@ export class PartnersComponent implements OnInit {
   partners = this.partnersService.partners;
 
   ngOnInit() {
-    this.titleService.setTitle(this.translate.instant('PARTNERS.META.TITLE'));
-    this.meta.updateTag({ name: 'description', content: this.translate.instant('PARTNERS.META.DESCRIPTION') });
+    this.titleService.setTitle(this.translate.instant('PAGE.PARTNERS.META.TITLE'));
+    this.meta.updateTag({ name: 'description', content: this.translate.instant('PAGE.PARTNERS.META.DESCRIPTION') });
   }
 }

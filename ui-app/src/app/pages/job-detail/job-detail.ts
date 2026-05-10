@@ -28,16 +28,19 @@ export class JobDetailComponent implements OnInit {
 
     if (job) {
       const pageTitle = this.getLocalizedText(job.title);
-      this.titleService.setTitle(`${this.translate.instant('PARTNERS.META.TITLE')} - ${pageTitle} - Elite CSP`);
-      this.meta.updateTag({ name: 'description', content: `this.translate.instant('PARTNERS.META.DESCRIPTION') -this.getLocalizedText(job.summary)` });
+      this.titleService.setTitle(`${this.translate.instant('PAGE.JOB_DETAILS.META.TITLE')} - ${pageTitle} - ${this.translate.instant('COMMON.COMPANY_NAME')}`);
+      this.meta.updateTag({
+        name: 'description',
+        content: `${this.translate.instant('PAGE.JOB_DETAILS.META.DESCRIPTION')} - ${this.getLocalizedText(job.summary)}`
+      });
       return;
     }
-    this.titleService.setTitle(this.translate.instant('PARTNERS.META.TITLE'));
-    this.meta.updateTag({ name: 'description', content: this.translate.instant('PARTNERS.META.DESCRIPTION') });
+    this.titleService.setTitle(this.translate.instant('PAGE.JOB_DETAILS.META.TITLE'));
+    this.meta.updateTag({ name: 'description', content: this.translate.instant('PAGE.JOB_DETAILS.META.DESCRIPTION') });
   }
 
   jobTypeKey(type: string): string {
-    return `DATA.JOBS.${type.toUpperCase()}`;
+    return `SHARED.DATA.JOBS.${type.toUpperCase()}`;
   }
 
   getLocalizedText(entry?: { fr: string; en: string } | null): string {

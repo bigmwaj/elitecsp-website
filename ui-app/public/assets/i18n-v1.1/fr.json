@@ -1,12 +1,21 @@
 {
   "NAV": {
-    "HOME": "Accueil",
-    "SERVICES": "Services",
-    "ABOUT": "À propos",
-    "PARTNERS": "Partenaires",
-    "CONTACT": "Nous contacter",
-    "TOGGLE_MENU": "Ouvrir/fermer le menu",
-    "CAREERS": "Carrières"
+    "LINK": {
+      "SERVICES": "services",
+      "ABOUT": "à-propos",
+      "PARTNERS": "partenaires",
+      "CONTACT": "nous-contacter",
+      "CAREERS": "carrières"
+    },
+    "LABEL": {
+      "HOME": "Accueil",
+      "SERVICES": "Services",
+      "ABOUT": "À propos",
+      "PARTNERS": "Partenaires",
+      "CONTACT": "Nous contacter",
+      "TOGGLE_MENU": "Ouvrir/fermer le menu",
+      "CAREERS": "Carrières"
+    }
   },
   "HERO": {
     "HOME": {

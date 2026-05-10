@@ -1,12 +1,21 @@
 {
   "NAV": {
-    "HOME": "Home",
-    "SERVICES": "Services",
-    "ABOUT": "About",
-    "PARTNERS": "Partners",
-    "CONTACT": "Contact Us",
-    "TOGGLE_MENU": "Toggle navigation menu",
-    "CAREERS": "Careers"
+    "LINK": {
+      "SERVICES": "services",
+      "ABOUT": "about",
+      "PARTNERS": "partners",
+      "CONTACT": "contact",
+      "CAREERS": "careers"
+    },
+    "LABEL": {
+      "HOME": "Home",
+      "SERVICES": "Services",
+      "ABOUT": "About",
+      "PARTNERS": "Partners",
+      "CONTACT": "Contact Us",
+      "TOGGLE_MENU": "Toggle navigation menu",
+      "CAREERS": "Careers"
+    }
   },
   "HERO": {
     "HOME": {
@@ -17,7 +26,8 @@
     },
     "SERVICES": {
       "TITLE": "Our Services",
-      "SUBTITLE": "Benefit from 360° support for your CMMS project"
+      "SUBTITLE": "Benefit from 360° support for your CMMS project",
+      "CTA": "Contact Us"
     },
     "ABOUT": {
       "TITLE": "About Elite CSP",

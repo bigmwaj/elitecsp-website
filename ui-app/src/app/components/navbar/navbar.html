@@ -10,12 +10,12 @@
     </button>
 
     <div class="nav-links" [class.open]="menuOpen()">
-      <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" (click)="closeMenu()">{{ 'NAV.HOME' | translate }}</a>
-      <a routerLink="/services" routerLinkActive="active" (click)="closeMenu()">{{ 'NAV.SERVICES' | translate }}</a>
-      <a routerLink="/about" routerLinkActive="active" (click)="closeMenu()">{{ 'NAV.ABOUT' | translate }}</a>
-      <a routerLink="/partners" routerLinkActive="active" (click)="closeMenu()">{{ 'NAV.PARTNERS' | translate }}</a>
-      <a routerLink="/careers" routerLinkActive="active" (click)="closeMenu()">{{ 'NAV.CAREERS' | translate }}</a>
-      <a routerLink="/contact" routerLinkActive="active" (click)="closeMenu()" class="nav-cta">{{ 'NAV.CONTACT' | translate }}</a>
+      <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" (click)="closeMenu()">{{ 'NAV.LABEL.HOME' | translate }}</a>
+      <a routerLink="/{{'NAV.LINK.SERVICES' | translate}}" routerLinkActive="active" (click)="closeMenu()">{{ 'NAV.LABEL.SERVICES' | translate }}</a>
+      <a routerLink="/{{'NAV.LINK.ABOUT' | translate}}" routerLinkActive="active" (click)="closeMenu()">{{ 'NAV.LABEL.ABOUT' | translate }}</a>
+      <a routerLink="/{{'NAV.LINK.PARTNERS' | translate}}" routerLinkActive="active" (click)="closeMenu()">{{ 'NAV.LABEL.PARTNERS' | translate }}</a>
+      <a routerLink="/{{'NAV.LINK.CAREERS' | translate}}" routerLinkActive="active" (click)="closeMenu()">{{ 'NAV.LABEL.CAREERS' | translate }}</a>
+      <a routerLink="/{{'NAV.LINK.CONTACT' | translate}}" routerLinkActive="active" (click)="closeMenu()" class="nav-cta">{{ 'NAV.LABEL.CONTACT' | translate }}</a>
     </div>
   </div>
 </nav>

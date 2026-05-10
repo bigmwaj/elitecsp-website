@@ -106,10 +106,11 @@ jobs:
           LEGACY_DIR="${{ env.LEGACY_FRONTEND_STATIC_DIR }}"
           SEARCH_ROOT="${{ env.FRONTEND_WORKDIR }}"
           MATCH_FILE="$(mktemp)"
+          LEGACY_PATH_PATTERN="((src|public)/${LEGACY_DIR}(/|$)|[\"'(/]${LEGACY_DIR}/)"
 
           grep -RInE --include='*.ts' --include='*.html' --include='*.scss' --include='*.css' --include='*.json' --include='*.mjs' \
             --exclude-dir=node_modules --exclude-dir=dist \
-            "(src/${LEGACY_DIR}|public/${LEGACY_DIR}|${LEGACY_DIR}/)" "${SEARCH_ROOT}" > "${MATCH_FILE}" || true
+            "${LEGACY_PATH_PATTERN}" "${SEARCH_ROOT}" > "${MATCH_FILE}" || true
 
           if [ -s "${MATCH_FILE}" ]; then
             echo "Legacy static folder references detected. Update them to '${{ env.FRONTEND_STATIC_DIR }}':"

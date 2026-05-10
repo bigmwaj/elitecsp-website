@@ -3,7 +3,7 @@
 ## How to use
 
 1. Open the Contact page.
-2. Fill required UI fields: name, email, phone, subject, message.
+2. Fill required UI fields: name, email, phone, subject, message (the backend currently enforces all except `phone`).
 3. Optionally add company details.
 4. Submit the form.
 
@@ -11,7 +11,6 @@
 
 - On success: confirmation message appears.
 - On invalid inputs: field-level validation messages appear.
-- Note: the frontend currently requires `phone` before submit, even though backend validation does not enforce it.
 
 ## Troubleshooting
 

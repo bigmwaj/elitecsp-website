@@ -66,7 +66,7 @@
       },
       "META": {
         "DESCRIPTION": "En savoir plus sur l'histoire, la mission, la vision et les valeurs d'Elite CSP, ainsi que sur notre expertise approfondie dans IBM Maximo et la gestion des actifs d'entreprise.",
-        "TITLE": "À propos de nous"
+        "TITLE": "Elite CSP - À propos de nous"
       },
       "MVV": {
         "MISSION": {
@@ -145,7 +145,7 @@
       },
       "META": {
         "DESCRIPTION": "Découvrez les opportunités de carrière chez Elite CSP, leader canadien en conseil IBM Maximo et gestion des actifs d'entreprise. Rejoignez notre équipe d'experts passionnés et contribuez à transformer les opérations de nos clients.",
-        "TITLE": "Carrières"
+        "TITLE": "Elite CSP - Carrières"
       },
       "SUCCESS": {
         "DESC": "Merci pour votre candidature. Notre équipe RH vous contactera dans les prochains jours.",
@@ -197,7 +197,7 @@
       },
       "META": {
         "DESCRIPTION": "Contactez Elite CSP pour une consultation gratuite sur vos besoins en gestion des actifs d'entreprise et en implémentation IBM Maximo. Notre équipe d'experts est prête à vous aider à transformer vos opérations.",
-        "TITLE": "Contactez-nous"
+        "TITLE": "Elite CSP - Nous contacter"
       },
       "SUCCESS": {
         "DESC": "Merci de nous avoir contactés. Un membre de notre équipe vous contactera dans 1 jour ouvrable.",
@@ -276,7 +276,7 @@
       "META": {
         "DEFAULT_DESCRIPTION": "Découvrez les opportunités de carrière chez Elite CSP, leader canadien en conseil IBM Maximo et gestion des actifs d'entreprise.",
         "DESCRIPTION": "Découvrez les détails du poste de {{jobTitle}} chez Elite CSP, leader canadien en conseil IBM Maximo et gestion des actifs d'entreprise. Rejoignez notre équipe d'experts passionnés et contribuez à transformer les opérations de nos clients. {{jobSummary}}",
-        "TITLE": "{{jobTitle}} - Carrières chez Elite CSP"
+        "TITLE": "Elite CSP - {{jobTitle}} - Carrières"
       },
       "NOT_FOUND_DESC": "L'offre que vous recherchez n'est plus disponible ou a peut-être été retirée.",
       "NOT_FOUND_TAG": "Carrières",
@@ -355,7 +355,7 @@
       },
       "META": {
         "DESCRIPTION": "Découvrez notre gamme complète de services, y compris le conseil en maintenance et l'implémentation d'IBM Maximo, conçus pour optimiser vos opérations de gestion des actifs d'entreprise.",
-        "TITLE": "Nos Services"
+        "TITLE": "Elite CSP - Nos Services"
       }
     }
   },

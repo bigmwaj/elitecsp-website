@@ -5,7 +5,10 @@ const projectRoot = path.resolve(process.cwd());
 const srcRoot = path.join(projectRoot, 'src');
 const localesRoot = path.join(projectRoot, 'public/assets/i18n-v1.1');
 const locales = ['en', 'fr'];
-const keyRegex = /['"]([A-Z]+(?:\.[A-Z0-9_]+)+)['"]/g;
+// Key extraction is intentionally aligned with current governance (uppercase dotted namespaces).
+const keyRegex = /['"]([A-Z][A-Z0-9_]*(?:\.[A-Z0-9_]+)+)['"]/g;
+const ignoredNamespacePlaceholders = new Set(['PAGE.CAREERS.FORM', 'SHARED.DATA.JOBS']);
+const strictUnused = process.env.I18N_STRICT_UNUSED !== 'false';
 const dynamicKeys = [
   'PAGE.CAREERS.FORM.CV_ERROR',
   'PAGE.CAREERS.FORM.CV_TYPE_ERROR',
@@ -39,7 +42,7 @@ function extractUsedKeys() {
     const content = fs.readFileSync(file, 'utf8');
     for (const match of content.matchAll(keyRegex)) {
       const key = match[1];
-      if (key.endsWith('.FORM') || key.endsWith('.JOBS')) {
+      if (ignoredNamespacePlaceholders.has(key)) {
         continue;
       }
       used.add(key);
@@ -91,8 +94,10 @@ for (const locale of locales) {
   }
 
   if (unused.length) {
-    hasErrors = true;
     printReport(`Unused in ${locale}`, unused);
+    if (strictUnused) {
+      hasErrors = true;
+    }
   }
 }
 

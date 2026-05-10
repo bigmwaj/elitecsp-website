@@ -1,5 +1,9 @@
 {
   "COMMON": {
+    "BRAND": {
+      "PREFIX": "Elite",
+      "SUFFIX": "CSP"
+    },
     "COMPANY_NAME": "Elite CSP"
   },
   "MENU": {
@@ -270,7 +274,8 @@
       "DETAILS_TITLE": "Job details",
       "LOCATION": "Location",
       "META": {
-        "DESCRIPTION": "Discover the details of the {{jobTitle}} position at Elite CSP, Canada's leading IBM Maximo consulting and enterprise asset management firm. Join our team of passionate experts and contribute to transforming our clients' operations.",
+        "DEFAULT_DESCRIPTION": "Explore career opportunities at Elite CSP, Canada's leading IBM Maximo consulting and enterprise asset management firm.",
+        "DESCRIPTION": "Discover the details of the {{jobTitle}} position at Elite CSP, Canada's leading IBM Maximo consulting and enterprise asset management firm. Join our team of passionate experts and contribute to transforming our clients' operations. {{jobSummary}}",
         "TITLE": "{{jobTitle}} - Careers at Elite CSP"
       },
       "NOT_FOUND_DESC": "The job posting you are looking for is unavailable or may have been removed.",

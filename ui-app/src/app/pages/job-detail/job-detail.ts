@@ -31,12 +31,15 @@ export class JobDetailComponent implements OnInit {
       this.titleService.setTitle(`${this.translate.instant('PAGE.JOB_DETAILS.META.TITLE')} - ${pageTitle} - ${this.translate.instant('COMMON.COMPANY_NAME')}`);
       this.meta.updateTag({
         name: 'description',
-        content: `${this.translate.instant('PAGE.JOB_DETAILS.META.DESCRIPTION')} - ${this.getLocalizedText(job.summary)}`
+        content: this.translate.instant('PAGE.JOB_DETAILS.META.DESCRIPTION', {
+          jobTitle: pageTitle,
+          jobSummary: this.getLocalizedText(job.summary)
+        })
       });
       return;
     }
     this.titleService.setTitle(this.translate.instant('PAGE.JOB_DETAILS.META.TITLE'));
-    this.meta.updateTag({ name: 'description', content: this.translate.instant('PAGE.JOB_DETAILS.META.DESCRIPTION') });
+    this.meta.updateTag({ name: 'description', content: this.translate.instant('PAGE.JOB_DETAILS.META.DEFAULT_DESCRIPTION') });
   }
 
   jobTypeKey(type: string): string {

@@ -1,5 +1,9 @@
 {
   "COMMON": {
+    "BRAND": {
+      "PREFIX": "Elite",
+      "SUFFIX": "CSP"
+    },
     "COMPANY_NAME": "Elite CSP"
   },
   "MENU": {
@@ -270,7 +274,8 @@
       "DETAILS_TITLE": "Détails du poste",
       "LOCATION": "Lieu",
       "META": {
-        "DESCRIPTION": "Découvrez les détails du poste de {{jobTitle}} chez Elite CSP, leader canadien en conseil IBM Maximo et gestion des actifs d'entreprise. Rejoignez notre équipe d'experts passionnés et contribuez à transformer les opérations de nos clients.",
+        "DEFAULT_DESCRIPTION": "Découvrez les opportunités de carrière chez Elite CSP, leader canadien en conseil IBM Maximo et gestion des actifs d'entreprise.",
+        "DESCRIPTION": "Découvrez les détails du poste de {{jobTitle}} chez Elite CSP, leader canadien en conseil IBM Maximo et gestion des actifs d'entreprise. Rejoignez notre équipe d'experts passionnés et contribuez à transformer les opérations de nos clients. {{jobSummary}}",
         "TITLE": "{{jobTitle}} - Carrières chez Elite CSP"
       },
       "NOT_FOUND_DESC": "L'offre que vous recherchez n'est plus disponible ou a peut-être été retirée.",

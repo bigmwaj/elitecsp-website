@@ -23,7 +23,7 @@ export class ServicesComponent implements OnInit {
   maximoServices = this.dataService.maximoServices;
 
   ngOnInit() {
-    this.title.setTitle(this.translate.instant('SERVICES_PAGE.META.TITLE'));
-    this.meta.updateTag({ name: 'description', content: this.translate.instant('SERVICES_PAGE.META.DESCRIPTION') });
+    this.title.setTitle(this.translate.instant('PAGE.SERVICES.META.TITLE'));
+    this.meta.updateTag({ name: 'description', content: this.translate.instant('PAGE.SERVICES.META.DESCRIPTION') });
   }
 }

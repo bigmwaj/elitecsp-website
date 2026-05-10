@@ -10,8 +10,8 @@ import { TranslatePipe } from '@ngx-translate/core';
   styleUrl: './cta-section.scss'
 })
 export class CtaSectionComponent {
-  title = input<string>('CTA.DEFAULT_TITLE');
-  subtitle = input<string>('CTA.DEFAULT_SUBTITLE');
-  ctaText = input<string>('CTA.DEFAULT_CTA');
+  title = input<string>('SHARED.CTA.DEFAULT_TITLE');
+  subtitle = input<string>('SHARED.CTA.DEFAULT_SUBTITLE');
+  ctaText = input<string>('SHARED.CTA.DEFAULT_CTA');
   ctaLink = input<string>('/contact');
 }

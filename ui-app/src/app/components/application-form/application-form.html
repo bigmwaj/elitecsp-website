@@ -2,117 +2,117 @@
   @if (submitted()) {
     <div class="success-message">
       <div class="success-icon">🎉</div>
-      <h3>{{ 'CAREERS_PAGE.SUCCESS.TITLE' | translate }}</h3>
-      <p>{{ 'CAREERS_PAGE.SUCCESS.DESC' | translate }}</p>
+      <h3>{{ 'PAGE.CAREERS.SUCCESS.TITLE' | translate }}</h3>
+      <p>{{ 'PAGE.CAREERS.SUCCESS.DESC' | translate }}</p>
       <button type="button" (click)="resetForm()" class="btn-reset">
-        {{ 'CAREERS_PAGE.SUCCESS.RESET' | translate }}
+        {{ 'PAGE.CAREERS.SUCCESS.RESET' | translate }}
       </button>
     </div>
   } @else {
     <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
       <div class="form-row">
         <div class="form-group">
-          <label for="fullName">{{ 'CAREERS_PAGE.FORM.FULL_NAME' | translate }}</label>
+          <label for="fullName">{{ 'PAGE.CAREERS.FORM.FULL_NAME' | translate }}</label>
           <input
             id="fullName"
             type="text"
             formControlName="fullName"
-            [placeholder]="'CAREERS_PAGE.FORM.FULL_NAME_PLACEHOLDER' | translate"
+            [placeholder]="'PAGE.CAREERS.FORM.FULL_NAME_PLACEHOLDER' | translate"
             [class.error]="f['fullName'].invalid && f['fullName'].touched"
           />
           @if (f['fullName'].invalid && f['fullName'].touched) {
-            <span class="error-msg">{{ 'CAREERS_PAGE.FORM.FULL_NAME_ERROR' | translate }}</span>
+            <span class="error-msg">{{ 'PAGE.CAREERS.FORM.FULL_NAME_ERROR' | translate }}</span>
           }
         </div>
         <div class="form-group">
-          <label for="email">{{ 'CAREERS_PAGE.FORM.EMAIL' | translate }}</label>
+          <label for="email">{{ 'PAGE.CAREERS.FORM.EMAIL' | translate }}</label>
           <input
             id="email"
             type="email"
             formControlName="email"
-            [placeholder]="'CAREERS_PAGE.FORM.EMAIL_PLACEHOLDER' | translate"
+            [placeholder]="'PAGE.CAREERS.FORM.EMAIL_PLACEHOLDER' | translate"
             [class.error]="f['email'].invalid && f['email'].touched"
           />
           @if (f['email'].invalid && f['email'].touched) {
-            <span class="error-msg">{{ 'CAREERS_PAGE.FORM.EMAIL_ERROR' | translate }}</span>
+            <span class="error-msg">{{ 'PAGE.CAREERS.FORM.EMAIL_ERROR' | translate }}</span>
           }
         </div>
       </div>
 
       <div class="form-group">
-        <label for="phone">{{ 'CAREERS_PAGE.FORM.PHONE' | translate }}</label>
+        <label for="phone">{{ 'PAGE.CAREERS.FORM.PHONE' | translate }}</label>
         <input
           id="phone"
           type="text"
           formControlName="phone"
-          [placeholder]="'CAREERS_PAGE.FORM.PHONE_PLACEHOLDER' | translate"
+          [placeholder]="'PAGE.CAREERS.FORM.PHONE_PLACEHOLDER' | translate"
           [class.error]="f['phone'].invalid && f['phone'].touched"
         />
         @if (f['phone'].invalid && f['phone'].touched) {
-          <span class="error-msg">{{ 'CAREERS_PAGE.FORM.PHONE_ERROR' | translate }}</span>
+          <span class="error-msg">{{ 'PAGE.CAREERS.FORM.PHONE_ERROR' | translate }}</span>
         }
       </div>
 
       <div class="form-row">
         <div class="form-group">
-          <label for="city">{{ 'CAREERS_PAGE.FORM.CITY' | translate }}</label>
+          <label for="city">{{ 'PAGE.CAREERS.FORM.CITY' | translate }}</label>
           <input
             id="city"
             type="text"
             formControlName="city"
-            [placeholder]="'CAREERS_PAGE.FORM.CITY_PLACEHOLDER' | translate"
+            [placeholder]="'PAGE.CAREERS.FORM.CITY_PLACEHOLDER' | translate"
             [class.error]="f['city'].invalid && f['city'].touched"
           />
           @if (f['city'].invalid && f['city'].touched) {
-            <span class="error-msg">{{ 'CAREERS_PAGE.FORM.CITY_ERROR' | translate }}</span>
+            <span class="error-msg">{{ 'PAGE.CAREERS.FORM.CITY_ERROR' | translate }}</span>
           }
         </div>
 
         <div class="form-group">
-          <label for="jobSlug">{{ 'CAREERS_PAGE.FORM.JOB' | translate }}</label>
+          <label for="jobSlug">{{ 'PAGE.CAREERS.FORM.JOB' | translate }}</label>
           @if (lockSelectedJob()) {
             <div class="selected-job">{{ currentSelectedJob()?.title | currentLangEntry }}</div>
           } @else {
             <select id="jobSlug" formControlName="jobSlug" [class.error]="f['jobSlug'].invalid && f['jobSlug'].touched">
-              <option value="">{{ 'CAREERS_PAGE.FORM.JOB_PLACEHOLDER' | translate }}</option>
+              <option value="">{{ 'PAGE.CAREERS.FORM.JOB_PLACEHOLDER' | translate }}</option>
               @for (job of jobs(); track job.jobId) {
                 <option [value]="job.slug">{{ job.title | currentLangEntry }}</option>
               }
             </select>
             @if (f['jobSlug'].invalid && f['jobSlug'].touched) {
-              <span class="error-msg">{{ 'CAREERS_PAGE.FORM.JOB_ERROR' | translate }}</span>
+              <span class="error-msg">{{ 'PAGE.CAREERS.FORM.JOB_ERROR' | translate }}</span>
             }
           }
         </div>
       </div>
 
       <div class="form-group">
-        <label for="cv">{{ 'CAREERS_PAGE.FORM.CV' | translate }}</label>
+        <label for="cv">{{ 'PAGE.CAREERS.FORM.CV' | translate }}</label>
         <input id="cv" type="file" accept=".pdf,.doc,.docx" (change)="onFileChange($event)" [class.error]="!!fileError()" />
         @if (fileError()) {
-          <span class="error-msg">{{ 'CAREERS_PAGE.FORM.' + fileError() | translate }}</span>
+          <span class="error-msg">{{ 'PAGE.CAREERS.FORM.' + fileError() | translate }}</span>
         }
       </div>
 
       <div class="form-group">
-        <label for="coverLetter">{{ 'CAREERS_PAGE.FORM.COVER_LETTER' | translate }}</label>
+        <label for="coverLetter">{{ 'PAGE.CAREERS.FORM.COVER_LETTER' | translate }}</label>
         <textarea
           id="coverLetter"
           formControlName="coverLetter"
           rows="6"
-          [placeholder]="'CAREERS_PAGE.FORM.COVER_LETTER_PLACEHOLDER' | translate"
+          [placeholder]="'PAGE.CAREERS.FORM.COVER_LETTER_PLACEHOLDER' | translate"
           [class.error]="f['coverLetter'].invalid && f['coverLetter'].touched"
         ></textarea>
         @if (f['coverLetter'].invalid && f['coverLetter'].touched) {
-          <span class="error-msg">{{ 'CAREERS_PAGE.FORM.COVER_LETTER_ERROR' | translate }}</span>
+          <span class="error-msg">{{ 'PAGE.CAREERS.FORM.COVER_LETTER_ERROR' | translate }}</span>
         }
       </div>
 
       <button type="submit" class="submit-btn" [disabled]="submitting()">
         @if (submitting()) {
-          <span>{{ 'CAREERS_PAGE.FORM.SUBMITTING' | translate }}</span>
+          <span>{{ 'PAGE.CAREERS.FORM.SUBMITTING' | translate }}</span>
         } @else {
-          <span>{{ 'CAREERS_PAGE.FORM.SUBMIT' | translate }}</span>
+          <span>{{ 'PAGE.CAREERS.FORM.SUBMIT' | translate }}</span>
         }
       </button>
     </form>

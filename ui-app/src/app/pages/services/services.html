@@ -1,7 +1,7 @@
 <app-hero
-  [title]="'HERO.SERVICES.TITLE'"
-  [subtitle]="'HERO.SERVICES.SUBTITLE'"
-  [ctaText]="'HERO.SERVICES.CTA'"
+  [title]="'PAGE.SERVICES.HERO.TITLE'"
+  [subtitle]="'PAGE.SERVICES.HERO.SUBTITLE'"
+  [ctaText]="'PAGE.SERVICES.HERO.CTA'"
   ctaLink="/contact"
   [compact]="true">
 </app-hero>
@@ -9,9 +9,9 @@
 <section class="section">
   <div class="container">
     <div class="section-header">
-      <span class="section-tag">{{ 'SERVICES_PAGE.MAINTENANCE.TAG' | translate }}</span>
-      <h2>{{ 'SERVICES_PAGE.MAINTENANCE.TITLE' | translate }}</h2>
-      <p>{{ 'SERVICES_PAGE.MAINTENANCE.SUBTITLE' | translate }}</p>
+      <span class="section-tag">{{ 'PAGE.SERVICES.MAINTENANCE.TAG' | translate }}</span>
+      <h2>{{ 'PAGE.SERVICES.MAINTENANCE.TITLE' | translate }}</h2>
+      <p>{{ 'PAGE.SERVICES.MAINTENANCE.SUBTITLE' | translate }}</p>
     </div>
     <div class="services-grid">
       @for (service of maintenanceServices(); track service.id) {
@@ -24,9 +24,9 @@
 <section class="section">
   <div class="container">
     <div class="section-header">
-      <span class="section-tag">{{ 'SERVICES_PAGE.MAXIMO.TAG' | translate }}</span>
-      <h2>{{ 'SERVICES_PAGE.MAXIMO.TITLE' | translate }}</h2>
-      <p>{{ 'SERVICES_PAGE.MAXIMO.SUBTITLE' | translate }}</p>
+      <span class="section-tag">{{ 'PAGE.SERVICES.MAXIMO.TAG' | translate }}</span>
+      <h2>{{ 'PAGE.SERVICES.MAXIMO.TITLE' | translate }}</h2>
+      <p>{{ 'PAGE.SERVICES.MAXIMO.SUBTITLE' | translate }}</p>
     </div>
     <div class="services-grid">
       @for (service of maximoServices(); track service.id) {
@@ -39,46 +39,46 @@
 <section class="industries-section section">
   <div class="container">
     <div class="section-header">
-      <span class="section-tag">{{ 'SERVICES_PAGE.INDUSTRIES.TAG' | translate }}</span>
-      <h2>{{ 'SERVICES_PAGE.INDUSTRIES.TITLE' | translate }}</h2>
-      <p>{{ 'SERVICES_PAGE.INDUSTRIES.SUBTITLE' | translate }}</p>
+      <span class="section-tag">{{ 'PAGE.SERVICES.INDUSTRIES.TAG' | translate }}</span>
+      <h2>{{ 'PAGE.SERVICES.INDUSTRIES.TITLE' | translate }}</h2>
+      <p>{{ 'PAGE.SERVICES.INDUSTRIES.SUBTITLE' | translate }}</p>
     </div>
     <div class="industries-grid">
       <div class="industry-card">
         <span class="industry-icon">⚡</span>
-        <h3>{{ 'SERVICES_PAGE.INDUSTRIES.UTILITIES.TITLE' | translate }}</h3>
-        <p>{{ 'SERVICES_PAGE.INDUSTRIES.UTILITIES.DESC' | translate }}</p>
+        <h3>{{ 'PAGE.SERVICES.INDUSTRIES.UTILITIES.TITLE' | translate }}</h3>
+        <p>{{ 'PAGE.SERVICES.INDUSTRIES.UTILITIES.DESC' | translate }}</p>
       </div>
       <div class="industry-card">
         <span class="industry-icon">🏭</span>
-        <h3>{{ 'SERVICES_PAGE.INDUSTRIES.MANUFACTURING.TITLE' | translate }}</h3>
-        <p>{{ 'SERVICES_PAGE.INDUSTRIES.MANUFACTURING.DESC' | translate }}</p>
+        <h3>{{ 'PAGE.SERVICES.INDUSTRIES.MANUFACTURING.TITLE' | translate }}</h3>
+        <p>{{ 'PAGE.SERVICES.INDUSTRIES.MANUFACTURING.DESC' | translate }}</p>
       </div>
       <div class="industry-card">
         <span class="industry-icon">🚂</span>
-        <h3>{{ 'SERVICES_PAGE.INDUSTRIES.TRANSPORTATION.TITLE' | translate }}</h3>
-        <p>{{ 'SERVICES_PAGE.INDUSTRIES.TRANSPORTATION.DESC' | translate }}</p>
+        <h3>{{ 'PAGE.SERVICES.INDUSTRIES.TRANSPORTATION.TITLE' | translate }}</h3>
+        <p>{{ 'PAGE.SERVICES.INDUSTRIES.TRANSPORTATION.DESC' | translate }}</p>
       </div>
       <div class="industry-card">
         <span class="industry-icon">🏛️</span>
-        <h3>{{ 'SERVICES_PAGE.INDUSTRIES.GOVERNMENT.TITLE' | translate }}</h3>
-        <p>{{ 'SERVICES_PAGE.INDUSTRIES.GOVERNMENT.DESC' | translate }}</p>
+        <h3>{{ 'PAGE.SERVICES.INDUSTRIES.GOVERNMENT.TITLE' | translate }}</h3>
+        <p>{{ 'PAGE.SERVICES.INDUSTRIES.GOVERNMENT.DESC' | translate }}</p>
       </div>
       <div class="industry-card">
         <span class="industry-icon">🏥</span>
-        <h3>{{ 'SERVICES_PAGE.INDUSTRIES.HEALTHCARE.TITLE' | translate }}</h3>
-        <p>{{ 'SERVICES_PAGE.INDUSTRIES.HEALTHCARE.DESC' | translate }}</p>
+        <h3>{{ 'PAGE.SERVICES.INDUSTRIES.HEALTHCARE.TITLE' | translate }}</h3>
+        <p>{{ 'PAGE.SERVICES.INDUSTRIES.HEALTHCARE.DESC' | translate }}</p>
       </div>
       <div class="industry-card">
         <span class="industry-icon">🔬</span>
-        <h3>{{ 'SERVICES_PAGE.INDUSTRIES.MINING.TITLE' | translate }}</h3>
-        <p>{{ 'SERVICES_PAGE.INDUSTRIES.MINING.DESC' | translate }}</p>
+        <h3>{{ 'PAGE.SERVICES.INDUSTRIES.MINING.TITLE' | translate }}</h3>
+        <p>{{ 'PAGE.SERVICES.INDUSTRIES.MINING.DESC' | translate }}</p>
       </div>
     </div>
   </div>
 </section>
 
 <app-cta-section
-  [title]="'SERVICES_PAGE.CTA.TITLE'"
-  [subtitle]="'SERVICES_PAGE.CTA.SUBTITLE'"
-  [ctaText]="'SERVICES_PAGE.CTA.CTA_TEXT'" />
+  [title]="'PAGE.SERVICES.CTA.TITLE'"
+  [subtitle]="'PAGE.SERVICES.CTA.SUBTITLE'"
+  [ctaText]="'PAGE.SERVICES.CTA.CTA_TEXT'" />

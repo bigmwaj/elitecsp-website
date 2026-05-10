@@ -1,7 +1,7 @@
 <app-hero
-  [title]="'HERO.CAREERS.TITLE'"
-  [subtitle]="'HERO.CAREERS.SUBTITLE'"
-  [ctaText]="'HERO.CAREERS.CTA'"
+  [title]="'PAGE.CAREERS.HERO.TITLE'"
+  [subtitle]="'PAGE.CAREERS.HERO.SUBTITLE'"
+  [ctaText]="'PAGE.CAREERS.HERO.CTA'"
   ctaLink="/careers"
   ctaFragment="listings"
   [compact]="true"
@@ -11,9 +11,9 @@
 <section class="section listings-section" id="listings">
   <div class="container">
     <div class="section-header">
-      <span class="section-tag">{{ 'CAREERS_PAGE.LISTINGS.TAG' | translate }}</span>
-      <h2>{{ 'CAREERS_PAGE.LISTINGS.TITLE' | translate }}</h2>
-      <p>{{ 'CAREERS_PAGE.LISTINGS.SUBTITLE' | translate }}</p>
+      <span class="section-tag">{{ 'PAGE.CAREERS.LISTINGS.TAG' | translate }}</span>
+      <h2>{{ 'PAGE.CAREERS.LISTINGS.TITLE' | translate }}</h2>
+      <p>{{ 'PAGE.CAREERS.LISTINGS.SUBTITLE' | translate }}</p>
     </div>
 
     <div class="jobs-grid">
@@ -27,9 +27,9 @@
 <section class="section form-section" id="apply" #applySection>
   <div class="container">
     <div class="section-header">
-      <span class="section-tag">{{ 'CAREERS_PAGE.APPLY_SECTION.TAG' | translate }}</span>
-      <h2>{{ 'CAREERS_PAGE.APPLY_SECTION.TITLE' | translate }}</h2>
-      <p>{{ 'CAREERS_PAGE.APPLY_SECTION.SUBTITLE' | translate }}</p>
+      <span class="section-tag">{{ 'PAGE.CAREERS.APPLY_SECTION.TAG' | translate }}</span>
+      <h2>{{ 'PAGE.CAREERS.APPLY_SECTION.TITLE' | translate }}</h2>
+      <p>{{ 'PAGE.CAREERS.APPLY_SECTION.SUBTITLE' | translate }}</p>
     </div>
 
     <app-application-form [jobs]="jobSummaries()" [selectedJobSlug]="selectedJobSlug()"></app-application-form>

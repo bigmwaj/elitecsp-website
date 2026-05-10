@@ -12,7 +12,7 @@ import { TranslatePipe } from '@ngx-translate/core';
 export class HeroComponent {
   title = input<string>('');
   subtitle = input<string>('');
-  ctaText = input<string>('CTA.DEFAULT_CTA');
+  ctaText = input<string>('SHARED.CTA.DEFAULT_CTA');
   ctaFragment = input<string>('');
   ctaLink = input<string>('/contact');
   secondaryCtaText = input<string>('');

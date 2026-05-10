@@ -67,7 +67,16 @@ Current frontend services construct and send an API-Gateway-like wrapper object:
 }
 ```
 
-This wrapper shape is not the backend contract and is tracked as a contract-alignment remediation item in `docs/developer-guides/code-quality-sonar-style.md` and `docs/reports/prioritized-remediation-plan.md`.
+This wrapper shape is not the backend contract.  
+Correct contract: clients should post the raw contact/application JSON fields directly.
+
+Actionable resolution options:
+1. Update frontend services to post raw payload objects (preferred).
+2. If wrapper payloads must be retained temporarily, add API Gateway request mapping to unwrap `$.body` before Lambda parsing.
+
+Tracking references:
+- `docs/developer-guides/code-quality-sonar-style.md` (contract mismatch finding)
+- `docs/reports/prioritized-remediation-plan.md` (Priority 1 contract alignment)
 
 ### Response Envelope
 

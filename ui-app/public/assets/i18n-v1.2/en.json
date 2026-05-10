@@ -216,6 +216,10 @@
         "DESCRIPTION": "Elite CSP is a Canadian consulting firm specializing in industrial maintenance and IBM Maximo professional services. We help organizations optimize their enterprise asset management (EAM) operations through tailored solutions, deep expertise, and a client-focused approach.",
         "TITLE": "Elite CSP - Maintenance Consulting and IBM Maximo Services in Canada"
       },
+      "PARTNERS": {
+        "IBM": "IBM Silver Partner",
+        "PEMAC": "PEMAC Partner"
+      },
       "PARTNERS_SECTION": {
         "CTA": "View All Partners",
         "SUBTITLE": "Elite CSP collaborates with world-class leaders to deliver the best enterprise asset management solutions.",

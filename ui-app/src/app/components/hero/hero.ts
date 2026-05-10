@@ -19,4 +19,5 @@ export class HeroComponent {
   secondaryCtaLink = input<string>('');
   secondaryCtaFragment = input<string>('');
   compact = input<boolean>(false);
+  showPartnerLogos = input<boolean>(false);
 }

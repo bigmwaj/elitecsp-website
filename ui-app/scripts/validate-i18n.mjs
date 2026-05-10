@@ -3,7 +3,7 @@ import path from 'node:path';
 
 const projectRoot = path.resolve(process.cwd());
 const srcRoot = path.join(projectRoot, 'src');
-const localesRoot = path.join(projectRoot, 'public/assets/i18n-v1.1');
+const localesRoot = path.join(projectRoot, 'public/static/i18n');
 const locales = ['en', 'fr'];
 // Key extraction is intentionally aligned with current governance (uppercase dotted namespaces).
 const keyRegex = /['"]([A-Z][A-Z0-9_]*(?:\.[A-Z0-9_]+)+)['"]/g;

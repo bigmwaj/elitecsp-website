@@ -1,4 +1,4 @@
-export const ASSETS_FOLDER = 'assets';
+export const ASSETS_FOLDER = 'static';
 
 export function assetPath(relativePath: string): string {
   const normalizedPath = relativePath.replace(/^\/+/, '');

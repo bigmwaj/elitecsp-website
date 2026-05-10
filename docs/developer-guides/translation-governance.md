@@ -28,7 +28,7 @@
 
 ## How to add translations
 
-1. Add the key in both `ui-app/public/assets/i18n-v1.1/en.json` and `fr.json`.
+1. Add the key in both `ui-app/public/static/i18n/en.json` and `fr.json`.
 2. Keep the same hierarchy and key path in both locales.
 3. Use the matching namespace for the feature (`PAGE`, `MENU`, `SHARED`, `COMMON`).
 4. Replace hardcoded user-facing text in templates/TypeScript with the translation key.

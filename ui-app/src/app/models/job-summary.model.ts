@@ -1,5 +1,4 @@
 export interface JobSummary {
-  businessName: string;
   jobId: number;
   slug: string;
   icon: string;

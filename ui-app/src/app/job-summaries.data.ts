@@ -5,7 +5,6 @@ export class JobData {
     {
       jobId: 1,
       slug: 'consultant-ibm-maximo',
-      businessName: 'Elite CSP',
       icon: '⚙️',
       type: 'full_time',
       category: 'career',
@@ -23,7 +22,6 @@ export class JobData {
     {
       jobId: 2,
       slug: 'developpeur-java',
-      businessName: 'Elite CSP',
       icon: '☕',
       type: 'full_time',
       category: 'career',
@@ -41,7 +39,6 @@ export class JobData {
     {
       jobId: 3,
       slug: 'analyste-fonctionnel',
-      businessName: 'Elite CSP',
       icon: '📊',
       type: 'full_time',
       category: 'career',
@@ -59,7 +56,6 @@ export class JobData {
     {
       jobId: 4,
       slug: 'ingenieur-devops',
-      businessName: 'Elite CSP',
       icon: '🔧',
       type: 'full_time',
       category: 'career',
@@ -77,7 +73,6 @@ export class JobData {
     {
       jobId: 5,
       slug: 'expert-telecom',
-      businessName: 'Elite CSP',
       icon: '🛜',
       type: 'contract',
       category: 'opportunity',

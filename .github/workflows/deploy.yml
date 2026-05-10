@@ -234,6 +234,23 @@ jobs:
         run: |
           set -euo pipefail
           DEST="s3://${S3_BUCKET}"
+          DATE_TAG="$(date -u +%Y%m%d)"
+          ASSET_DIR="assets-${DATE_TAG}"
+
+          if [ -d "/tmp/ui-app-dist/assets" ]; then
+            mv "/tmp/ui-app-dist/assets" "/tmp/ui-app-dist/${ASSET_DIR}"
+          else
+            echo "Missing assets directory in build output: /tmp/ui-app-dist/assets"
+            exit 1
+          fi
+
+          # Rewrite generated files to point to the dated assets directory.
+          # Exclude binary assets and sourcemaps.
+          find /tmp/ui-app-dist -type f \
+            \( -name "*.html" -o -name "*.js" -o -name "*.css" -o -name "*.webmanifest" -o -name "*.json" \) \
+            ! -name "*.map" -print0 | xargs -0 sed -i "s#assets/#${ASSET_DIR}/#g"
+
+          echo "Deploying dated assets directory: ${ASSET_DIR}"
 
           # Hashed/static assets (index.html excluded; content-type explicitly set only on index upload below)
           aws s3 sync "/tmp/ui-app-dist" "${DEST}/" \

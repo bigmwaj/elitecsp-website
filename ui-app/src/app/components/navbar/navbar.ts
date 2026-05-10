@@ -2,6 +2,7 @@ import { Component, HostListener, signal } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { TranslatePipe } from '@ngx-translate/core';
+import { assetPath } from '../../utils/asset-path.util';
 
 @Component({
   selector: 'app-navbar',
@@ -11,6 +12,7 @@ import { TranslatePipe } from '@ngx-translate/core';
   styleUrl: './navbar.scss'
 })
 export class NavbarComponent {
+  readonly assetPath = assetPath;
   scrolled = signal(false);
   menuOpen = signal(false);
 

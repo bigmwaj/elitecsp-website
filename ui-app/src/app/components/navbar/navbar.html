@@ -1,7 +1,7 @@
 <nav [class.scrolled]="scrolled()">
   <div class="nav-container">
     <a class="logo" routerLink="/" (click)="closeMenu()">
-      <img src="assets/images/logo.svg" [attr.alt]="'COMMON.COMPANY_NAME' | translate" class="logo-img" width="40" height="40" loading="lazy">
+      <img [src]="assetPath('images/logo.svg')" [attr.alt]="'COMMON.COMPANY_NAME' | translate" class="logo-img" width="40" height="40" loading="lazy">
       <span class="logo-text">{{ 'COMMON.BRAND.PREFIX' | translate }} <strong>{{ 'COMMON.BRAND.SUFFIX' | translate }}</strong></span>
     </a>
 

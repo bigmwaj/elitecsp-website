@@ -3,7 +3,7 @@
     <div class="footer-grid">
       <div class="footer-brand">
         <div class="logo">
-          <img src="assets/images/logo.svg" [attr.alt]="'COMMON.COMPANY_NAME' | translate" class="logo-img" width="36" height="36" loading="lazy">
+          <img [src]="assetPath('images/logo.svg')" [attr.alt]="'COMMON.COMPANY_NAME' | translate" class="logo-img" width="36" height="36" loading="lazy">
           <span>{{ 'COMMON.BRAND.PREFIX' | translate }} <strong>{{ 'COMMON.BRAND.SUFFIX' | translate }}</strong></span>
         </div>
         <p>{{ 'SHARED.FOOTER.BRAND_DESC' | translate }}</p>

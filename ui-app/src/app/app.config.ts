@@ -5,6 +5,7 @@ import { provideTranslateService } from '@ngx-translate/core';
 import { provideTranslateHttpLoader } from '@ngx-translate/http-loader';
 import { routes } from './app.routes';
 import { apiKeyInterceptor } from './interceptors/api-key.interceptor';
+import { assetPath } from './utils/asset-path.util';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -12,6 +13,6 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes, withViewTransitions()),
     provideHttpClient(withInterceptors([apiKeyInterceptor])),
     provideTranslateService({ fallbackLang: 'fr' }),
-    provideTranslateHttpLoader({ prefix: 'assets/i18n-v1.3/', suffix: '.json' })
+    provideTranslateHttpLoader({ prefix: assetPath('i18n/'), suffix: '.json' })
   ]
 };

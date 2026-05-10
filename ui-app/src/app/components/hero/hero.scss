@@ -82,7 +82,9 @@
   justify-content: center;
   gap: 2rem;
   flex-wrap: wrap;
-  margin-bottom: 2.25rem;
+  list-style: none;
+  margin: 0 0 2.25rem;
+  padding: 0;
   animation: fadeInDown 0.7s ease forwards;
 
   @media (max-width: 480px) {
@@ -104,15 +106,16 @@
   transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
   text-decoration: none;
 
-  &:hover,
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.28);
+    background: rgba(255, 255, 255, 1);
+  }
+
   &:focus-visible {
     transform: translateY(-3px);
     box-shadow: 0 8px 28px rgba(0, 0, 0, 0.28);
     background: rgba(255, 255, 255, 1);
-    outline: none;
-  }
-
-  &:focus-visible {
     outline: 3px solid rgba(255, 255, 255, 0.8);
     outline-offset: 2px;
   }

@@ -107,7 +107,7 @@ jobs:
           SEARCH_ROOT="${{ env.FRONTEND_WORKDIR }}"
           MATCH_FILE="$(mktemp)"
           # Match legacy path-like usage only: src/assets, public/assets, or string/file references to /assets/.
-          LEGACY_PATH_PATTERN="((src|public)/${LEGACY_DIR}(/|$)|[\"'(/]${LEGACY_DIR}/)"
+          LEGACY_PATH_PATTERN="((src|public)/${LEGACY_DIR}(/|$)|[\"'\`(/]${LEGACY_DIR}/)"
 
           grep -RInE --include='*.ts' --include='*.html' --include='*.scss' --include='*.css' --include='*.json' --include='*.mjs' \
             --exclude-dir=node_modules --exclude-dir=dist \
@@ -310,6 +310,15 @@ jobs:
             --exclude "jobs/*" \
             --cache-control "public,max-age=3600" \
             --exclude "index.html"
+
+          # Fingerprinted bundles are immutable and can use long-term caching.
+          aws s3 cp "${DIST_DIR}" "${DEST}/" \
+            --recursive \
+            --exclude "*" \
+            --include "chunk-*.js" \
+            --include "main-*.js" \
+            --include "styles-*.css" \
+            --cache-control "public,max-age=31536000,immutable"
 
           # index.html should never be cached
           aws s3 cp "${DIST_DIR}/index.html" "${DEST}/index.html" \

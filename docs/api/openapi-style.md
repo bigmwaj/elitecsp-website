@@ -52,9 +52,13 @@ Handles both contact and job application workflows.
 }
 ```
 
-### Frontend Integration Note
+### Canonical Request Contract
 
-Current frontend services send an API-Gateway-like wrapper:
+The backend handler parses `request.body` directly into `ContactRequest`, so the canonical client payload for `/contacts` is the logical JSON model above (raw contact/application fields, not wrapped).
+
+### Current Frontend Implementation Note (Known Gap)
+
+Current frontend services construct and send an API-Gateway-like wrapper object:
 
 ```json
 {
@@ -63,7 +67,7 @@ Current frontend services send an API-Gateway-like wrapper:
 }
 ```
 
-The backend currently parses the request body into `ContactRequest`, so this wrapper should be revalidated/aligned to avoid contract drift.
+This wrapper shape is not the backend contract and is tracked as a contract-alignment remediation item in `docs/developer-guides/code-quality-sonar-style.md` and `docs/reports/prioritized-remediation-plan.md`.
 
 ### Response Envelope
 

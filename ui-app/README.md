@@ -8,7 +8,7 @@ Angular 21 SPA for the Elite CSP website.
 - Lazy-loaded routes
 - Signals + reactive forms
 - `x-api-key` HTTP interceptor for API calls
-- i18n via `@ngx-translate/*` with assets under `public/assets/i18n-v1.1/`
+- i18n via `@ngx-translate/*` with assets under the currently configured `public/assets/i18n-v1.1/` path
 
 ## Commands
 

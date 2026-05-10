@@ -1,5 +1,39 @@
 <section class="hero" [class.compact]="compact()">
   <div class="hero-content">
+    @if (showPartnerLogos()) {
+      <ul class="hero-partner-logos" aria-label="Partner certifications">
+        <li>
+          <a href="https://www.ibm.com/partnerplus/directory/company/9395"
+             target="_blank"
+             rel="noopener noreferrer"
+             class="hero-partner-logo-link">
+            <img
+              src="assets/images/partners/ibm.png"
+              [alt]="'PAGE.HOME.PARTNERS.IBM' | translate"
+              class="hero-partner-logo"
+              width="140"
+              height="70"
+              loading="eager"
+            />
+          </a>
+        </li>
+        <li>
+          <a href="https://www.pemac.org"
+             target="_blank"
+             rel="noopener noreferrer"
+             class="hero-partner-logo-link">
+            <img
+              src="assets/images/partners/pemac.png"
+              [alt]="'PAGE.HOME.PARTNERS.PEMAC' | translate"
+              class="hero-partner-logo"
+              width="140"
+              height="70"
+              loading="eager"
+            />
+          </a>
+        </li>
+      </ul>
+    }
     <h1 [innerHTML]="title() | translate"></h1>
     <p class="subtitle" [innerHTML]="subtitle() | translate"></p>
     <div class="cta-buttons">

@@ -263,7 +263,7 @@ Configure the following in the GitHub repository settings under **Settings → S
 | `S3_BUCKET_NAME` | S3 bucket name (no `s3://` prefix) | `elitecsp-website-prod` |
 | `CLOUDFRONT_DISTRIBUTION_ID` | CloudFront distribution ID (optional, enables cache invalidation) | `E1ABCDEFGHIJKL` |
 
-> Workflow note: backend Lambda function names are currently managed in workflow environment constants (`elite-csp-contact`, `elite-csp-jobs`).
+> Workflow note: backend Lambda function names are currently managed in workflow environment constants (`elite-csp-contact`).
 
 ### IAM Permissions for the CI/CD User
 
@@ -293,8 +293,7 @@ The GitHub Actions IAM user needs the following permissions (principle of least 
         "lambda:UpdateFunctionCode"
       ],
       "Resource": [
-        "arn:aws:lambda:<REGION>:<ACCOUNT_ID>:function:elite-csp-contact",
-        "arn:aws:lambda:<REGION>:<ACCOUNT_ID>:function:elite-csp-jobs"
+        "arn:aws:lambda:<REGION>:<ACCOUNT_ID>:function:elite-csp-contact"
       ]
     }
   ]
@@ -345,7 +344,6 @@ cd api-app-project
 mvn clean package
 # → Produces:
 #    api-app-contact/target/elite-csp-contact.jar
-#    api-app-job/target/elite-csp-job.jar
 ```
 
 **Run Lambda locally with AWS SAM (optional):**

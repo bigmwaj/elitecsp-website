@@ -57,7 +57,7 @@ form {
     &:focus {
       outline: none;
       border-color: var(--primary);
-      box-shadow: 0 0 0 3px rgba(172, 80, 85, 0.1);
+      box-shadow: 0 0 0 3px var(--primary-tint);
     }
 
     &.error {
@@ -78,7 +78,7 @@ form {
 
     &:hover {
       border-color: var(--primary);
-      background: rgba(172, 80, 85, 0.03);
+      background: var(--primary-tint);
     }
 
     &.error {
@@ -96,7 +96,7 @@ form {
   display: flex;
   align-items: center;
   min-height: 54px;
-  background: rgba(172, 80, 85, 0.05);
+  background: var(--primary-tint);
   border-color: rgba(172, 80, 85, 0.16);
   font-weight: 600;
 }

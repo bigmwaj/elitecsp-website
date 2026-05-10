@@ -2,6 +2,9 @@
   --primary: #AC5055;
   --primary-dark: #8a3d41;
   --primary-light: #c96b70;
+  --primary-tint: rgba(172, 80, 85, 0.08);
+  --primary-tint-md: rgba(172, 80, 85, 0.12);
+  --primary-tint-lg: rgba(172, 80, 85, 0.2);
   --white: #ffffff;
   --light-gray: #F8F9FA;
   --dark-gray: #2D3748;
@@ -62,4 +65,49 @@ button {
 @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
+}
+
+// ── Shared layout utilities ──────────────────────────────────────────────────
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.section {
+  padding: 5rem 0;
+}
+
+.section-tag {
+  display: inline-block;
+  background: var(--primary-tint);
+  color: var(--primary);
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 0.3rem 1rem;
+  border-radius: 20px;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 3rem;
+
+  h2 {
+    font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+    font-weight: 800;
+    color: var(--dark-gray);
+    margin: 0.5rem 0 1rem;
+  }
+
+  p {
+    color: #666;
+    font-size: 1.05rem;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
 }

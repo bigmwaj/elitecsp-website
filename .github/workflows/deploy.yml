@@ -19,11 +19,8 @@ env:
   FRONTEND_WORKDIR: ui-app
   FRONTEND_DIST_DIR: ui-app/dist/ui-app/browser
   CONTACT_JAR_PATH: api-app-project/api-app-contact/target/elite-csp-contact.jar
-  JOB_JAR_PATH: api-app-project/api-app-job/target/elite-csp-job.jar
   CONTACT_ARTIFACT_NAME: lambda-api-app-contact
-  JOB_ARTIFACT_NAME: lambda-api-app-job
   CONTACT_FUNCTION_NAME: elite-csp-contact
-  JOB_FUNCTION_NAME: elite-csp-job
 
 jobs:
   backend-build:
@@ -54,38 +51,25 @@ jobs:
         working-directory: ${{ env.BACKEND_WORKDIR }}
         run: mvn --batch-mode --no-transfer-progress clean package
 
-      - name: Validate Lambda JAR artifacts
+      - name: Validate Lambda JAR artifact
         run: |
           set -euo pipefail
 
           CONTACT_JAR="${{ env.CONTACT_JAR_PATH }}"
-          JOB_JAR="${{ env.JOB_JAR_PATH }}"
 
           if [ ! -s "${CONTACT_JAR}" ]; then
             echo "Missing or empty contact Lambda artifact: ${CONTACT_JAR}"
             exit 1
           fi
 
-          if [ ! -s "${JOB_JAR}" ]; then
-            echo "Missing or empty job Lambda artifact: ${JOB_JAR}"
-            exit 1
-          fi
-
-          echo "Validated Lambda artifacts:"
-          ls -lh "${CONTACT_JAR}" "${JOB_JAR}"
+          echo "Validated Lambda artifact:"
+          ls -lh "${CONTACT_JAR}"
 
       - name: Upload api-app-contact Lambda artifact
         uses: actions/upload-artifact@v4
         with:
           name: ${{ env.CONTACT_ARTIFACT_NAME }}
           path: ${{ env.CONTACT_JAR_PATH }}
-          if-no-files-found: error
-
-      - name: Upload api-app-job Lambda artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: ${{ env.JOB_ARTIFACT_NAME }}
-          path: ${{ env.JOB_JAR_PATH }}
           if-no-files-found: error
 
   frontend-build:
@@ -154,12 +138,6 @@ jobs:
           name: ${{ env.CONTACT_ARTIFACT_NAME }}
           path: /tmp/lambda/contact
 
-      - name: Download api-app-job Lambda artifact
-        uses: actions/download-artifact@v4.1.3
-        with:
-          name: ${{ env.JOB_ARTIFACT_NAME }}
-          path: /tmp/lambda/job
-
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
@@ -179,44 +157,20 @@ jobs:
           fi
 
           CONTACT_JAR="/tmp/lambda/contact/elite-csp-contact.jar"
-          JOB_JAR="/tmp/lambda/job/elite-csp-job.jar"
 
           if [ ! -s "${CONTACT_JAR}" ]; then
             echo "Missing or empty contact Lambda artifact: ${CONTACT_JAR}"
             exit 1
           fi
 
-          if [ ! -s "${JOB_JAR}" ]; then
-            echo "Missing or empty job Lambda artifact: ${JOB_JAR}"
-            exit 1
-          fi
-
           echo "Deployment inputs validated."
-          ls -lh "${CONTACT_JAR}" "${JOB_JAR}"
+          ls -lh "${CONTACT_JAR}"
 
       - name: Deploy contact Lambda (elite-csp-contact)
         run: |
           set -euo pipefail
           JAR_FILE="/tmp/lambda/contact/elite-csp-contact.jar"
           FUNCTION_NAME="${{ env.CONTACT_FUNCTION_NAME }}"
-
-          echo "::group::Validating Lambda function ${FUNCTION_NAME}"
-          aws lambda get-function --function-name "${FUNCTION_NAME}" >/dev/null
-          echo "::endgroup::"
-
-          echo "::group::Updating Lambda code for ${FUNCTION_NAME}"
-          aws lambda update-function-code \
-            --function-name "${FUNCTION_NAME}" \
-            --zip-file "fileb://${JAR_FILE}"
-          aws lambda wait function-updated \
-            --function-name "${FUNCTION_NAME}"
-          echo "::endgroup::"
-
-      - name: Deploy job Lambda (elite-csp-jobs)
-        run: |
-          set -euo pipefail
-          JAR_FILE="/tmp/lambda/job/elite-csp-job.jar"
-          FUNCTION_NAME="${{ env.JOB_FUNCTION_NAME }}"
 
           echo "::group::Validating Lambda function ${FUNCTION_NAME}"
           aws lambda get-function --function-name "${FUNCTION_NAME}" >/dev/null

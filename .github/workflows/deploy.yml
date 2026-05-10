@@ -86,8 +86,8 @@ jobs:
         id: init
         run: |
           set -euo pipefail
-          DATE_PREFIX="$(date -u +%Y-%m-%d-%H-%M)"
-          ASSET_DIR="assets-${DATE_PREFIX}"
+          DATE_PREFIX="$(date -u +%Y%m%d%H%M)"
+          ASSET_DIR="assets-build-${DATE_PREFIX}"
           echo "asset_dir=${ASSET_DIR}" >> $GITHUB_OUTPUT
           echo "Generated ASSET_DIR: ${ASSET_DIR}"
 

@@ -12,6 +12,6 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes, withViewTransitions()),
     provideHttpClient(withInterceptors([apiKeyInterceptor])),
     provideTranslateService({ fallbackLang: 'fr' }),
-    provideTranslateHttpLoader({ prefix: 'assets/i18n/', suffix: '.json' })
+    provideTranslateHttpLoader({ prefix: 'assets/i18n-v1.0/', suffix: '.json' })
   ]
 };

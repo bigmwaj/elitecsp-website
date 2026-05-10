@@ -108,7 +108,7 @@ jobs:
           MATCH_FILE="$(mktemp)"
           trap 'rm -f "${MATCH_FILE}"' EXIT
           # Match legacy path-like usage only: src/assets, public/assets, or string/file references to /assets/.
-          LEGACY_PATH_PATTERN="((src|public)/${LEGACY_DIR}(/|$)|[\"'\`(/]${LEGACY_DIR}/)"
+          LEGACY_PATH_PATTERN="((src|public)/${LEGACY_DIR}(/|$)|[\"'(/]${LEGACY_DIR}/)"
 
           grep -RInE --include='*.ts' --include='*.html' --include='*.scss' --include='*.css' --include='*.json' --include='*.mjs' \
             --exclude-dir=node_modules --exclude-dir=dist \
@@ -309,6 +309,9 @@ jobs:
           aws s3 sync "${DIST_DIR}" "${DEST}/" \
             --delete \
             --exclude "jobs/*" \
+            --exclude "chunk-*.js" \
+            --exclude "main-*.js" \
+            --exclude "styles-*.css" \
             --cache-control "public,max-age=3600" \
             --exclude "index.html"
 

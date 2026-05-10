@@ -1,4 +1,5 @@
 {
+  "COMPANY_NAME": "Elite CSP",
   "NAV": {
     "LINK": {
       "SERVICES": "services",
@@ -19,8 +20,8 @@
   },
   "HERO": {
     "HOME": {
-      "TITLE": "Bénéficiez d’un accompagnement 360° dans votre projet <br/>GMAO",
-      "SUBTITLE": "<strong>Elite CSP</strong> offre des services experts en gestion des actifs d'entreprise et en implémentation de solutions <strong>IBM Maximo/MAS</strong>, aidant les organisations à maximiser les performances de leurs actifs, réduire les coûts et atteindre l'excellence opérationnelle.",
+      "TITLE": "Bénéficiez d'un accompagnement 360° dans votre projet <br/>GMAO",
+      "SUBTITLE": "<strong>Élite CSP</strong> offre des services experts en gestion des actifs d'entreprise et en implémentation de solutions <strong>IBM Maximo/MAS</strong>, aidant les organisations à maximiser les performances de leurs actifs, réduire les coûts et atteindre l'excellence opérationnelle.",
       "CTA": "Obtenir une consultation gratuite",
       "SECONDARY_CTA": "Explorer nos services"
     },
@@ -30,7 +31,7 @@
       "CTA": "Nous contacter"
     },
     "ABOUT": {
-      "TITLE": "À propos d'Elite CSP",
+      "TITLE": "À propos d'Élite CSP",
       "SUBTITLE": "Leaders canadiens en conseil IBM Maximo et en solutions de gestion des actifs d'entreprise.",
       "CTA": "Travailler avec nous"
     },
@@ -51,6 +52,10 @@
     }
   },
   "HOME": {
+    "META":{
+      "TITLE": "Elite CSP - Conseils en Maintenance et Services IBM Maximo au Canada",
+      "DESCRIPTION": "Elite CSP est un cabinet de conseil canadien spécialisé dans la maintenance industrielle et les services professionnels IBM Maximo. Nous aidons les organisations à optimiser leurs opérations de gestion des actifs d'entreprise (EAM) grâce à des solutions sur mesure, une expertise approfondie et une approche centrée sur le client."
+    },
     "SERVICES_SECTION": {
       "MAINTENANCE": {
         "TAG": "Ce que nous faisons",
@@ -98,6 +103,10 @@
     }
   },
   "SERVICES_PAGE": {
+    "META": {
+      "TITLE": "Nos Services",
+      "DESCRIPTION": "Découvrez notre gamme complète de services, y compris le conseil en maintenance et l'implémentation d'IBM Maximo, conçus pour optimiser vos opérations de gestion des actifs d'entreprise."
+     },
     "MAINTENANCE": {
       "TAG": "Services Conseil en Maintenance",
       "TITLE": "Planification de la maintenance et conseil en fiabilité",
@@ -144,6 +153,10 @@
     }
   },
   "ABOUT_PAGE": {
+    "META": {
+      "TITLE": "À propos de nous",
+      "DESCRIPTION": "En savoir plus sur l'histoire, la mission, la vision et les valeurs d'Elite CSP, ainsi que sur notre expertise approfondie dans IBM Maximo et la gestion des actifs d'entreprise."
+     },
     "STORY": {
       "TAG": "Notre histoire",
       "TITLE": "Fondée sur l'expertise, animée par les résultats",
@@ -209,6 +222,10 @@
     }
   },
   "CONTACT_PAGE": {
+    "META": {
+      "TITLE": "Contactez-nous",
+      "DESCRIPTION": "Contactez Elite CSP pour une consultation gratuite sur vos besoins en gestion des actifs d'entreprise et en implémentation IBM Maximo. Notre équipe d'experts est prête à vous aider à transformer vos opérations."
+     },
     "INFO": {
       "TAG": "Nous contacter",
       "TITLE": "Commençons une conversation",
@@ -252,7 +269,7 @@
     }
   },
   "FOOTER": {
-    "BRAND_DESC": "Elite Conseils & Services Professionnels TI inc — Votre partenaire de confiance en IBM Maximo et gestion des actifs d'entreprise.",
+    "BRAND_DESC": "Elite CSP - Votre partenaire de confiance en IBM Maximo et gestion des actifs d'entreprise.",
     "SERVICES": "Services",
     "COMPANY": "Entreprise",
     "CONTACT": "Contact",
@@ -394,6 +411,10 @@
     }
   },
   "CAREERS_PAGE": {
+    "META": {
+      "TITLE": "Carrières",
+      "DESCRIPTION": "Découvrez les opportunités de carrière chez Elite CSP, leader canadien en conseil IBM Maximo et gestion des actifs d'entreprise. Rejoignez notre équipe d'experts passionnés et contribuez à transformer les opérations de nos clients."
+     },
     "LISTINGS": {
       "TAG": "Postes ouverts",
       "TITLE": "Opportunités de carrière",
@@ -438,6 +459,10 @@
     },
     "DETAILS_BTN": "Voir le détail",
     "JOB_DETAIL": {
+      "META": {
+        "TITLE": "{{jobTitle}} - Carrières chez Elite CSP",
+        "DESCRIPTION": "Découvrez les détails du poste de {{jobTitle}} chez Elite CSP, leader canadien en conseil IBM Maximo et gestion des actifs d'entreprise. Rejoignez notre équipe d'experts passionnés et contribuez à transformer les opérations de nos clients."
+       },
       "BACK": "Retour aux carrières",
       "APPLY_CTA": "Postuler à ce poste",
       "BROWSE_CTA": "Voir toutes les offres",
@@ -449,19 +474,23 @@
       "REQUIREMENTS": "Profil recherché",
       "BENEFITS": "Pourquoi rejoindre Elite CSP",
       "LOCATION": "Lieu",
-      "TYPE": "Type d’engagement",
+      "TYPE": "Type d'engagement",
       "COMPANY": "Entreprise",
-      "NO_DETAILS": "Des détails additionnels sur le poste pourront être partagés durant le processus d’entrevue.",
+      "NO_DETAILS": "Des détails additionnels sur le poste pourront être partagés durant le processus d'entrevue.",
       "APPLY_TAG": "Postuler",
       "APPLY_TITLE": "Cette opportunité vous intéresse ?",
       "APPLY_SUBTITLE": "Soumettez votre candidature ci-dessous et notre équipe vous contactera rapidement.",
       "NOT_FOUND_TAG": "Carrières",
       "NOT_FOUND_TITLE": "Offre introuvable",
-      "NOT_FOUND_DESC": "L’offre que vous recherchez n’est plus disponible ou a peut-être été retirée.",
+      "NOT_FOUND_DESC": "L'offre que vous recherchez n'est plus disponible ou a peut-être été retirée.",
       "RETURN": "Voir les postes disponibles"
     }
   },
   "PARTNERS": {
+    "META": {
+      "TITLE": "Elite CSP - Nos Partenaires",
+      "DESCRIPTION": "Découvrez les partenaires stratégiques d'Elite CSP qui renforcent notre expertise et notre offre de services en gestion des actifs d'entreprise et IBM Maximo."
+     },
     "PAGE": {
       "TAG": "Partenaires",
       "TITLE": "Nos partenaires stratégiques",

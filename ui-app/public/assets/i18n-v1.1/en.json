@@ -1,4 +1,5 @@
 {
+  "COMPANY_NAME": "Elite CSP",
   "NAV": {
     "LINK": {
       "SERVICES": "services",
@@ -51,6 +52,10 @@
     }
   },
   "HOME": {
+      "META":{
+        "TITLE": "Elite CSP - Maintenance Consulting and IBM Maximo Services in Canada",
+        "DESCRIPTION": "Elite CSP is a Canadian consulting firm specializing in industrial maintenance and IBM Maximo professional services. We help organizations optimize their enterprise asset management (EAM) operations through tailored solutions, deep expertise, and a client-focused approach."
+      },
     "SERVICES_SECTION": {
       "MAINTENANCE": {
         "TAG": "What We Do",
@@ -98,6 +103,10 @@
     }
   },
   "SERVICES_PAGE": {
+    "META": {
+      "TITLE": "Our Services - Elite CSP",
+      "DESCRIPTION": "Explore our comprehensive range of services including maintenance consulting and IBM Maximo implementation, designed to optimize your enterprise asset management operations."
+    },
     "MAINTENANCE": {
       "TAG": "Maintenance Consulting Services",
       "TITLE": "Maintenance Planning & Reliability Consulting",
@@ -144,6 +153,10 @@
     }
   },
   "ABOUT_PAGE": {
+    "META": {
+      "TITLE": "About Us - Elite CSP",
+      "DESCRIPTION": "Learn about Elite CSP's mission, vision, values, and expertise in IBM Maximo consulting and enterprise asset management."
+    },
     "STORY": {
       "TAG": "Our Story",
       "TITLE": "Built on Expertise, Driven by Results",
@@ -209,6 +222,10 @@
     }
   },
   "CONTACT_PAGE": {
+    "META": {
+      "TITLE": "Contact Us",
+      "DESCRIPTION": "Get in touch with Elite CSP for a free consultation on your enterprise asset management and IBM Maximo implementation needs. Our team of experts is ready to help you transform your operations."
+    },
     "INFO": {
       "TAG": "Get In Touch",
       "TITLE": "Let's Start a Conversation",
@@ -394,6 +411,10 @@
     }
   },
   "CAREERS_PAGE": {
+    "META": {
+      "TITLE": "Elite CSP - Careers and Job Opportunities",
+      "DESCRIPTION": "Explore exciting career opportunities at Elite CSP, Canada's leading IBM Maximo consulting firm. Join our team of experts and help organizations transform their enterprise asset management operations."
+     },
     "LISTINGS": {
       "TAG": "Open Positions",
       "TITLE": "Career Opportunities",
@@ -438,6 +459,10 @@
     },
     "DETAILS_BTN": "View details",
     "JOB_DETAIL": {
+      "META": {
+        "TITLE": "{{jobTitle}} - Careers at Elite CSP",
+        "DESCRIPTION": "Discover the details of the {{jobTitle}} position at Elite CSP, Canada's leading IBM Maximo consulting and enterprise asset management firm. Join our team of passionate experts and contribute to transforming our clients' operations."
+       },
       "BACK": "Back to careers",
       "APPLY_CTA": "Apply for this role",
       "BROWSE_CTA": "Browse all jobs",
@@ -462,6 +487,10 @@
     }
   },
   "PARTNERS": {
+    "META": {
+      "TITLE": "Elite CSP - Our Partners",
+      "DESCRIPTION": "Discover Elite CSP's strategic partners who strengthen our expertise and service offering in IBM Maximo consulting and enterprise asset management solutions."
+     },
     "PAGE": {
       "TAG": "Partners",
       "TITLE": "Our Strategic Partners",

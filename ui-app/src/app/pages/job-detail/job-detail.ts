@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
@@ -12,7 +12,7 @@ import { JobService, JobPosting } from '../../services/job.service';
   templateUrl: './job-detail.html',
   styleUrl: './job-detail.scss'
 })
-export class JobDetailComponent {
+export class JobDetailComponent implements OnInit {
   private titleService = inject(Title);
   private meta = inject(Meta);
   private route = inject(ActivatedRoute);
@@ -21,22 +21,19 @@ export class JobDetailComponent {
 
   readonly job = signal<JobPosting | null>(null);
 
-  constructor() {
+  ngOnInit() {
     const slug = this.route.snapshot.paramMap.get('slug') ?? '';
     const job = this.jobService.getJobBySlug(slug);
     this.job.set(job);
 
     if (job) {
       const pageTitle = this.getLocalizedText(job.title);
-      this.titleService.setTitle(`${pageTitle} — Elite CSP`);
-      this.meta.updateTag({ name: 'description', content: this.getLocalizedText(job.summary) });
+      this.titleService.setTitle(`${this.translate.instant('PARTNERS.META.TITLE')} - ${pageTitle} - Elite CSP`);
+      this.meta.updateTag({ name: 'description', content: `this.translate.instant('PARTNERS.META.DESCRIPTION') -this.getLocalizedText(job.summary)` });
       return;
     }
-
-    const fallbackTitle = this.translate.instant('CAREERS_PAGE.JOB_DETAIL.NOT_FOUND_TITLE');
-    const fallbackDescription = this.translate.instant('CAREERS_PAGE.JOB_DETAIL.NOT_FOUND_DESC');
-    this.titleService.setTitle(`${fallbackTitle} — Elite CSP`);
-    this.meta.updateTag({ name: 'description', content: fallbackDescription });
+    this.titleService.setTitle(this.translate.instant('PARTNERS.META.TITLE'));
+    this.meta.updateTag({ name: 'description', content: this.translate.instant('PARTNERS.META.DESCRIPTION') });
   }
 
   jobTypeKey(type: string): string {

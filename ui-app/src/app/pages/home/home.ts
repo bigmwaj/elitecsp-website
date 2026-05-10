@@ -1,7 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { Title, Meta } from '@angular/platform-browser';
-import { TranslatePipe } from '@ngx-translate/core';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { DataService } from '../../services/data.service';
 import { PartnersService } from '../../services/partners.service';
 import { ServiceCardComponent } from '../../components/service-card/service-card';
@@ -21,6 +21,7 @@ export class HomeComponent implements OnInit {
   private meta = inject(Meta);
   private dataService = inject(DataService);
   private partnersService = inject(PartnersService);
+  private translateService = inject(TranslateService);
   
   maintenanceServices = this.dataService.maintenanceServices;
   maximoServices = this.dataService.maximoServices;
@@ -29,7 +30,7 @@ export class HomeComponent implements OnInit {
   partners = this.partnersService.partners;
 
   ngOnInit() {
-    this.title.setTitle('Elite CSP — Conseil IBM Maximo & EAM');
-    this.meta.updateTag({ name: 'description', content: 'Elite CSP offre des services experts en implémentation IBM Maximo, intégration et support au Canada. Transformez votre gestion des actifs d\'entreprise dès aujourd\'hui.' });
+    this.title.setTitle(this.translateService.instant('HOME.META.TITLE'));
+    this.meta.updateTag({ name: 'description', content: this.translateService.instant('HOME.META.DESCRIPTION') });
   }
 }

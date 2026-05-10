@@ -27,13 +27,8 @@ export class CareersComponent implements OnInit {
   protected readonly subscriptions$: Subscription[] = [];
 
   ngOnInit(): void {
-    this.translate.get('HERO.CAREERS.TITLE').subscribe(title => {
-      this.titleService.setTitle(`${title} — Elite CSP`);
-    });
-
-    this.translate.get('HERO.CAREERS.SUBTITLE').subscribe(desc => {
-      this.meta.updateTag({ name: 'description', content: desc });
-    });
+    this.titleService.setTitle(this.translate.instant('CAREERS_PAGE.META.TITLE'));
+    this.meta.updateTag({ name: 'description', content: this.translate.instant('CAREERS_PAGE.META.DESCRIPTION') });
 
     const jobSub = this.jobService.loadJobs().subscribe({
       next: summaries => this.jobSummaries.set(summaries),

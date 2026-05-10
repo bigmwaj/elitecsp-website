@@ -115,7 +115,7 @@ export class ApplicationFormComponent {
           email: value.email ?? '',
           city: value.city ?? '',
           phone: value.phone ?? '',
-          subject: this.getLocalizedTitle(selectedJob),
+          subject: selectedJob.slug,
           message: value.coverLetter ?? '',
           attachment: base64Content,
           attachmentFileName: file!.name,
@@ -142,11 +142,6 @@ export class ApplicationFormComponent {
   resetForm(): void {
     this.submitted.set(false);
     this.form.patchValue({ jobSlug: this.selectedJobSlug() ?? '' }, { emitEvent: false });
-  }
-
-  private getLocalizedTitle(job: JobSummary): string {
-    const currentLang = this.translate.currentLang?.startsWith('fr') ? 'fr' : 'en';
-    return job.title[currentLang] ?? job.title.en;
   }
 
   private readFileAsBase64(file: File): Promise<string> {

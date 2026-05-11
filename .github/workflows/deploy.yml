@@ -15,10 +15,10 @@ on:
 env:
   JAVA_VERSION: '21'
   NODE_VERSION: '22'
-  BACKEND_WORKDIR: api-app-project
+  BACKEND_WORKDIR: api-app
   FRONTEND_WORKDIR: ui-app
   FRONTEND_DIST_DIR: ui-app/dist/ui-app/browser
-  CONTACT_JAR_PATH: api-app-project/api-app-contact/target/elite-csp-contact.jar
+  CONTACT_JAR_PATH: api-app/api-app-contact/target/elite-csp-contact.jar
   CONTACT_ARTIFACT_NAME: lambda-api-app-contact
   CONTACT_FUNCTION_NAME: elite-csp-contact
 

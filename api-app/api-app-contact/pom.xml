@@ -7,17 +7,22 @@
 
     <parent>
         <groupId>ca.elitecsp</groupId>
-        <artifactId>api-app-project</artifactId>
+        <artifactId>api-app</artifactId>
         <version>1.0.0</version>
     </parent>
 
-    <artifactId>api-app-common</artifactId>
+    <artifactId>api-app-contact</artifactId>
     <packaging>jar</packaging>
 
-    <name>Elite CSP API – Common Module</name>
-    <description>Common features for lambda functions</description>
+    <name>Elite CSP API – Contact Module</name>
+    <description>AWS Lambda handlers for contact-form and job-application submissions</description>
 
     <dependencies>
+        <dependency>
+            <groupId>ca.elitecsp</groupId>
+            <artifactId>api-app-common</artifactId>
+            <version>1.0.0</version>
+        </dependency>
         <dependency>
             <groupId>com.amazonaws</groupId>
             <artifactId>aws-lambda-java-core</artifactId>
@@ -29,6 +34,15 @@
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>software.amazon.awssdk</groupId>
+            <artifactId>ses</artifactId>
+        </dependency>
+        <!-- Jakarta Mail – Eclipse Angus (drop-in replacement for com.sun.mail:jakarta.mail) -->
+        <dependency>
+            <groupId>org.eclipse.angus</groupId>
+            <artifactId>jakarta.mail</artifactId>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
@@ -67,6 +81,21 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                        <configuration>
+                            <outputFile>${project.build.directory}/elite-csp-contact.jar</outputFile>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
             <plugin>
                 <groupId>org.jacoco</groupId>

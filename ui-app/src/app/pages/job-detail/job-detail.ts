@@ -28,7 +28,7 @@ export class JobDetailComponent implements OnInit {
 
     if (job) {
       const pageTitle = this.getLocalizedText(job.title);
-      this.titleService.setTitle(`${this.translate.instant('PAGE.JOB_DETAILS.META.TITLE')} - ${pageTitle} - ${this.translate.instant('COMMON.COMPANY_NAME')}`);
+      this.titleService.setTitle(`${this.translate.instant('PAGE.JOB_DETAILS.META.TITLE', { jobTitle: pageTitle })}`);
       this.meta.updateTag({
         name: 'description',
         content: this.translate.instant('PAGE.JOB_DETAILS.META.DESCRIPTION', {
@@ -38,8 +38,8 @@ export class JobDetailComponent implements OnInit {
       });
       return;
     }
-    this.titleService.setTitle(this.translate.instant('PAGE.JOB_DETAILS.META.TITLE'));
-    this.meta.updateTag({ name: 'description', content: this.translate.instant('PAGE.JOB_DETAILS.META.DEFAULT_DESCRIPTION') });
+    this.titleService.setTitle(this.translate.instant('PAGE.JOB_DETAILS.META.TITLE', { jobTitle: '' }));
+    this.meta.updateTag({ name: 'description', content: this.translate.instant('PAGE.JOB_DETAILS.META.DEFAULT_DESCRIPTION', { jobTitle: '' }) });
   }
 
   jobTypeKey(type: string): string {

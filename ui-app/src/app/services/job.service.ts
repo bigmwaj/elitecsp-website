@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { JobDetailsData } from '../job-details.data';
-import { JobData } from '../job-summaries.data';
+import { JobDetailsData } from '../data/job-details.data';
+import { JobData } from '../data/job-summaries.data';
 import { JobDetails } from '../models/job-details.model';
 import { JobSummary } from '../models/job-summary.model';
 

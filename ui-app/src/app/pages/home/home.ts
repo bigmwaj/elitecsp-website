@@ -4,6 +4,7 @@ import { Title, Meta } from '@angular/platform-browser';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { DataService } from '../../services/data.service';
 import { PartnersService } from '../../services/partners.service';
+import { COMPANY_STATS } from '../../data/company-stats.data';
 import { ServiceCardComponent } from '../../components/service-card/service-card';
 import { PartnerCardComponent } from '../../components/partner-card/partner-card';
 import { HeroComponent } from '../../components/hero/hero';
@@ -28,6 +29,7 @@ export class HomeComponent implements OnInit {
   testimonials = this.dataService.testimonials;
   processSteps = this.dataService.processSteps;
   partners = this.partnersService.partners;
+  readonly stats = COMPANY_STATS;
 
   ngOnInit() {
     this.title.setTitle(this.translateService.instant('PAGE.HOME.META.TITLE'));

@@ -1,4 +1,4 @@
-import { JobSummary } from './models/job-summary.model';
+import { JobSummary } from '../models/job-summary.model';
 
 export class JobData {
   static JOB_SUMMARIES: JobSummary[] = [

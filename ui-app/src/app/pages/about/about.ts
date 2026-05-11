@@ -3,6 +3,7 @@ import { Title, Meta } from '@angular/platform-browser';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { HeroComponent } from '../../components/hero/hero';
 import { CtaSectionComponent } from '../../components/cta-section/cta-section';
+import { COMPANY_STATS } from '../../data/company-stats.data';
 
 @Component({
   selector: 'app-about',
@@ -15,6 +16,7 @@ export class AboutComponent implements OnInit {
   private title = inject(Title);
   private meta = inject(Meta);  
   private translate = inject(TranslateService);
+  readonly stats = COMPANY_STATS;
 
   ngOnInit() {
     this.title.setTitle(this.translate.instant('PAGE.ABOUT.META.TITLE'));

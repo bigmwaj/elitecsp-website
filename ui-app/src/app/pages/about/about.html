@@ -17,22 +17,12 @@
       </div>
       <div class="intro-visual">
         <div class="visual-card">
-          <div class="vc-item">
-            <span class="vc-number">5+</span>
-            <span class="vc-label">{{ 'PAGE.ABOUT.STORY.IMPLEMENTATIONS' | translate }}</span>
-          </div>
-          <div class="vc-item">
-            <span class="vc-number">3+</span>
-            <span class="vc-label">{{ 'PAGE.ABOUT.STORY.YEARS_EXP' | translate }}</span>
-          </div>
-          <div class="vc-item">
-            <span class="vc-number">3+</span>
-            <span class="vc-label">{{ 'PAGE.ABOUT.STORY.INDUSTRIES_SERVED' | translate }}</span>
-          </div>
-          <div class="vc-item">
-            <span class="vc-number">🇨🇦</span>
-            <span class="vc-label">{{ 'PAGE.ABOUT.STORY.CANADIAN' | translate }}</span>
-          </div>
+          @for (stat of stats; track stat.labelKey) {
+            <div class="vc-item">
+              <span class="vc-number">{{ stat.value }}</span>
+              <span class="vc-label">{{ stat.labelKey | translate }}</span>
+            </div>
+          }
         </div>
       </div>
     </div>

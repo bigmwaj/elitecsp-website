@@ -58,22 +58,12 @@
         <a routerLink="/about" class="btn-link">{{ 'PAGE.HOME.VALUE_SECTION.LEARN_MORE' | translate }}</a>
       </div>
       <div class="value-stats">
-        <div class="stat">
-          <span class="stat-number">50+</span>
-          <span class="stat-label">{{ 'PAGE.HOME.STATS.PROJECTS' | translate }}</span>
-        </div>
-        <div class="stat">
-          <span class="stat-number">15+</span>
-          <span class="stat-label">{{ 'PAGE.HOME.STATS.YEARS' | translate }}</span>
-        </div>
-        <div class="stat">
-          <span class="stat-number">98%</span>
-          <span class="stat-label">{{ 'PAGE.HOME.STATS.SATISFACTION' | translate }}</span>
-        </div>
-        <div class="stat">
-          <span class="stat-number">24/7</span>
-          <span class="stat-label">{{ 'PAGE.HOME.STATS.SUPPORT' | translate }}</span>
-        </div>
+        @for (stat of stats; track stat.labelKey) {
+          <div class="stat">
+            <span class="stat-number">{{ stat.value }}</span>
+            <span class="stat-label">{{ stat.labelKey | translate }}</span>
+          </div>
+        }
       </div>
     </div>
   </div>
@@ -101,7 +91,7 @@
 </section>
 
 <!-- Testimonials -->
-<section class="section testimonials-section">
+<section class="section testimonials-section display-none">
   <div class="container">
     <div class="section-header">
       <span class="section-tag">{{ 'PAGE.HOME.TESTIMONIALS_SECTION.TAG' | translate }}</span>

@@ -1,4 +1,4 @@
-import { JobDetails } from './models/job-details.model';
+import { JobDetails } from '../models/job-details.model';
 
 export class JobDetailsData {
   static JOB_DETAILS: JobDetails[] = [

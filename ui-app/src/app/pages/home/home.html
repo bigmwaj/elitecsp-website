@@ -8,6 +8,42 @@
   [showPartnerLogos]="true">
 </app-hero>
 
+<!-- Infogérance Section -->
+<section class="section infogerance-section">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">{{ 'PAGE.HOME.INFOGERANCE_SECTION.TAG' | translate }}</span>
+      <h2>{{ 'PAGE.HOME.INFOGERANCE_SECTION.TITLE' | translate }}</h2>
+      <p>{{ 'PAGE.HOME.INFOGERANCE_SECTION.SUBTITLE' | translate }}</p>
+    </div>
+    <div class="infogerance-grid">
+      <div class="infogerance-card">
+        <div class="infogerance-icon">🆓</div>
+        <span class="infogerance-badge badge-free">{{ 'PAGE.HOME.INFOGERANCE_SECTION.FREE.TITLE' | translate }}</span>
+        <p>{{ 'PAGE.HOME.INFOGERANCE_SECTION.FREE.DESC' | translate }}</p>
+      </div>
+      <div class="infogerance-card">
+        <div class="infogerance-icon">🚀</div>
+        <span class="infogerance-badge badge-starter">{{ 'PAGE.HOME.INFOGERANCE_SECTION.STARTER.TITLE' | translate }}</span>
+        <p>{{ 'PAGE.HOME.INFOGERANCE_SECTION.STARTER.DESC' | translate }}</p>
+      </div>
+      <div class="infogerance-card infogerance-card-featured">
+        <div class="infogerance-icon">⚙️</div>
+        <span class="infogerance-badge badge-standard">{{ 'PAGE.HOME.INFOGERANCE_SECTION.STANDARD.TITLE' | translate }}</span>
+        <p>{{ 'PAGE.HOME.INFOGERANCE_SECTION.STANDARD.DESC' | translate }}</p>
+      </div>
+      <div class="infogerance-card">
+        <div class="infogerance-icon">🏆</div>
+        <span class="infogerance-badge badge-emerite">{{ 'PAGE.HOME.INFOGERANCE_SECTION.EMERITE.TITLE' | translate }}</span>
+        <p>{{ 'PAGE.HOME.INFOGERANCE_SECTION.EMERITE.DESC' | translate }}</p>
+      </div>
+    </div>
+    <div class="infogerance-cta">
+      <a routerLink="/infogerance" class="btn-primary">{{ 'PAGE.HOME.INFOGERANCE_SECTION.CTA' | translate }}</a>
+    </div>
+  </div>
+</section>
+
 <!-- Maintenance Services Overview -->
 <section class="section maintenance-services services-section">
   <div class="container">
@@ -39,6 +75,8 @@
     </div>
   </div>
 </section>
+
+
 
 <!-- Value Proposition -->
 <section class="section value-section">
@@ -122,41 +160,7 @@
 
 <app-cta-section />
 
-<!-- Infogérance Section -->
-<section class="section infogerance-section">
-  <div class="container">
-    <div class="section-header">
-      <span class="section-tag">{{ 'PAGE.HOME.INFOGERANCE_SECTION.TAG' | translate }}</span>
-      <h2>{{ 'PAGE.HOME.INFOGERANCE_SECTION.TITLE' | translate }}</h2>
-      <p>{{ 'PAGE.HOME.INFOGERANCE_SECTION.SUBTITLE' | translate }}</p>
-    </div>
-    <div class="infogerance-grid">
-      <div class="infogerance-card">
-        <div class="infogerance-icon">🆓</div>
-        <span class="infogerance-badge badge-free">{{ 'PAGE.HOME.INFOGERANCE_SECTION.FREE.TITLE' | translate }}</span>
-        <p>{{ 'PAGE.HOME.INFOGERANCE_SECTION.FREE.DESC' | translate }}</p>
-      </div>
-      <div class="infogerance-card">
-        <div class="infogerance-icon">🚀</div>
-        <span class="infogerance-badge badge-starter">{{ 'PAGE.HOME.INFOGERANCE_SECTION.STARTER.TITLE' | translate }}</span>
-        <p>{{ 'PAGE.HOME.INFOGERANCE_SECTION.STARTER.DESC' | translate }}</p>
-      </div>
-      <div class="infogerance-card infogerance-card-featured">
-        <div class="infogerance-icon">⚙️</div>
-        <span class="infogerance-badge badge-standard">{{ 'PAGE.HOME.INFOGERANCE_SECTION.STANDARD.TITLE' | translate }}</span>
-        <p>{{ 'PAGE.HOME.INFOGERANCE_SECTION.STANDARD.DESC' | translate }}</p>
-      </div>
-      <div class="infogerance-card">
-        <div class="infogerance-icon">🏆</div>
-        <span class="infogerance-badge badge-emerite">{{ 'PAGE.HOME.INFOGERANCE_SECTION.EMERITE.TITLE' | translate }}</span>
-        <p>{{ 'PAGE.HOME.INFOGERANCE_SECTION.EMERITE.DESC' | translate }}</p>
-      </div>
-    </div>
-    <div class="infogerance-cta">
-      <a routerLink="/infogerance" class="btn-primary">{{ 'PAGE.HOME.INFOGERANCE_SECTION.CTA' | translate }}</a>
-    </div>
-  </div>
-</section>
+
 
 <!-- Partners Section -->
 <section class="section partners-home-section">

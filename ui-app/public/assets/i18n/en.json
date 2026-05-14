@@ -11,6 +11,7 @@
       "ABOUT": "About",
       "CAREERS": "Careers",
       "CONTACT": "Contact Us",
+      "INFOGERANCE": "Infogerance",
       "HOME": "Home",
       "PARTNERS": "Partners",
       "SERVICES": "Services"
@@ -18,7 +19,8 @@
     "LINK": {
       "ABOUT": "about",
       "CAREERS": "careers",
-      "CONTACT": "contact",
+      "CONTACT": "contact-us",
+      "INFOGERANCE": "infogerance",
       "PARTNERS": "partners",
       "SERVICES": "services"
     },

@@ -11,6 +11,7 @@
 
     <div class="nav-links" [class.open]="menuOpen()">
       <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" (click)="closeMenu()">{{ 'MENU.LABEL.HOME' | translate }}</a>
+      <a routerLink="/{{'MENU.LINK.INFOGERANCE' | translate}}" routerLinkActive="active" (click)="closeMenu()">{{ 'MENU.LABEL.INFOGERANCE' | translate }}</a>
       <a routerLink="/{{'MENU.LINK.SERVICES' | translate}}" routerLinkActive="active" (click)="closeMenu()">{{ 'MENU.LABEL.SERVICES' | translate }}</a>
       <a routerLink="/{{'MENU.LINK.ABOUT' | translate}}" routerLinkActive="active" (click)="closeMenu()">{{ 'MENU.LABEL.ABOUT' | translate }}</a>
       <a routerLink="/{{'MENU.LINK.PARTNERS' | translate}}" routerLinkActive="active" (click)="closeMenu()">{{ 'MENU.LABEL.PARTNERS' | translate }}</a>

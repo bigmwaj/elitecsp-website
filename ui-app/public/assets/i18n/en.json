@@ -243,6 +243,28 @@
           "TITLE": "IBM Maximo Services"
         }
       },
+      "INFOGERANCE_SECTION": {
+        "CTA": "Discover Our Offers",
+        "SUBTITLE": "From free platform access to a dedicated strategic partnership, choose the level of support that suits you.",
+        "TAG": "Managed Services",
+        "TITLE": "Our Managed Service Options",
+        "FREE": {
+          "DESC": "Free access to the Elite Maintenance platform to manage your assets.",
+          "TITLE": "Free"
+        },
+        "STARTER": {
+          "DESC": "Complete guidance to define and implement your maintenance strategy.",
+          "TITLE": "Starter"
+        },
+        "STANDARD": {
+          "DESC": "Managed services including the provision of expert operational resources.",
+          "TITLE": "Standard"
+        },
+        "EMERITE": {
+          "DESC": "Dedicated strategic partnership to achieve operational excellence.",
+          "TITLE": "Émérite"
+        }
+      },
       "STATS": {
         "PROJECTS": "Projects Delivered",
         "SATISFACTION": "Client Satisfaction",
@@ -306,6 +328,110 @@
       "SUBTITLE": "Elite CSP collaborates with industry leaders to offer the best enterprise asset management solutions.",
       "TAG": "Partners",
       "TITLE": "Our Strategic Partners"
+    },
+    "INFOGERANCE": {
+      "CTA": {
+        "CTA_TEXT": "Book a Consultation",
+        "SUBTITLE": "Our experts are ready to analyze your needs and propose the right offer for you.",
+        "TITLE": "Ready to Delegate Your Maintenance Management?"
+      },
+      "FAQ": {
+        "SUBTITLE": "Find answers to the most frequently asked questions about our managed services offers.",
+        "TAG": "FAQ",
+        "TITLE": "Frequently Asked Questions",
+        "Q1": {
+          "A": "Managed maintenance services refers to the partial or total delegation of your maintenance operations management to an external provider. This includes strategy, processes, tools, and the resources needed to keep your assets in optimal working condition.",
+          "Q": "What are managed maintenance services?"
+        },
+        "Q2": {
+          "A": "Our Starter offer is recommended for organizations starting their transformation or looking for guidance in defining their strategy. Standard and Émérite offers are suited for organizations seeking more advanced operational delegation.",
+          "Q": "How do I choose the right offer for my organization?"
+        },
+        "Q3": {
+          "A": "Yes, our offers are designed to scale. You can start with the Free or Starter offer, then upgrade to Standard or Émérite as your maturity and needs grow.",
+          "Q": "Can we move from one offer to another?"
+        },
+        "Q4": {
+          "A": "Yes, the Free offer gives you access to the Elite Maintenance platform at no cost. Paid offers (Starter, Standard, Émérite) include increasing levels of support and services. Contact us for a quote tailored to your situation.",
+          "Q": "Is the Free offer truly free?"
+        },
+        "Q5": {
+          "A": "With the Émérite offer, a dedicated team works closely with your teams, either on-site or remotely. We provide continuous oversight of the maintenance strategy and ongoing performance- and reliability-driven improvement.",
+          "Q": "How does the strategic partnership in the Émérite offer work?"
+        }
+      },
+      "HERO": {
+        "CTA": "Contact Us",
+        "SUBTITLE": "We offer several service levels tailored to your needs and maintenance management maturity.",
+        "TITLE": "Managed Maintenance Services"
+      },
+      "META": {
+        "DESCRIPTION": "Discover Elite CSP's managed maintenance service offerings: from free platform access to a dedicated strategic partnership. We guide you toward operational excellence.",
+        "KEYWORDS": "managed services, maintenance management, CMMS, EAM, IBM Maximo, Elite CSP, industrial maintenance, asset reliability",
+        "TITLE": "Elite CSP - Managed Maintenance Services"
+      },
+      "OFFERS": {
+        "SUBTITLE": "Choose the level of support that matches your maturity and objectives.",
+        "TAG": "Our Offers",
+        "TITLE": "Offers for Every Stage",
+        "FREE": {
+          "BADGE": "Free",
+          "DESC": "Get free access to the Elite Maintenance platform to manage your assets and maintenance operations.",
+          "F1": "Access to Elite Maintenance platform",
+          "F2": "Asset and location creation & management",
+          "F3": "Maintenance plan creation",
+          "F4": "Work order management & tracking",
+          "F5": "Monitoring dashboards",
+          "TITLE": "Free"
+        },
+        "STARTER": {
+          "BADGE": "Guided Support",
+          "DESC": "End-to-end support for defining and implementing your maintenance strategy.",
+          "F1": "Maintenance process audit",
+          "F2": "Information system mapping",
+          "F3": "Maintenance strategy definition",
+          "F4": "Roles and competencies definition",
+          "F5": "Tool selection",
+          "F6": "Target system architecture",
+          "F7": "Tool implementation",
+          "F8": "SLA definition",
+          "F9": "Team training",
+          "F10": "Change management",
+          "F11": "Tool support",
+          "TITLE": "Starter"
+        },
+        "STANDARD": {
+          "BADGE": "Managed Services",
+          "DESC": "All Starter features plus the provision of expert operational resources.",
+          "F1": "All Starter features",
+          "F2": "Provision of operational resources",
+          "F3": "Continuous training",
+          "F4": "Right skills available at the right time",
+          "HIGHLIGHT": "You delegate operational execution while retaining strategic control.",
+          "TITLE": "Standard"
+        },
+        "EMERITE": {
+          "BADGE": "Strategic Partnership",
+          "DESC": "A strategic partnership to achieve operational excellence and sustainably improve asset reliability.",
+          "F1": "Close collaboration with client teams",
+          "F2": "Dedicated on-site or remote team",
+          "F3": "Continuous maintenance strategy oversight",
+          "F4": "Performance- and reliability-driven continuous improvement",
+          "HIGHLIGHT": "Goal: achieve operational excellence and sustainably improve asset reliability.",
+          "TITLE": "Émérite"
+        }
+      },
+      "STATS": {
+        "ASSETS": "Assets Managed",
+        "CLIENTS": "Clients Supported",
+        "SATISFACTION": "Client Satisfaction",
+        "UPTIME": "Guaranteed Uptime"
+      },
+      "STATS_SECTION": {
+        "SUBTITLE": "Concrete results for our clients through our managed service offerings.",
+        "TAG": "Results",
+        "TITLE": "The Impact of Our Services"
+      }
     },
     "SERVICES": {
       "CTA": {

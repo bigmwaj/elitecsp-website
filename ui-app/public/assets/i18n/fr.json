@@ -243,6 +243,28 @@
           "TITLE": "Services IBM Maximo"
         }
       },
+      "INFOGERANCE_SECTION": {
+        "CTA": "Découvrir nos offres",
+        "SUBTITLE": "De l'accès gratuit à la plateforme jusqu'au partenariat stratégique dédié, choisissez le niveau d'accompagnement qui vous convient.",
+        "TAG": "Infogérance",
+        "TITLE": "Nos options d'infogérance",
+        "FREE": {
+          "DESC": "Accès libre à la plateforme Elite Maintenance pour gérer vos actifs.",
+          "TITLE": "Free"
+        },
+        "STARTER": {
+          "DESC": "Accompagnement complet pour définir et mettre en œuvre votre stratégie de maintenance.",
+          "TITLE": "Starter"
+        },
+        "STANDARD": {
+          "DESC": "Services gérés incluant la mise à disposition de ressources opérationnelles.",
+          "TITLE": "Standard"
+        },
+        "EMERITE": {
+          "DESC": "Partenariat stratégique dédié pour atteindre l'excellence opérationnelle.",
+          "TITLE": "Émérite"
+        }
+      },
       "STATS": {
         "PROJECTS": "Projets livrés",
         "SATISFACTION": "Satisfaction client",
@@ -306,6 +328,110 @@
       "SUBTITLE": "Elite CSP collabore avec des leaders de l'industrie pour vous offrir les meilleures solutions de gestion des actifs d'entreprise.",
       "TAG": "Partenaires",
       "TITLE": "Nos partenaires stratégiques"
+    },
+    "INFOGERANCE": {
+      "CTA": {
+        "CTA_TEXT": "Réserver une consultation",
+        "SUBTITLE": "Nos experts sont prêts à analyser vos besoins et à vous proposer une offre adaptée.",
+        "TITLE": "Prêt à déléguer votre gestion de maintenance ?"
+      },
+      "FAQ": {
+        "SUBTITLE": "Trouvez les réponses aux questions les plus fréquentes sur nos offres d'infogérance.",
+        "TAG": "FAQ",
+        "TITLE": "Questions fréquentes",
+        "Q1": {
+          "A": "L'infogérance en maintenance désigne la délégation partielle ou totale de la gestion de vos opérations de maintenance à un prestataire externe. Cela inclut la stratégie, les processus, les outils et les ressources nécessaires pour maintenir vos actifs en bon état de fonctionnement.",
+          "Q": "Qu'est-ce que l'infogérance en gestion de maintenance ?"
+        },
+        "Q2": {
+          "A": "Notre offre Starter est recommandée pour les organisations qui débutent leur transformation ou qui souhaitent être accompagnées dans la définition de leur stratégie. Les offres Standard et Émérite s'adressent aux organisations recherchant une délégation opérationnelle plus poussée.",
+          "Q": "Comment choisir la bonne offre pour mon organisation ?"
+        },
+        "Q3": {
+          "A": "Oui, nos offres sont conçues pour être évolutives. Vous pouvez commencer par l'offre Free ou Starter, puis évoluer vers Standard ou Émérite selon votre niveau de maturité et vos besoins croissants.",
+          "Q": "Peut-on évoluer d'une offre à une autre ?"
+        },
+        "Q4": {
+          "A": "Non, l'offre Free donne accès à la plateforme Elite Maintenance sans frais. Les offres payantes (Starter, Standard, Émérite) incluent des niveaux d'accompagnement et de services croissants. Contactez-nous pour obtenir un devis adapté à votre situation.",
+          "Q": "L'offre Free est-elle vraiment gratuite ?"
+        },
+        "Q5": {
+          "A": "Avec l'offre Émérite, une équipe dédiée travaille en étroite collaboration avec vos équipes, soit sur site soit à distance. Nous assurons un suivi continu de la stratégie de maintenance et une amélioration continue orientée performance et fiabilité.",
+          "Q": "Comment fonctionne le partenariat stratégique de l'offre Émérite ?"
+        }
+      },
+      "HERO": {
+        "CTA": "Nous contacter",
+        "SUBTITLE": "Nous proposons plusieurs niveaux de service adaptés à vos besoins et à votre maturité en gestion de maintenance.",
+        "TITLE": "Infogérance en gestion de maintenance"
+      },
+      "META": {
+        "DESCRIPTION": "Découvrez nos offres d'infogérance en gestion de maintenance : de l'accès libre à la plateforme jusqu'au partenariat stratégique dédié. Elite CSP vous accompagne vers l'excellence opérationnelle.",
+        "KEYWORDS": "infogérance, gestion de maintenance, services gérés, GMAO, EAM, IBM Maximo, Elite CSP, maintenance industrielle, fiabilité des actifs",
+        "TITLE": "Elite CSP - Infogérance en gestion de maintenance"
+      },
+      "OFFERS": {
+        "SUBTITLE": "Choisissez le niveau d'accompagnement qui correspond à votre maturité et à vos objectifs.",
+        "TAG": "Nos offres",
+        "TITLE": "Des offres adaptées à chaque étape",
+        "FREE": {
+          "BADGE": "Gratuit",
+          "DESC": "Accédez gratuitement à la plateforme Elite Maintenance pour gérer vos actifs et vos opérations de maintenance.",
+          "F1": "Accès à la plateforme Elite Maintenance",
+          "F2": "Création et gestion des actifs et emplacements",
+          "F3": "Création des plans de maintenance",
+          "F4": "Gestion et suivi des ordres de travail",
+          "F5": "Tableaux de bord de suivi",
+          "TITLE": "Free"
+        },
+        "STARTER": {
+          "BADGE": "Accompagnement",
+          "DESC": "Accompagnement à la définition et à la mise en œuvre de la stratégie de maintenance.",
+          "F1": "Audit des processus de maintenance",
+          "F2": "Cartographie du système d'information",
+          "F3": "Définition de la stratégie de maintenance",
+          "F4": "Définition des rôles et compétences",
+          "F5": "Sélection des outils",
+          "F6": "Architecture du système cible",
+          "F7": "Implémentation des outils",
+          "F8": "Définition des SLA",
+          "F9": "Formation des équipes",
+          "F10": "Gestion du changement",
+          "F11": "Support des outils",
+          "TITLE": "Starter"
+        },
+        "STANDARD": {
+          "BADGE": "Services gérés",
+          "DESC": "Toutes les fonctionnalités Starter, plus la mise à disposition de ressources opérationnelles expertes.",
+          "F1": "Toutes les fonctionnalités Starter",
+          "F2": "Mise à disposition des ressources opérationnelles",
+          "F3": "Formation continue",
+          "F4": "Disponibilité des compétences au bon moment",
+          "HIGHLIGHT": "Vous déléguez l'exécution des opérations tout en conservant le contrôle stratégique.",
+          "TITLE": "Standard"
+        },
+        "EMERITE": {
+          "BADGE": "Partenariat stratégique",
+          "DESC": "Un partenariat stratégique pour atteindre l'excellence opérationnelle et améliorer durablement la fiabilité de vos actifs.",
+          "F1": "Collaboration étroite avec les équipes du client",
+          "F2": "Équipe dédiée sur site ou à distance",
+          "F3": "Suivi continu de la stratégie de maintenance",
+          "F4": "Amélioration continue orientée performance et fiabilité",
+          "HIGHLIGHT": "Objectif : atteindre l'excellence opérationnelle et améliorer durablement la fiabilité des actifs.",
+          "TITLE": "Émérite"
+        }
+      },
+      "STATS": {
+        "ASSETS": "Actifs gérés",
+        "CLIENTS": "Clients accompagnés",
+        "SATISFACTION": "Satisfaction client",
+        "UPTIME": "Disponibilité garantie"
+      },
+      "STATS_SECTION": {
+        "SUBTITLE": "Des résultats concrets pour nos clients à travers nos offres d'infogérance.",
+        "TAG": "Résultats",
+        "TITLE": "L'impact de nos services"
+      }
     },
     "SERVICES": {
       "CTA": {

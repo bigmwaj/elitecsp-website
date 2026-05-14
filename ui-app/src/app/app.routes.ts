@@ -3,7 +3,8 @@ import { Routes } from '@angular/router';
 export const routes: Routes = [
   { path: '', loadComponent: () => import('./pages/home/home').then(m => m.HomeComponent) },
   { path: 'services', loadComponent: () => import('./pages/services/services').then(m => m.ServicesComponent) },
-  { path: 'services', loadComponent: () => import('./pages/services/services').then(m => m.ServicesComponent) },
+  { path: 'infogerance', loadComponent: () => import('./pages/infogerance/infogerance').then(m => m.InfogeranceComponent) },
+  { path: 'infogérance', loadComponent: () => import('./pages/infogerance/infogerance').then(m => m.InfogeranceComponent) },
   { path: 'about', loadComponent: () => import('./pages/about/about').then(m => m.AboutComponent) },
   { path: 'a-propos', loadComponent: () => import('./pages/about/about').then(m => m.AboutComponent) },
   { path: 'à-propos', loadComponent: () => import('./pages/about/about').then(m => m.AboutComponent) },

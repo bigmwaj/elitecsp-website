@@ -1,0 +1,182 @@
+:host {
+  display: block;
+  height: 100%;
+}
+
+.offer-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  min-height: 100%;
+  padding: 2rem;
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--border-subtle);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.98) 0%, rgba(248, 250, 252, 0.96) 100%),
+    var(--white);
+  box-shadow: var(--shadow-md);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  overflow: hidden;
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(172, 80, 85, 0.04) 0%, transparent 55%);
+    pointer-events: none;
+  }
+
+  &:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-lg);
+    border-color: rgba(172, 80, 85, 0.28);
+  }
+}
+
+.offer-card--featured {
+  border-color: rgba(172, 80, 85, 0.45);
+  box-shadow: 0 28px 70px rgba(15, 23, 42, 0.16);
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(140deg, rgba(172, 80, 85, 0.12), transparent 55%);
+    pointer-events: none;
+  }
+}
+
+.offer-card__ribbon {
+  position: absolute;
+  top: 1.2rem;
+  right: 1.2rem;
+  z-index: 1;
+  padding: 0.35rem 0.85rem;
+  border-radius: 999px;
+  background: rgba(172, 80, 85, 0.12);
+  color: var(--primary-dark);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.offer-card__icon,
+.offer-card__header,
+.offer-card__benefits,
+.offer-card__highlight,
+.offer-card__footer {
+  position: relative;
+  z-index: 1;
+}
+
+.offer-card__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 1.2rem;
+  background: linear-gradient(135deg, rgba(172, 80, 85, 0.16), rgba(15, 23, 42, 0.08));
+  color: var(--primary);
+
+  svg {
+    width: 1.65rem;
+    height: 1.65rem;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+}
+
+.offer-card__header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+
+  h3 {
+    margin: 0;
+    font-size: clamp(1.45rem, 2.6vw, 1.8rem);
+    color: var(--dark-gray);
+    letter-spacing: -0.02em;
+  }
+
+  p {
+    margin: 0;
+    color: var(--muted-text);
+    line-height: 1.75;
+  }
+}
+
+.offer-card__badge {
+  width: fit-content;
+  padding: 0.45rem 0.9rem;
+  border-radius: 999px;
+  border: 1px solid rgba(172, 80, 85, 0.16);
+  background: rgba(255, 255, 255, 0.82);
+  color: var(--primary-dark);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.offer-card__benefits {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  flex: 1;
+
+  li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    color: var(--text-color);
+    line-height: 1.6;
+  }
+}
+
+.benefit-icon {
+  width: 0.75rem;
+  height: 0.75rem;
+  margin-top: 0.45rem;
+  border-radius: 50%;
+  flex-shrink: 0;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  box-shadow: 0 0 0 6px rgba(172, 80, 85, 0.1);
+}
+
+.offer-card__highlight {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  padding: 1rem 1.1rem;
+  border-radius: var(--radius-md);
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.94), rgba(23, 37, 64, 0.96));
+  color: rgba(255, 255, 255, 0.92);
+
+  p {
+    margin: 0;
+    line-height: 1.65;
+  }
+}
+
+.offer-card__highlight-label {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.offer-card__footer {
+  margin-top: auto;
+}
+
+.offer-card__footer .btn {
+  width: 100%;
+  justify-content: center;
+}

@@ -3,46 +3,68 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #1a0a0b 0%, #AC5055 50%, #c96b70 100%);
+  background:
+    radial-gradient(circle at 20% 20%, rgba(172, 80, 85, 0.35), transparent 28%),
+    radial-gradient(circle at 80% 15%, rgba(29, 78, 216, 0.24), transparent 24%),
+    linear-gradient(135deg, #09101e 0%, #101b30 45%, #182543 100%);
   position: relative;
   overflow: hidden;
   text-align: center;
 
-  &::before {
+  &::before,
+  &::after {
     content: '';
     position: absolute;
+    border-radius: 50%;
+    filter: blur(0);
+  }
+
+  &::before {
+    width: 32rem;
+    height: 32rem;
+    right: -12rem;
+    bottom: -14rem;
+    background: rgba(172, 80, 85, 0.18);
+  }
+
+  &::after {
     inset: 0;
-    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    background:
+      linear-gradient(rgba(255,255,255,0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px);
+    background-size: 72px 72px;
+    mask-image: radial-gradient(circle at center, black 42%, transparent 92%);
+    opacity: 0.18;
   }
 
   &.compact {
-    min-height: 50vh;
+    min-height: 62vh;
+    padding-top: 3rem;
   }
 }
 
 .hero-content {
   position: relative;
   z-index: 1;
-  max-width: 800px;
-  padding: 3rem 1.5rem;
+  max-width: 920px;
+  padding: 8rem 1.5rem 4rem;
   animation: fadeInUp 0.8s ease forwards;
 
   h1 {
-    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-size: clamp(2.6rem, 6vw, 4.8rem);
     font-weight: 800;
     color: var(--white);
-    line-height: 1.2;
+    line-height: 1.04;
     margin-bottom: 1.5rem;
-    text-shadow: 0 2px 20px rgba(0,0,0,0.3);
+    text-shadow: 0 24px 60px rgba(0, 0, 0, 0.25);
   }
 
   .subtitle {
-    font-size: clamp(1rem, 2vw, 1.25rem);
-    color: rgba(255,255,255,0.9);
-    margin-bottom: 2.5rem;
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto
+    font-size: clamp(1.05rem, 2vw, 1.32rem);
+    color: rgba(255, 255, 255, 0.82);
+    margin: 0 auto 2.5rem;
+    max-width: 720px;
+    line-height: 1.85;
   }
 }
 
@@ -54,101 +76,105 @@
 }
 
 .btn {
-  padding: 0.85rem 2rem;
-  border-radius: 30px;
-  font-size: 1rem;
-  font-weight: 600;
+  padding: 1rem 1.7rem;
+  border-radius: 999px;
+  font-size: 0.96rem;
+  font-weight: 700;
   text-decoration: none;
-  transition: var(--transition);
-  display: inline-block;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease, color 0.25s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 220px;
 
   &-primary {
-    background: var(--white);
-    color: var(--primary);
-    &:hover { background: var(--light-gray); transform: translateY(-3px); box-shadow: 0 8px 25px rgba(0,0,0,0.2); }
+    background: linear-gradient(135deg, var(--white), rgba(255, 255, 255, 0.9));
+    color: var(--dark-gray);
+    box-shadow: 0 20px 45px rgba(15, 23, 42, 0.22);
+
+    &:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 26px 55px rgba(15, 23, 42, 0.28);
+    }
   }
 
   &-outline {
-    border: 2px solid var(--white);
+    border: 1px solid rgba(255, 255, 255, 0.22);
     color: var(--white);
-    &:hover { background: var(--white); color: var(--primary); transform: translateY(-3px); }
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(8px);
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.14);
+      transform: translateY(-3px);
+    }
   }
 }
 
-// Partner logos in hero
 .hero-partner-logos {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 2rem;
+  gap: 1.25rem;
   flex-wrap: wrap;
   list-style: none;
-  margin: 2rem 0 2.25rem;
+  margin: 0 auto 2rem;
   padding: 0;
-  animation: fadeInDown 0.7s ease forwards;
-
-  @media (max-width: 480px) {
-    gap: 1.25rem;
-    flex-direction: column;
-    margin-bottom: 1.75rem;
-  }
+  animation: fadeIn 0.8s ease forwards;
 }
 
 .hero-partner-logo-link {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-width: 120px;
-  border-radius: 12px;
-  padding: 0.5rem 1rem;
-  backdrop-filter: blur(4px);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.18);
+  min-width: 150px;
+  min-height: 82px;
+  border-radius: 22px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 0.85rem 1.25rem;
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 18px 45px rgba(4, 8, 18, 0.2);
   transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
   text-decoration: none;
 
-  &:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.28);
-    background: rgba(255, 255, 255, 1);
-  }
-
+  &:hover,
   &:focus-visible {
     transform: translateY(-3px);
-    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.28);
-    background: rgba(255, 255, 255, 1);
-    outline: 3px solid rgba(255, 255, 255, 0.8);
-    outline-offset: 2px;
+    background: rgba(255, 255, 255, 0.14);
+    box-shadow: 0 24px 55px rgba(4, 8, 18, 0.28);
+    outline: none;
   }
 }
 
 .hero-partner-logo {
   display: block;
-  max-height: 60px;
+  max-height: 52px;
   width: auto;
   object-fit: contain;
-  filter: grayscale(20%);
+  filter: grayscale(10%);
   transition: filter 0.25s ease;
 
   .hero-partner-logo-link:hover &,
   .hero-partner-logo-link:focus-visible & {
     filter: grayscale(0%);
   }
-
-  @media (max-width: 600px) {
-    max-height: 48px;
-  }
-
-  @media (max-width: 480px) {
-    max-height: 44px;
-  }
 }
 
-@keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(30px); }
-  to { opacity: 1; transform: translateY(0); }
-}
+@media (max-width: 768px) {
+  .hero {
+    min-height: auto;
+  }
 
-@keyframes fadeInDown {
-  from { opacity: 0; transform: translateY(-16px); }
-  to { opacity: 1; transform: translateY(0); }
+  .hero-content {
+    padding: 7rem 1rem 4rem;
+  }
+
+  .hero-partner-logo-link {
+    min-width: 100%;
+  }
+
+  .btn {
+    width: 100%;
+    min-width: 0;
+  }
 }

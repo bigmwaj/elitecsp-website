@@ -209,10 +209,10 @@
     },
     "HOME": {
       "HERO": {
-        "CTA": "Get a Free Consultation",
-        "SECONDARY_CTA": "Explore Our Services",
-        "SUBTITLE": "<strong>Elite CSP</strong> delivers expert Enterprise Asset Management consulting and  <strong>IBM Maximo/MAS</strong> implementation services, helping organizations maximize asset performance, reduce costs, and achieve operational excellence.",
-        "TITLE": "Transforming Enterprise Operations<br>with IBM Maximo"
+        "CTA": "Schedule a call",
+        "SECONDARY_CTA": "Explore our service model",
+        "SUBTITLE": "<strong>Elite CSP</strong> helps industrial organizations structure maintenance services, accelerate digital transformation, and deliver successful <strong>IBM Maximo/MAS</strong> programs.",
+        "TITLE": "Accelerate IBM Maximo programs <br/>with a trusted partner"
       },
       "META": {
         "DESCRIPTION": "Elite CSP is a Canadian consulting firm specializing in industrial maintenance and IBM Maximo professional services. We help organizations optimize their enterprise asset management (EAM) operations through tailored solutions, deep expertise, and a client-focused approach.",
@@ -224,47 +224,47 @@
       },
       "PARTNERS_SECTION": {
         "CTA": "View All Partners",
-        "SUBTITLE": "Elite CSP collaborates with world-class leaders to deliver the best enterprise asset management solutions.",
+        "SUBTITLE": "We work with recognized partners to strengthen our consulting, managed services, and digital transformation mandates.",
         "TAG": "Our Partners",
         "TITLE": "Our Strategic Partners"
       },
       "PROCESS_SECTION": {
-        "SUBTITLE": "Our structured approach ensures successful delivery at every project phase.",
+        "SUBTITLE": "A clear, collaborative, and progressive delivery model that transforms operations without unnecessary complexity.",
         "TAG": "Our Approach",
-        "TITLE": "A Proven 4-Step Methodology"
+        "TITLE": "A consulting approach built for execution"
       },
       "SERVICES_SECTION": {
         "MAINTENANCE": {
-          "SUBTITLE": "From maintenance audits to reliability strategies, we help organizations optimize their maintenance operations for maximum asset performance.",
-          "TAG": "What We Do",
-          "TITLE": "Maintenance Consulting Services"
+          "SUBTITLE": "We align priorities, governance, and action plans to improve asset reliability, availability, and long-term operational performance.",
+          "TAG": "Maintenance consulting",
+          "TITLE": "Structure your maintenance strategy"
         },
         "MAXIMO": {
-          "SUBTITLE": "From initial implementation to ongoing support, we cover every aspect of your EAM journey.",
-          "TAG": "What We Also Do",
-          "TITLE": "IBM Maximo Services"
+          "SUBTITLE": "From roadmap design to service operations, we secure IBM Maximo / MAS initiatives with a results-driven approach focused on adoption and continuity.",
+          "TAG": "IBM Maximo services",
+          "TITLE": "Lead your IBM Maximo / MAS trajectory"
         }
       },
       "INFOGERANCE_SECTION": {
-        "CTA": "Discover Our Offers",
-        "SUBTITLE": "From free platform access to a dedicated strategic partnership, choose the level of support that suits you.",
-        "TAG": "Managed Services",
-        "TITLE": "Our Managed Service Options",
+        "CTA": "Compare our service levels",
+        "SUBTITLE": "Choose the level of ownership that fits your maturity: framing, guided support, operational managed services, or strategic partnership.",
+        "TAG": "Managed services & advisory",
+        "TITLE": "Service offers designed for confident delegation",
         "FREE": {
-          "DESC": "Free access to the Elite Maintenance platform to manage your assets.",
-          "TITLE": "Free"
+          "DESC": "A first step to clarify your challenges, align priorities, and establish a solid service foundation.",
+          "TITLE": "Assessment & framing"
         },
         "STARTER": {
-          "DESC": "Complete guidance to define and implement your maintenance strategy.",
-          "TITLE": "Starter"
+          "DESC": "Expert support to steer your maintenance transformation and align internal stakeholders.",
+          "TITLE": "Structured guidance"
         },
         "STANDARD": {
-          "DESC": "Managed services including the provision of expert operational resources.",
-          "TITLE": "Standard"
+          "DESC": "Operational delivery led by Elite CSP experts with clear metrics, governance rituals, and service continuity.",
+          "TITLE": "Managed operations"
         },
         "EMERITE": {
-          "DESC": "Dedicated strategic partnership to achieve operational excellence.",
-          "TITLE": "Émérite"
+          "DESC": "A long-term partnership focused on performance, reliability, and business value across your maintenance environment.",
+          "TITLE": "Strategic co-pilot"
         }
       },
       "STATS": {
@@ -279,15 +279,15 @@
         "TITLE": "Trusted by Industry Leaders"
       },
       "VALUE_SECTION": {
-        "DESC": "With deep expertise in IBM Maximo and enterprise systems, Elite CSP brings a proven methodology and hands-on experience across industries including utilities, manufacturing, transportation, and government.",
-        "LEARN_MORE": "Learn more about us →",
-        "POINT_1": "3+ years of IBM Maximo expertise",
-        "POINT_2": "5+ successful implementations",
-        "POINT_3": "Rapid deployment methodology",
-        "POINT_4": "SOC 2 compliant practices",
-        "POINT_5": "Canadian-owned and operated 🇨🇦",
+        "DESC": "We combine advisory services, IBM Maximo expertise, and hands-on enablement to turn maintenance into an operational performance lever.",
+        "LEARN_MORE": "Discover our approach",
+        "POINT_1": "Governance, processes, and tools aligned to business priorities",
+        "POINT_2": "IBM Maximo/MAS expertise available from discovery through operations",
+        "POINT_3": "Change enablement that secures adoption",
+        "POINT_4": "Data-driven steering to improve availability, cost, and risk",
+        "POINT_5": "Canadian presence with close collaboration",
         "TAG": "Why Elite CSP",
-        "TITLE": "Your Trusted EAM Partner in Canada"
+        "TITLE": "A results-oriented firm for critical environments"
       }
     },
     "JOB_DETAILS": {
@@ -333,66 +333,66 @@
     },
     "INFOGERANCE": {
       "CTA": {
-        "CTA_TEXT": "Book a Consultation",
-        "SUBTITLE": "Our experts are ready to analyze your needs and propose the right offer for you.",
-        "TITLE": "Ready to Delegate Your Maintenance Management?"
+        "CTA_TEXT": "Schedule a workshop",
+        "SUBTITLE": "Our experts are ready to frame your priorities, define the right level of delegation, and shape the best service trajectory.",
+        "TITLE": "Ready to hand over maintenance leadership with confidence?"
       },
       "FAQ": {
-        "SUBTITLE": "Find answers to the most frequently asked questions about our managed services offers.",
+        "SUBTITLE": "Clear answers on how we collaborate, the level of ownership we assume, and the way we manage measurable outcomes.",
         "TAG": "FAQ",
         "TITLE": "Frequently Asked Questions",
         "Q1": {
-          "A": "Managed maintenance services refers to the partial or total delegation of your maintenance operations management to an external provider. This includes strategy, processes, tools, and the resources needed to keep your assets in optimal working condition.",
-          "Q": "What are managed maintenance services?"
+          "A": "Our managed service can include service framing, governance, operational coordination, IBM Maximo expertise, and performance follow-up. The exact scope is tailored to your priorities, maturity, and desired level of delegation.",
+          "Q": "What does your managed service actually cover?"
         },
         "Q2": {
-          "A": "Our Starter offer is recommended for organizations starting their transformation or looking for guidance in defining their strategy. Standard and Émérite offers are suited for organizations seeking more advanced operational delegation.",
-          "Q": "How do I choose the right offer for my organization?"
+          "A": "We start with a framing workshop to understand your operating context, organizational model, rhythm, and expected outcomes. That allows us to recommend the most relevant service level and a transition path if your needs evolve.",
+          "Q": "How do you determine the right service level for our organization?"
         },
         "Q3": {
-          "A": "Yes, our offers are designed to scale. You can start with the Free or Starter offer, then upgrade to Standard or Émérite as your maturity and needs grow.",
-          "Q": "Can we move from one offer to another?"
+          "A": "We establish simple governance: recurring check-ins, clear ownership, shared metrics, and agreed communication channels. Our experts operate as an extension of your teams without adding unnecessary overhead.",
+          "Q": "How do you work with our internal teams?"
         },
         "Q4": {
-          "A": "Yes, the Free offer gives you access to the Elite Maintenance platform at no cost. Paid offers (Starter, Standard, Émérite) include increasing levels of support and services. Contact us for a quote tailored to your situation.",
-          "Q": "Is the Free offer truly free?"
+          "A": "Yes. We support both existing environments and transformation programs. Our role can focus on stabilizing operations, evolving practices, and securing services that are already live.",
+          "Q": "Can you support an IBM Maximo environment that is already in place?"
         },
         "Q5": {
-          "A": "With the Émérite offer, a dedicated team works closely with your teams, either on-site or remotely. We provide continuous oversight of the maintenance strategy and ongoing performance- and reliability-driven improvement.",
-          "Q": "How does the strategic partnership in the Émérite offer work?"
+          "A": "Together we define the right indicators: service availability, delivery quality, commitment tracking, adoption, reliability, and process efficiency. These metrics feed steering committees and continuous improvement actions.",
+          "Q": "How do you measure performance over time?"
         }
       },
       "HERO": {
-        "CTA": "Contact Us",
-        "SUBTITLE": "We offer several service levels tailored to your needs and maintenance management maturity.",
-        "TITLE": "Managed Maintenance Services"
+        "CTA": "Schedule a workshop",
+        "SUBTITLE": "We lead service framing, advisory support, and operational ownership for maintenance and IBM Maximo programs with a performance-first mindset.",
+        "TITLE": "Service-led IBM Maximo managed services"
       },
       "META": {
-        "DESCRIPTION": "Discover Elite CSP's managed maintenance service offerings: from free platform access to a dedicated strategic partnership. We guide you toward operational excellence.",
-        "KEYWORDS": "managed services, maintenance management, CMMS, EAM, IBM Maximo, Elite CSP, industrial maintenance, asset reliability",
-        "TITLE": "Elite CSP - Managed Maintenance Services"
+        "DESCRIPTION": "Discover Elite CSP managed service offers for IBM Maximo and industrial maintenance: structured support, operational ownership, and long-term partnership focused on measurable performance.",
+        "KEYWORDS": "IBM Maximo managed services, maintenance managed services, EAM advisory, maintenance consulting, operational performance, continuous improvement, Elite CSP",
+        "TITLE": "Elite CSP - IBM Maximo Managed Services"
       },
       "OFFERS": {
-        "SUBTITLE": "Choose the level of support that matches your maturity and objectives.",
-        "TAG": "Our Offers",
-        "TITLE": "Offers for Every Stage",
+        "SUBTITLE": "Each offer combines governance, expertise, and operational outcomes with an increasing level of delegation.",
+        "TAG": "Service levels",
+        "TITLE": "Choose the right level of support",
         "FREE": {
-          "BADGE": "Free",
-          "DESC": "Get free access to the Elite Maintenance platform to manage your assets and maintenance operations.",
-          "F1": "Access to Elite Maintenance platform",
-          "F2": "Asset and location creation & management",
-          "F3": "Maintenance plan creation",
-          "F4": "Work order management & tracking",
+          "BADGE": "Entry point",
+          "DESC": "Ideal to clarify challenges, confirm direction, and prepare a controlled maintenance transformation.",
+          "F1": "Assessment of your operating context and priorities",
+          "F2": "Framing workshop with actionable recommendations",
+          "F3": "Clear view of quick wins and structural workstreams",
+          "F4": "Shared baseline to launch collaboration",
           "F5": "Monitoring dashboards",
-          "TITLE": "Free"
+          "TITLE": "Assessment & framing"
         },
         "STARTER": {
-          "BADGE": "Guided Support",
-          "DESC": "End-to-end support for defining and implementing your maintenance strategy.",
-          "F1": "Maintenance process audit",
-          "F2": "Information system mapping",
-          "F3": "Maintenance strategy definition",
-          "F4": "Roles and competencies definition",
+          "BADGE": "Guided support",
+          "DESC": "Designed to structure your maintenance model, orchestrate stakeholders, and secure early decisions.",
+          "F1": "Value-oriented action plan facilitation",
+          "F2": "Definition of roles, rituals, and governance",
+          "F3": "Support for practice and tool adoption",
+          "F4": "Progressive capability uplift for your teams",
           "F5": "Tool selection",
           "F6": "Target system architecture",
           "F7": "Tool implementation",
@@ -400,39 +400,64 @@
           "F9": "Team training",
           "F10": "Change management",
           "F11": "Tool support",
-          "TITLE": "Starter"
+          "TITLE": "Transition leadership"
         },
         "STANDARD": {
-          "BADGE": "Managed Services",
-          "DESC": "All Starter features plus the provision of expert operational resources.",
-          "F1": "All Starter features",
-          "F2": "Provision of operational resources",
-          "F3": "Continuous training",
-          "F4": "Right skills available at the right time",
-          "HIGHLIGHT": "You delegate operational execution while retaining strategic control.",
-          "TITLE": "Standard"
+          "BADGE": "Managed operations",
+          "DESC": "Built for organizations that want to delegate execution, increase fluidity, and keep a clear operational cadence.",
+          "F1": "Daily coordination of activities and priorities",
+          "F2": "Expert capacity available at the right time",
+          "F3": "Tracking of service commitments and key indicators",
+          "F4": "Service continuity with shared governance",
+          "HIGHLIGHT": "You keep strategic control while Elite CSP secures execution and operational rhythm.",
+          "TITLE": "Operational ownership"
         },
         "EMERITE": {
-          "BADGE": "Strategic Partnership",
-          "DESC": "A strategic partnership to achieve operational excellence and sustainably improve asset reliability.",
-          "F1": "Close collaboration with client teams",
-          "F2": "Dedicated on-site or remote team",
-          "F3": "Continuous maintenance strategy oversight",
-          "F4": "Performance- and reliability-driven continuous improvement",
-          "HIGHLIGHT": "Goal: achieve operational excellence and sustainably improve asset reliability.",
-          "TITLE": "Émérite"
-        }
+          "BADGE": "Strategic partnership",
+          "DESC": "For organizations seeking a durable partner committed to reliability, collaboration, and continuous improvement.",
+          "F1": "Dedicated team aligned to business priorities",
+          "F2": "Shared roadmap for performance and reliability",
+          "F3": "Steering committees, trade-offs, and leadership support",
+          "F4": "Continuous optimization of processes, services, and outcomes",
+          "HIGHLIGHT": "We act as an extension of your teams to accelerate outcomes and evolve your service model sustainably.",
+          "TITLE": "Performance co-pilot"
+        },
+        "RECOMMENDED": "Recommended offer",
+        "HIGHLIGHT_LABEL": "Business value"
       },
       "STATS": {
-        "ASSETS": "Assets Managed",
-        "CLIENTS": "Clients Supported",
-        "SATISFACTION": "Client Satisfaction",
-        "UPTIME": "Guaranteed Uptime"
+        "ASSETS": "Service coverage",
+        "CLIENTS": "Organizations supported",
+        "SATISFACTION": "Client satisfaction",
+        "UPTIME": "Secured availability"
       },
       "STATS_SECTION": {
-        "SUBTITLE": "Concrete results for our clients through our managed service offerings.",
+        "SUBTITLE": "Clear commitments that support your teams, stabilize operations, and improve operational performance.",
         "TAG": "Results",
-        "TITLE": "The Impact of Our Services"
+        "TITLE": "A measurable service relationship"
+      },
+      "MODEL": {
+        "TAG": "Our service model",
+        "TITLE": "Support that adapts to your level of delegation",
+        "SUBTITLE": "From early structuring to operational ownership, Elite CSP acts as a close partner focused on performance and continuous improvement."
+      },
+      "PILLARS": {
+        "STRATEGY": {
+          "TITLE": "Strategic alignment",
+          "DESCRIPTION": "We connect maintenance priorities, risk exposure, and business objectives to build a realistic roadmap."
+        },
+        "EXPERTISE": {
+          "TITLE": "On-demand expertise",
+          "DESCRIPTION": "You gain access to IBM Maximo and EAM specialists who accelerate decisions and secure execution."
+        },
+        "OPERATIONS": {
+          "TITLE": "Operational ownership",
+          "DESCRIPTION": "Our teams manage day-to-day coordination, prioritization, and governance required for service continuity."
+        },
+        "IMPROVEMENT": {
+          "TITLE": "Continuous improvement",
+          "DESCRIPTION": "We measure outcomes, adjust practices, and evolve your service model over time."
+        }
       }
     },
     "SERVICES": {

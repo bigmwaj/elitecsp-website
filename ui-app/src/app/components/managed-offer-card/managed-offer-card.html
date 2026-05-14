@@ -1,0 +1,59 @@
+<article class="offer-card" [class.offer-card--featured]="offer().featured">
+  @if (offer().featured) {
+    <span class="offer-card__ribbon">{{ 'PAGE.INFOGERANCE.OFFERS.RECOMMENDED' | translate }}</span>
+  }
+
+  <div class="offer-card__icon" aria-hidden="true">
+    @switch (offer().icon) {
+      @case ('foundation') {
+        <svg viewBox="0 0 24 24" fill="none">
+          <path d="M4 18h16M6 18V8l6-3 6 3v10M9 18v-4h6v4" />
+        </svg>
+      }
+      @case ('guidance') {
+        <svg viewBox="0 0 24 24" fill="none">
+          <path d="M12 4c4.418 0 8 3.134 8 7s-3.582 7-8 7-8-3.134-8-7 3.582-7 8-7Zm0 0v7l4 2" />
+        </svg>
+      }
+      @case ('operations') {
+        <svg viewBox="0 0 24 24" fill="none">
+          <path d="M12 5v4m0 6v4M5 12h4m6 0h4M7.757 7.757l2.829 2.829m2.828 2.828 2.829 2.829m0-8.486-2.829 2.829m-2.828 2.828-2.829 2.829" />
+          <circle cx="12" cy="12" r="3.5" />
+        </svg>
+      }
+      @case ('partnership') {
+        <svg viewBox="0 0 24 24" fill="none">
+          <path d="M8.5 11.5 6 9a2.828 2.828 0 1 1 4-4l2 2m3.5 5.5L18 15a2.828 2.828 0 1 1-4 4l-2-2M9 15l6-6" />
+        </svg>
+      }
+    }
+  </div>
+
+  <div class="offer-card__header">
+    <span class="offer-card__badge">{{ offer().badgeKey | translate }}</span>
+    <h3>{{ offer().titleKey | translate }}</h3>
+    <p>{{ offer().descriptionKey | translate }}</p>
+  </div>
+
+  <ul class="offer-card__benefits">
+    @for (benefit of offer().benefits; track benefit) {
+      <li>
+        <span class="benefit-icon" aria-hidden="true"></span>
+        <span>{{ benefit | translate }}</span>
+      </li>
+    }
+  </ul>
+
+  @if (offer().highlightKey) {
+    <div class="offer-card__highlight">
+      <span class="offer-card__highlight-label">{{ 'PAGE.INFOGERANCE.OFFERS.HIGHLIGHT_LABEL' | translate }}</span>
+      <p>{{ offer().highlightKey | translate }}</p>
+    </div>
+  }
+
+  <div class="offer-card__footer">
+    <a [routerLink]="ctaLink()" class="btn" [class.btn--primary]="offer().featured" [class.btn--secondary]="!offer().featured">
+      {{ ctaTextKey() | translate }}
+    </a>
+  </div>
+</article>

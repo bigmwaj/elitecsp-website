@@ -9,11 +9,20 @@ import { ServiceCardComponent } from '../../components/service-card/service-card
 import { PartnerCardComponent } from '../../components/partner-card/partner-card';
 import { HeroComponent } from '../../components/hero/hero';
 import { CtaSectionComponent } from '../../components/cta-section/cta-section';
+import { RevealOnScrollDirective } from '../../directives/reveal-on-scroll/reveal-on-scroll';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [RouterLink, ServiceCardComponent, PartnerCardComponent, HeroComponent, CtaSectionComponent, TranslatePipe],
+  imports: [
+    RouterLink,
+    ServiceCardComponent,
+    PartnerCardComponent,
+    HeroComponent,
+    CtaSectionComponent,
+    TranslatePipe,
+    RevealOnScrollDirective
+  ],
   templateUrl: './home.html',
   styleUrl: './home.scss'
 })
@@ -23,7 +32,7 @@ export class HomeComponent implements OnInit {
   private dataService = inject(DataService);
   private partnersService = inject(PartnersService);
   private translateService = inject(TranslateService);
-  
+
   maintenanceServices = this.dataService.maintenanceServices;
   maximoServices = this.dataService.maximoServices;
   testimonials = this.dataService.testimonials;

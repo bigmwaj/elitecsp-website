@@ -209,10 +209,10 @@
     },
     "HOME": {
       "HERO": {
-        "CTA": "Obtenir une consultation gratuite",
-        "SECONDARY_CTA": "Explorer nos services",
-        "SUBTITLE": "<strong>Élite CSP</strong> offre des services experts en gestion des actifs d'entreprise et en implémentation de solutions <strong>IBM Maximo/MAS</strong>, aidant les organisations à maximiser les performances de leurs actifs, réduire les coûts et atteindre l'excellence opérationnelle.",
-        "TITLE": "Bénéficiez d'un accompagnement 360° dans votre projet <br/>GMAO"
+        "CTA": "Planifier un échange",
+        "SECONDARY_CTA": "Découvrir notre accompagnement",
+        "SUBTITLE": "<strong>Élite CSP</strong> accompagne les organisations industrielles dans la structuration de leurs services de maintenance, la transformation numérique et la réussite de leurs programmes <strong>IBM Maximo/MAS</strong>.",
+        "TITLE": "Accélérez vos programmes IBM Maximo <br/>avec un partenaire de confiance"
       },
       "META": {
         "DESCRIPTION": "Elite CSP est un cabinet de conseil canadien spécialisé dans la maintenance industrielle et les services professionnels IBM Maximo. Nous aidons les organisations à optimiser leurs opérations de gestion des actifs d'entreprise (EAM) grâce à des solutions sur mesure, une expertise approfondie et une approche centrée sur le client.",
@@ -224,47 +224,47 @@
       },
       "PARTNERS_SECTION": {
         "CTA": "Voir tous nos partenaires",
-        "SUBTITLE": "Elite CSP collabore avec des leaders mondiaux pour offrir les meilleures solutions de gestion des actifs.",
+        "SUBTITLE": "Nous collaborons avec des partenaires reconnus pour renforcer nos missions de conseil, d'infogérance et de transformation numérique.",
         "TAG": "Nos partenaires",
         "TITLE": "Nos partenaires stratégiques"
       },
       "PROCESS_SECTION": {
-        "SUBTITLE": "Notre approche structurée garantit une livraison réussie à chaque phase du projet.",
+        "SUBTITLE": "Un pilotage clair, collaboratif et progressif pour transformer vos opérations sans complexité inutile.",
         "TAG": "Notre approche",
-        "TITLE": "Une méthodologie éprouvée en 4 étapes"
+        "TITLE": "Une approche conseil orientée exécution"
       },
       "SERVICES_SECTION": {
         "MAINTENANCE": {
-          "SUBTITLE": "De l'audit de maintenance à la stratégie de fiabilité, nous aidons les organisations à optimiser leurs opérations de maintenance pour une performance maximale des actifs.",
-          "TAG": "Ce que nous faisons",
-          "TITLE": "Services Conseil en Maintenance"
+          "SUBTITLE": "Nous cadrons vos priorités, votre gouvernance et vos plans d'action pour améliorer durablement la fiabilité, la disponibilité et la performance des actifs.",
+          "TAG": "Conseil maintenance",
+          "TITLE": "Structurer votre stratégie de maintenance"
         },
         "MAXIMO": {
-          "SUBTITLE": "De l'implémentation initiale au support continu, nous couvrons chaque aspect de votre parcours EAM.",
-          "TAG": "Ce que nous faisons aussi",
-          "TITLE": "Services IBM Maximo"
+          "SUBTITLE": "De la feuille de route à l'exploitation, nous sécurisons vos initiatives IBM Maximo / MAS avec une approche orientée résultats, adoption et continuité de service.",
+          "TAG": "Services IBM Maximo",
+          "TITLE": "Piloter votre trajectoire IBM Maximo / MAS"
         }
       },
       "INFOGERANCE_SECTION": {
-        "CTA": "Découvrir nos offres",
-        "SUBTITLE": "De l'accès gratuit à la plateforme jusqu'au partenariat stratégique dédié, choisissez le niveau d'accompagnement qui vous convient.",
-        "TAG": "Infogérance",
-        "TITLE": "Nos options d'infogérance",
+        "CTA": "Comparer nos niveaux d'accompagnement",
+        "SUBTITLE": "Choisissez le niveau de prise en charge adapté à votre maturité : cadrage, accompagnement, pilotage opérationnel ou partenariat stratégique.",
+        "TAG": "Infogérance & accompagnement",
+        "TITLE": "Des offres pensées pour déléguer avec confiance",
         "FREE": {
-          "DESC": "Accès libre à la plateforme Elite Maintenance pour gérer vos actifs.",
-          "TITLE": "Free"
+          "DESC": "Une première étape pour clarifier vos enjeux, structurer vos priorités et poser des fondations solides.",
+          "TITLE": "Diagnostic & cadrage"
         },
         "STARTER": {
-          "DESC": "Accompagnement complet pour définir et mettre en œuvre votre stratégie de maintenance.",
-          "TITLE": "Starter"
+          "DESC": "Un appui expert pour piloter votre transformation maintenance et aligner vos équipes.",
+          "TITLE": "Accompagnement structurant"
         },
         "STANDARD": {
-          "DESC": "Services gérés incluant la mise à disposition de ressources opérationnelles.",
-          "TITLE": "Standard"
+          "DESC": "Une prise en charge opérationnelle encadrée par des experts Élite CSP avec indicateurs, rituels et continuité de service.",
+          "TITLE": "Infogérance pilotée"
         },
         "EMERITE": {
-          "DESC": "Partenariat stratégique dédié pour atteindre l'excellence opérationnelle.",
-          "TITLE": "Émérite"
+          "DESC": "Un partenariat durable pour améliorer la performance, la fiabilité et la valeur métier de votre environnement maintenance.",
+          "TITLE": "Copilotage stratégique"
         }
       },
       "STATS": {
@@ -279,15 +279,15 @@
         "TITLE": "Approuvé par les leaders de l'industrie"
       },
       "VALUE_SECTION": {
-        "DESC": "Avec une expertise approfondie dans IBM Maximo et les systèmes d'entreprise, Elite CSP apporte une méthodologie éprouvée et une expérience pratique dans des secteurs incluant les services publics, la fabrication, le transport et le gouvernement.",
-        "LEARN_MORE": "En savoir plus sur nous →",
-        "POINT_1": "3+ années d'expertise IBM Maximo",
-        "POINT_2": "5+ implémentations réussies",
-        "POINT_3": "Méthodologie de déploiement rapide",
-        "POINT_4": "Pratiques conformes SOC 2",
-        "POINT_5": "Entreprise canadienne 🇨🇦",
+        "DESC": "Nous combinons conseil, expertise IBM Maximo et accompagnement terrain pour transformer la maintenance en levier de performance opérationnelle.",
+        "LEARN_MORE": "Découvrir notre approche",
+        "POINT_1": "Gouvernance, processus et outils alignés sur vos priorités d'affaires",
+        "POINT_2": "Expertise IBM Maximo/MAS mobilisable du cadrage à l’exploitation",
+        "POINT_3": "Accompagnement du changement pour sécuriser l'adoption",
+        "POINT_4": "Pilotage par la donnée pour améliorer disponibilité, coûts et risques",
+        "POINT_5": "Présence locale au Canada et collaboration de proximité",
         "TAG": "Pourquoi Elite CSP",
-        "TITLE": "Votre partenaire EAM de confiance au Canada"
+        "TITLE": "Un cabinet orienté résultats pour les environnements critiques"
       }
     },
     "JOB_DETAILS": {
@@ -333,66 +333,66 @@
     },
     "INFOGERANCE": {
       "CTA": {
-        "CTA_TEXT": "Réserver une consultation",
-        "SUBTITLE": "Nos experts sont prêts à analyser vos besoins et à vous proposer une offre adaptée.",
-        "TITLE": "Prêt à déléguer votre gestion de maintenance ?"
+        "CTA_TEXT": "Planifier un atelier",
+        "SUBTITLE": "Nos experts sont prêts à cadrer vos priorités, votre niveau de délégation et la trajectoire de service la plus adaptée.",
+        "TITLE": "Prêt à confier le pilotage de votre maintenance ?"
       },
       "FAQ": {
-        "SUBTITLE": "Trouvez les réponses aux questions les plus fréquentes sur nos offres d'infogérance.",
+        "SUBTITLE": "Des réponses claires pour comprendre notre mode de collaboration, notre niveau de prise en charge et notre manière de piloter les résultats.",
         "TAG": "FAQ",
         "TITLE": "Questions fréquentes",
         "Q1": {
-          "A": "L'infogérance en maintenance désigne la délégation partielle ou totale de la gestion de vos opérations de maintenance à un prestataire externe. Cela inclut la stratégie, les processus, les outils et les ressources nécessaires pour maintenir vos actifs en bon état de fonctionnement.",
-          "Q": "Qu'est-ce que l'infogérance en gestion de maintenance ?"
+          "A": "Notre infogérance couvre le cadrage du service, la gouvernance, la coordination opérationnelle, l'expertise IBM Maximo et le suivi de la performance. Le périmètre exact est adapté à vos priorités, à votre maturité et au niveau de délégation souhaité.",
+          "Q": "Que couvre concrètement votre offre d'infogérance ?"
         },
         "Q2": {
-          "A": "Notre offre Starter est recommandée pour les organisations qui débutent leur transformation ou qui souhaitent être accompagnées dans la définition de leur stratégie. Les offres Standard et Émérite s'adressent aux organisations recherchant une délégation opérationnelle plus poussée.",
-          "Q": "Comment choisir la bonne offre pour mon organisation ?"
+          "A": "Nous commençons par un atelier de cadrage pour comprendre vos enjeux, votre organisation, votre rythme opérationnel et vos objectifs. Cela nous permet de recommander l'offre la plus pertinente, avec une trajectoire d'évolution si vos besoins changent.",
+          "Q": "Comment choisissez-vous le niveau de service adapté à notre organisation ?"
         },
         "Q3": {
-          "A": "Oui, nos offres sont conçues pour être évolutives. Vous pouvez commencer par l'offre Free ou Starter, puis évoluer vers Standard ou Émérite selon votre niveau de maturité et vos besoins croissants.",
-          "Q": "Peut-on évoluer d'une offre à une autre ?"
+          "A": "Nous mettons en place une gouvernance simple : points de suivi, responsabilités clarifiées, indicateurs partagés et canaux de communication définis. Nos experts travaillent comme une extension de vos équipes, sans créer de lourdeur inutile.",
+          "Q": "Comment se déroule la collaboration avec nos équipes ?"
         },
         "Q4": {
-          "A": "Non, l'offre Free donne accès à la plateforme Elite Maintenance sans frais. Les offres payantes (Starter, Standard, Émérite) incluent des niveaux d'accompagnement et de services croissants. Contactez-nous pour obtenir un devis adapté à votre situation.",
-          "Q": "L'offre Free est-elle vraiment gratuite ?"
+          "A": "Oui. Nous intervenons aussi bien sur des environnements existants que sur des trajectoires de transformation. Nous adaptons notre accompagnement pour stabiliser l'exploitation, faire évoluer les pratiques et sécuriser les services déjà en production.",
+          "Q": "Pouvez-vous intervenir sur un environnement IBM Maximo déjà en place ?"
         },
         "Q5": {
-          "A": "Avec l'offre Émérite, une équipe dédiée travaille en étroite collaboration avec vos équipes, soit sur site soit à distance. Nous assurons un suivi continu de la stratégie de maintenance et une amélioration continue orientée performance et fiabilité.",
-          "Q": "Comment fonctionne le partenariat stratégique de l'offre Émérite ?"
+          "A": "Nous définissons avec vous les indicateurs pertinents : disponibilité, qualité de service, respect des engagements, adoption, fiabilité ou encore efficacité des processus. Ces indicateurs alimentent nos comités de pilotage et nos actions d'amélioration continue.",
+          "Q": "Comment mesurez-vous la performance dans la durée ?"
         }
       },
       "HERO": {
-        "CTA": "Nous contacter",
-        "SUBTITLE": "Nous proposons plusieurs niveaux de service adaptés à vos besoins et à votre maturité en gestion de maintenance.",
-        "TITLE": "Infogérance en gestion de maintenance"
+        "CTA": "Planifier un atelier",
+        "SUBTITLE": "Nous prenons en charge le cadrage, l'accompagnement et le pilotage opérationnel de vos services maintenance et IBM Maximo avec une approche centrée sur la performance.",
+        "TITLE": "Infogérance IBM Maximo orientée service"
       },
       "META": {
-        "DESCRIPTION": "Découvrez nos offres d'infogérance en gestion de maintenance : de l'accès libre à la plateforme jusqu'au partenariat stratégique dédié. Elite CSP vous accompagne vers l'excellence opérationnelle.",
-        "KEYWORDS": "infogérance, gestion de maintenance, services gérés, GMAO, EAM, IBM Maximo, Elite CSP, maintenance industrielle, fiabilité des actifs",
-        "TITLE": "Elite CSP - Infogérance en gestion de maintenance"
+        "DESCRIPTION": "Découvrez les offres d'infogérance Élite CSP pour IBM Maximo et la maintenance industrielle : un accompagnement structuré, des services gérés et un partenariat durable orientés performance opérationnelle.",
+        "KEYWORDS": "infogérance IBM Maximo, services gérés maintenance, accompagnement EAM, conseil maintenance, performance opérationnelle, amélioration continue, Elite CSP",
+        "TITLE": "Elite CSP - Infogérance IBM Maximo et maintenance"
       },
       "OFFERS": {
-        "SUBTITLE": "Choisissez le niveau d'accompagnement qui correspond à votre maturité et à vos objectifs.",
-        "TAG": "Nos offres",
-        "TITLE": "Des offres adaptées à chaque étape",
+        "SUBTITLE": "Chaque offre combine gouvernance, expertise et résultats opérationnels avec un niveau de délégation croissant.",
+        "TAG": "Niveaux de service",
+        "TITLE": "Choisissez le bon niveau d'accompagnement",
         "FREE": {
-          "BADGE": "Gratuit",
-          "DESC": "Accédez gratuitement à la plateforme Elite Maintenance pour gérer vos actifs et vos opérations de maintenance.",
-          "F1": "Accès à la plateforme Elite Maintenance",
-          "F2": "Création et gestion des actifs et emplacements",
-          "F3": "Création des plans de maintenance",
-          "F4": "Gestion et suivi des ordres de travail",
+          "BADGE": "Point d'entrée",
+          "DESC": "Idéal pour clarifier vos enjeux, confirmer la trajectoire et préparer une transformation maintenance maîtrisée.",
+          "F1": "Analyse de votre contexte opérationnel et de vos priorités",
+          "F2": "Atelier de cadrage avec recommandations concrètes",
+          "F3": "Vision claire des quick wins et des chantiers structurants",
+          "F4": "Base de travail commune pour lancer la collaboration",
           "F5": "Tableaux de bord de suivi",
-          "TITLE": "Free"
+          "TITLE": "Diagnostic & cadrage"
         },
         "STARTER": {
           "BADGE": "Accompagnement",
-          "DESC": "Accompagnement à la définition et à la mise en œuvre de la stratégie de maintenance.",
-          "F1": "Audit des processus de maintenance",
-          "F2": "Cartographie du système d'information",
-          "F3": "Définition de la stratégie de maintenance",
-          "F4": "Définition des rôles et compétences",
+          "DESC": "Pour structurer votre modèle de maintenance, orchestrer les parties prenantes et sécuriser les premières décisions.",
+          "F1": "Animation d'un plan d'action orienté valeur",
+          "F2": "Définition des rôles, des rituels et de la gouvernance",
+          "F3": "Appui à l'adoption des pratiques et des outils",
+          "F4": "Montée en compétence progressive de vos équipes",
           "F5": "Sélection des outils",
           "F6": "Architecture du système cible",
           "F7": "Implémentation des outils",
@@ -400,39 +400,64 @@
           "F9": "Formation des équipes",
           "F10": "Gestion du changement",
           "F11": "Support des outils",
-          "TITLE": "Starter"
+          "TITLE": "Pilotage de transition"
         },
         "STANDARD": {
-          "BADGE": "Services gérés",
-          "DESC": "Toutes les fonctionnalités Starter, plus la mise à disposition de ressources opérationnelles expertes.",
-          "F1": "Toutes les fonctionnalités Starter",
-          "F2": "Mise à disposition des ressources opérationnelles",
-          "F3": "Formation continue",
-          "F4": "Disponibilité des compétences au bon moment",
-          "HIGHLIGHT": "Vous déléguez l'exécution des opérations tout en conservant le contrôle stratégique.",
-          "TITLE": "Standard"
+          "BADGE": "Infogérance pilotée",
+          "DESC": "Pour déléguer l'exécution, gagner en fluidité et maintenir un pilotage clair des opérations.",
+          "F1": "Coordination quotidienne des activités et priorités",
+          "F2": "Expertise disponible au bon moment pour soutenir vos équipes",
+          "F3": "Suivi des engagements de service et des indicateurs clés",
+          "F4": "Continuité de service avec pilotage partagé",
+          "HIGHLIGHT": "Vous gardez la maîtrise des décisions pendant qu'Élite CSP sécurise l'exécution et le rythme opérationnel.",
+          "TITLE": "Prise en charge opérationnelle"
         },
         "EMERITE": {
           "BADGE": "Partenariat stratégique",
-          "DESC": "Un partenariat stratégique pour atteindre l'excellence opérationnelle et améliorer durablement la fiabilité de vos actifs.",
-          "F1": "Collaboration étroite avec les équipes du client",
-          "F2": "Équipe dédiée sur site ou à distance",
-          "F3": "Suivi continu de la stratégie de maintenance",
-          "F4": "Amélioration continue orientée performance et fiabilité",
-          "HIGHLIGHT": "Objectif : atteindre l'excellence opérationnelle et améliorer durablement la fiabilité des actifs.",
-          "TITLE": "Émérite"
-        }
+          "DESC": "Pour les organisations qui veulent un partenaire durable engagé sur la fiabilité, la collaboration et l'amélioration continue.",
+          "F1": "Équipe dédiée alignée sur vos enjeux métiers",
+          "F2": "Feuille de route commune pour la performance et la fiabilité",
+          "F3": "Comités de pilotage, arbitrages et accompagnement des leaders",
+          "F4": "Optimisation continue des processus, services et résultats",
+          "HIGHLIGHT": "Nous agissons comme une extension de vos équipes pour accélérer les résultats et faire évoluer durablement votre dispositif.",
+          "TITLE": "Copilotage de performance"
+        },
+        "RECOMMENDED": "Offre recommandée",
+        "HIGHLIGHT_LABEL": "Valeur apportée"
       },
       "STATS": {
-        "ASSETS": "Actifs gérés",
-        "CLIENTS": "Clients accompagnés",
+        "ASSETS": "Couverture de service",
+        "CLIENTS": "Organisations accompagnées",
         "SATISFACTION": "Satisfaction client",
-        "UPTIME": "Disponibilité garantie"
+        "UPTIME": "Disponibilité sécurisée"
       },
       "STATS_SECTION": {
-        "SUBTITLE": "Des résultats concrets pour nos clients à travers nos offres d'infogérance.",
+        "SUBTITLE": "Des engagements clairs pour soutenir vos équipes, stabiliser l'exploitation et améliorer la performance opérationnelle.",
         "TAG": "Résultats",
-        "TITLE": "L'impact de nos services"
+        "TITLE": "Une relation de service mesurable"
+      },
+      "MODEL": {
+        "TAG": "Notre approche de service",
+        "TITLE": "Un accompagnement qui s'adapte à votre niveau de délégation",
+        "SUBTITLE": "De la structuration initiale à la prise en charge opérative, Élite CSP intervient comme partenaire de proximité, orienté performance et amélioration continue."
+      },
+      "PILLARS": {
+        "STRATEGY": {
+          "TITLE": "Alignement stratégique",
+          "DESCRIPTION": "Nous relions vos priorités de maintenance, vos risques et vos objectifs d'affaires pour bâtir une feuille de route réaliste."
+        },
+        "EXPERTISE": {
+          "TITLE": "Expertise mobilisable",
+          "DESCRIPTION": "Vous accédez à des spécialistes IBM Maximo et EAM capables d'accélérer les décisions et de sécuriser l'exécution."
+        },
+        "OPERATIONS": {
+          "TITLE": "Prise en charge opérationnelle",
+          "DESCRIPTION": "Nos équipes assurent le suivi quotidien, la coordination et les arbitrages nécessaires à la continuité de service."
+        },
+        "IMPROVEMENT": {
+          "TITLE": "Amélioration continue",
+          "DESCRIPTION": "Nous mesurons les résultats, ajustons les pratiques et faisons évoluer votre dispositif dans la durée."
+        }
       }
     },
     "SERVICES": {

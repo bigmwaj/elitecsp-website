@@ -8,171 +8,155 @@
   [showPartnerLogos]="true">
 </app-hero>
 
-<!-- Maintenance Services Overview -->
-<section class="section maintenance-services services-section">
+<section class="section home-section services-section section--light" appRevealOnScroll>
   <div class="container">
-    <div class="section-header">
+    <div class="section-header section-header--left" appRevealOnScroll>
       <span class="section-tag">{{ 'PAGE.HOME.SERVICES_SECTION.MAINTENANCE.TAG' | translate }}</span>
       <h2>{{ 'PAGE.HOME.SERVICES_SECTION.MAINTENANCE.TITLE' | translate }}</h2>
       <p>{{ 'PAGE.HOME.SERVICES_SECTION.MAINTENANCE.SUBTITLE' | translate }}</p>
     </div>
-    <div class="services-grid">
-      @for (service of maintenanceServices(); track service.id) {
-        <app-service-card [service]="service" />
-      }
+
+    <div class="service-groups">
+      <article class="service-group surface-card" appRevealOnScroll>
+        <div class="service-group__intro">
+          <span class="service-group__label">{{ 'PAGE.HOME.SERVICES_SECTION.MAINTENANCE.TAG' | translate }}</span>
+          <h3>{{ 'PAGE.HOME.SERVICES_SECTION.MAINTENANCE.TITLE' | translate }}</h3>
+          <p>{{ 'PAGE.HOME.SERVICES_SECTION.MAINTENANCE.SUBTITLE' | translate }}</p>
+        </div>
+        <div class="services-grid">
+          @for (service of maintenanceServices(); track service.id) {
+            <app-service-card [service]="service" appRevealOnScroll />
+          }
+        </div>
+      </article>
+
+      <article class="service-group surface-card service-group--accent" appRevealOnScroll>
+        <div class="service-group__intro">
+          <span class="service-group__label">{{ 'PAGE.HOME.SERVICES_SECTION.MAXIMO.TAG' | translate }}</span>
+          <h3>{{ 'PAGE.HOME.SERVICES_SECTION.MAXIMO.TITLE' | translate }}</h3>
+          <p>{{ 'PAGE.HOME.SERVICES_SECTION.MAXIMO.SUBTITLE' | translate }}</p>
+        </div>
+        <div class="services-grid">
+          @for (service of maximoServices(); track service.id) {
+            <app-service-card [service]="service" appRevealOnScroll />
+          }
+        </div>
+      </article>
     </div>
   </div>
 </section>
 
-<!-- Maximo Services Overview -->
-<section class="section maximo-services services-section">
-  <div class="container">
-    <div class="section-header">
-      <span class="section-tag">{{ 'PAGE.HOME.SERVICES_SECTION.MAXIMO.TAG' | translate }}</span>
-      <h2>{{ 'PAGE.HOME.SERVICES_SECTION.MAXIMO.TITLE' | translate }}</h2>
-      <p>{{ 'PAGE.HOME.SERVICES_SECTION.MAXIMO.SUBTITLE' | translate }}</p>
-    </div>
-    <div class="services-grid">
-      @for (service of maximoServices(); track service.id) {
-        <app-service-card [service]="service" />
-      }
-    </div>
-  </div>
-</section>
-
-<!-- Value Proposition -->
-<section class="section value-section">
+<section class="section home-section value-section section--dark" appRevealOnScroll>
   <div class="container">
     <div class="value-grid">
-      <div class="value-content">
+      <div class="value-content" appRevealOnScroll>
         <span class="section-tag">{{ 'PAGE.HOME.VALUE_SECTION.TAG' | translate }}</span>
         <h2>{{ 'PAGE.HOME.VALUE_SECTION.TITLE' | translate }}</h2>
         <p>{{ 'PAGE.HOME.VALUE_SECTION.DESC' | translate }}</p>
         <ul class="value-list">
-          <li><span class="icon">🏆</span> {{ 'PAGE.HOME.VALUE_SECTION.POINT_1' | translate }}</li>
-          <li><span class="icon">🌍</span> {{ 'PAGE.HOME.VALUE_SECTION.POINT_2' | translate }}</li>
-          <li><span class="icon">⚡</span> {{ 'PAGE.HOME.VALUE_SECTION.POINT_3' | translate }}</li>
-          <li><span class="icon">🔒</span> {{ 'PAGE.HOME.VALUE_SECTION.POINT_4' | translate }}</li>
-          <li><span class="icon">🇨🇦</span> {{ 'PAGE.HOME.VALUE_SECTION.POINT_5' | translate }}</li>
+          <li>{{ 'PAGE.HOME.VALUE_SECTION.POINT_1' | translate }}</li>
+          <li>{{ 'PAGE.HOME.VALUE_SECTION.POINT_2' | translate }}</li>
+          <li>{{ 'PAGE.HOME.VALUE_SECTION.POINT_3' | translate }}</li>
+          <li>{{ 'PAGE.HOME.VALUE_SECTION.POINT_4' | translate }}</li>
+          <li>{{ 'PAGE.HOME.VALUE_SECTION.POINT_5' | translate }}</li>
         </ul>
-        <a routerLink="/about" class="btn-link">{{ 'PAGE.HOME.VALUE_SECTION.LEARN_MORE' | translate }}</a>
+        <div class="value-actions">
+          <a routerLink="/about" class="btn btn--secondary">{{ 'PAGE.HOME.VALUE_SECTION.LEARN_MORE' | translate }}</a>
+          <a routerLink="/contact" class="btn btn--ghost">{{ 'PAGE.HOME.HERO.CTA' | translate }}</a>
+        </div>
       </div>
-      <div class="value-stats">
-        @for (stat of stats; track stat.labelKey) {
-          <div class="stat">
-            <span class="stat-number">{{ stat.value }}</span>
-            <span class="stat-label">{{ stat.labelKey | translate }}</span>
-          </div>
-        }
+
+      <div class="value-panel surface-card" appRevealOnScroll>
+        <div class="value-panel__header">
+          <span class="value-panel__eyebrow">{{ 'PAGE.HOME.PROCESS_SECTION.TAG' | translate }}</span>
+          <h3>{{ 'PAGE.HOME.PROCESS_SECTION.TITLE' | translate }}</h3>
+          <p>{{ 'PAGE.HOME.PROCESS_SECTION.SUBTITLE' | translate }}</p>
+        </div>
+        <div class="value-stats">
+          @for (stat of stats; track stat.labelKey) {
+            <div class="stat">
+              <span class="stat-number">{{ stat.value }}</span>
+              <span class="stat-label">{{ stat.labelKey | translate }}</span>
+            </div>
+          }
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- Process Section -->
-<section class="section process-section">
+<section class="section home-section process-section section--muted" appRevealOnScroll>
   <div class="container">
-    <div class="section-header">
+    <div class="section-header" appRevealOnScroll>
       <span class="section-tag">{{ 'PAGE.HOME.PROCESS_SECTION.TAG' | translate }}</span>
       <h2>{{ 'PAGE.HOME.PROCESS_SECTION.TITLE' | translate }}</h2>
       <p>{{ 'PAGE.HOME.PROCESS_SECTION.SUBTITLE' | translate }}</p>
     </div>
+
     <div class="process-grid">
       @for (step of processSteps(); track step.step) {
-        <div class="process-step">
-          <div class="step-number">{{ step.step }}</div>
+        <article class="process-step surface-card" appRevealOnScroll>
+          <div class="step-number">0{{ step.step }}</div>
           <div class="step-icon">{{ step.icon }}</div>
           <h3>{{ step.title | translate }}</h3>
           <p>{{ step.description | translate }}</p>
-        </div>
+        </article>
       }
     </div>
   </div>
 </section>
 
-<!-- Testimonials -->
-<section class="section testimonials-section display-none">
+<section class="section home-section infogerance-section section--gradient" appRevealOnScroll>
   <div class="container">
-    <div class="section-header">
-      <span class="section-tag">{{ 'PAGE.HOME.TESTIMONIALS_SECTION.TAG' | translate }}</span>
-      <h2>{{ 'PAGE.HOME.TESTIMONIALS_SECTION.TITLE' | translate }}</h2>
-      <p>{{ 'PAGE.HOME.TESTIMONIALS_SECTION.SUBTITLE' | translate }}</p>
-    </div>
-    <div class="testimonials-grid">
-      @for (t of testimonials(); track t.id) {
-        <div class="testimonial-card">
-          <div class="stars">
-            @for (s of [1,2,3,4,5]; track s) {
-              <span class="star">★</span>
-            }
-          </div>
-          <p class="testimonial-text">"{{ t.content | translate }}"</p>
-          <div class="testimonial-author">
-            <div class="author-avatar">{{ t.name[0] }}</div>
-            <div class="author-info">
-              <strong>{{ t.name }}</strong>
-              <span>{{ t.role | translate }}, {{ t.company }}</span>
-            </div>
-          </div>
+    <div class="infogerance-layout">
+      <div class="infogerance-copy" appRevealOnScroll>
+        <span class="section-tag">{{ 'PAGE.HOME.INFOGERANCE_SECTION.TAG' | translate }}</span>
+        <h2>{{ 'PAGE.HOME.INFOGERANCE_SECTION.TITLE' | translate }}</h2>
+        <p>{{ 'PAGE.HOME.INFOGERANCE_SECTION.SUBTITLE' | translate }}</p>
+        <div class="infogerance-actions">
+          <a routerLink="/infogerance" class="btn btn--primary">{{ 'PAGE.HOME.INFOGERANCE_SECTION.CTA' | translate }}</a>
+          <a routerLink="/contact" class="btn btn--secondary">{{ 'PAGE.HOME.HERO.CTA' | translate }}</a>
         </div>
-      }
+      </div>
+
+      <div class="infogerance-grid">
+        <article class="infogerance-card" appRevealOnScroll>
+          <span class="infogerance-card__badge">{{ 'PAGE.HOME.INFOGERANCE_SECTION.FREE.TITLE' | translate }}</span>
+          <p>{{ 'PAGE.HOME.INFOGERANCE_SECTION.FREE.DESC' | translate }}</p>
+        </article>
+        <article class="infogerance-card" appRevealOnScroll>
+          <span class="infogerance-card__badge">{{ 'PAGE.HOME.INFOGERANCE_SECTION.STARTER.TITLE' | translate }}</span>
+          <p>{{ 'PAGE.HOME.INFOGERANCE_SECTION.STARTER.DESC' | translate }}</p>
+        </article>
+        <article class="infogerance-card infogerance-card--featured" appRevealOnScroll>
+          <span class="infogerance-card__badge">{{ 'PAGE.HOME.INFOGERANCE_SECTION.STANDARD.TITLE' | translate }}</span>
+          <p>{{ 'PAGE.HOME.INFOGERANCE_SECTION.STANDARD.DESC' | translate }}</p>
+        </article>
+        <article class="infogerance-card" appRevealOnScroll>
+          <span class="infogerance-card__badge">{{ 'PAGE.HOME.INFOGERANCE_SECTION.EMERITE.TITLE' | translate }}</span>
+          <p>{{ 'PAGE.HOME.INFOGERANCE_SECTION.EMERITE.DESC' | translate }}</p>
+        </article>
+      </div>
     </div>
   </div>
 </section>
 
-<app-cta-section />
-
-<!-- Infogérance Section -->
-<section class="section infogerance-section">
+<section class="section home-section partners-home-section section--light" appRevealOnScroll>
   <div class="container">
-    <div class="section-header">
-      <span class="section-tag">{{ 'PAGE.HOME.INFOGERANCE_SECTION.TAG' | translate }}</span>
-      <h2>{{ 'PAGE.HOME.INFOGERANCE_SECTION.TITLE' | translate }}</h2>
-      <p>{{ 'PAGE.HOME.INFOGERANCE_SECTION.SUBTITLE' | translate }}</p>
-    </div>
-    <div class="infogerance-grid">
-      <div class="infogerance-card">
-        <div class="infogerance-icon">🆓</div>
-        <span class="infogerance-badge badge-free">{{ 'PAGE.HOME.INFOGERANCE_SECTION.FREE.TITLE' | translate }}</span>
-        <p>{{ 'PAGE.HOME.INFOGERANCE_SECTION.FREE.DESC' | translate }}</p>
-      </div>
-      <div class="infogerance-card">
-        <div class="infogerance-icon">🚀</div>
-        <span class="infogerance-badge badge-starter">{{ 'PAGE.HOME.INFOGERANCE_SECTION.STARTER.TITLE' | translate }}</span>
-        <p>{{ 'PAGE.HOME.INFOGERANCE_SECTION.STARTER.DESC' | translate }}</p>
-      </div>
-      <div class="infogerance-card infogerance-card-featured">
-        <div class="infogerance-icon">⚙️</div>
-        <span class="infogerance-badge badge-standard">{{ 'PAGE.HOME.INFOGERANCE_SECTION.STANDARD.TITLE' | translate }}</span>
-        <p>{{ 'PAGE.HOME.INFOGERANCE_SECTION.STANDARD.DESC' | translate }}</p>
-      </div>
-      <div class="infogerance-card">
-        <div class="infogerance-icon">🏆</div>
-        <span class="infogerance-badge badge-emerite">{{ 'PAGE.HOME.INFOGERANCE_SECTION.EMERITE.TITLE' | translate }}</span>
-        <p>{{ 'PAGE.HOME.INFOGERANCE_SECTION.EMERITE.DESC' | translate }}</p>
-      </div>
-    </div>
-    <div class="infogerance-cta">
-      <a routerLink="/infogerance" class="btn-primary">{{ 'PAGE.HOME.INFOGERANCE_SECTION.CTA' | translate }}</a>
-    </div>
-  </div>
-</section>
-
-<!-- Partners Section -->
-<section class="section partners-home-section">
-  <div class="container">
-    <div class="section-header">
+    <div class="section-header" appRevealOnScroll>
       <span class="section-tag">{{ 'PAGE.HOME.PARTNERS_SECTION.TAG' | translate }}</span>
       <h2>{{ 'PAGE.HOME.PARTNERS_SECTION.TITLE' | translate }}</h2>
       <p>{{ 'PAGE.HOME.PARTNERS_SECTION.SUBTITLE' | translate }}</p>
     </div>
     <div class="partners-grid">
       @for (partner of partners(); track partner.id) {
-        <app-partner-card [partner]="partner" />
+        <app-partner-card [partner]="partner" appRevealOnScroll />
       }
     </div>
-    <div class="partners-cta">
-      <a routerLink="/partners" class="btn-primary">{{ 'PAGE.HOME.PARTNERS_SECTION.CTA' | translate }}</a>
+    <div class="partners-cta" appRevealOnScroll>
+      <a routerLink="/partners" class="btn btn--secondary">{{ 'PAGE.HOME.PARTNERS_SECTION.CTA' | translate }}</a>
     </div>
   </div>
 </section>
+
+<app-cta-section />

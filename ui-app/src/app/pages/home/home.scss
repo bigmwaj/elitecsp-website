@@ -186,6 +186,70 @@
   }
 }
 
+// Infogérance
+.infogerance-section {
+  background: var(--white);
+}
+
+.infogerance-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.infogerance-card {
+  background: var(--light-gray);
+  border-radius: var(--border-radius);
+  padding: 2rem 1.5rem;
+  text-align: center;
+  border: 2px solid transparent;
+  transition: var(--transition);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+
+  &:hover {
+    transform: translateY(-6px);
+    border-color: var(--primary-tint-lg);
+    box-shadow: var(--shadow);
+  }
+
+  .infogerance-icon {
+    font-size: 2.2rem;
+  }
+
+  p {
+    font-size: 0.88rem;
+    color: #666;
+    line-height: 1.6;
+    margin: 0;
+  }
+}
+
+.infogerance-card-featured {
+  background: var(--primary-tint);
+  border-color: var(--primary-tint-lg);
+}
+
+.infogerance-badge {
+  display: inline-block;
+  font-size: 0.85rem;
+  font-weight: 700;
+  padding: 0.3rem 1rem;
+  border-radius: 20px;
+}
+
+.badge-free { background: #e8f5e9; color: #2e7d32; }
+.badge-starter { background: #e3f2fd; color: #1565c0; }
+.badge-standard { background: var(--primary-tint); color: var(--primary-dark); }
+.badge-emerite { background: #f3e5f5; color: #6a1b9a; }
+
+.infogerance-cta {
+  text-align: center;
+}
+
 // Testimonials
 .testimonials-grid {
   //display: grid;

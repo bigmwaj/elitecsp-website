@@ -24,6 +24,10 @@
       "PARTNERS": "partners",
       "SERVICES": "services"
     },
+    "LANG": {
+      "ENGLISH": "Switch to English",
+      "FRENCH": "Switch to French"
+    },
     "TOGGLE_MENU": "Toggle navigation menu"
   },
   "PAGE": {

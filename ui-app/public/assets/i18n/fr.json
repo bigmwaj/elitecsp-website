@@ -24,6 +24,10 @@
       "PARTNERS": "partenaires",
       "SERVICES": "services"
     },
+    "LANG": {
+      "ENGLISH": "Passer en anglais",
+      "FRENCH": "Passer en français"
+    },
     "TOGGLE_MENU": "Ouvrir/fermer le menu"
   },
   "PAGE": {

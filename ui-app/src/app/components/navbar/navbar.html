@@ -16,6 +16,22 @@
       <a routerLink="/{{'MENU.LINK.ABOUT' | translate}}" routerLinkActive="active" (click)="closeMenu()">{{ 'MENU.LABEL.ABOUT' | translate }}</a>
       <a routerLink="/{{'MENU.LINK.PARTNERS' | translate}}" routerLinkActive="active" (click)="closeMenu()">{{ 'MENU.LABEL.PARTNERS' | translate }}</a>
       <a routerLink="/{{'MENU.LINK.CAREERS' | translate}}" routerLinkActive="active" (click)="closeMenu()">{{ 'MENU.LABEL.CAREERS' | translate }}</a>
+      <div class="language-switcher">
+        <button
+          type="button"
+          (click)="switchLang('fr')"
+          [class.active]="currentLang === 'fr'"
+          [attr.aria-label]="'MENU.LANG.FRENCH' | translate">
+          FR
+        </button>
+        <button
+          type="button"
+          (click)="switchLang('en')"
+          [class.active]="currentLang === 'en'"
+          [attr.aria-label]="'MENU.LANG.ENGLISH' | translate">
+          EN
+        </button>
+      </div>
       <a routerLink="/{{'MENU.LINK.CONTACT' | translate}}" routerLinkActive="active" (click)="closeMenu()" class="nav-cta">{{ 'MENU.LABEL.CONTACT' | translate }}</a>
     </div>
   </div>

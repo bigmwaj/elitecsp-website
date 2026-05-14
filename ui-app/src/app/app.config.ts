@@ -12,7 +12,7 @@ export const appConfig: ApplicationConfig = {
     provideBrowserGlobalErrorListeners(),
     provideRouter(routes, withViewTransitions()),
     provideHttpClient(withInterceptors([apiKeyInterceptor])),
-    provideTranslateService({ fallbackLang: 'fr' }),
+    provideTranslateService({ fallbackLang: 'en' }),
     provideTranslateHttpLoader({ prefix: assetPath('i18n/'), suffix: '.json' })
   ]
 };

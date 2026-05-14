@@ -267,17 +267,6 @@
           "TITLE": "Strategic co-pilot"
         }
       },
-      "STATS": {
-        "PROJECTS": "Projects Delivered",
-        "SATISFACTION": "Client Satisfaction",
-        "SUPPORT": "Support Available",
-        "YEARS": "Years Experience"
-      },
-      "TESTIMONIALS_SECTION": {
-        "SUBTITLE": "See what our clients say about working with Elite CSP.",
-        "TAG": "Client Stories",
-        "TITLE": "Trusted by Industry Leaders"
-      },
       "VALUE_SECTION": {
         "DESC": "We combine advisory services, IBM Maximo expertise, and hands-on enablement to turn maintenance into an operational performance lever.",
         "LEARN_MORE": "Discover our approach",
@@ -383,7 +372,6 @@
           "F2": "Framing workshop with actionable recommendations",
           "F3": "Clear view of quick wins and structural workstreams",
           "F4": "Shared baseline to launch collaboration",
-          "F5": "Monitoring dashboards",
           "TITLE": "Assessment & framing"
         },
         "STARTER": {
@@ -393,13 +381,6 @@
           "F2": "Definition of roles, rituals, and governance",
           "F3": "Support for practice and tool adoption",
           "F4": "Progressive capability uplift for your teams",
-          "F5": "Tool selection",
-          "F6": "Target system architecture",
-          "F7": "Tool implementation",
-          "F8": "SLA definition",
-          "F9": "Team training",
-          "F10": "Change management",
-          "F11": "Tool support",
           "TITLE": "Transition leadership"
         },
         "STANDARD": {

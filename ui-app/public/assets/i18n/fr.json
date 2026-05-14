@@ -267,17 +267,6 @@
           "TITLE": "Copilotage stratégique"
         }
       },
-      "STATS": {
-        "PROJECTS": "Projets livrés",
-        "SATISFACTION": "Satisfaction client",
-        "SUPPORT": "Support disponible",
-        "YEARS": "Années d'expérience"
-      },
-      "TESTIMONIALS_SECTION": {
-        "SUBTITLE": "Découvrez ce que nos clients disent de leur collaboration avec Elite CSP.",
-        "TAG": "Témoignages clients",
-        "TITLE": "Approuvé par les leaders de l'industrie"
-      },
       "VALUE_SECTION": {
         "DESC": "Nous combinons conseil, expertise IBM Maximo et accompagnement terrain pour transformer la maintenance en levier de performance opérationnelle.",
         "LEARN_MORE": "Découvrir notre approche",
@@ -383,7 +372,6 @@
           "F2": "Atelier de cadrage avec recommandations concrètes",
           "F3": "Vision claire des quick wins et des chantiers structurants",
           "F4": "Base de travail commune pour lancer la collaboration",
-          "F5": "Tableaux de bord de suivi",
           "TITLE": "Diagnostic & cadrage"
         },
         "STARTER": {
@@ -393,13 +381,6 @@
           "F2": "Définition des rôles, des rituels et de la gouvernance",
           "F3": "Appui à l'adoption des pratiques et des outils",
           "F4": "Montée en compétence progressive de vos équipes",
-          "F5": "Sélection des outils",
-          "F6": "Architecture du système cible",
-          "F7": "Implémentation des outils",
-          "F8": "Définition des SLA",
-          "F9": "Formation des équipes",
-          "F10": "Gestion du changement",
-          "F11": "Support des outils",
           "TITLE": "Pilotage de transition"
         },
         "STANDARD": {

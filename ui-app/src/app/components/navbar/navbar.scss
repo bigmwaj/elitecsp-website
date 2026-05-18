@@ -170,6 +170,9 @@ nav.scrolled .language-switcher {
 @media (max-width: 768px) {
   .hamburger { display: flex; }
 
+  nav.scrolled .language-switcher {
+    border-color: transparent;
+  }
   .nav-links {
     position: fixed;
     top: 0;

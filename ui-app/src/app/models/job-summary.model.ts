@@ -1,4 +1,5 @@
 export interface JobSummary {
+  sortIndex?: number;
   jobId: number;
   slug: string;
   icon: string;

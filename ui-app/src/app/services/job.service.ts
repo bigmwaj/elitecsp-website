@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { JobDetailsData } from '../data/job-details.data';
-import { JobData } from '../data/job-summaries.data';
-import { JobDetails } from '../models/job-details.model';
+import { JobDetailData } from '../data/job-detail.data';
+import { JobSummaryData } from '../data/job-summary.data';
+import { JobDetail } from '../models/job-detail.model';
 import { JobSummary } from '../models/job-summary.model';
 
 export type JobPosting = JobSummary & {
-  details: JobDetails | null;
+  details: JobDetail | null;
 };
 
 @Injectable({ providedIn: 'root' })
@@ -28,10 +28,10 @@ export class JobService {
   }
 
   private getJobSummaries(): JobSummary[] {
-    return JobData.JOB_SUMMARIES;
+    return JobSummaryData.JOB_SUMMARIES.sort((a, b) => (a.sortIndex ?? 0) - (b.sortIndex ?? 0)) || [];
   }
 
-  private getJobDetails(jobId: number): JobDetails | null {
-    return JobDetailsData.JOB_DETAILS.find(job => job.jobId === jobId) ?? null;
+  private getJobDetails(jobId: number): JobDetail | null {
+    return JobDetailData.JOB_DETAILS.find(job => job.jobId === jobId) ?? null;
   }
 }

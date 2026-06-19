@@ -1,4 +1,4 @@
-export interface JobDetails {
+export interface JobDetail {
   jobId: number;
   description?: {
     fr: string;

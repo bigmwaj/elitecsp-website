@@ -3,7 +3,7 @@ import { Meta, Title } from '@angular/platform-browser';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { ApplicationFormComponent } from '../../components/application-form/application-form';
-import { JobDetails } from '../../models/job-details.model';
+import { JobDetail } from '../../models/job-detail.model';
 import { JobService, JobPosting } from '../../services/job.service';
 
 @Component({
@@ -64,7 +64,7 @@ export class JobDetailComponent implements OnInit {
     return entry[currentLang] ?? entry.en;
   }
 
-  hasDetailContent(details: JobDetails | null): boolean {
+  hasDetailContent(details: JobDetail | null): boolean {
     if (!details) {
       return false;
     }

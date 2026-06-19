@@ -1,6 +1,6 @@
-import { Component, input, output } from '@angular/core';
+import { Component, inject, input, output } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { TranslatePipe } from '@ngx-translate/core';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { JobSummary } from '../../models/job-summary.model';
 import { CurrentLangEntryPipe } from '../../pipes/current-lang-entry.pipe';
 
@@ -11,6 +11,8 @@ import { CurrentLangEntryPipe } from '../../pipes/current-lang-entry.pipe';
   styleUrl: './job-card.scss'
 })
 export class JobCardComponent {
+  private translate = inject(TranslateService);
+
   readonly jobSummary = input.required<JobSummary>();
   readonly apply = output<string>();
 
@@ -22,7 +24,12 @@ export class JobCardComponent {
     return `SHARED.DATA.JOBS.${this.jobSummary().type.toUpperCase()}`;
   }
 
+  localizedSlug(): string {
+    const currentLang = this.translate.currentLang?.startsWith('fr') ? 'fr' : 'en';
+    return this.jobSummary().slug[currentLang];
+  }
+
   onApply(): void {
-    this.apply.emit(this.jobSummary().slug);
+    this.apply.emit(this.localizedSlug());
   }
 }

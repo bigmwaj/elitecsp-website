@@ -20,9 +20,11 @@ export class JobDetailComponent implements OnInit {
   private jobService = inject(JobService);
 
   readonly job = signal<JobPosting | null>(null);
+  readonly routeSlug = signal<string>('');
 
   ngOnInit() {
     const slug = this.route.snapshot.paramMap.get('slug') ?? '';
+    this.routeSlug.set(slug);
     const job = this.jobService.getJobBySlug(slug);
     this.job.set(job);
 

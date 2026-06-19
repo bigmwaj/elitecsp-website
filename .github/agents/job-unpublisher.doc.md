@@ -17,9 +17,9 @@ Example invocations:
 ## Deletion modes
 
 - **By title** — matches the given title (case-insensitive, accent-stripped)
-  against `title.fr` or `title.en` (or against `slug` if a slug is given
-  instead). If the title matches zero or more than one job, the agent asks
-  for clarification instead of guessing.
+  against `title.fr` or `title.en` (or against `slug.fr`/`slug.en` if a slug
+  is given instead). If the title matches zero or more than one job, the
+  agent asks for clarification instead of guessing.
 - **By expiration** — triggered when no title is given. The agent computes
   `cutoffDate = today - 6 months` and removes every job whose
   `expirationDate` is set and older than that cutoff. Jobs with no

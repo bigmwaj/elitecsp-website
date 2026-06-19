@@ -56,7 +56,8 @@ Models:
 - `category`, `type`, `icon`, `location` -> as given/inferred
 - `postedDate` -> defaults to today if not specified by the user
 - `expirationDate` -> optional, only set if specified
-- `slug` -> generated from title (see Slug Rules)
+- `slug` -> `slug.fr` and `slug.en`, each generated from the corresponding
+  title (see Slug Rules)
 - `jobId` -> deterministic upsert id (see Upsert Rules)
 - `sortIndex` -> optional; leave unset unless the user asks for explicit ordering
 
@@ -87,22 +88,29 @@ For list fields (`responsibilities`, `requirements`, `benefits`):
 
 ## Slug Rules
 
-Generate slug from title with this order (same as the Excel import agent, for
-consistency):
-1. use French title when available, otherwise English;
-2. lowercase;
-3. strip accents/diacritics;
-4. replace non-alphanumeric groups with `-`;
-5. trim leading/trailing `-`.
+`slug` is bilingual: `{ fr: string; en: string }`. Generate **each language's
+slug from that language's own title**, applying this order to each:
+1. lowercase;
+2. strip accents/diacritics;
+3. replace non-alphanumeric groups with `-`;
+4. trim leading/trailing `-`.
 
-Slug must be stable across repeated requests for the same job.
+If only one language's title/context was provided, first translate the title
+to the missing language (per Bilingual Field Normalization), then slugify
+the translated title — do not reuse the same slug string for both languages
+(e.g. `{ fr: 'analyste-fonctionnel', en: 'functional-analyst' }`, not
+`{ fr: 'analyste-fonctionnel', en: 'analyste-fonctionnel' }`).
+
+Each language's slug must be stable across repeated requests for the same
+job.
 
 ---
 
 ## Upsert Rules (No Duplicates)
 
-1. Resolve candidate slug from the title.
-2. Try to match an existing job by slug in `JobSummaryData.JOB_SUMMARIES`.
+1. Resolve candidate `slug.fr` and `slug.en` from the title(s).
+2. Try to match an existing job in `JobSummaryData.JOB_SUMMARIES` where
+   either `slug.fr` or `slug.en` equals either candidate slug.
 3. If found: update the existing summary + detail entries, keeping the same `jobId`.
 4. If not found: insert a new entry with `jobId = max(existing jobId) + 1`.
 
@@ -125,9 +133,9 @@ Slug must be stable across repeated requests for the same job.
 Before finishing a request, verify:
 - [ ] the new/updated entry is present in both `job-summary.data.ts` and `job-detail.data.ts`
 - [ ] `jobId` alignment is correct across both files
-- [ ] no duplicate slug/jobId was created
+- [ ] no duplicate `slug.fr`/`slug.en`/`jobId` was created
 - [ ] `postedDate` is a valid `Date` (defaulted to today if unspecified) and `expirationDate` is valid or omitted
-- [ ] all bilingual fields (`title`, `summary`, `description`, list fields) are populated in both `fr` and `en`
+- [ ] all bilingual fields (`title`, `summary`, `description`, `slug`, list fields) are populated in both `fr` and `en`
 - [ ] list fields are arrays of strings, not raw delimited text
 - [ ] TypeScript files remain syntactically valid
 - [ ] changes are limited to the two data files unless the user asked otherwise

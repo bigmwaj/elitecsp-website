@@ -5,7 +5,7 @@ export class JobSummaryData {
     {
       jobId: 1,
       sortIndex: 5,
-      slug: 'consultant-ibm-maximo',
+      slug: { fr: 'consultant-ibm-maximo', en: 'ibm-maximo-consultant' },
       icon: '⚙️',
       type: 'full_time',
       category: 'career',
@@ -23,7 +23,7 @@ export class JobSummaryData {
     {
       jobId: 2,
       sortIndex: 2,
-      slug: 'developpeur-java',
+      slug: { fr: 'developpeur-java', en: 'java-developer' },
       icon: '☕',
       type: 'full_time',
       category: 'career',
@@ -41,7 +41,7 @@ export class JobSummaryData {
     {
       jobId: 3,
       sortIndex: 3,
-      slug: 'analyste-fonctionnel',
+      slug: { fr: 'analyste-fonctionnel', en: 'functional-analyst' },
       icon: '📊',
       type: 'full_time',
       category: 'career',
@@ -59,7 +59,7 @@ export class JobSummaryData {
     {
       jobId: 4,
       sortIndex: 4,
-      slug: 'ingenieur-devops',
+      slug: { fr: 'ingenieur-devops', en: 'devops-engineer' },
       icon: '🔧',
       type: 'full_time',
       category: 'career',
@@ -77,7 +77,7 @@ export class JobSummaryData {
     {
       jobId: 6,
       sortIndex: 6,
-      slug: 'gestionnaire-de-projet',
+      slug: { fr: 'gestionnaire-de-projet', en: 'project-manager' },
       icon: '📋',
       type: 'contract',
       category: 'career',
@@ -95,7 +95,7 @@ export class JobSummaryData {
     {
       jobId: 7,
       sortIndex: 7,
-      slug: 'architecte-maximo',
+      slug: { fr: 'architecte-maximo', en: 'maximo-architect' },
       icon: '🏗️',
       type: 'contract',
       category: 'career',
@@ -113,7 +113,7 @@ export class JobSummaryData {
     {
       jobId: 8,
       sortIndex: 8,
-      slug: 'analystes-fonctionnels',
+      slug: { fr: 'analystes-fonctionnels', en: 'functional-analysts' },
       icon: '📊',
       type: 'contract',
       category: 'career',
@@ -131,7 +131,7 @@ export class JobSummaryData {
     {
       jobId: 9,
       sortIndex: 9,
-      slug: 'developpeurs-maximo',
+      slug: { fr: 'developpeurs-maximo', en: 'maximo-developers' },
       icon: '💻',
       type: 'contract',
       category: 'career',
@@ -149,7 +149,7 @@ export class JobSummaryData {
     {
       jobId: 10,
       sortIndex: 10,
-      slug: 'dba',
+      slug: { fr: 'dba', en: 'dba' },
       icon: '🗄️',
       type: 'contract',
       category: 'career',
@@ -167,7 +167,7 @@ export class JobSummaryData {
     {
       jobId: 11,
       sortIndex: 11,
-      slug: 'devops-systeme',
+      slug: { fr: 'devops-systeme', en: 'devops-systems' },
       icon: '🖥️',
       type: 'contract',
       category: 'career',
@@ -185,7 +185,7 @@ export class JobSummaryData {
     {
       jobId: 12,
       sortIndex: 12,
-      slug: 'qa',
+      slug: { fr: 'qa', en: 'qa' },
       icon: '✅',
       type: 'contract',
       category: 'career',
@@ -203,7 +203,7 @@ export class JobSummaryData {
     {
       jobId: 13,
       sortIndex: 13,
-      slug: 'formateurs',
+      slug: { fr: 'formateurs', en: 'trainers' },
       icon: '🎓',
       type: 'contract',
       category: 'career',
@@ -221,7 +221,7 @@ export class JobSummaryData {
     {
       jobId: 14,
       sortIndex: 14,
-      slug: 'architecte-integration',
+      slug: { fr: 'architecte-integration', en: 'integration-architect' },
       icon: '🔌',
       type: 'contract',
       category: 'career',
@@ -239,7 +239,7 @@ export class JobSummaryData {
     {
       jobId: 15,
       sortIndex: 15,
-      slug: 'expert-iam-securite',
+      slug: { fr: 'expert-iam-securite', en: 'iam-security-expert' },
       icon: '🔐',
       type: 'contract',
       category: 'career',

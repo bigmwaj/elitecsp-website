@@ -66,7 +66,12 @@ export class ApplicationFormComponent {
       return null;
     }
 
-    return this.jobs().find(job => job.slug === slug) ?? null;
+    return this.jobs().find(job => job.slug.fr === slug || job.slug.en === slug) ?? null;
+  }
+
+  localizedSlug(job: JobSummary): string {
+    const currentLang = this.translate.currentLang?.startsWith('fr') ? 'fr' : 'en';
+    return job.slug[currentLang];
   }
 
   onFileChange(event: Event): void {
@@ -115,7 +120,7 @@ export class ApplicationFormComponent {
           email: value.email ?? '',
           city: value.city ?? '',
           phone: value.phone ?? '',
-          subject: selectedJob.slug,
+          subject: this.localizedSlug(selectedJob),
           message: value.coverLetter ?? '',
           attachment: base64Content,
           attachmentFileName: file!.name,

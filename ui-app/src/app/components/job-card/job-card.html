@@ -7,7 +7,7 @@
   </div>
 
   <h3 class="job-card__title">
-    <a [routerLink]="['/careers', jobSummary().slug]">{{ jobSummary().title | currentLangEntry }}</a>
+    <a [routerLink]="['/careers', localizedSlug()]">{{ jobSummary().title | currentLangEntry }}</a>
   </h3>
   <p class="job-card__description">{{ jobSummary().summary | currentLangEntry }}</p>
 
@@ -22,7 +22,7 @@
       <span aria-hidden="true">📍</span> {{ jobSummary().location }}
     </span>
     <div class="job-card__actions">
-      <a class="job-card__details-btn" [routerLink]="['/careers', jobSummary().slug]">
+      <a class="job-card__details-btn" [routerLink]="['/careers', localizedSlug()]">
         {{ 'PAGE.CAREERS.DETAILS_BTN' | translate }}
       </a>
       <button type="button" class="job-card__apply-btn" (click)="onApply()">

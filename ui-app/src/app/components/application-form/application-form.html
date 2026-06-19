@@ -76,7 +76,7 @@
             <select id="jobSlug" formControlName="jobSlug" [class.error]="f['jobSlug'].invalid && f['jobSlug'].touched">
               <option value="">{{ 'PAGE.CAREERS.FORM.JOB_PLACEHOLDER' | translate }}</option>
               @for (job of jobs(); track job.jobId) {
-                <option [value]="job.slug">{{ job.title | currentLangEntry }}</option>
+                <option [value]="job.slug | currentLangEntry">{{ job.title | currentLangEntry }}</option>
               }
             </select>
             @if (f['jobSlug'].invalid && f['jobSlug'].touched) {

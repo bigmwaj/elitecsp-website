@@ -1,7 +1,10 @@
 export interface JobSummary {
   sortIndex?: number;
   jobId: number;
-  slug: string;
+  slug: {
+    fr: string;
+    en: string;
+  };
   icon: string;
   type: string;
   category: string;

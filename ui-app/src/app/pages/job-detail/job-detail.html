@@ -92,7 +92,7 @@
 
       <app-application-form
         [jobs]="[currentJob]"
-        [selectedJobSlug]="currentJob.slug"
+        [selectedJobSlug]="routeSlug()"
         [lockSelectedJob]="true"
       ></app-application-form>
     </div>

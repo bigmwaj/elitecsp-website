@@ -53,8 +53,8 @@ Models:
 
 1. Read `JobSummaryData.JOB_SUMMARIES` and resolve the candidate by comparing
    the given title (case-insensitive, accent-stripped) against `title.fr`
-   and `title.en` of each entry. Matching by `slug` is also acceptable if the
-   user supplies a slug instead of a title.
+   and `title.en` of each entry. Matching against `slug.fr` or `slug.en` is
+   also acceptable if the user supplies a slug instead of a title.
 2. If exactly one match is found, capture its `jobId`.
 3. Remove the entry with that `jobId` from `JobSummaryData.JOB_SUMMARIES`.
 4. Remove the entry with the same `jobId` from `JobDetailData.JOB_DETAILS`.

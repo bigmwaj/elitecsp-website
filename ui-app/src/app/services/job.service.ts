@@ -16,7 +16,7 @@ export class JobService {
   }
 
   getJobBySlug(slug: string): JobPosting | null {
-    const summary = this.getJobSummaries().find(job => job.slug === slug);
+    const summary = this.getJobSummaries().find(job => job.slug.fr === slug || job.slug.en === slug);
     if (!summary) {
       return null;
     }
